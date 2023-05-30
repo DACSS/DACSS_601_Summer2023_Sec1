@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "DACSS 601: Data Science Fundamentals",
     "section": "",
-    "text": "The blog posts here are contributed by students enrolled in DACSS 601, Fundamentals of Data Science. The course provides students with an introduction to R and the tidyverse, scientific publishing, and collaboration through GitHub, building a foundation for future coursework. Students also are introduced to general data management and data wrangling skills, with an emphasis on best practice workflows and tidy data management.\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nMay 30, 2023\n\n\nChallenge 1 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 8 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 2 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 5 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 6 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 4 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 3 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 7 Instructions\n\n\nSean Conway\n\n\n\n\n\n\nNo matching items"
+    "text": "The blog posts here are contributed by students enrolled in DACSS 601, Fundamentals of Data Science. The course provides students with an introduction to R and the tidyverse, scientific publishing, and collaboration through GitHub, building a foundation for future coursework. Students also are introduced to general data management and data wrangling skills, with an emphasis on best practice workflows and tidy data management.\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nMay 30, 2023\n\n\nChallenge 1 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 8 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 2 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 5 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 6 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 4 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 9 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 3 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 10 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 7 Instructions\n\n\nSean Conway\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/challenge1_instructions.html",
@@ -224,6 +224,20 @@
     "text": "Identify variables that need to be mutated\nAre there any variables that require mutation to be usable in your analysis stream? For example, are all time variables correctly coded as dates? Are all string variables reduced and cleaned to sensible categories? Do you need to turn any variables into factors and reorder for ease of graphics and visualization?\nDocument your work here.\nAny additional comments?"
   },
   {
+    "objectID": "posts/challenge9_instructions.html",
+    "href": "posts/challenge9_instructions.html",
+    "title": "Challenge 9 Instructions",
+    "section": "",
+    "text": "library(tidyverse)\nlibrary(ggplot2)\n\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)"
+  },
+  {
+    "objectID": "posts/challenge9_instructions.html#challenge-overview",
+    "href": "posts/challenge9_instructions.html#challenge-overview",
+    "title": "Challenge 9 Instructions",
+    "section": "Challenge Overview",
+    "text": "Challenge Overview\nToday’s challenge is simple. Create a function, and use it to perform a data analysis / cleaning / visualization task:\nExamples of such functions are: 1) A function that reads in and cleans a dataset.\n2) A function that computes summary statistics (e.g., computes the z score for a variable).\n3) A function that plots a histogram.\nThat’s it!"
+  },
+  {
     "objectID": "posts/challenge3_instructions.html",
     "href": "posts/challenge3_instructions.html",
     "title": "Challenge 3 Instructions",
@@ -257,6 +271,27 @@
     "title": "Challenge 3 Instructions",
     "section": "Pivot the Data",
     "text": "Pivot the Data\nNow we will pivot the data, and compare our pivoted data dimensions to the dimensions calculated above as a “sanity” check.\n\nExample\n\n\nCode\ndf&lt;-pivot_longer(df, col = c(outgoing, incoming),\n                 names_to=\"trade_direction\",\n                 values_to = \"trade_value\")\ndf\n\n\n# A tibble: 12 × 5\n   country  year trade trade_direction trade_value\n   &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;                 &lt;dbl&gt;\n 1 Mexico   1980 NAFTA outgoing               286.\n 2 Mexico   1980 NAFTA incoming              1381.\n 3 USA      1990 NAFTA outgoing               992.\n 4 USA      1990 NAFTA incoming               632.\n 5 France   1980 EU    outgoing               767.\n 6 France   1980 EU    incoming              1404.\n 7 Mexico   1990 NAFTA outgoing              1358.\n 8 Mexico   1990 NAFTA incoming               984.\n 9 USA      1980 NAFTA outgoing               299.\n10 USA      1980 NAFTA incoming              1236.\n11 France   1990 EU    outgoing              1582.\n12 France   1990 EU    incoming              1359.\n\n\nYes, once it is pivoted long, our resulting data are \\(12x5\\) - exactly what we expected!\n\n\nChallenge: Pivot the Chosen Data\nDocument your work here. What will a new “case” be once you have pivoted the data? How does it meet requirements for tidy data?\nAny additional comments?"
+  },
+  {
+    "objectID": "posts/challenge10_instructions.html",
+    "href": "posts/challenge10_instructions.html",
+    "title": "Challenge 10 Instructions",
+    "section": "",
+    "text": "The purrr package is a powerful tool for functional programming. It allows the user to apply a single function across multiple objects. It can replace for loops with a more readable (and often faster) simple function call.\nFor example, we can draw n random samples from 10 different distributions using a vector of 10 means.\n\nn &lt;- 100 # sample size\nm &lt;- seq(1,10) # means \nsamps &lt;- map(m,rnorm,n=n) \n\nWe can then use map_dbl to verify that this worked correctly by computing the mean for each sample.\n\nsamps %&gt;%\n  map_dbl(mean)\n\n [1]  0.918026  2.046437  2.997427  4.011996  4.790128  5.974945  7.015693\n [8]  8.206551  9.031059 10.006205\n\n\npurrr is tricky to learn (but beyond useful once you get a handle on it). Therefore, it’s imperative that you complete the purr and map readings before attempting this challenge."
+  },
+  {
+    "objectID": "posts/challenge10_instructions.html#challenge-overview",
+    "href": "posts/challenge10_instructions.html#challenge-overview",
+    "title": "Challenge 10 Instructions",
+    "section": "",
+    "text": "The purrr package is a powerful tool for functional programming. It allows the user to apply a single function across multiple objects. It can replace for loops with a more readable (and often faster) simple function call.\nFor example, we can draw n random samples from 10 different distributions using a vector of 10 means.\n\nn &lt;- 100 # sample size\nm &lt;- seq(1,10) # means \nsamps &lt;- map(m,rnorm,n=n) \n\nWe can then use map_dbl to verify that this worked correctly by computing the mean for each sample.\n\nsamps %&gt;%\n  map_dbl(mean)\n\n [1]  0.918026  2.046437  2.997427  4.011996  4.790128  5.974945  7.015693\n [8]  8.206551  9.031059 10.006205\n\n\npurrr is tricky to learn (but beyond useful once you get a handle on it). Therefore, it’s imperative that you complete the purr and map readings before attempting this challenge."
+  },
+  {
+    "objectID": "posts/challenge10_instructions.html#the-challenge",
+    "href": "posts/challenge10_instructions.html#the-challenge",
+    "title": "Challenge 10 Instructions",
+    "section": "The challenge",
+    "text": "The challenge\nUse purrr with a function to perform some data science task. What this task is is up to you. It could involve computing summary statistics, reading in multiple datasets, running a random process multiple times, or anything else you might need to do in your work as a data analyst. You might consider using purrr with a function you wrote for challenge 9."
   },
   {
     "objectID": "posts/challenge7_instructions.html",
