@@ -1,67 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/about/LinusJen.html</loc>
-    <lastmod>2023-06-01T19:09:44.800Z</lastmod>
-  </url>
-  <url>
-    <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/about/AudreyBertin.html</loc>
-    <lastmod>2023-06-01T19:09:46.860Z</lastmod>
-  </url>
-  <url>
-    <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/about/Zhongyue Lin.html</loc>
-    <lastmod>2023-06-01T19:09:47.244Z</lastmod>
-  </url>
-  <url>
-    <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/index.html</loc>
-    <lastmod>2023-06-01T19:09:47.912Z</lastmod>
-  </url>
-  <url>
-    <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/posts/JocelynLutes_Challenge1.html</loc>
-    <lastmod>2023-06-01T19:09:50.072Z</lastmod>
-  </url>
-  <url>
-    <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/posts/MattZambetti_challenge1.html</loc>
-    <lastmod>2023-06-01T19:09:51.204Z</lastmod>
-  </url>
-  <url>
-    <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/posts/example-data_import.html</loc>
-    <lastmod>2023-06-01T19:09:52.648Z</lastmod>
-  </url>
-  <url>
-    <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/posts/challenge9_instructions.html</loc>
-    <lastmod>2023-06-01T19:09:53.632Z</lastmod>
-  </url>
-  <url>
-    <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/posts/SuyashBhagwat_challenge1.html</loc>
-    <lastmod>2023-06-01T19:09:54.764Z</lastmod>
-  </url>
-  <url>
     <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/posts/challenge1_solution.html</loc>
-    <lastmod>2023-06-01T19:09:55.916Z</lastmod>
+    <lastmod>2023-06-01T19:31:55.139Z</lastmod>
   </url>
   <url>
-    <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/posts/ZhongyueLin_challenge1.html</loc>
-    <lastmod>2023-06-01T19:09:59.196Z</lastmod>
-  </url>
-  <url>
-    <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/posts/challenge10_instructions.html</loc>
-    <lastmod>2023-06-01T19:10:00.228Z</lastmod>
+    <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/posts/challenge4_instructionsNew.html</loc>
+    <lastmod>2023-06-01T19:31:58.563Z</lastmod>
   </url>
   <url>
     <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/posts/challenge1_instructions_hmajor.html</loc>
-    <lastmod>2023-06-01T19:10:02.148Z</lastmod>
+    <lastmod>2023-06-01T19:32:01.043Z</lastmod>
   </url>
   <url>
-    <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/posts/LinusJen_challenge1.html</loc>
-    <lastmod>2023-06-01T19:10:03.612Z</lastmod>
+    <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/posts/challenge3_instructionsNew.html</loc>
+    <lastmod>2023-06-01T19:32:02.575Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/posts/JocelynLutes_Challenge1.html</loc>
+    <lastmod>2023-06-01T19:32:04.071Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/posts/challenge8_instructionsNew.html</loc>
+    <lastmod>2023-06-01T19:32:05.379Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/posts/SuyashBhagwat_challenge1.html</loc>
+    <lastmod>2023-06-01T19:32:06.771Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/posts/challenge10_instructionsNew.html</loc>
+    <lastmod>2023-06-01T19:32:08.095Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/posts/ZhongyueLin_challenge1.html</loc>
+    <lastmod>2023-06-01T19:32:12.667Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/posts/MattZambetti_challenge1.html</loc>
+    <lastmod>2023-06-01T19:32:14.039Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/posts/challenge9_instructions.html</loc>
+    <lastmod>2023-06-01T19:32:15.303Z</lastmod>
   </url>
   <url>
     <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/posts/AudreyBertin_Challenge1.html</loc>
-    <lastmod>2023-06-01T19:10:04.892Z</lastmod>
+    <lastmod>2023-06-01T19:32:16.831Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/posts/example-data_import.html</loc>
+    <lastmod>2023-06-01T19:32:18.639Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/posts/challenge1_instructionsNew.html</loc>
+    <lastmod>2023-06-01T19:32:19.883Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/posts/challenge10_instructions.html</loc>
+    <lastmod>2023-06-01T19:32:21.227Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/posts/challenge7_instructionsNew.html</loc>
+    <lastmod>2023-06-01T19:32:22.715Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/posts/challenge2_instructionsNew.html</loc>
+    <lastmod>2023-06-01T19:32:24.007Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/posts/challenge5_instructionsNew.html</loc>
+    <lastmod>2023-06-01T19:32:25.399Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/posts/challenge9_instructionsNew.html</loc>
+    <lastmod>2023-06-01T19:32:26.627Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/posts/LinusJen_challenge1.html</loc>
+    <lastmod>2023-06-01T19:32:28.503Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/posts/challenge6_instructionsNew.html</loc>
+    <lastmod>2023-06-01T19:32:29.919Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/index.html</loc>
+    <lastmod>2023-06-01T19:32:31.787Z</lastmod>
   </url>
   <url>
     <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/about.html</loc>
-    <lastmod>2023-06-01T19:10:05.952Z</lastmod>
+    <lastmod>2023-06-01T19:32:32.315Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/about/Zhongyue Lin.html</loc>
+    <lastmod>2023-06-01T19:32:32.871Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/about/AudreyBertin.html</loc>
+    <lastmod>2023-06-01T19:32:33.379Z</lastmod>
+  </url>
+  <url>
+    <loc>https://dacss.github.io/DACSS_601_Summer2023_Sec1/about/LinusJen.html</loc>
+    <lastmod>2023-06-01T19:32:33.859Z</lastmod>
   </url>
 </urlset>
