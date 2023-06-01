@@ -2,16 +2,16 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/challenge1_instructions_hmajor.html",
       "/posts/JocelynLutes_Challenge1.html",
+      "/posts/MattZambetti_challenge1.html",
       "/posts/SuyashBhagwat_challenge1.html",
       "/posts/ZhongyueLin_challenge1.html",
-      "/posts/MattZambetti_challenge1.html",
-      "/posts/challenge1_solution.html",
+      "/posts/challenge1_instructions_hmajor.html",
       "/posts/challenge9_instructions.html",
-      "/posts/AudreyBertin_Challenge1.html",
+      "/posts/challenge1_solution.html",
       "/posts/challenge10_instructions.html",
       "/posts/LinusJen_challenge1.html",
+      "/posts/AudreyBertin_Challenge1.html",
       "/posts/example-data_import.html"
     ]
   },
