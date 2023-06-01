@@ -1,5 +1,138 @@
 [
   {
+    "objectID": "about/AudreyBertin.html",
+    "href": "about/AudreyBertin.html",
+    "title": "Audrey Bertin",
+    "section": "",
+    "text": "Completed undergraduate degree in 2021 from Smith College in Statistical and Data Sciences (essentially, applied statistics) with a minor in Public Policy. Currently a masters student in Computer Science at UMass and hopefully graduating this summer!\nOn top of school, I work full time as a data scientist at MassMutual, primarily building predictive models in Python, where I’ve been since 2021."
+  },
+  {
+    "objectID": "about/AudreyBertin.html#educationwork-background",
+    "href": "about/AudreyBertin.html#educationwork-background",
+    "title": "Audrey Bertin",
+    "section": "",
+    "text": "Completed undergraduate degree in 2021 from Smith College in Statistical and Data Sciences (essentially, applied statistics) with a minor in Public Policy. Currently a masters student in Computer Science at UMass and hopefully graduating this summer!\nOn top of school, I work full time as a data scientist at MassMutual, primarily building predictive models in Python, where I’ve been since 2021."
+  },
+  {
+    "objectID": "about/AudreyBertin.html#r-experience",
+    "href": "about/AudreyBertin.html#r-experience",
+    "title": "Audrey Bertin",
+    "section": "R experience",
+    "text": "R experience\nUsed R in a few statistics/data science courses at Smith College so have some familiarity with tidyverse and some basic statistics functions/tests. However, it’s been a few years since I last used it regularly and there are lots of features I haven’t learned yet, both old things that I never learned before as well as new features like across()/quarto documents. I am hoping to both get a refresher on what I’ve forgotten as well as learn about some new functions and features I’ve not seen before. I’ve also primarily been doing machine learning the last few years so I’m excited for more experience with data visualization."
+  },
+  {
+    "objectID": "about/AudreyBertin.html#research-interests",
+    "href": "about/AudreyBertin.html#research-interests",
+    "title": "Audrey Bertin",
+    "section": "Research interests",
+    "text": "Research interests\n\nHow to do “good” science (reproducible results, open access, etc)\nAlgorithmic bias\nPublic policy/law around data and responsible technology use"
+  },
+  {
+    "objectID": "about/AudreyBertin.html#hometown",
+    "href": "about/AudreyBertin.html#hometown",
+    "title": "Audrey Bertin",
+    "section": "Hometown",
+    "text": "Hometown\nBorn and Raised in Austin, TX (until college). Just moved to Boston, MA!"
+  },
+  {
+    "objectID": "about/AudreyBertin.html#hobbies",
+    "href": "about/AudreyBertin.html#hobbies",
+    "title": "Audrey Bertin",
+    "section": "Hobbies",
+    "text": "Hobbies\n\n35mm film photography\nElectric skateboarding\nVideo games and board games\nHiking/camping/outdoor stuff more generally\nRock climbing"
+  },
+  {
+    "objectID": "about/AudreyBertin.html#fun-fact",
+    "href": "about/AudreyBertin.html#fun-fact",
+    "title": "Audrey Bertin",
+    "section": "Fun fact",
+    "text": "Fun fact\nI have many fun facts but one is that I am a former Texas state champion at competitive map reading."
+  },
+  {
+    "objectID": "about/Zhongyue Lin.html",
+    "href": "about/Zhongyue Lin.html",
+    "title": "Zhongyue Lin",
+    "section": "",
+    "text": "My academic journey began with a dual degree in Finance and Business Management from the University of Nebraska Omaha. To further my understanding of human cognition and decision-making, I pursued a Master’s degree in Behavioral and Economic Sciences at the University of Warwick in the UK. This experience expanded my knowledge and offered deeper insights into inherent biases within these processes.\nDespite not having full-time work experience, I made the most of various internships and practical engagements during the gap year between my undergraduate and master’s degrees. This period proved instrumental for self-teaching in data analysis and programming. I served as a student assistant at a language lab and a data science teaching assistant at an online seminar, both experiences honing my research and teaching skills. I also participated in internships across the behavioral science consulting industry in the UK, social media data analysis in China, and as a quantitative financial analyst within the financial sector in China. These diverse experiences have not only honed my programming abilities but also cultivated a comprehensive understanding of data science and behavioral science, forming a robust foundation for my future research."
+  },
+  {
+    "objectID": "about/Zhongyue Lin.html#educationwork-background",
+    "href": "about/Zhongyue Lin.html#educationwork-background",
+    "title": "Zhongyue Lin",
+    "section": "",
+    "text": "My academic journey began with a dual degree in Finance and Business Management from the University of Nebraska Omaha. To further my understanding of human cognition and decision-making, I pursued a Master’s degree in Behavioral and Economic Sciences at the University of Warwick in the UK. This experience expanded my knowledge and offered deeper insights into inherent biases within these processes.\nDespite not having full-time work experience, I made the most of various internships and practical engagements during the gap year between my undergraduate and master’s degrees. This period proved instrumental for self-teaching in data analysis and programming. I served as a student assistant at a language lab and a data science teaching assistant at an online seminar, both experiences honing my research and teaching skills. I also participated in internships across the behavioral science consulting industry in the UK, social media data analysis in China, and as a quantitative financial analyst within the financial sector in China. These diverse experiences have not only honed my programming abilities but also cultivated a comprehensive understanding of data science and behavioral science, forming a robust foundation for my future research."
+  },
+  {
+    "objectID": "about/Zhongyue Lin.html#r-experience",
+    "href": "about/Zhongyue Lin.html#r-experience",
+    "title": "Zhongyue Lin",
+    "section": "R experience",
+    "text": "R experience\nI have taught myself R through Coursera and Udemy during my internship. Then I studied R for my first Masters at Warwick University, where I applied R to experimental analysis in behavioral science, psychology and cognitive science, but these experiences were entirely task-oriented and I did not learn R systematically."
+  },
+  {
+    "objectID": "about/Zhongyue Lin.html#research-interests",
+    "href": "about/Zhongyue Lin.html#research-interests",
+    "title": "Zhongyue Lin",
+    "section": "Research interests",
+    "text": "Research interests\nMy research interest is to extend behavioral science from the micro level of the individual to the macro level of society. The human decision making process is influenced by the social environment, but if the decisions of a group of decision makers will in turn influence society? I find the relationship between the two interesting, and I hope that my studies in the DACSS program will help me to construct a connection between the two. And I hope to have the opportunity to apply my knowledge to research in the field of gerontology in the future."
+  },
+  {
+    "objectID": "about/Zhongyue Lin.html#hometown",
+    "href": "about/Zhongyue Lin.html#hometown",
+    "title": "Zhongyue Lin",
+    "section": "Hometown",
+    "text": "Hometown\nShenzhen, China"
+  },
+  {
+    "objectID": "about/Zhongyue Lin.html#hobbies",
+    "href": "about/Zhongyue Lin.html#hobbies",
+    "title": "Zhongyue Lin",
+    "section": "Hobbies",
+    "text": "Hobbies\n\nWatching movies (I’ve recently revisited Blade Runner and Blade Runner 2049!)\nFitness\nCooking\nListening to classical music (I am particularly fond of Ryuichi Sakamoto and Shostakovich)"
+  },
+  {
+    "objectID": "about/Zhongyue Lin.html#fun-fact",
+    "href": "about/Zhongyue Lin.html#fun-fact",
+    "title": "Zhongyue Lin",
+    "section": "Fun fact",
+    "text": "Fun fact\n\nI was a student of film history before entering my undergraduate degree at UNO and I have seen 3000 films."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "DACSS 601: Data Science Fundamentals",
+    "section": "",
+    "text": "The blog posts here are contributed by students enrolled in DACSS 601, Fundamentals of Data Science. The course provides students with an introduction to R and the tidyverse, scientific publishing, and collaboration through GitHub, building a foundation for future coursework. Students also are introduced to general data management and data wrangling skills, with an emphasis on best practice workflows and tidy data management.\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nMay 30, 2023\n\n\nChallenge 1 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 8 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 2 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 5 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 6 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 4 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 9 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 3 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 10 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 7 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 1 - Reading and understanding bird data\n\n\nAudrey Bertin\n\n\n\n\nJun 5, 2022\n\n\nData Import\n\n\nSean Conway\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/challenge1_instructions.html",
+    "href": "posts/challenge1_instructions.html",
+    "title": "Challenge 1 Instructions",
+    "section": "",
+    "text": "Code\nlibrary(tidyverse)\n\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)"
+  },
+  {
+    "objectID": "posts/challenge1_instructions.html#challenge-overview",
+    "href": "posts/challenge1_instructions.html#challenge-overview",
+    "title": "Challenge 1 Instructions",
+    "section": "Challenge Overview",
+    "text": "Challenge Overview\nToday’s challenge is to\n\nread in a dataset, and\ndescribe the dataset using both words and any supporting information (e.g., tables, etc)"
+  },
+  {
+    "objectID": "posts/challenge1_instructions.html#read-in-the-data",
+    "href": "posts/challenge1_instructions.html#read-in-the-data",
+    "title": "Challenge 1 Instructions",
+    "section": "Read in the Data",
+    "text": "Read in the Data\nRead in one (or more) of the following data sets, using the correct R package and command.\n\nrailroad_2012_clean_county.csv ⭐\nbirds.csv ⭐⭐\nFAOstat*.csv ⭐⭐\nwild_bird_data.xlsx ⭐⭐⭐\nStateCounty2012.xls ⭐⭐⭐⭐\n\nFind the _data folder, located inside the posts folder. Then you can read in the data, using either one of the readr standard tidy read commands, or a specialized package such as readxl.\nAdd any comments or documentation as needed. More challenging data sets may require additional code chunks and documentation."
+  },
+  {
+    "objectID": "posts/challenge1_instructions.html#describe-the-data",
+    "href": "posts/challenge1_instructions.html#describe-the-data",
+    "title": "Challenge 1 Instructions",
+    "section": "Describe the data",
+    "text": "Describe the data\nUsing a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data)."
+  },
+  {
     "objectID": "posts/challenge8_instructions.html",
     "href": "posts/challenge8_instructions.html",
     "title": "Challenge 8 Instructions",
@@ -35,195 +168,6 @@
     "text": "Join Data\nBe sure to include a sanity check, and double-check that case count is correct!"
   },
   {
-    "objectID": "posts/challenge1_instructions.html",
-    "href": "posts/challenge1_instructions.html",
-    "title": "Challenge 1 Instructions",
-    "section": "",
-    "text": "Code\nlibrary(tidyverse)\n\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)"
-  },
-  {
-    "objectID": "posts/challenge1_instructions.html#challenge-overview",
-    "href": "posts/challenge1_instructions.html#challenge-overview",
-    "title": "Challenge 1 Instructions",
-    "section": "Challenge Overview",
-    "text": "Challenge Overview\nToday’s challenge is to\n\nread in a dataset, and\ndescribe the dataset using both words and any supporting information (e.g., tables, etc)"
-  },
-  {
-    "objectID": "posts/challenge1_instructions.html#read-in-the-data",
-    "href": "posts/challenge1_instructions.html#read-in-the-data",
-    "title": "Challenge 1 Instructions",
-    "section": "Read in the Data",
-    "text": "Read in the Data\nRead in one (or more) of the following data sets, using the correct R package and command.\n\nrailroad_2012_clean_county.csv ⭐\nbirds.csv ⭐⭐\nFAOstat*.csv ⭐⭐\nwild_bird_data.xlsx ⭐⭐⭐\nStateCounty2012.xls ⭐⭐⭐⭐\n\nFind the _data folder, located inside the posts folder. Then you can read in the data, using either one of the readr standard tidy read commands, or a specialized package such as readxl.\nAdd any comments or documentation as needed. More challenging data sets may require additional code chunks and documentation."
-  },
-  {
-    "objectID": "posts/challenge1_instructions.html#describe-the-data",
-    "href": "posts/challenge1_instructions.html#describe-the-data",
-    "title": "Challenge 1 Instructions",
-    "section": "Describe the data",
-    "text": "Describe the data\nUsing a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data)."
-  },
-  {
-    "objectID": "posts/challenge7_instructions.html",
-    "href": "posts/challenge7_instructions.html",
-    "title": "Challenge 7 Instructions",
-    "section": "",
-    "text": "library(tidyverse)\nlibrary(ggplot2)\n\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)"
-  },
-  {
-    "objectID": "posts/challenge7_instructions.html#challenge-overview",
-    "href": "posts/challenge7_instructions.html#challenge-overview",
-    "title": "Challenge 7 Instructions",
-    "section": "Challenge Overview",
-    "text": "Challenge Overview\nToday’s challenge is to:\n\nread in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)\ntidy data (as needed, including sanity checks)\nmutate variables as needed (including sanity checks)\nRecreate at least two graphs from previous exercises, but introduce at least one additional dimension that you omitted before using ggplot functionality (color, shape, line, facet, etc) The goal is not to create unneeded chart ink (Tufte), but to concisely capture variation in additional dimensions that were collapsed in your earlier 2 or 3 dimensional graphs.\n\n\nExplain why you choose the specific graph type\n\n\nIf you haven’t tried in previous weeks, work this week to make your graphs “publication” ready with titles, captions, and pretty axis labels and other viewer-friendly features\n\nR Graph Gallery is a good starting point for thinking about what information is conveyed in standard graph types, and includes example R code. And anyone not familiar with Edward Tufte should check out his fantastic books and courses on data visualizaton.\n(be sure to only include the category tags for the data you use!)"
-  },
-  {
-    "objectID": "posts/challenge7_instructions.html#read-in-data",
-    "href": "posts/challenge7_instructions.html#read-in-data",
-    "title": "Challenge 7 Instructions",
-    "section": "Read in data",
-    "text": "Read in data\nRead in one (or more) of the following datasets, using the correct R package and command.\n\neggs ⭐\nabc_poll ⭐⭐\naustralian_marriage ⭐⭐\nhotel_bookings ⭐⭐⭐\nair_bnb ⭐⭐⭐\nus_hh ⭐⭐⭐⭐\nfaostat ⭐⭐⭐⭐⭐\n\n\nBriefly describe the data"
-  },
-  {
-    "objectID": "posts/challenge7_instructions.html#tidy-data-as-needed",
-    "href": "posts/challenge7_instructions.html#tidy-data-as-needed",
-    "title": "Challenge 7 Instructions",
-    "section": "Tidy Data (as needed)",
-    "text": "Tidy Data (as needed)\nIs your data already tidy, or is there work to be done? Be sure to anticipate your end result to provide a sanity check, and document your work here.\nAre there any variables that require mutation to be usable in your analysis stream? For example, do you need to calculate new values in order to graph them? Can string values be represented numerically? Do you need to turn any variables into factors and reorder for ease of graphics and visualization?\nDocument your work here."
-  },
-  {
-    "objectID": "posts/challenge7_instructions.html#visualization-with-multiple-dimensions",
-    "href": "posts/challenge7_instructions.html#visualization-with-multiple-dimensions",
-    "title": "Challenge 7 Instructions",
-    "section": "Visualization with Multiple Dimensions",
-    "text": "Visualization with Multiple Dimensions"
-  },
-  {
-    "objectID": "posts/challenge6_instructions.html",
-    "href": "posts/challenge6_instructions.html",
-    "title": "Challenge 6 Instructions",
-    "section": "",
-    "text": "library(tidyverse)\nlibrary(ggplot2)\n\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)"
-  },
-  {
-    "objectID": "posts/challenge6_instructions.html#challenge-overview",
-    "href": "posts/challenge6_instructions.html#challenge-overview",
-    "title": "Challenge 6 Instructions",
-    "section": "Challenge Overview",
-    "text": "Challenge Overview\nToday’s challenge is to:\n\nread in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)\ntidy data (as needed, including sanity checks)\nmutate variables as needed (including sanity checks)\ncreate at least one graph including time (evolution)\n\n\ntry to make them “publication” ready (optional)\nExplain why you choose the specific graph type\n\n\nCreate at least one graph depicting part-whole or flow relationships\n\n\ntry to make them “publication” ready (optional)\nExplain why you choose the specific graph type\n\nR Graph Gallery is a good starting point for thinking about what information is conveyed in standard graph types, and includes example R code.\n(be sure to only include the category tags for the data you use!)"
-  },
-  {
-    "objectID": "posts/challenge6_instructions.html#read-in-data",
-    "href": "posts/challenge6_instructions.html#read-in-data",
-    "title": "Challenge 6 Instructions",
-    "section": "Read in data",
-    "text": "Read in data\nRead in one (or more) of the following datasets, using the correct R package and command.\n\ndebt ⭐\nfed_rate ⭐⭐\nabc_poll ⭐⭐⭐\nusa_hh ⭐⭐⭐\nhotel_bookings ⭐⭐⭐⭐\nAB_NYC ⭐⭐⭐⭐⭐\n\n\nBriefly describe the data"
-  },
-  {
-    "objectID": "posts/challenge6_instructions.html#tidy-data-as-needed",
-    "href": "posts/challenge6_instructions.html#tidy-data-as-needed",
-    "title": "Challenge 6 Instructions",
-    "section": "Tidy Data (as needed)",
-    "text": "Tidy Data (as needed)\nIs your data already tidy, or is there work to be done? Be sure to anticipate your end result to provide a sanity check, and document your work here.\nAre there any variables that require mutation to be usable in your analysis stream? For example, do you need to calculate new values in order to graph them? Can string values be represented numerically? Do you need to turn any variables into factors and reorder for ease of graphics and visualization?\nDocument your work here."
-  },
-  {
-    "objectID": "posts/challenge6_instructions.html#time-dependent-visualization",
-    "href": "posts/challenge6_instructions.html#time-dependent-visualization",
-    "title": "Challenge 6 Instructions",
-    "section": "Time Dependent Visualization",
-    "text": "Time Dependent Visualization"
-  },
-  {
-    "objectID": "posts/challenge6_instructions.html#visualizing-part-whole-relationships",
-    "href": "posts/challenge6_instructions.html#visualizing-part-whole-relationships",
-    "title": "Challenge 6 Instructions",
-    "section": "Visualizing Part-Whole Relationships",
-    "text": "Visualizing Part-Whole Relationships"
-  },
-  {
-    "objectID": "posts/challenge3_instructions.html",
-    "href": "posts/challenge3_instructions.html",
-    "title": "Challenge 3 Instructions",
-    "section": "",
-    "text": "Code\nlibrary(tidyverse)\n\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)"
-  },
-  {
-    "objectID": "posts/challenge3_instructions.html#challenge-overview",
-    "href": "posts/challenge3_instructions.html#challenge-overview",
-    "title": "Challenge 3 Instructions",
-    "section": "Challenge Overview",
-    "text": "Challenge Overview\nToday’s challenge is to:\n\nread in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)\nidentify what needs to be done to tidy the current data\nanticipate the shape of pivoted data\npivot the data into tidy format using pivot_longer"
-  },
-  {
-    "objectID": "posts/challenge3_instructions.html#read-in-data",
-    "href": "posts/challenge3_instructions.html#read-in-data",
-    "title": "Challenge 3 Instructions",
-    "section": "Read in data",
-    "text": "Read in data\nRead in one (or more) of the following datasets, using the correct R package and command.\n\nanimal_weights.csv ⭐\neggs_tidy.csv ⭐⭐ or organiceggpoultry.xls ⭐⭐⭐\naustralian_marriage*.xls ⭐⭐⭐\nUSA Households*.xlsx ⭐⭐⭐⭐\nsce_labor_chart_data_public.xlsx 🌟🌟🌟🌟🌟\n\n\nBriefly describe the data\nDescribe the data, and be sure to comment on why you are planning to pivot it to make it “tidy”"
-  },
-  {
-    "objectID": "posts/challenge3_instructions.html#anticipate-the-end-result",
-    "href": "posts/challenge3_instructions.html#anticipate-the-end-result",
-    "title": "Challenge 3 Instructions",
-    "section": "Anticipate the End Result",
-    "text": "Anticipate the End Result\nThe first step in pivoting the data is to try to come up with a concrete vision of what the end product should look like - that way you will know whether or not your pivoting was successful.\nOne easy way to do this is to think about the dimensions of your current data (tibble, dataframe, or matrix), and then calculate what the dimensions of the pivoted data should be.\nSuppose you have a dataset with \\(n\\) rows and \\(k\\) variables. In our example, 3 of the variables are used to identify a case, so you will be pivoting \\(k-3\\) variables into a longer format where the \\(k-3\\) variable names will move into the names_to variable and the current values in each of those columns will move into the values_to variable. Therefore, we would expect \\(n * (k-3)\\) rows in the pivoted dataframe!\n\nExample: find current and future data dimensions\nLets see if this works with a simple example.\n\n\nCode\ndf&lt;-tibble(country = rep(c(\"Mexico\", \"USA\", \"France\"),2),\n           year = rep(c(1980,1990), 3), \n           trade = rep(c(\"NAFTA\", \"NAFTA\", \"EU\"),2),\n           outgoing = rnorm(6, mean=1000, sd=500),\n           incoming = rlogis(6, location=1000, \n                             scale = 400))\ndf\n\n\n# A tibble: 6 × 5\n  country  year trade outgoing incoming\n  &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt;\n1 Mexico   1980 NAFTA    1712.    1015.\n2 USA      1990 NAFTA    1103.     262.\n3 France   1980 EU        723.     788.\n4 Mexico   1990 NAFTA     936.     928.\n5 USA      1980 NAFTA    1329.    -136.\n6 France   1990 EU       1795.     725.\n\n\nCode\n#existing rows/cases\nnrow(df)\n\n\n[1] 6\n\n\nCode\n#existing columns/cases\nncol(df)\n\n\n[1] 5\n\n\nCode\n#expected rows/cases\nnrow(df) * (ncol(df)-3)\n\n\n[1] 12\n\n\nCode\n# expected columns \n3 + 2\n\n\n[1] 5\n\n\nOr simple example has \\(n = 6\\) rows and \\(k - 3 = 2\\) variables being pivoted, so we expect a new dataframe to have \\(n * 2 = 12\\) rows x \\(3 + 2 = 5\\) columns.\n\n\nChallenge: Describe the final dimensions\nDocument your work here.\nAny additional comments?"
-  },
-  {
-    "objectID": "posts/challenge3_instructions.html#pivot-the-data",
-    "href": "posts/challenge3_instructions.html#pivot-the-data",
-    "title": "Challenge 3 Instructions",
-    "section": "Pivot the Data",
-    "text": "Pivot the Data\nNow we will pivot the data, and compare our pivoted data dimensions to the dimensions calculated above as a “sanity” check.\n\nExample\n\n\nCode\ndf&lt;-pivot_longer(df, col = c(outgoing, incoming),\n                 names_to=\"trade_direction\",\n                 values_to = \"trade_value\")\ndf\n\n\n# A tibble: 12 × 5\n   country  year trade trade_direction trade_value\n   &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;                 &lt;dbl&gt;\n 1 Mexico   1980 NAFTA outgoing              1712.\n 2 Mexico   1980 NAFTA incoming              1015.\n 3 USA      1990 NAFTA outgoing              1103.\n 4 USA      1990 NAFTA incoming               262.\n 5 France   1980 EU    outgoing               723.\n 6 France   1980 EU    incoming               788.\n 7 Mexico   1990 NAFTA outgoing               936.\n 8 Mexico   1990 NAFTA incoming               928.\n 9 USA      1980 NAFTA outgoing              1329.\n10 USA      1980 NAFTA incoming              -136.\n11 France   1990 EU    outgoing              1795.\n12 France   1990 EU    incoming               725.\n\n\nYes, once it is pivoted long, our resulting data are \\(12x5\\) - exactly what we expected!\n\n\nChallenge: Pivot the Chosen Data\nDocument your work here. What will a new “case” be once you have pivoted the data? How does it meet requirements for tidy data?\nAny additional comments?"
-  },
-  {
-    "objectID": "posts/challenge9_instructions.html",
-    "href": "posts/challenge9_instructions.html",
-    "title": "Challenge 9 Instructions",
-    "section": "",
-    "text": "library(tidyverse)\nlibrary(ggplot2)\n\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)"
-  },
-  {
-    "objectID": "posts/challenge9_instructions.html#challenge-overview",
-    "href": "posts/challenge9_instructions.html#challenge-overview",
-    "title": "Challenge 9 Instructions",
-    "section": "Challenge Overview",
-    "text": "Challenge Overview\nToday’s challenge is simple. Create a function, and use it to perform a data analysis / cleaning / visualization task:\nExamples of such functions are: 1) A function that reads in and cleans a dataset.\n2) A function that computes summary statistics (e.g., computes the z score for a variable).\n3) A function that plots a histogram.\nThat’s it!"
-  },
-  {
-    "objectID": "posts/challenge4_instructions.html",
-    "href": "posts/challenge4_instructions.html",
-    "title": "Challenge 4 Instructions",
-    "section": "",
-    "text": "Code\nlibrary(tidyverse)\n\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)"
-  },
-  {
-    "objectID": "posts/challenge4_instructions.html#challenge-overview",
-    "href": "posts/challenge4_instructions.html#challenge-overview",
-    "title": "Challenge 4 Instructions",
-    "section": "Challenge Overview",
-    "text": "Challenge Overview\nToday’s challenge is to:\n\nread in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)\ntidy data (as needed, including sanity checks)\nidentify variables that need to be mutated\nmutate variables and sanity check all mutations"
-  },
-  {
-    "objectID": "posts/challenge4_instructions.html#read-in-data",
-    "href": "posts/challenge4_instructions.html#read-in-data",
-    "title": "Challenge 4 Instructions",
-    "section": "Read in data",
-    "text": "Read in data\nRead in one (or more) of the following datasets, using the correct R package and command.\n\nabc_poll.csv ⭐\npoultry_tidy.xlsx or organiceggpoultry.xls⭐⭐\nFedFundsRate.csv⭐⭐⭐\nhotel_bookings.csv⭐⭐⭐⭐\ndebt_in_trillions.xlsx ⭐⭐⭐⭐⭐\n\n\nBriefly describe the data"
-  },
-  {
-    "objectID": "posts/challenge4_instructions.html#tidy-data-as-needed",
-    "href": "posts/challenge4_instructions.html#tidy-data-as-needed",
-    "title": "Challenge 4 Instructions",
-    "section": "Tidy Data (as needed)",
-    "text": "Tidy Data (as needed)\nIs your data already tidy, or is there work to be done? Be sure to anticipate your end result to provide a sanity check, and document your work here.\nAny additional comments?"
-  },
-  {
-    "objectID": "posts/challenge4_instructions.html#identify-variables-that-need-to-be-mutated",
-    "href": "posts/challenge4_instructions.html#identify-variables-that-need-to-be-mutated",
-    "title": "Challenge 4 Instructions",
-    "section": "Identify variables that need to be mutated",
-    "text": "Identify variables that need to be mutated\nAre there any variables that require mutation to be usable in your analysis stream? For example, are all time variables correctly coded as dates? Are all string variables reduced and cleaned to sensible categories? Do you need to turn any variables into factors and reorder for ease of graphics and visualization?\nDocument your work here.\nAny additional comments?"
-  },
-  {
     "objectID": "posts/challenge2_instructions.html",
     "href": "posts/challenge2_instructions.html",
     "title": "Challenge 2 Instructions",
@@ -257,27 +201,6 @@
     "title": "Challenge 2 Instructions",
     "section": "Provide Grouped Summary Statistics",
     "text": "Provide Grouped Summary Statistics\nConduct some exploratory data analysis, using dplyr commands such as group_by(), select(), filter(), and summarise(). Find the central tendency (mean, median, mode) and dispersion (standard deviation, mix/max/quantile) for different subgroups within the data set.\n\nExplain and Interpret\nBe sure to explain why you choose a specific group. Comment on the interpretation of any interesting differences between groups that you uncover. This section can be integrated with the exploratory data analysis, just be sure it is included."
-  },
-  {
-    "objectID": "posts/AudreyBertin_Challenge1.html",
-    "href": "posts/AudreyBertin_Challenge1.html",
-    "title": "Challenge 1 - Reading and understanding bird data",
-    "section": "",
-    "text": "Code\nlibrary(tidyverse)\nknitr::opts_chunk$set(echo = TRUE)\nFor this challenge, I’ll be reading in the following datasets:"
-  },
-  {
-    "objectID": "posts/AudreyBertin_Challenge1.html#birds.csv",
-    "href": "posts/AudreyBertin_Challenge1.html#birds.csv",
-    "title": "Challenge 1 - Reading and understanding bird data",
-    "section": "birds.csv",
-    "text": "birds.csv\nFirst, we start with birds.csv:\n\n\nCode\nbirds &lt;- readr::read_csv(\"_data/birds.csv\")\n\n\nA sample of this data can be seen below:\n\n\nCode\nhead(birds)\n\n\n# A tibble: 6 × 14\n  `Domain Code` Domain      `Area Code` Area  `Element Code` Element `Item Code`\n  &lt;chr&gt;         &lt;chr&gt;             &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;\n1 QA            Live Anima…           2 Afgh…           5112 Stocks         1057\n2 QA            Live Anima…           2 Afgh…           5112 Stocks         1057\n3 QA            Live Anima…           2 Afgh…           5112 Stocks         1057\n4 QA            Live Anima…           2 Afgh…           5112 Stocks         1057\n5 QA            Live Anima…           2 Afgh…           5112 Stocks         1057\n6 QA            Live Anima…           2 Afgh…           5112 Stocks         1057\n# ℹ 7 more variables: Item &lt;chr&gt;, `Year Code` &lt;dbl&gt;, Year &lt;dbl&gt;, Unit &lt;chr&gt;,\n#   Value &lt;dbl&gt;, Flag &lt;chr&gt;, `Flag Description` &lt;chr&gt;\n\n\n\n\nCode\nstr(birds)\n\n\nspc_tbl_ [30,977 × 14] (S3: spec_tbl_df/tbl_df/tbl/data.frame)\n $ Domain Code     : chr [1:30977] \"QA\" \"QA\" \"QA\" \"QA\" ...\n $ Domain          : chr [1:30977] \"Live Animals\" \"Live Animals\" \"Live Animals\" \"Live Animals\" ...\n $ Area Code       : num [1:30977] 2 2 2 2 2 2 2 2 2 2 ...\n $ Area            : chr [1:30977] \"Afghanistan\" \"Afghanistan\" \"Afghanistan\" \"Afghanistan\" ...\n $ Element Code    : num [1:30977] 5112 5112 5112 5112 5112 ...\n $ Element         : chr [1:30977] \"Stocks\" \"Stocks\" \"Stocks\" \"Stocks\" ...\n $ Item Code       : num [1:30977] 1057 1057 1057 1057 1057 ...\n $ Item            : chr [1:30977] \"Chickens\" \"Chickens\" \"Chickens\" \"Chickens\" ...\n $ Year Code       : num [1:30977] 1961 1962 1963 1964 1965 ...\n $ Year            : num [1:30977] 1961 1962 1963 1964 1965 ...\n $ Unit            : chr [1:30977] \"1000 Head\" \"1000 Head\" \"1000 Head\" \"1000 Head\" ...\n $ Value           : num [1:30977] 4700 4900 5000 5300 5500 5800 6600 6290 6300 6000 ...\n $ Flag            : chr [1:30977] \"F\" \"F\" \"F\" \"F\" ...\n $ Flag Description: chr [1:30977] \"FAO estimate\" \"FAO estimate\" \"FAO estimate\" \"FAO estimate\" ...\n - attr(*, \"spec\")=\n  .. cols(\n  ..   `Domain Code` = col_character(),\n  ..   Domain = col_character(),\n  ..   `Area Code` = col_double(),\n  ..   Area = col_character(),\n  ..   `Element Code` = col_double(),\n  ..   Element = col_character(),\n  ..   `Item Code` = col_double(),\n  ..   Item = col_character(),\n  ..   `Year Code` = col_double(),\n  ..   Year = col_double(),\n  ..   Unit = col_character(),\n  ..   Value = col_double(),\n  ..   Flag = col_character(),\n  ..   `Flag Description` = col_character()\n  .. )\n - attr(*, \"problems\")=&lt;externalptr&gt; \n\n\nAs we can see, we appear to have information on the number of different types of birds in different areas around the world, based on different data sources and estimates. The data appears to be measuring birds in captivity, rather than wild birds.\nWe have 8 categorical variables and 6 numeric. The numeric variables appear to be discrete in that they can only have whole integer values.\nThe different types of birds we are tracking are as follows. We have the most data on chickens and the least on pigeons and other birds.\n\n\nCode\ntable(birds$Item)\n\n\n\n              Chickens                  Ducks Geese and guinea fowls \n                 13074                   6909                   4136 \n  Pigeons, other birds                Turkeys \n                  1165                   5693 \n\n\nThe different type of measurements we have are:\n\n\nCode\ntable(birds$`Flag Description`)\n\n\n\nAggregate, may include official, semi-official, estimated or calculated data \n                                                                        6488 \n                                                          Data not available \n                                                                        1002 \n                                    FAO data based on imputation methodology \n                                                                        1213 \n                                                                FAO estimate \n                                                                       10007 \n                                                               Official data \n                                                                       10773 \n                                                           Unofficial figure \n                                                                        1494 \n\n\nThere appears to be a strange duplicate variable. Both Year and Year Code have identical values.\nThe birds data has 30,977 rows and 14 columns:\n\n\nCode\ndim(birds)\n\n\n[1] 30977    14\n\n\nLooking at missing data, most of our variables have records for every row. There are only two that have missing values, Value and Flag. About 1/30 of the Values are missing and about 1/3 of the flags.\n\n\nCode\ncolSums(is.na(birds))\n\n\n     Domain Code           Domain        Area Code             Area \n               0                0                0                0 \n    Element Code          Element        Item Code             Item \n               0                0                0                0 \n       Year Code             Year             Unit            Value \n               0                0                0             1036 \n            Flag Flag Description \n           10773                0"
-  },
-  {
-    "objectID": "posts/AudreyBertin_Challenge1.html#wild_bird_data.xlsx",
-    "href": "posts/AudreyBertin_Challenge1.html#wild_bird_data.xlsx",
-    "title": "Challenge 1 - Reading and understanding bird data",
-    "section": "wild_bird_data.xlsx",
-    "text": "wild_bird_data.xlsx\nWe read this in using read_excel:\n\n\nCode\n# We need to add skip=1 to skip the first row and get rid of duplicate header labels\nwild_birds &lt;- readxl::read_excel(\"_data/wild_bird_data.xlsx\", skip = 1)\n\n\nA sample of this data can be seen below:\n\n\nCode\nhead(wild_birds)\n\n\n# A tibble: 6 × 2\n  `Wet body weight [g]` `Population size`\n                  &lt;dbl&gt;             &lt;dbl&gt;\n1                  5.46           532194.\n2                  7.76          3165107.\n3                  8.64          2592997.\n4                 10.7           3524193.\n5                  7.42           389806.\n6                  9.12           604766.\n\n\n\n\nCode\nstr(wild_birds)\n\n\ntibble [146 × 2] (S3: tbl_df/tbl/data.frame)\n $ Wet body weight [g]: num [1:146] 5.46 7.76 8.64 10.69 7.42 ...\n $ Population size    : num [1:146] 532194 3165107 2592997 3524193 389806 ...\n\n\nAs we can see, we just have two variables here, the wet body weight (in grams) and the size of the population.\nWe can calculate some summary statistics about each of these variables:\n\n\nCode\nsummary(wild_birds)\n\n\n Wet body weight [g] Population size  \n Min.   :   5.459    Min.   :      5  \n 1st Qu.:  18.620    1st Qu.:   1821  \n Median :  69.232    Median :  24353  \n Mean   : 363.694    Mean   : 382874  \n 3rd Qu.: 309.826    3rd Qu.: 198515  \n Max.   :9639.845    Max.   :5093378  \n\n\nBody weight ranges from ~5.5 grams to ~9640 grams. Population size ranges from 5 to 5,093,378, and we can see the means/medians/quartiles above as well.\nThere are 146 rows and none of the data appears to be missing.\n\n\nCode\ndim(wild_birds)\n\n\n[1] 146   2\n\n\n\n\nCode\ncolSums(is.na(wild_birds))\n\n\nWet body weight [g]     Population size \n                  0                   0 \n\n\nIt is difficult just from the dataset itself to understand the context of this data. Is the “Wet body weight [g]” the combined wet weight of the whole population? The average weight of birds in that population? It is unclear how the two columns are related.\nAlso, what type of birds are these? What does a row represent? We would need more information from the source to be able to understand this data further."
   },
   {
     "objectID": "posts/example-data_import.html",
@@ -329,27 +252,6 @@
     "text": "Conclusion\nYou now know a little bit about how to read in some common data types. Note that these aren’t the only types of data you’ll encounter, but they are by far the most common ones."
   },
   {
-    "objectID": "posts/challenge10_instructions.html",
-    "href": "posts/challenge10_instructions.html",
-    "title": "Challenge 10 Instructions",
-    "section": "",
-    "text": "The purrr package is a powerful tool for functional programming. It allows the user to apply a single function across multiple objects. It can replace for loops with a more readable (and often faster) simple function call.\nFor example, we can draw n random samples from 10 different distributions using a vector of 10 means.\n\nn &lt;- 100 # sample size\nm &lt;- seq(1,10) # means \nsamps &lt;- map(m,rnorm,n=n) \n\nWe can then use map_dbl to verify that this worked correctly by computing the mean for each sample.\n\nsamps %&gt;%\n  map_dbl(mean)\n\n [1]  0.918026  2.046437  2.997427  4.011996  4.790128  5.974945  7.015693\n [8]  8.206551  9.031059 10.006205\n\n\npurrr is tricky to learn (but beyond useful once you get a handle on it). Therefore, it’s imperative that you complete the purr and map readings before attempting this challenge."
-  },
-  {
-    "objectID": "posts/challenge10_instructions.html#challenge-overview",
-    "href": "posts/challenge10_instructions.html#challenge-overview",
-    "title": "Challenge 10 Instructions",
-    "section": "",
-    "text": "The purrr package is a powerful tool for functional programming. It allows the user to apply a single function across multiple objects. It can replace for loops with a more readable (and often faster) simple function call.\nFor example, we can draw n random samples from 10 different distributions using a vector of 10 means.\n\nn &lt;- 100 # sample size\nm &lt;- seq(1,10) # means \nsamps &lt;- map(m,rnorm,n=n) \n\nWe can then use map_dbl to verify that this worked correctly by computing the mean for each sample.\n\nsamps %&gt;%\n  map_dbl(mean)\n\n [1]  0.918026  2.046437  2.997427  4.011996  4.790128  5.974945  7.015693\n [8]  8.206551  9.031059 10.006205\n\n\npurrr is tricky to learn (but beyond useful once you get a handle on it). Therefore, it’s imperative that you complete the purr and map readings before attempting this challenge."
-  },
-  {
-    "objectID": "posts/challenge10_instructions.html#the-challenge",
-    "href": "posts/challenge10_instructions.html#the-challenge",
-    "title": "Challenge 10 Instructions",
-    "section": "The challenge",
-    "text": "The challenge\nUse purrr with a function to perform some data science task. What this task is is up to you. It could involve computing summary statistics, reading in multiple datasets, running a random process multiple times, or anything else you might need to do in your work as a data analyst. You might consider using purrr with a function you wrote for challenge 9."
-  },
-  {
     "objectID": "posts/challenge5_instructions.html",
     "href": "posts/challenge5_instructions.html",
     "title": "Challenge 5 Instructions",
@@ -392,66 +294,213 @@
     "text": "Bivariate Visualization(s)\nAny additional comments?"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "DACSS 601: Data Science Fundamentals",
+    "objectID": "posts/challenge6_instructions.html",
+    "href": "posts/challenge6_instructions.html",
+    "title": "Challenge 6 Instructions",
     "section": "",
-    "text": "The blog posts here are contributed by students enrolled in DACSS 601, Fundamentals of Data Science. The course provides students with an introduction to R and the tidyverse, scientific publishing, and collaboration through GitHub, building a foundation for future coursework. Students also are introduced to general data management and data wrangling skills, with an emphasis on best practice workflows and tidy data management.\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nMay 30, 2023\n\n\nChallenge 8 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 1 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 7 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 6 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 3 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 9 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 4 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 2 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 1 - Reading and understanding bird data\n\n\nAudrey Bertin\n\n\n\n\nMay 30, 2023\n\n\nChallenge 10 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 5 Instructions\n\n\nSean Conway\n\n\n\n\nJun 5, 2022\n\n\nData Import\n\n\nSean Conway\n\n\n\n\n\n\nNo matching items"
+    "text": "library(tidyverse)\nlibrary(ggplot2)\n\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)"
+  },
+  {
+    "objectID": "posts/challenge6_instructions.html#challenge-overview",
+    "href": "posts/challenge6_instructions.html#challenge-overview",
+    "title": "Challenge 6 Instructions",
+    "section": "Challenge Overview",
+    "text": "Challenge Overview\nToday’s challenge is to:\n\nread in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)\ntidy data (as needed, including sanity checks)\nmutate variables as needed (including sanity checks)\ncreate at least one graph including time (evolution)\n\n\ntry to make them “publication” ready (optional)\nExplain why you choose the specific graph type\n\n\nCreate at least one graph depicting part-whole or flow relationships\n\n\ntry to make them “publication” ready (optional)\nExplain why you choose the specific graph type\n\nR Graph Gallery is a good starting point for thinking about what information is conveyed in standard graph types, and includes example R code.\n(be sure to only include the category tags for the data you use!)"
+  },
+  {
+    "objectID": "posts/challenge6_instructions.html#read-in-data",
+    "href": "posts/challenge6_instructions.html#read-in-data",
+    "title": "Challenge 6 Instructions",
+    "section": "Read in data",
+    "text": "Read in data\nRead in one (or more) of the following datasets, using the correct R package and command.\n\ndebt ⭐\nfed_rate ⭐⭐\nabc_poll ⭐⭐⭐\nusa_hh ⭐⭐⭐\nhotel_bookings ⭐⭐⭐⭐\nAB_NYC ⭐⭐⭐⭐⭐\n\n\nBriefly describe the data"
+  },
+  {
+    "objectID": "posts/challenge6_instructions.html#tidy-data-as-needed",
+    "href": "posts/challenge6_instructions.html#tidy-data-as-needed",
+    "title": "Challenge 6 Instructions",
+    "section": "Tidy Data (as needed)",
+    "text": "Tidy Data (as needed)\nIs your data already tidy, or is there work to be done? Be sure to anticipate your end result to provide a sanity check, and document your work here.\nAre there any variables that require mutation to be usable in your analysis stream? For example, do you need to calculate new values in order to graph them? Can string values be represented numerically? Do you need to turn any variables into factors and reorder for ease of graphics and visualization?\nDocument your work here."
+  },
+  {
+    "objectID": "posts/challenge6_instructions.html#time-dependent-visualization",
+    "href": "posts/challenge6_instructions.html#time-dependent-visualization",
+    "title": "Challenge 6 Instructions",
+    "section": "Time Dependent Visualization",
+    "text": "Time Dependent Visualization"
+  },
+  {
+    "objectID": "posts/challenge6_instructions.html#visualizing-part-whole-relationships",
+    "href": "posts/challenge6_instructions.html#visualizing-part-whole-relationships",
+    "title": "Challenge 6 Instructions",
+    "section": "Visualizing Part-Whole Relationships",
+    "text": "Visualizing Part-Whole Relationships"
+  },
+  {
+    "objectID": "posts/challenge4_instructions.html",
+    "href": "posts/challenge4_instructions.html",
+    "title": "Challenge 4 Instructions",
+    "section": "",
+    "text": "Code\nlibrary(tidyverse)\n\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)"
+  },
+  {
+    "objectID": "posts/challenge4_instructions.html#challenge-overview",
+    "href": "posts/challenge4_instructions.html#challenge-overview",
+    "title": "Challenge 4 Instructions",
+    "section": "Challenge Overview",
+    "text": "Challenge Overview\nToday’s challenge is to:\n\nread in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)\ntidy data (as needed, including sanity checks)\nidentify variables that need to be mutated\nmutate variables and sanity check all mutations"
+  },
+  {
+    "objectID": "posts/challenge4_instructions.html#read-in-data",
+    "href": "posts/challenge4_instructions.html#read-in-data",
+    "title": "Challenge 4 Instructions",
+    "section": "Read in data",
+    "text": "Read in data\nRead in one (or more) of the following datasets, using the correct R package and command.\n\nabc_poll.csv ⭐\npoultry_tidy.xlsx or organiceggpoultry.xls⭐⭐\nFedFundsRate.csv⭐⭐⭐\nhotel_bookings.csv⭐⭐⭐⭐\ndebt_in_trillions.xlsx ⭐⭐⭐⭐⭐\n\n\nBriefly describe the data"
+  },
+  {
+    "objectID": "posts/challenge4_instructions.html#tidy-data-as-needed",
+    "href": "posts/challenge4_instructions.html#tidy-data-as-needed",
+    "title": "Challenge 4 Instructions",
+    "section": "Tidy Data (as needed)",
+    "text": "Tidy Data (as needed)\nIs your data already tidy, or is there work to be done? Be sure to anticipate your end result to provide a sanity check, and document your work here.\nAny additional comments?"
+  },
+  {
+    "objectID": "posts/challenge4_instructions.html#identify-variables-that-need-to-be-mutated",
+    "href": "posts/challenge4_instructions.html#identify-variables-that-need-to-be-mutated",
+    "title": "Challenge 4 Instructions",
+    "section": "Identify variables that need to be mutated",
+    "text": "Identify variables that need to be mutated\nAre there any variables that require mutation to be usable in your analysis stream? For example, are all time variables correctly coded as dates? Are all string variables reduced and cleaned to sensible categories? Do you need to turn any variables into factors and reorder for ease of graphics and visualization?\nDocument your work here.\nAny additional comments?"
+  },
+  {
+    "objectID": "posts/challenge9_instructions.html",
+    "href": "posts/challenge9_instructions.html",
+    "title": "Challenge 9 Instructions",
+    "section": "",
+    "text": "library(tidyverse)\nlibrary(ggplot2)\n\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)"
+  },
+  {
+    "objectID": "posts/challenge9_instructions.html#challenge-overview",
+    "href": "posts/challenge9_instructions.html#challenge-overview",
+    "title": "Challenge 9 Instructions",
+    "section": "Challenge Overview",
+    "text": "Challenge Overview\nToday’s challenge is simple. Create a function, and use it to perform a data analysis / cleaning / visualization task:\nExamples of such functions are: 1) A function that reads in and cleans a dataset.\n2) A function that computes summary statistics (e.g., computes the z score for a variable).\n3) A function that plots a histogram.\nThat’s it!"
+  },
+  {
+    "objectID": "posts/challenge3_instructions.html",
+    "href": "posts/challenge3_instructions.html",
+    "title": "Challenge 3 Instructions",
+    "section": "",
+    "text": "Code\nlibrary(tidyverse)\n\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)"
+  },
+  {
+    "objectID": "posts/challenge3_instructions.html#challenge-overview",
+    "href": "posts/challenge3_instructions.html#challenge-overview",
+    "title": "Challenge 3 Instructions",
+    "section": "Challenge Overview",
+    "text": "Challenge Overview\nToday’s challenge is to:\n\nread in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)\nidentify what needs to be done to tidy the current data\nanticipate the shape of pivoted data\npivot the data into tidy format using pivot_longer"
+  },
+  {
+    "objectID": "posts/challenge3_instructions.html#read-in-data",
+    "href": "posts/challenge3_instructions.html#read-in-data",
+    "title": "Challenge 3 Instructions",
+    "section": "Read in data",
+    "text": "Read in data\nRead in one (or more) of the following datasets, using the correct R package and command.\n\nanimal_weights.csv ⭐\neggs_tidy.csv ⭐⭐ or organiceggpoultry.xls ⭐⭐⭐\naustralian_marriage*.xls ⭐⭐⭐\nUSA Households*.xlsx ⭐⭐⭐⭐\nsce_labor_chart_data_public.xlsx 🌟🌟🌟🌟🌟\n\n\nBriefly describe the data\nDescribe the data, and be sure to comment on why you are planning to pivot it to make it “tidy”"
+  },
+  {
+    "objectID": "posts/challenge3_instructions.html#anticipate-the-end-result",
+    "href": "posts/challenge3_instructions.html#anticipate-the-end-result",
+    "title": "Challenge 3 Instructions",
+    "section": "Anticipate the End Result",
+    "text": "Anticipate the End Result\nThe first step in pivoting the data is to try to come up with a concrete vision of what the end product should look like - that way you will know whether or not your pivoting was successful.\nOne easy way to do this is to think about the dimensions of your current data (tibble, dataframe, or matrix), and then calculate what the dimensions of the pivoted data should be.\nSuppose you have a dataset with \\(n\\) rows and \\(k\\) variables. In our example, 3 of the variables are used to identify a case, so you will be pivoting \\(k-3\\) variables into a longer format where the \\(k-3\\) variable names will move into the names_to variable and the current values in each of those columns will move into the values_to variable. Therefore, we would expect \\(n * (k-3)\\) rows in the pivoted dataframe!\n\nExample: find current and future data dimensions\nLets see if this works with a simple example.\n\n\nCode\ndf&lt;-tibble(country = rep(c(\"Mexico\", \"USA\", \"France\"),2),\n           year = rep(c(1980,1990), 3), \n           trade = rep(c(\"NAFTA\", \"NAFTA\", \"EU\"),2),\n           outgoing = rnorm(6, mean=1000, sd=500),\n           incoming = rlogis(6, location=1000, \n                             scale = 400))\ndf\n\n\n# A tibble: 6 × 5\n  country  year trade outgoing incoming\n  &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt;\n1 Mexico   1980 NAFTA     933.    1414.\n2 USA      1990 NAFTA     662.    1279.\n3 France   1980 EU       1835.    1057.\n4 Mexico   1990 NAFTA    -117.    1174.\n5 USA      1980 NAFTA    1324.    1015.\n6 France   1990 EU        950.     880.\n\n\nCode\n#existing rows/cases\nnrow(df)\n\n\n[1] 6\n\n\nCode\n#existing columns/cases\nncol(df)\n\n\n[1] 5\n\n\nCode\n#expected rows/cases\nnrow(df) * (ncol(df)-3)\n\n\n[1] 12\n\n\nCode\n# expected columns \n3 + 2\n\n\n[1] 5\n\n\nOr simple example has \\(n = 6\\) rows and \\(k - 3 = 2\\) variables being pivoted, so we expect a new dataframe to have \\(n * 2 = 12\\) rows x \\(3 + 2 = 5\\) columns.\n\n\nChallenge: Describe the final dimensions\nDocument your work here.\nAny additional comments?"
+  },
+  {
+    "objectID": "posts/challenge3_instructions.html#pivot-the-data",
+    "href": "posts/challenge3_instructions.html#pivot-the-data",
+    "title": "Challenge 3 Instructions",
+    "section": "Pivot the Data",
+    "text": "Pivot the Data\nNow we will pivot the data, and compare our pivoted data dimensions to the dimensions calculated above as a “sanity” check.\n\nExample\n\n\nCode\ndf&lt;-pivot_longer(df, col = c(outgoing, incoming),\n                 names_to=\"trade_direction\",\n                 values_to = \"trade_value\")\ndf\n\n\n# A tibble: 12 × 5\n   country  year trade trade_direction trade_value\n   &lt;chr&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;                 &lt;dbl&gt;\n 1 Mexico   1980 NAFTA outgoing               933.\n 2 Mexico   1980 NAFTA incoming              1414.\n 3 USA      1990 NAFTA outgoing               662.\n 4 USA      1990 NAFTA incoming              1279.\n 5 France   1980 EU    outgoing              1835.\n 6 France   1980 EU    incoming              1057.\n 7 Mexico   1990 NAFTA outgoing              -117.\n 8 Mexico   1990 NAFTA incoming              1174.\n 9 USA      1980 NAFTA outgoing              1324.\n10 USA      1980 NAFTA incoming              1015.\n11 France   1990 EU    outgoing               950.\n12 France   1990 EU    incoming               880.\n\n\nYes, once it is pivoted long, our resulting data are \\(12x5\\) - exactly what we expected!\n\n\nChallenge: Pivot the Chosen Data\nDocument your work here. What will a new “case” be once you have pivoted the data? How does it meet requirements for tidy data?\nAny additional comments?"
+  },
+  {
+    "objectID": "posts/challenge10_instructions.html",
+    "href": "posts/challenge10_instructions.html",
+    "title": "Challenge 10 Instructions",
+    "section": "",
+    "text": "The purrr package is a powerful tool for functional programming. It allows the user to apply a single function across multiple objects. It can replace for loops with a more readable (and often faster) simple function call.\nFor example, we can draw n random samples from 10 different distributions using a vector of 10 means.\n\nn &lt;- 100 # sample size\nm &lt;- seq(1,10) # means \nsamps &lt;- map(m,rnorm,n=n) \n\nWe can then use map_dbl to verify that this worked correctly by computing the mean for each sample.\n\nsamps %&gt;%\n  map_dbl(mean)\n\n [1]  0.918026  2.046437  2.997427  4.011996  4.790128  5.974945  7.015693\n [8]  8.206551  9.031059 10.006205\n\n\npurrr is tricky to learn (but beyond useful once you get a handle on it). Therefore, it’s imperative that you complete the purr and map readings before attempting this challenge."
+  },
+  {
+    "objectID": "posts/challenge10_instructions.html#challenge-overview",
+    "href": "posts/challenge10_instructions.html#challenge-overview",
+    "title": "Challenge 10 Instructions",
+    "section": "",
+    "text": "The purrr package is a powerful tool for functional programming. It allows the user to apply a single function across multiple objects. It can replace for loops with a more readable (and often faster) simple function call.\nFor example, we can draw n random samples from 10 different distributions using a vector of 10 means.\n\nn &lt;- 100 # sample size\nm &lt;- seq(1,10) # means \nsamps &lt;- map(m,rnorm,n=n) \n\nWe can then use map_dbl to verify that this worked correctly by computing the mean for each sample.\n\nsamps %&gt;%\n  map_dbl(mean)\n\n [1]  0.918026  2.046437  2.997427  4.011996  4.790128  5.974945  7.015693\n [8]  8.206551  9.031059 10.006205\n\n\npurrr is tricky to learn (but beyond useful once you get a handle on it). Therefore, it’s imperative that you complete the purr and map readings before attempting this challenge."
+  },
+  {
+    "objectID": "posts/challenge10_instructions.html#the-challenge",
+    "href": "posts/challenge10_instructions.html#the-challenge",
+    "title": "Challenge 10 Instructions",
+    "section": "The challenge",
+    "text": "The challenge\nUse purrr with a function to perform some data science task. What this task is is up to you. It could involve computing summary statistics, reading in multiple datasets, running a random process multiple times, or anything else you might need to do in your work as a data analyst. You might consider using purrr with a function you wrote for challenge 9."
+  },
+  {
+    "objectID": "posts/challenge7_instructions.html",
+    "href": "posts/challenge7_instructions.html",
+    "title": "Challenge 7 Instructions",
+    "section": "",
+    "text": "library(tidyverse)\nlibrary(ggplot2)\n\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)"
+  },
+  {
+    "objectID": "posts/challenge7_instructions.html#challenge-overview",
+    "href": "posts/challenge7_instructions.html#challenge-overview",
+    "title": "Challenge 7 Instructions",
+    "section": "Challenge Overview",
+    "text": "Challenge Overview\nToday’s challenge is to:\n\nread in a data set, and describe the data set using both words and any supporting information (e.g., tables, etc)\ntidy data (as needed, including sanity checks)\nmutate variables as needed (including sanity checks)\nRecreate at least two graphs from previous exercises, but introduce at least one additional dimension that you omitted before using ggplot functionality (color, shape, line, facet, etc) The goal is not to create unneeded chart ink (Tufte), but to concisely capture variation in additional dimensions that were collapsed in your earlier 2 or 3 dimensional graphs.\n\n\nExplain why you choose the specific graph type\n\n\nIf you haven’t tried in previous weeks, work this week to make your graphs “publication” ready with titles, captions, and pretty axis labels and other viewer-friendly features\n\nR Graph Gallery is a good starting point for thinking about what information is conveyed in standard graph types, and includes example R code. And anyone not familiar with Edward Tufte should check out his fantastic books and courses on data visualizaton.\n(be sure to only include the category tags for the data you use!)"
+  },
+  {
+    "objectID": "posts/challenge7_instructions.html#read-in-data",
+    "href": "posts/challenge7_instructions.html#read-in-data",
+    "title": "Challenge 7 Instructions",
+    "section": "Read in data",
+    "text": "Read in data\nRead in one (or more) of the following datasets, using the correct R package and command.\n\neggs ⭐\nabc_poll ⭐⭐\naustralian_marriage ⭐⭐\nhotel_bookings ⭐⭐⭐\nair_bnb ⭐⭐⭐\nus_hh ⭐⭐⭐⭐\nfaostat ⭐⭐⭐⭐⭐\n\n\nBriefly describe the data"
+  },
+  {
+    "objectID": "posts/challenge7_instructions.html#tidy-data-as-needed",
+    "href": "posts/challenge7_instructions.html#tidy-data-as-needed",
+    "title": "Challenge 7 Instructions",
+    "section": "Tidy Data (as needed)",
+    "text": "Tidy Data (as needed)\nIs your data already tidy, or is there work to be done? Be sure to anticipate your end result to provide a sanity check, and document your work here.\nAre there any variables that require mutation to be usable in your analysis stream? For example, do you need to calculate new values in order to graph them? Can string values be represented numerically? Do you need to turn any variables into factors and reorder for ease of graphics and visualization?\nDocument your work here."
+  },
+  {
+    "objectID": "posts/challenge7_instructions.html#visualization-with-multiple-dimensions",
+    "href": "posts/challenge7_instructions.html#visualization-with-multiple-dimensions",
+    "title": "Challenge 7 Instructions",
+    "section": "Visualization with Multiple Dimensions",
+    "text": "Visualization with Multiple Dimensions"
+  },
+  {
+    "objectID": "posts/AudreyBertin_Challenge1.html",
+    "href": "posts/AudreyBertin_Challenge1.html",
+    "title": "Challenge 1 - Reading and understanding bird data",
+    "section": "",
+    "text": "Code\nlibrary(tidyverse)\nknitr::opts_chunk$set(echo = TRUE)\nFor this challenge, I’ll be reading in the following datasets:"
+  },
+  {
+    "objectID": "posts/AudreyBertin_Challenge1.html#birds.csv",
+    "href": "posts/AudreyBertin_Challenge1.html#birds.csv",
+    "title": "Challenge 1 - Reading and understanding bird data",
+    "section": "birds.csv",
+    "text": "birds.csv\nFirst, we start with birds.csv:\n\n\nCode\nbirds &lt;- readr::read_csv(\"_data/birds.csv\")\n\n\nA sample of this data can be seen below:\n\n\nCode\nhead(birds)\n\n\n# A tibble: 6 × 14\n  `Domain Code` Domain      `Area Code` Area  `Element Code` Element `Item Code`\n  &lt;chr&gt;         &lt;chr&gt;             &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;\n1 QA            Live Anima…           2 Afgh…           5112 Stocks         1057\n2 QA            Live Anima…           2 Afgh…           5112 Stocks         1057\n3 QA            Live Anima…           2 Afgh…           5112 Stocks         1057\n4 QA            Live Anima…           2 Afgh…           5112 Stocks         1057\n5 QA            Live Anima…           2 Afgh…           5112 Stocks         1057\n6 QA            Live Anima…           2 Afgh…           5112 Stocks         1057\n# ℹ 7 more variables: Item &lt;chr&gt;, `Year Code` &lt;dbl&gt;, Year &lt;dbl&gt;, Unit &lt;chr&gt;,\n#   Value &lt;dbl&gt;, Flag &lt;chr&gt;, `Flag Description` &lt;chr&gt;\n\n\n\n\nCode\nstr(birds)\n\n\nspc_tbl_ [30,977 × 14] (S3: spec_tbl_df/tbl_df/tbl/data.frame)\n $ Domain Code     : chr [1:30977] \"QA\" \"QA\" \"QA\" \"QA\" ...\n $ Domain          : chr [1:30977] \"Live Animals\" \"Live Animals\" \"Live Animals\" \"Live Animals\" ...\n $ Area Code       : num [1:30977] 2 2 2 2 2 2 2 2 2 2 ...\n $ Area            : chr [1:30977] \"Afghanistan\" \"Afghanistan\" \"Afghanistan\" \"Afghanistan\" ...\n $ Element Code    : num [1:30977] 5112 5112 5112 5112 5112 ...\n $ Element         : chr [1:30977] \"Stocks\" \"Stocks\" \"Stocks\" \"Stocks\" ...\n $ Item Code       : num [1:30977] 1057 1057 1057 1057 1057 ...\n $ Item            : chr [1:30977] \"Chickens\" \"Chickens\" \"Chickens\" \"Chickens\" ...\n $ Year Code       : num [1:30977] 1961 1962 1963 1964 1965 ...\n $ Year            : num [1:30977] 1961 1962 1963 1964 1965 ...\n $ Unit            : chr [1:30977] \"1000 Head\" \"1000 Head\" \"1000 Head\" \"1000 Head\" ...\n $ Value           : num [1:30977] 4700 4900 5000 5300 5500 5800 6600 6290 6300 6000 ...\n $ Flag            : chr [1:30977] \"F\" \"F\" \"F\" \"F\" ...\n $ Flag Description: chr [1:30977] \"FAO estimate\" \"FAO estimate\" \"FAO estimate\" \"FAO estimate\" ...\n - attr(*, \"spec\")=\n  .. cols(\n  ..   `Domain Code` = col_character(),\n  ..   Domain = col_character(),\n  ..   `Area Code` = col_double(),\n  ..   Area = col_character(),\n  ..   `Element Code` = col_double(),\n  ..   Element = col_character(),\n  ..   `Item Code` = col_double(),\n  ..   Item = col_character(),\n  ..   `Year Code` = col_double(),\n  ..   Year = col_double(),\n  ..   Unit = col_character(),\n  ..   Value = col_double(),\n  ..   Flag = col_character(),\n  ..   `Flag Description` = col_character()\n  .. )\n - attr(*, \"problems\")=&lt;externalptr&gt; \n\n\nAs we can see, we appear to have information on the number of different types of birds in different areas around the world, based on different data sources and estimates. The data appears to be measuring birds in captivity, rather than wild birds.\nWe have 8 categorical variables and 6 numeric. The numeric variables appear to be discrete in that they can only have whole integer values.\nThe different types of birds we are tracking are as follows. We have the most data on chickens and the least on pigeons and other birds.\n\n\nCode\ntable(birds$Item)\n\n\n\n              Chickens                  Ducks Geese and guinea fowls \n                 13074                   6909                   4136 \n  Pigeons, other birds                Turkeys \n                  1165                   5693 \n\n\nThe different type of measurements we have are:\n\n\nCode\ntable(birds$`Flag Description`)\n\n\n\nAggregate, may include official, semi-official, estimated or calculated data \n                                                                        6488 \n                                                          Data not available \n                                                                        1002 \n                                    FAO data based on imputation methodology \n                                                                        1213 \n                                                                FAO estimate \n                                                                       10007 \n                                                               Official data \n                                                                       10773 \n                                                           Unofficial figure \n                                                                        1494 \n\n\nThere appears to be a strange duplicate variable. Both Year and Year Code have identical values.\nThe birds data has 30,977 rows and 14 columns:\n\n\nCode\ndim(birds)\n\n\n[1] 30977    14\n\n\nLooking at missing data, most of our variables have records for every row. There are only two that have missing values, Value and Flag. About 1/30 of the Values are missing and about 1/3 of the flags.\n\n\nCode\ncolSums(is.na(birds))\n\n\n     Domain Code           Domain        Area Code             Area \n               0                0                0                0 \n    Element Code          Element        Item Code             Item \n               0                0                0                0 \n       Year Code             Year             Unit            Value \n               0                0                0             1036 \n            Flag Flag Description \n           10773                0"
+  },
+  {
+    "objectID": "posts/AudreyBertin_Challenge1.html#wild_bird_data.xlsx",
+    "href": "posts/AudreyBertin_Challenge1.html#wild_bird_data.xlsx",
+    "title": "Challenge 1 - Reading and understanding bird data",
+    "section": "wild_bird_data.xlsx",
+    "text": "wild_bird_data.xlsx\nWe read this in using read_excel:\n\n\nCode\n# We need to add skip=1 to skip the first row and get rid of duplicate header labels\nwild_birds &lt;- readxl::read_excel(\"_data/wild_bird_data.xlsx\", skip = 1)\n\n\nA sample of this data can be seen below:\n\n\nCode\nhead(wild_birds)\n\n\n# A tibble: 6 × 2\n  `Wet body weight [g]` `Population size`\n                  &lt;dbl&gt;             &lt;dbl&gt;\n1                  5.46           532194.\n2                  7.76          3165107.\n3                  8.64          2592997.\n4                 10.7           3524193.\n5                  7.42           389806.\n6                  9.12           604766.\n\n\n\n\nCode\nstr(wild_birds)\n\n\ntibble [146 × 2] (S3: tbl_df/tbl/data.frame)\n $ Wet body weight [g]: num [1:146] 5.46 7.76 8.64 10.69 7.42 ...\n $ Population size    : num [1:146] 532194 3165107 2592997 3524193 389806 ...\n\n\nAs we can see, we just have two variables here, the wet body weight (in grams) and the size of the population.\nWe can calculate some summary statistics about each of these variables:\n\n\nCode\nsummary(wild_birds)\n\n\n Wet body weight [g] Population size  \n Min.   :   5.459    Min.   :      5  \n 1st Qu.:  18.620    1st Qu.:   1821  \n Median :  69.232    Median :  24353  \n Mean   : 363.694    Mean   : 382874  \n 3rd Qu.: 309.826    3rd Qu.: 198515  \n Max.   :9639.845    Max.   :5093378  \n\n\nBody weight ranges from ~5.5 grams to ~9640 grams. Population size ranges from 5 to 5,093,378, and we can see the means/medians/quartiles above as well.\nThere are 146 rows and none of the data appears to be missing.\n\n\nCode\ndim(wild_birds)\n\n\n[1] 146   2\n\n\n\n\nCode\ncolSums(is.na(wild_birds))\n\n\nWet body weight [g]     Population size \n                  0                   0 \n\n\nIt is difficult just from the dataset itself to understand the context of this data. Is the “Wet body weight [g]” the combined wet weight of the whole population? The average weight of birds in that population? It is unclear how the two columns are related.\nAlso, what type of birds are these? What does a row represent? We would need more information from the source to be able to understand this data further."
   },
   {
     "objectID": "about.html",
     "href": "about.html",
     "title": "Contributors",
     "section": "",
-    "text": "Find out more about our DACSS students who contributed to the blog.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAudrey Bertin\n\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "about/AudreyBertin.html",
-    "href": "about/AudreyBertin.html",
-    "title": "Audrey Bertin",
-    "section": "",
-    "text": "Completed undergraduate degree in 2021 from Smith College in Statistical and Data Sciences (essentially, applied statistics) with a minor in Public Policy. Currently a masters student in Computer Science at UMass and hopefully graduating this summer!\nOn top of school, I work full time as a data scientist at MassMutual, primarily building predictive models in Python, where I’ve been since 2021."
-  },
-  {
-    "objectID": "about/AudreyBertin.html#educationwork-background",
-    "href": "about/AudreyBertin.html#educationwork-background",
-    "title": "Audrey Bertin",
-    "section": "",
-    "text": "Completed undergraduate degree in 2021 from Smith College in Statistical and Data Sciences (essentially, applied statistics) with a minor in Public Policy. Currently a masters student in Computer Science at UMass and hopefully graduating this summer!\nOn top of school, I work full time as a data scientist at MassMutual, primarily building predictive models in Python, where I’ve been since 2021."
-  },
-  {
-    "objectID": "about/AudreyBertin.html#r-experience",
-    "href": "about/AudreyBertin.html#r-experience",
-    "title": "Audrey Bertin",
-    "section": "R experience",
-    "text": "R experience\nUsed R in a few statistics/data science courses at Smith College so have some familiarity with tidyverse and some basic statistics functions/tests. However, it’s been a few years since I last used it regularly and there are lots of features I haven’t learned yet, both old things that I never learned before as well as new features like across()/quarto documents. I am hoping to both get a refresher on what I’ve forgotten as well as learn about some new functions and features I’ve not seen before. I’ve also primarily been doing machine learning the last few years so I’m excited for more experience with data visualization."
-  },
-  {
-    "objectID": "about/AudreyBertin.html#research-interests",
-    "href": "about/AudreyBertin.html#research-interests",
-    "title": "Audrey Bertin",
-    "section": "Research interests",
-    "text": "Research interests\n\nHow to do “good” science (reproducible results, open access, etc)\nAlgorithmic bias\nPublic policy/law around data and responsible technology use"
-  },
-  {
-    "objectID": "about/AudreyBertin.html#hometown",
-    "href": "about/AudreyBertin.html#hometown",
-    "title": "Audrey Bertin",
-    "section": "Hometown",
-    "text": "Hometown\nBorn and Raised in Austin, TX (until college). Just moved to Boston, MA!"
-  },
-  {
-    "objectID": "about/AudreyBertin.html#hobbies",
-    "href": "about/AudreyBertin.html#hobbies",
-    "title": "Audrey Bertin",
-    "section": "Hobbies",
-    "text": "Hobbies\n\n35mm film photography\nElectric skateboarding\nVideo games and board games\nHiking/camping/outdoor stuff more generally\nRock climbing"
-  },
-  {
-    "objectID": "about/AudreyBertin.html#fun-fact",
-    "href": "about/AudreyBertin.html#fun-fact",
-    "title": "Audrey Bertin",
-    "section": "Fun fact",
-    "text": "Fun fact\nI have many fun facts but one is that I am a former Texas state champion at competitive map reading."
+    "text": "Find out more about our DACSS students who contributed to the blog.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAudrey Bertin\n\n\n\n\n\n\n\n\n\n\n\n\n\nZhongyue Lin\n\n\n\n\n\n\n\nNo matching items"
   }
 ]

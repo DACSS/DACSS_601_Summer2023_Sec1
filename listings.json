@@ -2,24 +2,25 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/challenge8_instructions.html",
       "/posts/challenge1_instructions.html",
-      "/posts/challenge7_instructions.html",
-      "/posts/challenge6_instructions.html",
-      "/posts/challenge3_instructions.html",
-      "/posts/challenge9_instructions.html",
-      "/posts/challenge4_instructions.html",
+      "/posts/challenge8_instructions.html",
       "/posts/challenge2_instructions.html",
-      "/posts/AudreyBertin_Challenge1.html",
-      "/posts/challenge10_instructions.html",
       "/posts/challenge5_instructions.html",
+      "/posts/challenge6_instructions.html",
+      "/posts/challenge4_instructions.html",
+      "/posts/challenge9_instructions.html",
+      "/posts/challenge3_instructions.html",
+      "/posts/challenge10_instructions.html",
+      "/posts/challenge7_instructions.html",
+      "/posts/AudreyBertin_Challenge1.html",
       "/posts/example-data_import.html"
     ]
   },
   {
     "listing": "/about.html",
     "items": [
-      "/about/AudreyBertin.html"
+      "/about/AudreyBertin.html",
+      "/about/Zhongyue Lin.html"
     ]
   }
 ]
