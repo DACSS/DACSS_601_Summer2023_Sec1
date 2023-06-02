@@ -10,7 +10,7 @@
 <meta name="dcterms.date" content="2023-05-31">
 <meta name="description" content="Reading in data and creating a post">
 
-<title>Challenge 1 Instructions</title>
+<title>Challenge 1</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -101,7 +101,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<meta name="twitter:title" content="Challenge 1 Instructions">
+<meta name="twitter:title" content="Challenge 1">
 <meta name="twitter:description" content="Reading in data and creating a post">
 <meta name="twitter:creator" content="@UMassDACSS">
 <meta name="twitter:site" content="@UMassDACSS">
@@ -164,6 +164,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#wild_bird_data" id="toc-wild_bird_data" class="nav-link" data-scroll-target="#wild_bird_data">wild_bird_data</a></li>
   <li><a href="#statecounty2012" id="toc-statecounty2012" class="nav-link" data-scroll-target="#statecounty2012">StateCounty2012</a></li>
+  </ul></li>
+  <li><a href="#describe-the-data" id="toc-describe-the-data" class="nav-link" data-scroll-target="#describe-the-data">Describe the data</a>
+  <ul class="collapse">
   <li><a href="#wild_bird_data-1" id="toc-wild_bird_data-1" class="nav-link" data-scroll-target="#wild_bird_data-1">wild_bird_data</a></li>
   <li><a href="#statecounty2012-1" id="toc-statecounty2012-1" class="nav-link" data-scroll-target="#statecounty2012-1">StateCounty2012</a></li>
   </ul></li>
@@ -175,7 +178,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Challenge 1 Instructions</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Challenge 1</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
   <div class="quarto-categories">
     <div class="quarto-category">challenge_1</div>
     <div class="quarto-category">railroads</div>
@@ -300,7 +303,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  8 AK        SKAGWAY MUNICIPALITY    88
  9 AK Total  /                      103
 10 AL        AUTAUGA                102
-# ℹ 90 more rows</code></pre>
+# … with 90 more rows</code></pre>
 </div>
 <details>
 <summary>Code</summary>
@@ -326,7 +329,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  8 WI    TAYLOR         15
  9 WI    TREMPEALEAU    54
 10 WI    VERNON         48
-# ℹ 90 more rows</code></pre>
+# … with 90 more rows</code></pre>
 </div>
 <details>
 <summary>Code</summary>
@@ -351,11 +354,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  8 WI    ST CROIX      168
  9 WI    TAYLOR         15
 10 WI    TREMPEALEAU    54
-# ℹ 90 more rows</code></pre>
+# … with 90 more rows</code></pre>
 </div>
 </div>
-<p>In the data import process, I made adjustments and expansions to the code based on the original file format. I skipped the first three rows, which contained the headers, and removed any “NA” values. However, there are still some issues with this dataset. Each letter code includes a “total” row, which can affect data summarization when performing calculations. This problem can be addressed in subsequent data processing steps. ## Describe the data Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).</p>
 </section>
+</section>
+<section id="describe-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="describe-the-data">Describe the data</h2>
+<p>Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).</p>
 <section id="wild_bird_data-1" class="level3">
 <h3 class="anchored" data-anchor-id="wild_bird_data-1">wild_bird_data</h3>
 <div class="cell">
@@ -437,7 +443,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  8 WI    SAUK       29
  9 WI    SAWYER     14
 10 WI    SHAWANO     9
-# ℹ 90 more rows</code></pre>
+# … with 90 more rows</code></pre>
 </div>
 <details>
 <summary>Code</summary>
@@ -477,7 +483,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  8 CO        BENT         1
  9 CO        CHEYENNE     1
 10 CO        COSTILLA     1
-# ℹ 136 more rows</code></pre>
+# … with 136 more rows</code></pre>
 </div>
 </div>
 <p>The data comes from an Excel file called “StateCounty2012.xls”. After cleaning and processing, it now contains 2931 rows and 3 columns. These data likely come from a survey or statistic about railroad employment.</p>
@@ -895,7 +901,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <script src="https://giscus.app/client.js" data-repo="DACSS/DACSS_601_Summer2023_Sec1" data-repo-id="R_kgDOJpaapw" data-category="Announcements" data-category-id="" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb26" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Challenge 1 Instructions"</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Challenge 1 "</span></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Zhongyue Lin"</span></span>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Reading in data and creating a post"</span></span>
 <span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "5/31/2023"</span></span>
@@ -939,111 +945,113 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb26-45"><a href="#cb26-45" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>wild_bird_data.xlsx ⭐⭐⭐</span>
 <span id="cb26-46"><a href="#cb26-46" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>StateCounty2012.xls ⭐⭐⭐⭐</span>
 <span id="cb26-47"><a href="#cb26-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-48"><a href="#cb26-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-48"><a href="#cb26-48" aria-hidden="true" tabindex="-1"></a>In this challenge 1, I have chosen the raw data files "wild_bird_data.xlsx" and "StateCounty2012.xls" for practice. Since I have not had prior experience with handling and importing xls and xlsx data formats in R, importing these two raw data files is a new challenge for me.</span>
 <span id="cb26-49"><a href="#cb26-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-50"><a href="#cb26-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-51"><a href="#cb26-51" aria-hidden="true" tabindex="-1"></a>In this challenge 1, I have chosen the raw data files "wild_bird_data.xlsx" and "StateCounty2012.xls" for practice. Since I have not had prior experience with handling and importing xls and xlsx data formats in R, importing these two raw data files is a new challenge for me.</span>
-<span id="cb26-52"><a href="#cb26-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-53"><a href="#cb26-53" aria-hidden="true" tabindex="-1"></a><span class="fu">### wild_bird_data</span></span>
-<span id="cb26-54"><a href="#cb26-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-55"><a href="#cb26-55" aria-hidden="true" tabindex="-1"></a>While working with the data from "wild_bird_data.xlsx," I encountered a situation where the header of the dataset occupied one row. To avoid any data format errors during the import process, I used the setting "skip=1" to skip the first row while importing the data.</span>
-<span id="cb26-56"><a href="#cb26-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-59"><a href="#cb26-59" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb26-60"><a href="#cb26-60" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the file</span></span>
-<span id="cb26-61"><a href="#cb26-61" aria-hidden="true" tabindex="-1"></a>data_wild_brid <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"_data/wild_bird_data.xlsx"</span>,<span class="at">skip =</span> <span class="dv">1</span>)</span>
-<span id="cb26-62"><a href="#cb26-62" aria-hidden="true" tabindex="-1"></a><span class="co">#Preview Data</span></span>
-<span id="cb26-63"><a href="#cb26-63" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_wild_brid)</span>
-<span id="cb26-64"><a href="#cb26-64" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(data_wild_brid)</span>
-<span id="cb26-65"><a href="#cb26-65" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb26-66"><a href="#cb26-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-67"><a href="#cb26-67" aria-hidden="true" tabindex="-1"></a>Then, I used the <span class="in">`dim()`</span> function and <span class="in">`head()`</span> function to have an initial preview of the data (146 rows, 2 columns).</span>
-<span id="cb26-68"><a href="#cb26-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-69"><a href="#cb26-69" aria-hidden="true" tabindex="-1"></a><span class="fu">### StateCounty2012</span></span>
-<span id="cb26-70"><a href="#cb26-70" aria-hidden="true" tabindex="-1"></a>In the data import process, I made adjustments and expansions to the code based on the format of the original file. I skipped the first three rows, which contained the headers, and removed any "NA" values present in the dataset. I also removed any unrelated content at the end of the table.</span>
+<span id="cb26-50"><a href="#cb26-50" aria-hidden="true" tabindex="-1"></a><span class="fu">### wild_bird_data</span></span>
+<span id="cb26-51"><a href="#cb26-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-52"><a href="#cb26-52" aria-hidden="true" tabindex="-1"></a>While working with the data from "wild_bird_data.xlsx," I encountered a situation where the header of the dataset occupied one row. To avoid any data format errors during the import process, I used the setting "skip=1" to skip the first row while importing the data.</span>
+<span id="cb26-53"><a href="#cb26-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-56"><a href="#cb26-56" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb26-57"><a href="#cb26-57" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the file</span></span>
+<span id="cb26-58"><a href="#cb26-58" aria-hidden="true" tabindex="-1"></a>data_wild_brid <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"_data/wild_bird_data.xlsx"</span>,<span class="at">skip =</span> <span class="dv">1</span>)</span>
+<span id="cb26-59"><a href="#cb26-59" aria-hidden="true" tabindex="-1"></a><span class="co">#Preview Data</span></span>
+<span id="cb26-60"><a href="#cb26-60" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_wild_brid)</span>
+<span id="cb26-61"><a href="#cb26-61" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(data_wild_brid)</span>
+<span id="cb26-62"><a href="#cb26-62" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-63"><a href="#cb26-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-64"><a href="#cb26-64" aria-hidden="true" tabindex="-1"></a>Then, I used the <span class="in">`dim()`</span> function and <span class="in">`head()`</span> function to have an initial preview of the data (146 rows, 2 columns).</span>
+<span id="cb26-65"><a href="#cb26-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-66"><a href="#cb26-66" aria-hidden="true" tabindex="-1"></a><span class="fu">### StateCounty2012</span></span>
+<span id="cb26-67"><a href="#cb26-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-68"><a href="#cb26-68" aria-hidden="true" tabindex="-1"></a>In the data import process, I made adjustments and expansions to the code based on the format of the original file. I skipped the first three rows, which contained the headers, and removed any "NA" values present in the dataset. I also removed any unrelated content at the end of the table.</span>
+<span id="cb26-69"><a href="#cb26-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-70"><a href="#cb26-70" aria-hidden="true" tabindex="-1"></a>However, there are still some remaining issues with this dataset. Each letter code includes rows labeled as "total," which can affect data aggregation and analysis. However, this issue can be addressed in subsequent data processing steps.</span>
 <span id="cb26-71"><a href="#cb26-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-72"><a href="#cb26-72" aria-hidden="true" tabindex="-1"></a>However, there are still some remaining issues with this dataset. Each letter code includes rows labeled as "total," which can affect data aggregation and analysis. However, this issue can be addressed in subsequent data processing steps.</span>
-<span id="cb26-75"><a href="#cb26-75" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb26-76"><a href="#cb26-76" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the file, skipping the first 3 rows and specifying column names, then remove all columns that are completely empty, then replace NA values in the "COUNTY" column with "/" when "STATE" contains "Total"</span></span>
-<span id="cb26-77"><a href="#cb26-77" aria-hidden="true" tabindex="-1"></a>data_clean <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"_data/StateCounty2012.xls"</span>, <span class="at">skip =</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb26-78"><a href="#cb26-78" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_if</span>(<span class="sc">~!</span><span class="fu">all</span>(<span class="fu">is.na</span>(.))) <span class="sc">%&gt;%</span></span>
-<span id="cb26-79"><a href="#cb26-79" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">COUNTY =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(COUNTY) <span class="sc">&amp;</span> <span class="fu">grepl</span>(<span class="st">"Total"</span>, STATE), <span class="st">"/"</span>, COUNTY))</span>
-<span id="cb26-80"><a href="#cb26-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-81"><a href="#cb26-81" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out the first few lines of the cleaned data</span></span>
-<span id="cb26-82"><a href="#cb26-82" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_clean,<span class="dv">100</span>)</span>
-<span id="cb26-83"><a href="#cb26-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-84"><a href="#cb26-84" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify the rows where "STATE" is "CANADA" and replace NA values in "COUNTY" with "Canada", then remove empty rows above the "CANADA" row</span></span>
-<span id="cb26-85"><a href="#cb26-85" aria-hidden="true" tabindex="-1"></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">%&gt;%</span></span>
-<span id="cb26-86"><a href="#cb26-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">COUNTY =</span> <span class="fu">replace</span>(COUNTY, STATE <span class="sc">==</span> <span class="st">"CANADA"</span>, <span class="st">"Canada"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb26-87"><a href="#cb26-87" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span>(<span class="fu">nrow</span>(.)<span class="sc">-</span><span class="dv">4</span>))</span>
-<span id="cb26-88"><a href="#cb26-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-89"><a href="#cb26-89" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out the last few lines of the cleaned data to check</span></span>
-<span id="cb26-90"><a href="#cb26-90" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(data_clean,<span class="dv">100</span>)</span>
-<span id="cb26-91"><a href="#cb26-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-92"><a href="#cb26-92" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the row before the "CANADA" row</span></span>
-<span id="cb26-93"><a href="#cb26-93" aria-hidden="true" tabindex="-1"></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">%&gt;%</span></span>
-<span id="cb26-94"><a href="#cb26-94" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">which</span>(.<span class="sc">$</span>STATE <span class="sc">==</span> <span class="st">"CANADA"</span>) <span class="sc">+</span> <span class="dv">1</span>)</span>
-<span id="cb26-95"><a href="#cb26-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-96"><a href="#cb26-96" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out the last few lines of the cleaned data to check</span></span>
-<span id="cb26-97"><a href="#cb26-97" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(data_clean,<span class="dv">100</span>)</span>
+<span id="cb26-74"><a href="#cb26-74" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb26-75"><a href="#cb26-75" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the file, skipping the first 3 rows and specifying column names, then remove all columns that are completely empty, then replace NA values in the "COUNTY" column with "/" when "STATE" contains "Total"</span></span>
+<span id="cb26-76"><a href="#cb26-76" aria-hidden="true" tabindex="-1"></a>data_clean <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"_data/StateCounty2012.xls"</span>, <span class="at">skip =</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb26-77"><a href="#cb26-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_if</span>(<span class="sc">~!</span><span class="fu">all</span>(<span class="fu">is.na</span>(.))) <span class="sc">%&gt;%</span></span>
+<span id="cb26-78"><a href="#cb26-78" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">COUNTY =</span> <span class="fu">ifelse</span>(<span class="fu">is.na</span>(COUNTY) <span class="sc">&amp;</span> <span class="fu">grepl</span>(<span class="st">"Total"</span>, STATE), <span class="st">"/"</span>, COUNTY))</span>
+<span id="cb26-79"><a href="#cb26-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-80"><a href="#cb26-80" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out the first few lines of the cleaned data</span></span>
+<span id="cb26-81"><a href="#cb26-81" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_clean,<span class="dv">100</span>)</span>
+<span id="cb26-82"><a href="#cb26-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-83"><a href="#cb26-83" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify the rows where "STATE" is "CANADA" and replace NA values in "COUNTY" with "Canada", then remove empty rows above the "CANADA" row</span></span>
+<span id="cb26-84"><a href="#cb26-84" aria-hidden="true" tabindex="-1"></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">%&gt;%</span></span>
+<span id="cb26-85"><a href="#cb26-85" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">COUNTY =</span> <span class="fu">replace</span>(COUNTY, STATE <span class="sc">==</span> <span class="st">"CANADA"</span>, <span class="st">"Canada"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb26-86"><a href="#cb26-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span>(<span class="fu">nrow</span>(.)<span class="sc">-</span><span class="dv">4</span>))</span>
+<span id="cb26-87"><a href="#cb26-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-88"><a href="#cb26-88" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out the last few lines of the cleaned data to check</span></span>
+<span id="cb26-89"><a href="#cb26-89" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(data_clean,<span class="dv">100</span>)</span>
+<span id="cb26-90"><a href="#cb26-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-91"><a href="#cb26-91" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove the row before the "CANADA" row</span></span>
+<span id="cb26-92"><a href="#cb26-92" aria-hidden="true" tabindex="-1"></a>data_clean <span class="ot">&lt;-</span> data_clean <span class="sc">%&gt;%</span></span>
+<span id="cb26-93"><a href="#cb26-93" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="sc">-</span><span class="fu">which</span>(.<span class="sc">$</span>STATE <span class="sc">==</span> <span class="st">"CANADA"</span>) <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb26-94"><a href="#cb26-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-95"><a href="#cb26-95" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out the last few lines of the cleaned data to check</span></span>
+<span id="cb26-96"><a href="#cb26-96" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(data_clean,<span class="dv">100</span>)</span>
+<span id="cb26-97"><a href="#cb26-97" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-98"><a href="#cb26-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-99"><a href="#cb26-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-100"><a href="#cb26-100" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb26-101"><a href="#cb26-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-102"><a href="#cb26-102" aria-hidden="true" tabindex="-1"></a>In the data import process, I made adjustments and expansions to the code based on the original file format. I skipped the first three rows, which contained the headers, and removed any "NA" values. However, there are still some issues with this dataset. Each letter code includes a "total" row, which can affect data summarization when performing calculations. This problem can be addressed in subsequent data processing steps.</span>
-<span id="cb26-103"><a href="#cb26-103" aria-hidden="true" tabindex="-1"></a><span class="fu">## Describe the data</span></span>
-<span id="cb26-104"><a href="#cb26-104" aria-hidden="true" tabindex="-1"></a>Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).</span>
-<span id="cb26-105"><a href="#cb26-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-106"><a href="#cb26-106" aria-hidden="true" tabindex="-1"></a><span class="fu">### wild_bird_data</span></span>
-<span id="cb26-107"><a href="#cb26-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-110"><a href="#cb26-110" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb26-111"><a href="#cb26-111" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: summary</span></span>
-<span id="cb26-112"><a href="#cb26-112" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the structure of the data</span></span>
-<span id="cb26-113"><a href="#cb26-113" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data_wild_brid)</span>
-<span id="cb26-114"><a href="#cb26-114" aria-hidden="true" tabindex="-1"></a><span class="co"># Print a summary of the data</span></span>
-<span id="cb26-115"><a href="#cb26-115" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data_wild_brid)</span>
-<span id="cb26-116"><a href="#cb26-116" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-117"><a href="#cb26-117" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-99"><a href="#cb26-99" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-100"><a href="#cb26-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-101"><a href="#cb26-101" aria-hidden="true" tabindex="-1"></a><span class="fu">## Describe the data</span></span>
+<span id="cb26-102"><a href="#cb26-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-103"><a href="#cb26-103" aria-hidden="true" tabindex="-1"></a>Using a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).</span>
+<span id="cb26-104"><a href="#cb26-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-105"><a href="#cb26-105" aria-hidden="true" tabindex="-1"></a><span class="fu">### wild_bird_data</span></span>
+<span id="cb26-106"><a href="#cb26-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-109"><a href="#cb26-109" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb26-110"><a href="#cb26-110" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: summary</span></span>
+<span id="cb26-111"><a href="#cb26-111" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the structure of the data</span></span>
+<span id="cb26-112"><a href="#cb26-112" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data_wild_brid)</span>
+<span id="cb26-113"><a href="#cb26-113" aria-hidden="true" tabindex="-1"></a><span class="co"># Print a summary of the data</span></span>
+<span id="cb26-114"><a href="#cb26-114" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data_wild_brid)</span>
+<span id="cb26-115"><a href="#cb26-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-116"><a href="#cb26-116" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-117"><a href="#cb26-117" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-118"><a href="#cb26-118" aria-hidden="true" tabindex="-1"></a>Firstly, the dataset file does not provide specific background information on data collection, so the following description is based on assumptions from the data itself:</span>
 <span id="cb26-119"><a href="#cb26-119" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-120"><a href="#cb26-120" aria-hidden="true" tabindex="-1"></a>The dataset, named "wild_bird_data," consists of 146 rows and 2 columns. This dataset is likely gathered from field research, where researchers possibly conducted bird weight measurements at a specific location or a series of locations, and recorded the bird population size in these areas.</span>
 <span id="cb26-121"><a href="#cb26-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-122"><a href="#cb26-122" aria-hidden="true" tabindex="-1"></a>The two main variables are "Wet body weight <span class="co">[</span><span class="ot">g</span><span class="co">]</span>" and "Population size":</span>
+<span id="cb26-122"><a href="#cb26-122" aria-hidden="true" tabindex="-1"></a>The two main variables are "Wet body weight <span class="sc">\[</span>g<span class="sc">\]</span>" and "Population size":</span>
 <span id="cb26-123"><a href="#cb26-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-124"><a href="#cb26-124" aria-hidden="true" tabindex="-1"></a>"Wet body weight <span class="co">[</span><span class="ot">g</span><span class="co">]</span>": This variable represents the wet body weight of birds (in grams). The values range from 5.459g to 9639.845g, with an average of about 363.694g, and a median of about 69.232g. This variable could be very useful in studying the health conditions of birds, their life habits, or the impact of environmental changes on bird weight.</span>
+<span id="cb26-124"><a href="#cb26-124" aria-hidden="true" tabindex="-1"></a>"Wet body weight <span class="sc">\[</span>g<span class="sc">\]</span>": This variable represents the wet body weight of birds (in grams). The values range from 5.459g to 9639.845g, with an average of about 363.694g, and a median of about 69.232g. This variable could be very useful in studying the health conditions of birds, their life habits, or the impact of environmental changes on bird weight.</span>
 <span id="cb26-125"><a href="#cb26-125" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-126"><a href="#cb26-126" aria-hidden="true" tabindex="-1"></a>"Population size": This variable represents the bird population size in a specific area. The values range widely, from a minimum of 5 to a maximum of 5093378, with an average of about 382874, and a median of about 24353. This variable could be very useful in studying the distribution of bird populations, dynamic changes in population, or the impact of environmental changes on population size.</span>
 <span id="cb26-127"><a href="#cb26-127" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-128"><a href="#cb26-128" aria-hidden="true" tabindex="-1"></a><span class="fu">### StateCounty2012</span></span>
-<span id="cb26-131"><a href="#cb26-131" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb26-132"><a href="#cb26-132" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data_clean)</span>
-<span id="cb26-133"><a href="#cb26-133" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove rows where "STATE" contains "total"</span></span>
-<span id="cb26-134"><a href="#cb26-134" aria-hidden="true" tabindex="-1"></a>data_clean_rm <span class="ot">&lt;-</span> data_clean <span class="sc">%&gt;%</span></span>
-<span id="cb26-135"><a href="#cb26-135" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"total"</span>, STATE, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb26-136"><a href="#cb26-136" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data_clean_rm)</span>
-<span id="cb26-137"><a href="#cb26-137" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(data_clean_rm,<span class="dv">100</span>)</span>
-<span id="cb26-138"><a href="#cb26-138" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the row with the maximum value</span></span>
-<span id="cb26-139"><a href="#cb26-139" aria-hidden="true" tabindex="-1"></a>max_row <span class="ot">&lt;-</span> data_clean <span class="sc">%&gt;%</span></span>
-<span id="cb26-140"><a href="#cb26-140" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(TOTAL <span class="sc">==</span> <span class="fu">max</span>(TOTAL, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb26-141"><a href="#cb26-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-142"><a href="#cb26-142" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out the row with the maximum value</span></span>
-<span id="cb26-143"><a href="#cb26-143" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(max_row)</span>
-<span id="cb26-144"><a href="#cb26-144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-145"><a href="#cb26-145" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the row with the minimum value</span></span>
-<span id="cb26-146"><a href="#cb26-146" aria-hidden="true" tabindex="-1"></a>min_row <span class="ot">&lt;-</span> data_clean <span class="sc">%&gt;%</span></span>
-<span id="cb26-147"><a href="#cb26-147" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(TOTAL <span class="sc">==</span> <span class="fu">min</span>(TOTAL, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb26-148"><a href="#cb26-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-149"><a href="#cb26-149" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out the row with the minimum value</span></span>
-<span id="cb26-150"><a href="#cb26-150" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(min_row)</span>
-<span id="cb26-151"><a href="#cb26-151" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb26-152"><a href="#cb26-152" aria-hidden="true" tabindex="-1"></a>The data comes from an Excel file called "StateCounty2012.xls". After  cleaning and processing, it now contains 2931 rows and 3 columns. These data likely come from a survey or statistic about railroad employment.</span>
+<span id="cb26-129"><a href="#cb26-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-132"><a href="#cb26-132" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb26-133"><a href="#cb26-133" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data_clean)</span>
+<span id="cb26-134"><a href="#cb26-134" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove rows where "STATE" contains "total"</span></span>
+<span id="cb26-135"><a href="#cb26-135" aria-hidden="true" tabindex="-1"></a>data_clean_rm <span class="ot">&lt;-</span> data_clean <span class="sc">%&gt;%</span></span>
+<span id="cb26-136"><a href="#cb26-136" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"total"</span>, STATE, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb26-137"><a href="#cb26-137" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data_clean_rm)</span>
+<span id="cb26-138"><a href="#cb26-138" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(data_clean_rm,<span class="dv">100</span>)</span>
+<span id="cb26-139"><a href="#cb26-139" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the row with the maximum value</span></span>
+<span id="cb26-140"><a href="#cb26-140" aria-hidden="true" tabindex="-1"></a>max_row <span class="ot">&lt;-</span> data_clean <span class="sc">%&gt;%</span></span>
+<span id="cb26-141"><a href="#cb26-141" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(TOTAL <span class="sc">==</span> <span class="fu">max</span>(TOTAL, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb26-142"><a href="#cb26-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-143"><a href="#cb26-143" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out the row with the maximum value</span></span>
+<span id="cb26-144"><a href="#cb26-144" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(max_row)</span>
+<span id="cb26-145"><a href="#cb26-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-146"><a href="#cb26-146" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the row with the minimum value</span></span>
+<span id="cb26-147"><a href="#cb26-147" aria-hidden="true" tabindex="-1"></a>min_row <span class="ot">&lt;-</span> data_clean <span class="sc">%&gt;%</span></span>
+<span id="cb26-148"><a href="#cb26-148" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(TOTAL <span class="sc">==</span> <span class="fu">min</span>(TOTAL, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb26-149"><a href="#cb26-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-150"><a href="#cb26-150" aria-hidden="true" tabindex="-1"></a><span class="co"># Print out the row with the minimum value</span></span>
+<span id="cb26-151"><a href="#cb26-151" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(min_row)</span>
+<span id="cb26-152"><a href="#cb26-152" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb26-153"><a href="#cb26-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-154"><a href="#cb26-154" aria-hidden="true" tabindex="-1"></a>The three columns are as follows:</span>
+<span id="cb26-154"><a href="#cb26-154" aria-hidden="true" tabindex="-1"></a>The data comes from an Excel file called "StateCounty2012.xls". After cleaning and processing, it now contains 2931 rows and 3 columns. These data likely come from a survey or statistic about railroad employment.</span>
 <span id="cb26-155"><a href="#cb26-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-156"><a href="#cb26-156" aria-hidden="true" tabindex="-1"></a>The "STATE" column: This is a character vector, representing various states and other areas in the United States (such as AE and AK), as well as Canada. The mode (most common value) of this column is "character".</span>
+<span id="cb26-156"><a href="#cb26-156" aria-hidden="true" tabindex="-1"></a>The three columns are as follows:</span>
 <span id="cb26-157"><a href="#cb26-157" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-158"><a href="#cb26-158" aria-hidden="true" tabindex="-1"></a>The "COUNTY" column: This is also a character vector, representing various counties or regions. Note some special values, for example, when the value of the "STATE" column contains "Total", the value of this column is replaced with "/", indicating that this is a summary row. In the row where the value of the "STATE" column is "CANADA", the value of this column is replaced with "Canada".</span>
+<span id="cb26-158"><a href="#cb26-158" aria-hidden="true" tabindex="-1"></a>The "STATE" column: This is a character vector, representing various states and other areas in the United States (such as AE and AK), as well as Canada. The mode (most common value) of this column is "character".</span>
 <span id="cb26-159"><a href="#cb26-159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-160"><a href="#cb26-160" aria-hidden="true" tabindex="-1"></a>The "TOTAL" column: This is a numeric vector, representing the total number of railroad employments in various states and counties. The minimum value of this column is 1, the first quartile is 7, the median is 21, the mean is 87.37, the third quartile is 65, and the maximum value is 8207 (located in Cook County, Illinois).</span>
+<span id="cb26-160"><a href="#cb26-160" aria-hidden="true" tabindex="-1"></a>The "COUNTY" column: This is also a character vector, representing various counties or regions. Note some special values, for example, when the value of the "STATE" column contains "Total", the value of this column is replaced with "/", indicating that this is a summary row. In the row where the value of the "STATE" column is "CANADA", the value of this column is replaced with "Canada".</span>
+<span id="cb26-161"><a href="#cb26-161" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-162"><a href="#cb26-162" aria-hidden="true" tabindex="-1"></a>The "TOTAL" column: This is a numeric vector, representing the total number of railroad employments in various states and counties. The minimum value of this column is 1, the first quartile is 7, the median is 21, the mean is 87.37, the third quartile is 65, and the maximum value is 8207 (located in Cook County, Illinois).</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
