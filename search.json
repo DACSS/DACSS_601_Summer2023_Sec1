@@ -420,6 +420,34 @@
     "text": "Describe the data\nUsing a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data).\nFrom what we can see using the “head” command, there are three columns: state, county, and total number of employees for each railroad.\nI predict that the data was gathered either from on online registry with the department of labor or something similar, or this was done via survey. The survey would consist of the surveyor sending a request to each station to report how many employees there were at that particular station.\n\n\nCode\n# Lets sort the data\nsorted &lt;- railroad_data[order(railroad_data$total_employees, decreasing = TRUE),]\n\n# 10 stations with the most employees\nhead(sorted, 10)\n\n\n     state           county total_employees\n659     IL             COOK            8207\n2585    TX          TARRANT            4235\n1747    NE          DOUGLAS            3797\n1932    NY          SUFFOLK            3685\n2685    VA INDEPENDENT CITY            3249\n301     FL            DUVAL            3073\n195     CA   SAN BERNARDINO            2888\n178     CA      LOS ANGELES            2545\n2484    TX           HARRIS            2535\n1773    NE          LINCOLN            2289\n\n\nCode\n# 10 stations with the least employees\ntail(sorted, 10)\n\n\n     state    county total_employees\n2582    TX  STEPHENS               1\n2583    TX STONEWALL               1\n2609    TX   WILLACY               1\n2625    UT     GRAND               1\n2634    UT    SEVIER               1\n2691    VA LANCASTER               1\n2715    VA  RICHMOND               1\n2757    WA     FERRY               1\n2759    WA  GARFIELD               1\n2865    WV    GILMER               1\n\n\nThe two tables above, we can see the first contains the 10 stations with the most employees and in the second one, we can see the 10 stations with the least employees.\nThese two tables could be helpful for the challenge of distributing funds. For example, a station with more employees could be funded more since their payroll is higher than that of a station with fewer.\nAlso, stations with more employees is likely to be more populated leading to more wear and tear on the station. So, the upkeep of these stations is probably greater as well."
   },
   {
+    "objectID": "posts/challenge_1_{Shuqi Hong}.html",
+    "href": "posts/challenge_1_{Shuqi Hong}.html",
+    "title": "Challenge 1 Solution",
+    "section": "",
+    "text": "Code\nlibrary(tidyverse)\nknitr::opts_chunk$set(echo = TRUE, warning=FALSE, message=FALSE)\nlibrary(readxl)"
+  },
+  {
+    "objectID": "posts/challenge_1_{Shuqi Hong}.html#challenge-overview",
+    "href": "posts/challenge_1_{Shuqi Hong}.html#challenge-overview",
+    "title": "Challenge 1 Solution",
+    "section": "Challenge Overview",
+    "text": "Challenge Overview\nToday’s challenge is to\n\nread in a dataset, and\ndescribe the dataset using both words and any supporting information (e.g., tables, etc)"
+  },
+  {
+    "objectID": "posts/challenge_1_{Shuqi Hong}.html#read-in-the-data",
+    "href": "posts/challenge_1_{Shuqi Hong}.html#read-in-the-data",
+    "title": "Challenge 1 Solution",
+    "section": "Read in the Data",
+    "text": "Read in the Data\nI’ve already tried to read all of such files and just show wild_bird_data.xlsx in challenge 1 cuz I believe it is representative.\n\n\nCode\nwild_bird_from_xlsx &lt;- read_excel(\"../posts/_data/wild_bird_data.xlsx\", skip = 1)\nhead(wild_bird_from_xlsx)\n\n\n# A tibble: 6 × 2\n  `Wet body weight [g]` `Population size`\n                  &lt;dbl&gt;             &lt;dbl&gt;\n1                  5.46           532194.\n2                  7.76          3165107.\n3                  8.64          2592997.\n4                 10.7           3524193.\n5                  7.42           389806.\n6                  9.12           604766."
+  },
+  {
+    "objectID": "posts/challenge_1_{Shuqi Hong}.html#describe-the-data",
+    "href": "posts/challenge_1_{Shuqi Hong}.html#describe-the-data",
+    "title": "Challenge 1 Solution",
+    "section": "Describe the data",
+    "text": "Describe the data\nThere are 146 rows and 2 columns in this file. From this table we can see the left column is describing the wild birds’ weight and the right one is the population of such weights. The type of both columns are double and no character.\n\n\nCode\nglimpse(wild_bird_from_xlsx)\n\n\nRows: 146\nColumns: 2\n$ `Wet body weight [g]` &lt;dbl&gt; 5.458872, 7.764568, 8.638587, 10.689735, 7.41722…\n$ `Population size`     &lt;dbl&gt; 532194.3951, 3165107.4454, 2592996.8678, 3524193…\n\n\nCode\nspec(wild_bird_from_xlsx)\n\n\nNULL\n\n\nCode\ntypeof(wild_bird_from_xlsx$`Population size`)\n\n\n[1] \"double\"\n\n\nCode\ntypeof(wild_bird_from_xlsx$`Wet body weight [g]`)\n\n\n[1] \"double\"\n\n\nI’m trying to calculate the average weight of all the birds, but I didn’t succeed cuz I don’t know how to write the code. I used “summary” to do that but it just gave the average of each column but not the whole table."
+  },
+  {
     "objectID": "posts/challenge9_instructions.html",
     "href": "posts/challenge9_instructions.html",
     "title": "Challenge 9 Instructions",
@@ -530,6 +558,20 @@
     "title": "Challenge 1 Instructions",
     "section": "Describe the data",
     "text": "Describe the data\nUsing a combination of words and results of R commands, can you provide a high level description of the data? Describe as efficiently as possible where/how the data was (likely) gathered, indicate the cases and variables (both the interpretation and any details you deem useful to the reader to fully understand your chosen data)."
+  },
+  {
+    "objectID": "posts/challenge_1_dannyholt.html",
+    "href": "posts/challenge_1_dannyholt.html",
+    "title": "Challenge 1",
+    "section": "",
+    "text": "For this challenge, I will be reading in the dataset birds.csv\n\n\nCode\nbirds &lt;- readr::read_csv(\"_data/birds.csv\")\n\n\nRows: 30977 Columns: 14\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (8): Domain Code, Domain, Area, Element, Item, Unit, Flag, Flag Description\ndbl (6): Area Code, Element Code, Item Code, Year Code, Year, Value\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n\nLet’s look at first several rows of the dataset:\n\n\nCode\nhead(birds)\n\n\n# A tibble: 6 × 14\n  `Domain Code` Domain      `Area Code` Area  `Element Code` Element `Item Code`\n  &lt;chr&gt;         &lt;chr&gt;             &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;\n1 QA            Live Anima…           2 Afgh…           5112 Stocks         1057\n2 QA            Live Anima…           2 Afgh…           5112 Stocks         1057\n3 QA            Live Anima…           2 Afgh…           5112 Stocks         1057\n4 QA            Live Anima…           2 Afgh…           5112 Stocks         1057\n5 QA            Live Anima…           2 Afgh…           5112 Stocks         1057\n6 QA            Live Anima…           2 Afgh…           5112 Stocks         1057\n# ℹ 7 more variables: Item &lt;chr&gt;, `Year Code` &lt;dbl&gt;, Year &lt;dbl&gt;, Unit &lt;chr&gt;,\n#   Value &lt;dbl&gt;, Flag &lt;chr&gt;, `Flag Description` &lt;chr&gt;\n\n\nYear and YearCode appear to be duplicate variables.\nAs shown above, the data has 14 columns and 30977 rows. Let’s look at the column names:\n\n\nCode\ncolnames(birds)\n\n\n [1] \"Domain Code\"      \"Domain\"           \"Area Code\"        \"Area\"            \n [5] \"Element Code\"     \"Element\"          \"Item Code\"        \"Item\"            \n [9] \"Year Code\"        \"Year\"             \"Unit\"             \"Value\"           \n[13] \"Flag\"             \"Flag Description\"\n\n\nNow, I will use spec() to inspect the data types of each of the columns in the dataset. Eight of the variables are categorical and six are numeric.\n\n\nCode\nspec(birds)\n\n\ncols(\n  `Domain Code` = col_character(),\n  Domain = col_character(),\n  `Area Code` = col_double(),\n  Area = col_character(),\n  `Element Code` = col_double(),\n  Element = col_character(),\n  `Item Code` = col_double(),\n  Item = col_character(),\n  `Year Code` = col_double(),\n  Year = col_double(),\n  Unit = col_character(),\n  Value = col_double(),\n  Flag = col_character(),\n  `Flag Description` = col_character()\n)\n\n\nHere is a table of all of the types of birds found in the dataset under the column ‘Item’. Chickens appear to be the most common type of bird here.\n\n\nCode\ntable(birds$Item)\n\n\n\n              Chickens                  Ducks Geese and guinea fowls \n                 13074                   6909                   4136 \n  Pigeons, other birds                Turkeys \n                  1165                   5693 \n\n\nNow, we will use colSums(is.na()) to see where data is missing. We see that some data is missing in the ‘Value’ and ‘Flag’ columns.\n\n\nCode\ncolSums(is.na(birds))\n\n\n     Domain Code           Domain        Area Code             Area \n               0                0                0                0 \n    Element Code          Element        Item Code             Item \n               0                0                0                0 \n       Year Code             Year             Unit            Value \n               0                0                0             1036 \n            Flag Flag Description \n           10773                0 \n\n\nThe dataset counts different types of live birds (shown in column ‘Item’) in different areas (columns ‘Area’ and ‘Area Code’) and years (‘Year’ and ‘Year Code’). Based on the information in the ‘Flag Description’ column, the data appears to be a mix of collected data and estimates."
+  },
+  {
+    "objectID": "posts/challenge_1_dannyholt.html#birds.csv",
+    "href": "posts/challenge_1_dannyholt.html#birds.csv",
+    "title": "Challenge 1",
+    "section": "",
+    "text": "For this challenge, I will be reading in the dataset birds.csv\n\n\nCode\nbirds &lt;- readr::read_csv(\"_data/birds.csv\")\n\n\nRows: 30977 Columns: 14\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (8): Domain Code, Domain, Area, Element, Item, Unit, Flag, Flag Description\ndbl (6): Area Code, Element Code, Item Code, Year Code, Year, Value\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n\nLet’s look at first several rows of the dataset:\n\n\nCode\nhead(birds)\n\n\n# A tibble: 6 × 14\n  `Domain Code` Domain      `Area Code` Area  `Element Code` Element `Item Code`\n  &lt;chr&gt;         &lt;chr&gt;             &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;\n1 QA            Live Anima…           2 Afgh…           5112 Stocks         1057\n2 QA            Live Anima…           2 Afgh…           5112 Stocks         1057\n3 QA            Live Anima…           2 Afgh…           5112 Stocks         1057\n4 QA            Live Anima…           2 Afgh…           5112 Stocks         1057\n5 QA            Live Anima…           2 Afgh…           5112 Stocks         1057\n6 QA            Live Anima…           2 Afgh…           5112 Stocks         1057\n# ℹ 7 more variables: Item &lt;chr&gt;, `Year Code` &lt;dbl&gt;, Year &lt;dbl&gt;, Unit &lt;chr&gt;,\n#   Value &lt;dbl&gt;, Flag &lt;chr&gt;, `Flag Description` &lt;chr&gt;\n\n\nYear and YearCode appear to be duplicate variables.\nAs shown above, the data has 14 columns and 30977 rows. Let’s look at the column names:\n\n\nCode\ncolnames(birds)\n\n\n [1] \"Domain Code\"      \"Domain\"           \"Area Code\"        \"Area\"            \n [5] \"Element Code\"     \"Element\"          \"Item Code\"        \"Item\"            \n [9] \"Year Code\"        \"Year\"             \"Unit\"             \"Value\"           \n[13] \"Flag\"             \"Flag Description\"\n\n\nNow, I will use spec() to inspect the data types of each of the columns in the dataset. Eight of the variables are categorical and six are numeric.\n\n\nCode\nspec(birds)\n\n\ncols(\n  `Domain Code` = col_character(),\n  Domain = col_character(),\n  `Area Code` = col_double(),\n  Area = col_character(),\n  `Element Code` = col_double(),\n  Element = col_character(),\n  `Item Code` = col_double(),\n  Item = col_character(),\n  `Year Code` = col_double(),\n  Year = col_double(),\n  Unit = col_character(),\n  Value = col_double(),\n  Flag = col_character(),\n  `Flag Description` = col_character()\n)\n\n\nHere is a table of all of the types of birds found in the dataset under the column ‘Item’. Chickens appear to be the most common type of bird here.\n\n\nCode\ntable(birds$Item)\n\n\n\n              Chickens                  Ducks Geese and guinea fowls \n                 13074                   6909                   4136 \n  Pigeons, other birds                Turkeys \n                  1165                   5693 \n\n\nNow, we will use colSums(is.na()) to see where data is missing. We see that some data is missing in the ‘Value’ and ‘Flag’ columns.\n\n\nCode\ncolSums(is.na(birds))\n\n\n     Domain Code           Domain        Area Code             Area \n               0                0                0                0 \n    Element Code          Element        Item Code             Item \n               0                0                0                0 \n       Year Code             Year             Unit            Value \n               0                0                0             1036 \n            Flag Flag Description \n           10773                0 \n\n\nThe dataset counts different types of live birds (shown in column ‘Item’) in different areas (columns ‘Area’ and ‘Area Code’) and years (‘Year’ and ‘Year Code’). Based on the information in the ‘Flag Description’ column, the data appears to be a mix of collected data and estimates."
   },
   {
     "objectID": "posts/challenge10_instructions.html",
@@ -753,14 +795,14 @@
     "href": "index.html",
     "title": "DACSS 601: Data Science Fundamentals",
     "section": "",
-    "text": "The blog posts here are contributed by students enrolled in DACSS 601, Fundamentals of Data Science. The course provides students with an introduction to R and the tidyverse, scientific publishing, and collaboration through GitHub, building a foundation for future coursework. Students also are introduced to general data management and data wrangling skills, with an emphasis on best practice workflows and tidy data management.\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nJun 2, 2023\n\n\nChallenge 1\n\n\nNoah Dixon\n\n\n\n\nJun 1, 2023\n\n\nChallenge 1 Solution\n\n\nSean Conway\n\n\n\n\nJun 1, 2023\n\n\nChallenge 1 Instructions\n\n\nAsritha Reddy Gade\n\n\n\n\nJun 1, 2023\n\n\nChallenge 2 - Investigating Hotel Bookings\n\n\nAudrey Bertin\n\n\n\n\nMay 31, 2023\n\n\nChallenge 1: Reading and Understanding Data about Railroad Employees Across States & Counties\n\n\nHunter Major\n\n\n\n\nMay 31, 2023\n\n\nChallenge 1\n\n\nJocelyn Lutes\n\n\n\n\nMay 31, 2023\n\n\nChallenge 1 Submission\n\n\nSuyash Bhagwat\n\n\n\n\nMay 31, 2023\n\n\nChallenge 1\n\n\nZhongyue Lin\n\n\n\n\nMay 31, 2023\n\n\nChallenge 1 Submission\n\n\nMatt Zambetti\n\n\n\n\nMay 30, 2023\n\n\nChallenge 1 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 4 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 1 Solutions\n\n\nLakshmi Deepthi Kurugundla\n\n\n\n\nMay 30, 2023\n\n\nChallenge 3 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 8 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 10 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 9 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 1 - Reading and understanding bird data\n\n\nAudrey Bertin\n\n\n\n\nMay 30, 2023\n\n\nData Import\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 1 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 10 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 7 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 2 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 5 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 9 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 1 Solution - Railroad Employment\n\n\nLinus Jen\n\n\n\n\nMay 30, 2023\n\n\nChallenge 6 Instructions\n\n\nSean Conway\n\n\n\n\n\n\nNo matching items"
+    "text": "The blog posts here are contributed by students enrolled in DACSS 601, Fundamentals of Data Science. The course provides students with an introduction to R and the tidyverse, scientific publishing, and collaboration through GitHub, building a foundation for future coursework. Students also are introduced to general data management and data wrangling skills, with an emphasis on best practice workflows and tidy data management.\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nAuthor\n\n\n\n\n\n\nJun 2, 2023\n\n\nChallenge 1\n\n\nNoah Dixon\n\n\n\n\nJun 2, 2023\n\n\nChallenge 1 Solution\n\n\nShuqi Hong\n\n\n\n\nJun 1, 2023\n\n\nChallenge 1 Solution\n\n\nSean Conway\n\n\n\n\nJun 1, 2023\n\n\nChallenge 1 Instructions\n\n\nAsritha Reddy Gade\n\n\n\n\nJun 1, 2023\n\n\nChallenge 2 - Investigating Hotel Bookings\n\n\nAudrey Bertin\n\n\n\n\nJun 1, 2023\n\n\nChallenge 1\n\n\nDanny Holt\n\n\n\n\nMay 31, 2023\n\n\nChallenge 1: Reading and Understanding Data about Railroad Employees Across States & Counties\n\n\nHunter Major\n\n\n\n\nMay 31, 2023\n\n\nChallenge 1\n\n\nJocelyn Lutes\n\n\n\n\nMay 31, 2023\n\n\nChallenge 1 Submission\n\n\nSuyash Bhagwat\n\n\n\n\nMay 31, 2023\n\n\nChallenge 1\n\n\nZhongyue Lin\n\n\n\n\nMay 31, 2023\n\n\nChallenge 1 Submission\n\n\nMatt Zambetti\n\n\n\n\nMay 30, 2023\n\n\nChallenge 1 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 4 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 1 Solutions\n\n\nLakshmi Deepthi Kurugundla\n\n\n\n\nMay 30, 2023\n\n\nChallenge 3 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 8 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 10 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 9 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 1 - Reading and understanding bird data\n\n\nAudrey Bertin\n\n\n\n\nMay 30, 2023\n\n\nData Import\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 1 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 10 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 7 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 2 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 5 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 9 Instructions\n\n\nSean Conway\n\n\n\n\nMay 30, 2023\n\n\nChallenge 1 Solution - Railroad Employment\n\n\nLinus Jen\n\n\n\n\nMay 30, 2023\n\n\nChallenge 6 Instructions\n\n\nSean Conway\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",
     "href": "about.html",
     "title": "Contributors",
     "section": "",
-    "text": "Find out more about our DACSS students who contributed to the blog.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAudrey Bertin\n\n\n\n\n\n\n\n\n\n\n\n\n\nLinus Jen\n\n\n\n\n\n\n\n\n\n\n\n\n\nZhongyue Lin\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Find out more about our DACSS students who contributed to the blog.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAudrey Bertin\n\n\n\n\n\n\n\n\n\n\n\n\n\nLinus Jen\n\n\n\n\n\n\n\n\n\n\n\n\n\nShuqi Hong\n\n\n\n\n\n\n\n\n\n\n\n\n\nZhongyue Lin\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about/Zhongyue Lin.html",
@@ -859,6 +901,55 @@
     "title": "Audrey Bertin",
     "section": "Fun fact",
     "text": "Fun fact\nI have many fun facts but one is that I am a former Texas state champion at competitive map reading."
+  },
+  {
+    "objectID": "about/ShuqiHong.html",
+    "href": "about/ShuqiHong.html",
+    "title": "Shuqi Hong",
+    "section": "",
+    "text": "I compeleted undergraduate degree in 2022 in China in Opto-electronic information science and engineering. Now I am a master student in Physics in Umass and want to graduate in next semester. I don’t have any work experience."
+  },
+  {
+    "objectID": "about/ShuqiHong.html#educationwork-background",
+    "href": "about/ShuqiHong.html#educationwork-background",
+    "title": "Shuqi Hong",
+    "section": "",
+    "text": "I compeleted undergraduate degree in 2022 in China in Opto-electronic information science and engineering. Now I am a master student in Physics in Umass and want to graduate in next semester. I don’t have any work experience."
+  },
+  {
+    "objectID": "about/ShuqiHong.html#r-experience",
+    "href": "about/ShuqiHong.html#r-experience",
+    "title": "Shuqi Hong",
+    "section": "R experience",
+    "text": "R experience\nI don’t have any R experience or even programming experience. I just used a little Phython and C++ when I was doing some projects. But I’m still not familar with programming."
+  },
+  {
+    "objectID": "about/ShuqiHong.html#research-interests",
+    "href": "about/ShuqiHong.html#research-interests",
+    "title": "Shuqi Hong",
+    "section": "Research interests",
+    "text": "Research interests\nI want to learn something about programming for my future study in physics analysis or transfer to data analysis major and also enrich my skills, because, you know, programming is important and everything relies on it in some degree."
+  },
+  {
+    "objectID": "about/ShuqiHong.html#hometown",
+    "href": "about/ShuqiHong.html#hometown",
+    "title": "Shuqi Hong",
+    "section": "Hometown",
+    "text": "Hometown\nGuangzhou, China"
+  },
+  {
+    "objectID": "about/ShuqiHong.html#hobbies",
+    "href": "about/ShuqiHong.html#hobbies",
+    "title": "Shuqi Hong",
+    "section": "Hobbies",
+    "text": "Hobbies\nSwimming and dancing"
+  },
+  {
+    "objectID": "about/ShuqiHong.html#fun-fact",
+    "href": "about/ShuqiHong.html#fun-fact",
+    "title": "Shuqi Hong",
+    "section": "Fun fact",
+    "text": "Fun fact\nI’m doing a project now which is about analyzing physics particles data. We actually use Emacs to write C++ programs cuz it can be opened in terminal directly."
   },
   {
     "objectID": "about/LinusJen.html",
