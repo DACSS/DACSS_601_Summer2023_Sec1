@@ -802,7 +802,7 @@
     "href": "about.html",
     "title": "Contributors",
     "section": "",
-    "text": "Find out more about our DACSS students who contributed to the blog.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAudrey Bertin\n\n\n\n\n\n\n\n\n\n\n\n\n\nLinus Jen\n\n\n\n\n\n\n\n\n\n\n\n\n\nShuqi Hong\n\n\n\n\n\n\n\n\n\n\n\n\n\nZhongyue Lin\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Find out more about our DACSS students who contributed to the blog.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAudrey Bertin\n\n\n\n\n\n\n\n\n\n\n\n\n\nJocelyn Lutes\n\n\n\n\n\n\n\n\n\n\n\n\n\nLinus Jen\n\n\n\n\n\n\n\n\n\n\n\n\n\nShuqi Hong\n\n\n\n\n\n\n\n\n\n\n\n\n\nZhongyue Lin\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about/Zhongyue Lin.html",
@@ -852,6 +852,55 @@
     "title": "Zhongyue Lin",
     "section": "Fun fact",
     "text": "Fun fact\n\nI was a student of film history before entering my undergraduate degree at UNO and I have seen 3000 films."
+  },
+  {
+    "objectID": "about/JocelynLutes.html",
+    "href": "about/JocelynLutes.html",
+    "title": "Jocelyn Lutes",
+    "section": "",
+    "text": "I completed my undergraduate studies at Viterbo University in La Crosse, WI, where I double-majored in Biopsychology and Spanish. Then, I moved to Boston, MA where I earned my M.S. in Developmental and Brain Sciences at UMass Boston and worked as a research assistant in a lab that investigated the impact of medications during pregnancy on the cognitive and behavioral development of children. Currently, I am pursuing my M.S. in Computer Science at UMass Amherst, and I work full-time as a Data Scientist at MassMutual."
+  },
+  {
+    "objectID": "about/JocelynLutes.html#educationwork-background",
+    "href": "about/JocelynLutes.html#educationwork-background",
+    "title": "Jocelyn Lutes",
+    "section": "",
+    "text": "I completed my undergraduate studies at Viterbo University in La Crosse, WI, where I double-majored in Biopsychology and Spanish. Then, I moved to Boston, MA where I earned my M.S. in Developmental and Brain Sciences at UMass Boston and worked as a research assistant in a lab that investigated the impact of medications during pregnancy on the cognitive and behavioral development of children. Currently, I am pursuing my M.S. in Computer Science at UMass Amherst, and I work full-time as a Data Scientist at MassMutual."
+  },
+  {
+    "objectID": "about/JocelynLutes.html#r-experience",
+    "href": "about/JocelynLutes.html#r-experience",
+    "title": "Jocelyn Lutes",
+    "section": "R experience",
+    "text": "R experience\nMy first exposure to the data science workflow was in Python, but in my day-to-day work, I frequently use R to clean and wrangle data, build predictive models, and visualize results. So far, everything that I have learned about R has been motivated by needing to solve specific, work-related tasks, so I am very excited to more formally learn about the tidyverse and see how it can lead to an improved data science experience!"
+  },
+  {
+    "objectID": "about/JocelynLutes.html#research-interests",
+    "href": "about/JocelynLutes.html#research-interests",
+    "title": "Jocelyn Lutes",
+    "section": "Research interests",
+    "text": "Research interests\nI am predominantly interested in how machine learning can be used to solve problems within the health and medical domains."
+  },
+  {
+    "objectID": "about/JocelynLutes.html#hometown",
+    "href": "about/JocelynLutes.html#hometown",
+    "title": "Jocelyn Lutes",
+    "section": "Hometown",
+    "text": "Hometown\nI am from the very small town of Benton, WI (population 958)!"
+  },
+  {
+    "objectID": "about/JocelynLutes.html#hobbies",
+    "href": "about/JocelynLutes.html#hobbies",
+    "title": "Jocelyn Lutes",
+    "section": "Hobbies",
+    "text": "Hobbies\n\nCooking and baking\nTrying new restaurants\nListening to podcasts\nLearning new things via MOOCs"
+  },
+  {
+    "objectID": "about/JocelynLutes.html#fun-fact",
+    "href": "about/JocelynLutes.html#fun-fact",
+    "title": "Jocelyn Lutes",
+    "section": "Fun fact",
+    "text": "Fun fact\nDuring my undergraduate research experience, I extracted and photographed the brains of fruit flies."
   },
   {
     "objectID": "about/AudreyBertin.html",
