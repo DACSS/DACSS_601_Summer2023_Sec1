@@ -29,7 +29,6 @@
       "/posts/challenge10_instructionsNew.html",
       "/posts/challenge9_instructions.html",
       "/posts/AudreyBertin_Challenge1.html",
-      "/posts/example-data_import.html",
       "/posts/challenge1_instructionsNew.html",
       "/posts/challenge10_instructions.html",
       "/posts/challenge7_instructionsNew.html",
@@ -37,7 +36,8 @@
       "/posts/challenge5_instructionsNew.html",
       "/posts/challenge9_instructionsNew.html",
       "/posts/LinusJen_challenge1.html",
-      "/posts/challenge6_instructionsNew.html"
+      "/posts/challenge6_instructionsNew.html",
+      "/posts/example-data_import.html"
     ]
   },
   {
@@ -52,6 +52,7 @@
       "/about/MattZambetti.html",
       "/about/NayaabKazmi.html",
       "/about/NoahDixon.html",
+      "/about/SeanConway.html",
       "/about/ShuqiHong.html",
       "/about/HW1_SuyashBhagwat.html",
       "/about/Zhongyue Lin.html"
