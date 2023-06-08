@@ -2,12 +2,13 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/challenge2_Moira_latest.html",
       "/posts/JocelynLutes_Challenge3.html",
       "/posts/LinusJen_challenge3.html",
+      "/posts/challenge2_Moira_latest.html",
       "/posts/challenge3_ShuqiHong.html",
       "/posts/challenge3_Zhongyue_Lin.html",
       "/posts/dannyholt_challenge3.html",
+      "/posts/challenge1_Moira_latest.html",
       "/posts/challenge_1_Prasann_Desai.html",
       "/posts/challenge2_ShuqiHong.html",
       "/posts/challenge2_solutions.html",
@@ -15,7 +16,6 @@
       "/posts/AudreyBertin_Challenge3.html",
       "/posts/challenge_2_Prasann_Desai.html",
       "/posts/challenge2_huntermajor.html",
-      "/posts/challenge1_Moira_latest.html",
       "/posts/challenge1_GabrielleRoman.html",
       "/posts/SuyashBhagwat_challenge2.html",
       "/posts/LinusJen_challenge2.html",
@@ -58,6 +58,7 @@
   {
     "listing": "/about.html",
     "items": [
+      "/about/MoiraChiong.html",
       "/about/AudreyBertin.html",
       "/about/DannyHolt.html",
       "/about/GabrielleRoman.html",
