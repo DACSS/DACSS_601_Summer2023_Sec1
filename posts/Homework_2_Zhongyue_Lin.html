@@ -1,0 +1,1753 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.361">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Zhongyue Lin">
+<meta name="dcterms.date" content="2023-06-12">
+<meta name="description" content="Read the final project dataset - World Happiness Data">
+
+<title>HW2 - World Happiness Data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/DACSS_Round_Network.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta name="twitter:title" content="HW2 - World Happiness Data">
+<meta name="twitter:description" content="Read the final project dataset - World Happiness Data">
+<meta name="twitter:image" content="https://dacss.github.io/DACSS_601_Summer2023_Sec1/posts/Homework_2_Zhongyue_Lin_files/figure-html/unnamed-chunk-13-1.png">
+<meta name="twitter:creator" content="@UMassDACSS">
+<meta name="twitter:site" content="@UMassDACSS">
+<meta name="twitter:image-height" content="960">
+<meta name="twitter:image-width" content="1344">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://dacss.github.io/DACSS_601_Summer2023_Sec1/" rel="" target="">
+ <span class="menu-text">Summer 2023 Posts</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html" rel="" target="">
+ <span class="menu-text">Contributors</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://umass.edu/sbs/dacss" rel="" target="">
+ <span class="menu-text">DACSS</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://dacss.github.io/DACSS_601_Summer2023_Sec1/" rel="" target=""><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#definition-and-measurement-of-happiness" id="toc-definition-and-measurement-of-happiness" class="nav-link active" data-scroll-target="#definition-and-measurement-of-happiness">Definition and measurement of happiness</a></li>
+  <li><a href="#dataset-description" id="toc-dataset-description" class="nav-link" data-scroll-target="#dataset-description">Dataset Description</a></li>
+  <li><a href="#data-cleaning-and-sorting" id="toc-data-cleaning-and-sorting" class="nav-link" data-scroll-target="#data-cleaning-and-sorting">Data cleaning and sorting</a>
+  <ul class="collapse">
+  <li><a href="#data-reading" id="toc-data-reading" class="nav-link" data-scroll-target="#data-reading">Data Reading</a></li>
+  <li><a href="#data-cleaning" id="toc-data-cleaning" class="nav-link" data-scroll-target="#data-cleaning">Data Cleaning</a></li>
+  <li><a href="#data-integration" id="toc-data-integration" class="nav-link" data-scroll-target="#data-integration">Data Integration</a></li>
+  <li><a href="#data-set-visualization-test" id="toc-data-set-visualization-test" class="nav-link" data-scroll-target="#data-set-visualization-test">Data set visualization test</a></li>
+  </ul></li>
+  <li><a href="#for-this-dataset-the-research-questions" id="toc-for-this-dataset-the-research-questions" class="nav-link" data-scroll-target="#for-this-dataset-the-research-questions">For this dataset the research questions</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">HW2 - World Happiness Data</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">HW_2</div>
+    <div class="quarto-category">Zhongyue Lin</div>
+    <div class="quarto-category">Happiness</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Read the final project dataset - World Happiness Data
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Zhongyue Lin </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 12, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="definition-and-measurement-of-happiness" class="level2">
+<h2 class="anchored" data-anchor-id="definition-and-measurement-of-happiness">Definition and measurement of happiness</h2>
+<p>Happiness, a deeply personal and subjective experience, is often defined as a state of well-being and contentment, characterized by the presence of positive emotions and the absence of negative ones. The measurement of happiness is a complex task due to its highly subjective nature, necessitating an interdisciplinary approach. The World Happiness Report, an annual survey that assesses happiness levels across 153 countries globally, is a prime example of this approach.</p>
+<p>Psychology contributes to our understanding of happiness, particularly in the use of the World Happiness Report’s data, by exploring emotions, cognitions, and behaviors. It emphasizes factors such as social support and freedom to make life choices, both key elements examined in the report. Similarly, behavioral economics, which explores how individual decision-making impacts happiness, is reflected in the report’s inclusion of GDP per capita and perceptions of corruption as potential influences on happiness.</p>
+<p>Sociology and political science provide broader perspectives on how societal structures and governance impact happiness, offering context to the varying happiness levels between countries. Moreover, insights from neuroscience help us comprehend the physiological basis of happiness, illuminating why certain factors in the report, such as generosity or a healthy life expectancy, might elicit positive emotional responses.</p>
+<p>The World Happiness Report, in its extensive data collection and analysis, embodies the interdisciplinary approach to defining and measuring happiness. It draws from various academic disciplines, such as psychology, behavioral economics, sociology, political science, and neuroscience, providing a comprehensive understanding of happiness on a global scale. By analyzing factors like GDP per capita, social support, freedom to make life choices, generosity, perceptions of corruption, and more, the report offers a robust tool for exploring the multi-faceted nature of happiness.</p>
+</section>
+<section id="dataset-description" class="level2">
+<h2 class="anchored" data-anchor-id="dataset-description">Dataset Description</h2>
+<p>This dataset is from the World Happiness Report up to 2022 on the Kaggle platform <a href="https://www.kaggle.com/datasets/mathurinache/world-happiness-report" class="uri">https://www.kaggle.com/datasets/mathurinache/world-happiness-report</a></p>
+<p>The World Happiness Report is an annual survey that evaluates the sense of happiness in 153 countries globally. The dataset of this report typically includes the happiness score of each country, along with various factors used to explain that score. These factors include: GDP per capita, healthy life expectancy, social support, freedom to make life choices, generosity, and perceptions of corruption. In addition, there is an indicator named “dystopia residual” that is used to compare the worst possible life in every aspect.</p>
+<p>The report uses data from the Gallup World Poll to calculate happiness ratings and rankings. Based on responses to the survey, the results are calculated. One tool used is the Cantril ladder, a questionnaire that asks respondents to rank their current lives on a scale from 0 to 10, with 10 representing the best possible life they can imagine and 0 representing the worst possible existence. The responses from citizens are then averaged to obtain the happiness score for the country. Countries around the world are ranked in descending order of happiness. The World Happiness Report uses several key measures to evaluate the sense of happiness in each country:</p>
+<ol type="1">
+<li><p><strong>GDP per Capital</strong>: This is the measure of a country’s economic output that accounts for its number of people. It serves as an indicator of the standard of living and economic prosperity. A higher GDP usually signifies better living conditions and opportunities, contributing to the happiness of the citizens.</p></li>
+<li><p><strong>Healthy Life Expectancy</strong>: This measure indicates the average lifespan of people in a country in a physically and mentally healthy state. It reflects people’s health status and their expectations of longevity, which significantly impact their sense of happiness.</p></li>
+<li><p><strong>Social Support</strong>: This factor represents whether individuals feel they have someone to rely on during tough times. It could include friends, family, or community members. Strong social support networks contribute positively to individuals’ sense of happiness.</p></li>
+<li><p><strong>Freedom to Make Life Choices</strong>: This factor evaluates the extent to which individuals feel they have the liberty to make key life decisions. The ability to choose how to live one’s life freely is essential to the overall sense of satisfaction and happiness.</p></li>
+<li><p><strong>Generosity</strong>: This measure determines the extent to which people in a country are willing to help others. Acts of generosity can enhance an individual’s sense of happiness and contribute to stronger community ties.</p></li>
+<li><p><strong>Perceptions of Corruption</strong>: This measure examines how corrupt individuals perceive their government and private sector to be. High levels of perceived corruption can lead to lower trust in societal systems, negatively impacting the happiness of citizens.</p></li>
+<li><p><strong>Dystopia Residual</strong>: This is a hypothetical measure that represents the worst possible living conditions. It’s used as a benchmark to compare the actual living conditions in each country. It’s essentially the ‘unexplained’ component of happiness, encapsulating any aspects of happiness not covered by the other six factors.</p></li>
+</ol>
+</section>
+<section id="data-cleaning-and-sorting" class="level2">
+<h2 class="anchored" data-anchor-id="data-cleaning-and-sorting">Data cleaning and sorting</h2>
+<section id="data-reading" class="level3">
+<h3 class="anchored" data-anchor-id="data-reading">Data Reading</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the years you want to read in</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>years <span class="ot">&lt;-</span> <span class="dv">2015</span><span class="sc">:</span><span class="dv">2022</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop over the years</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (year <span class="cf">in</span> years) {</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Define the path to the csv file</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  file_path <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"_data/Happiness_Zhongyue_Lin/"</span>, year, <span class="st">".csv"</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Read the csv file</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(file_path)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add the year to the data frame</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">mutate</span>(df, <span class="at">Year =</span> year)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Define the variable name</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  var_name <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"Happy_"</span>, year)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Assign the data frame to the variable name in the global environment</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">assign</span>(var_name, df, <span class="at">envir =</span> .GlobalEnv)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Print the head and structure of the data frame</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">head</span>(df))</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 13
+  Country  Region Happi…¹ Happi…² Stand…³ Econo…⁴ Family Healt…⁵ Freedom Trust…⁶
+  &lt;chr&gt;    &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+1 Switzer… Weste…       1    7.59  0.0341    1.40   1.35   0.941   0.666   0.420
+2 Iceland  Weste…       2    7.56  0.0488    1.30   1.40   0.948   0.629   0.141
+3 Denmark  Weste…       3    7.53  0.0333    1.33   1.36   0.875   0.649   0.484
+4 Norway   Weste…       4    7.52  0.0388    1.46   1.33   0.885   0.670   0.365
+5 Canada   North…       5    7.43  0.0355    1.33   1.32   0.906   0.633   0.330
+6 Finland  Weste…       6    7.41  0.0314    1.29   1.32   0.889   0.642   0.414
+# … with 3 more variables: Generosity &lt;dbl&gt;, `Dystopia Residual` &lt;dbl&gt;,
+#   Year &lt;int&gt;, and abbreviated variable names ¹​`Happiness Rank`,
+#   ²​`Happiness Score`, ³​`Standard Error`, ⁴​`Economy (GDP per Capita)`,
+#   ⁵​`Health (Life Expectancy)`, ⁶​`Trust (Government Corruption)`
+# A tibble: 6 × 14
+  Country  Region Happi…¹ Happi…² Lower…³ Upper…⁴ Econo…⁵ Family Healt…⁶ Freedom
+  &lt;chr&gt;    &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+1 Denmark  Weste…       1    7.53    7.46    7.59    1.44   1.16   0.795   0.579
+2 Switzer… Weste…       2    7.51    7.43    7.59    1.53   1.15   0.863   0.586
+3 Iceland  Weste…       3    7.50    7.33    7.67    1.43   1.18   0.867   0.566
+4 Norway   Weste…       4    7.50    7.42    7.58    1.58   1.13   0.796   0.596
+5 Finland  Weste…       5    7.41    7.35    7.48    1.41   1.13   0.811   0.571
+6 Canada   North…       6    7.40    7.34    7.47    1.44   1.10   0.828   0.574
+# … with 4 more variables: `Trust (Government Corruption)` &lt;dbl&gt;,
+#   Generosity &lt;dbl&gt;, `Dystopia Residual` &lt;dbl&gt;, Year &lt;int&gt;, and abbreviated
+#   variable names ¹​`Happiness Rank`, ²​`Happiness Score`,
+#   ³​`Lower Confidence Interval`, ⁴​`Upper Confidence Interval`,
+#   ⁵​`Economy (GDP per Capita)`, ⁶​`Health (Life Expectancy)`
+# A tibble: 6 × 13
+  Country Happi…¹ Happi…² Whisk…³ Whisk…⁴ Econo…⁵ Family Healt…⁶ Freedom Gener…⁷
+  &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+1 Norway        1    7.54    7.59    7.48    1.62   1.53   0.797   0.635   0.362
+2 Denmark       2    7.52    7.58    7.46    1.48   1.55   0.793   0.626   0.355
+3 Iceland       3    7.50    7.62    7.39    1.48   1.61   0.834   0.627   0.476
+4 Switze…       4    7.49    7.56    7.43    1.56   1.52   0.858   0.620   0.291
+5 Finland       5    7.47    7.53    7.41    1.44   1.54   0.809   0.618   0.245
+6 Nether…       6    7.38    7.43    7.33    1.50   1.43   0.811   0.585   0.470
+# … with 3 more variables: Trust..Government.Corruption. &lt;dbl&gt;,
+#   Dystopia.Residual &lt;dbl&gt;, Year &lt;int&gt;, and abbreviated variable names
+#   ¹​Happiness.Rank, ²​Happiness.Score, ³​Whisker.high, ⁴​Whisker.low,
+#   ⁵​Economy..GDP.per.Capita., ⁶​Health..Life.Expectancy., ⁷​Generosity
+# A tibble: 6 × 10
+  Overall …¹ Count…² Score GDP p…³ Socia…⁴ Healt…⁵ Freed…⁶ Gener…⁷ Perce…⁸  Year
+       &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;int&gt;
+1          1 Finland  7.63    1.30    1.59   0.874   0.681   0.202 0.393    2018
+2          2 Norway   7.59    1.46    1.58   0.861   0.686   0.286 0.340    2018
+3          3 Denmark  7.56    1.35    1.59   0.868   0.683   0.284 0.408    2018
+4          4 Iceland  7.50    1.34    1.64   0.914   0.677   0.353 0.138    2018
+5          5 Switze…  7.49    1.42    1.55   0.927   0.66    0.256 0.357    2018
+6          6 Nether…  7.44    1.36    1.49   0.878   0.638   0.333 0.295    2018
+# … with abbreviated variable names ¹​`Overall rank`, ²​`Country or region`,
+#   ³​`GDP per capita`, ⁴​`Social support`, ⁵​`Healthy life expectancy`,
+#   ⁶​`Freedom to make life choices`, ⁷​Generosity, ⁸​`Perceptions of corruption`
+# A tibble: 6 × 10
+  Overall …¹ Count…² Score GDP p…³ Socia…⁴ Healt…⁵ Freed…⁶ Gener…⁷ Perce…⁸  Year
+       &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt;
+1          1 Finland  7.77    1.34    1.59   0.986   0.596   0.153   0.393  2019
+2          2 Denmark  7.6     1.38    1.57   0.996   0.592   0.252   0.41   2019
+3          3 Norway   7.55    1.49    1.58   1.03    0.603   0.271   0.341  2019
+4          4 Iceland  7.49    1.38    1.62   1.03    0.591   0.354   0.118  2019
+5          5 Nether…  7.49    1.40    1.52   0.999   0.557   0.322   0.298  2019
+6          6 Switze…  7.48    1.45    1.53   1.05    0.572   0.263   0.343  2019
+# … with abbreviated variable names ¹​`Overall rank`, ²​`Country or region`,
+#   ³​`GDP per capita`, ⁴​`Social support`, ⁵​`Healthy life expectancy`,
+#   ⁶​`Freedom to make life choices`, ⁷​Generosity, ⁸​`Perceptions of corruption`
+# A tibble: 6 × 21
+  `Country name` Regio…¹ Ladde…² Stand…³ upper…⁴ lower…⁵ Logge…⁶ Socia…⁷ Healt…⁸
+  &lt;chr&gt;          &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+1 Finland        Wester…    7.81  0.0312    7.87    7.75    10.6   0.954    71.9
+2 Denmark        Wester…    7.65  0.0335    7.71    7.58    10.8   0.956    72.4
+3 Switzerland    Wester…    7.56  0.0350    7.63    7.49    11.0   0.943    74.1
+4 Iceland        Wester…    7.50  0.0596    7.62    7.39    10.8   0.975    73  
+5 Norway         Wester…    7.49  0.0348    7.56    7.42    11.1   0.952    73.2
+6 Netherlands    Wester…    7.45  0.0278    7.50    7.39    10.8   0.939    72.3
+# … with 12 more variables: `Freedom to make life choices` &lt;dbl&gt;,
+#   Generosity &lt;dbl&gt;, `Perceptions of corruption` &lt;dbl&gt;,
+#   `Ladder score in Dystopia` &lt;dbl&gt;, `Explained by: Log GDP per capita` &lt;dbl&gt;,
+#   `Explained by: Social support` &lt;dbl&gt;,
+#   `Explained by: Healthy life expectancy` &lt;dbl&gt;,
+#   `Explained by: Freedom to make life choices` &lt;dbl&gt;,
+#   `Explained by: Generosity` &lt;dbl&gt;, …
+# A tibble: 6 × 21
+  `Country name` Regio…¹ Ladde…² Stand…³ upper…⁴ lower…⁵ Logge…⁶ Socia…⁷ Healt…⁸
+  &lt;chr&gt;          &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+1 Finland        Wester…    7.84   0.032    7.90    7.78    10.8   0.954    72  
+2 Denmark        Wester…    7.62   0.035    7.69    7.55    10.9   0.954    72.7
+3 Switzerland    Wester…    7.57   0.036    7.64    7.5     11.1   0.942    74.4
+4 Iceland        Wester…    7.55   0.059    7.67    7.44    10.9   0.983    73  
+5 Netherlands    Wester…    7.46   0.027    7.52    7.41    10.9   0.942    72.4
+6 Norway         Wester…    7.39   0.035    7.46    7.32    11.1   0.954    73.3
+# … with 12 more variables: `Freedom to make life choices` &lt;dbl&gt;,
+#   Generosity &lt;dbl&gt;, `Perceptions of corruption` &lt;dbl&gt;,
+#   `Ladder score in Dystopia` &lt;dbl&gt;, `Explained by: Log GDP per capita` &lt;dbl&gt;,
+#   `Explained by: Social support` &lt;dbl&gt;,
+#   `Explained by: Healthy life expectancy` &lt;dbl&gt;,
+#   `Explained by: Freedom to make life choices` &lt;dbl&gt;,
+#   `Explained by: Generosity` &lt;dbl&gt;, …
+# A tibble: 6 × 13
+   RANK Country  Happi…¹ Whisk…² Whisk…³ Dysto…⁴ Expla…⁵ Expla…⁶ Expla…⁷ Expla…⁸
+  &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  
+1     1 Finland     7821    7886    7756 2,518   1,892   1,258   0,775   0,736  
+2     2 Denmark     7636    7710    7563 2,226   1,953   1,243   0,777   0,719  
+3     3 Iceland     7557    7651    7464 2,320   1,936   1,320   0,803   0,718  
+4     4 Switzer…    7512    7586    7437 2,153   2,026   1,226   0,822   0,677  
+5     5 Netherl…    7415    7471    7359 2,137   1,945   1,206   0,787   0,651  
+6     6 Luxembo…    7404    7501    7307 2,042   2,209   1,155   0,790   0,700  
+# … with 3 more variables: `Explained by: Generosity` &lt;chr&gt;,
+#   `Explained by: Perceptions of corruption` &lt;chr&gt;, Year &lt;int&gt;, and
+#   abbreviated variable names ¹​`Happiness score`, ²​`Whisker-high`,
+#   ³​`Whisker-low`, ⁴​`Dystopia (1.83) + residual`,
+#   ⁵​`Explained by: GDP per capita`, ⁶​`Explained by: Social support`,
+#   ⁷​`Explained by: Healthy life expectancy`,
+#   ⁸​`Explained by: Freedom to make life choices`</code></pre>
+</div>
+</div>
+<p>The logic of this code is to read happiness index datasets from 2015 to 2022 and assign each dataset to a corresponding variable name based on the year. First, a vector is defined to include the years from 2015 to 2022. Then, through a loop, the code constructs the file path for each dataset and uses the <code>read_csv()</code> function to read the dataset, storing it in a variable named df.</p>
+<p>Next, the code uses the <code>mutate()</code> function to add a new column named “Year” to the dataset, with the value set to the current year in the loop. The code also constructs a variable name based on the current year and uses the <code>assign()</code> function to assign the dataset to that variable name in the global environment.</p>
+<p>Finally, the code prints the first few rows of each dataset to examine the data’s contents.</p>
+<p>Through this loop, the code reads each dataset for each year, adds a new column for the year, and assigns the dataset to the corresponding variable name in the global environment. This allows each dataset for each year to be accessible and the first few rows can be printed to review the dataset’s contents.</p>
+</section>
+<section id="data-cleaning" class="level3">
+<h3 class="anchored" data-anchor-id="data-cleaning">Data Cleaning</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate rank for Happy_2020</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>Happy_2020 <span class="ot">&lt;-</span> Happy_2020 <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Rank =</span> <span class="fu">rank</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">Ladder score</span><span class="st">`</span>)))</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate rank for Happy_2021</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>Happy_2021 <span class="ot">&lt;-</span> Happy_2021 <span class="sc">%&gt;%</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Rank =</span> <span class="fu">rank</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">Ladder score</span><span class="st">`</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a function to rename rank column</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>rename_rank_column <span class="ot">&lt;-</span> <span class="cf">function</span>(df, old_name) {</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">%&gt;%</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">Rank =</span> old_name)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply this function to all dataframes</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>Happy_2015 <span class="ot">&lt;-</span> <span class="fu">rename_rank_column</span>(Happy_2015, <span class="st">'Happiness Rank'</span>)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>Happy_2016 <span class="ot">&lt;-</span> <span class="fu">rename_rank_column</span>(Happy_2016, <span class="st">'Happiness Rank'</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>Happy_2017 <span class="ot">&lt;-</span> <span class="fu">rename_rank_column</span>(Happy_2017, <span class="st">'Happiness.Rank'</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>Happy_2018 <span class="ot">&lt;-</span> <span class="fu">rename_rank_column</span>(Happy_2018, <span class="st">'Overall rank'</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>Happy_2019 <span class="ot">&lt;-</span> <span class="fu">rename_rank_column</span>(Happy_2019, <span class="st">'Overall rank'</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>Happy_2020 <span class="ot">&lt;-</span> <span class="fu">rename_rank_column</span>(Happy_2020, <span class="st">'Rank'</span>)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>Happy_2021 <span class="ot">&lt;-</span> <span class="fu">rename_rank_column</span>(Happy_2021, <span class="st">'Rank'</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>Happy_2022 <span class="ot">&lt;-</span> <span class="fu">rename_rank_column</span>(Happy_2022, <span class="st">'RANK'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a function to rename country column</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>rename_country_column <span class="ot">&lt;-</span> <span class="cf">function</span>(df, old_name) {</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">Country =</span> old_name)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply this function to all dataframes</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>Happy_2015 <span class="ot">&lt;-</span> <span class="fu">rename_country_column</span>(Happy_2015, <span class="st">'Country'</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>Happy_2016 <span class="ot">&lt;-</span> <span class="fu">rename_country_column</span>(Happy_2016, <span class="st">'Country'</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>Happy_2017 <span class="ot">&lt;-</span> <span class="fu">rename_country_column</span>(Happy_2017, <span class="st">'Country'</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>Happy_2018 <span class="ot">&lt;-</span> <span class="fu">rename_country_column</span>(Happy_2018, <span class="st">'Country or region'</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>Happy_2019 <span class="ot">&lt;-</span> <span class="fu">rename_country_column</span>(Happy_2019, <span class="st">'Country or region'</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>Happy_2020 <span class="ot">&lt;-</span> <span class="fu">rename_country_column</span>(Happy_2020, <span class="st">'Country name'</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>Happy_2021 <span class="ot">&lt;-</span> <span class="fu">rename_country_column</span>(Happy_2021, <span class="st">'Country name'</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>Happy_2022 <span class="ot">&lt;-</span> <span class="fu">rename_country_column</span>(Happy_2022, <span class="st">'Country'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a function to rename score column</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>rename_score_column <span class="ot">&lt;-</span> <span class="cf">function</span>(df, old_name) {</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">%&gt;%</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">Score =</span> old_name)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply this function to all dataframes</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>Happy_2015 <span class="ot">&lt;-</span> <span class="fu">rename_score_column</span>(Happy_2015, <span class="st">'Happiness Score'</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>Happy_2016 <span class="ot">&lt;-</span> <span class="fu">rename_score_column</span>(Happy_2016, <span class="st">'Happiness Score'</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>Happy_2017 <span class="ot">&lt;-</span> <span class="fu">rename_score_column</span>(Happy_2017, <span class="st">'Happiness.Score'</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>Happy_2020 <span class="ot">&lt;-</span> <span class="fu">rename_score_column</span>(Happy_2020, <span class="st">'Ladder score'</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>Happy_2021 <span class="ot">&lt;-</span> <span class="fu">rename_score_column</span>(Happy_2021, <span class="st">'Ladder score'</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>Happy_2022 <span class="ot">&lt;-</span> <span class="fu">rename_score_column</span>(Happy_2022, <span class="st">'Happiness score'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Happy_2022 <span class="ot">&lt;-</span> Happy_2022 <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(<span class="st">'Dystopia (1.83) + residual'</span>, </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'Explained by: GDP per capita'</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'Explained by: Healthy life expectancy'</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'Explained by: Freedom to make life choices'</span>,<span class="st">'Explained by: Social support'</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'Explained by: Generosity'</span>,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'Explained by: Perceptions of corruption'</span>), <span class="sc">~</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">","</span>, <span class="st">"."</span>, .))),</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>         <span class="fu">across</span>(<span class="sc">-</span>Country, as.numeric))</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>Happy_2022 <span class="ot">&lt;-</span> Happy_2022 <span class="sc">%&gt;%</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(<span class="st">"Score"</span>, <span class="st">"Whisker-high"</span>, <span class="st">"Whisker-low"</span>), <span class="sc">~</span> . <span class="sc">/</span> <span class="dv">1000</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a function to rename multiple columns</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>rename_columns <span class="ot">&lt;-</span> <span class="cf">function</span>(df, old_names, new_names) {</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">%&gt;%</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename_at</span>(<span class="fu">vars</span>(old_names), <span class="sc">~</span> new_names)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Define new names</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>new_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"GDP_per_Capita"</span>, <span class="st">"Family"</span>, <span class="st">"Life_Expectancy"</span>, <span class="st">"Freedom"</span>, </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Generosity"</span>, <span class="st">"Government_Corruption"</span>, <span class="st">"Dystopia_Residual"</span>)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply this function to all dataframes</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>Happy_2015 <span class="ot">&lt;-</span> <span class="fu">rename_columns</span>(Happy_2015, </span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">c</span>(<span class="st">"Economy (GDP per Capita)"</span>, <span class="st">"Family"</span>, <span class="st">"Health (Life Expectancy)"</span>, </span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Freedom"</span>, <span class="st">"Generosity"</span>, <span class="st">"Trust (Government Corruption)"</span>, <span class="st">"Dystopia Residual"</span>), </span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>                             new_names)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>Happy_2016 <span class="ot">&lt;-</span> <span class="fu">rename_columns</span>(Happy_2016, </span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">c</span>(<span class="st">"Economy (GDP per Capita)"</span>, <span class="st">"Family"</span>, <span class="st">"Health (Life Expectancy)"</span>, </span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Freedom"</span>, <span class="st">"Generosity"</span>, <span class="st">"Trust (Government Corruption)"</span>, <span class="st">"Dystopia Residual"</span>), </span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>                             new_names)</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>Happy_2017 <span class="ot">&lt;-</span> <span class="fu">rename_columns</span>(Happy_2017, </span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">c</span>(<span class="st">"Economy..GDP.per.Capita."</span>, <span class="st">"Family"</span>, <span class="st">"Health..Life.Expectancy."</span>, </span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Freedom"</span>, <span class="st">"Generosity"</span>, <span class="st">"Trust..Government.Corruption."</span>, <span class="st">"Dystopia.Residual"</span>), </span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>                             new_names)</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>Happy_2018 <span class="ot">&lt;-</span> <span class="fu">rename_columns</span>(Happy_2018, </span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">c</span>(<span class="st">"GDP per capita"</span>, <span class="st">"Social support"</span>, <span class="st">"Healthy life expectancy"</span>, </span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Freedom to make life choices"</span>, <span class="st">"Generosity"</span>, <span class="st">"Perceptions of corruption"</span>), </span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>                             new_names[<span class="sc">-</span><span class="fu">length</span>(new_names)])</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>Happy_2019 <span class="ot">&lt;-</span> <span class="fu">rename_columns</span>(Happy_2019, </span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">c</span>(<span class="st">"GDP per capita"</span>, <span class="st">"Social support"</span>, <span class="st">"Healthy life expectancy"</span>, </span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Freedom to make life choices"</span>, <span class="st">"Generosity"</span>, <span class="st">"Perceptions of corruption"</span>), </span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>                             new_names[<span class="sc">-</span><span class="fu">length</span>(new_names)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>old_names_2020_to_2021 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Explained by: Log GDP per capita"</span>, </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"Explained by: Social support"</span>, </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"Explained by: Healthy life expectancy"</span>, </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"Explained by: Freedom to make life choices"</span>, </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"Explained by: Generosity"</span>, </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"Explained by: Perceptions of corruption"</span>, </span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"Dystopia + residual"</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>old_names_2022 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Explained by: GDP per capita"</span>, </span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"Explained by: Social support"</span>, </span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"Explained by: Healthy life expectancy"</span>, </span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"Explained by: Freedom to make life choices"</span>, </span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"Explained by: Generosity"</span>, </span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"Explained by: Perceptions of corruption"</span>, </span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"Dystopia (1.83) + residual"</span>)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a function to drop a column if it exists</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>drop_column_if_exists <span class="ot">&lt;-</span> <span class="cf">function</span>(df, column_name) {</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (column_name <span class="sc">%in%</span> <span class="fu">colnames</span>(df)) {</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>    df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>column_name)</span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(df)</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop original 'Generosity' column if it exists in Happy_2020 and Happy_2021 datasets</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>Happy_2020 <span class="ot">&lt;-</span> <span class="fu">drop_column_if_exists</span>(Happy_2020, <span class="st">'Generosity'</span>)</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>Happy_2021 <span class="ot">&lt;-</span> <span class="fu">drop_column_if_exists</span>(Happy_2021, <span class="st">'Generosity'</span>)</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Then proceed with the renaming process</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>Happy_2020 <span class="ot">&lt;-</span> <span class="fu">rename_columns</span>(Happy_2020, old_names_2020_to_2021, new_names)</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>Happy_2021 <span class="ot">&lt;-</span> <span class="fu">rename_columns</span>(Happy_2021, old_names_2020_to_2021, new_names)</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>Happy_2022 <span class="ot">&lt;-</span> <span class="fu">rename_columns</span>(Happy_2022, old_names_2022, new_names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a list of datasets</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>datasets <span class="ot">&lt;-</span> <span class="fu">list</span>(Happy_2015, Happy_2016, Happy_2017, Happy_2018, Happy_2019, Happy_2020, Happy_2021, Happy_2022)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply glimpse() function to each dataset in the list</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(datasets, glimpse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 158
+Columns: 13
+$ Country               &lt;chr&gt; "Switzerland", "Iceland", "Denmark", "Norway", "…
+$ Region                &lt;chr&gt; "Western Europe", "Western Europe", "Western Eur…
+$ Rank                  &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1…
+$ Score                 &lt;dbl&gt; 7.587, 7.561, 7.527, 7.522, 7.427, 7.406, 7.378,…
+$ `Standard Error`      &lt;dbl&gt; 0.03411, 0.04884, 0.03328, 0.03880, 0.03553, 0.0…
+$ GDP_per_Capita        &lt;dbl&gt; 1.39651, 1.30232, 1.32548, 1.45900, 1.32629, 1.2…
+$ Family                &lt;dbl&gt; 1.34951, 1.40223, 1.36058, 1.33095, 1.32261, 1.3…
+$ Life_Expectancy       &lt;dbl&gt; 0.94143, 0.94784, 0.87464, 0.88521, 0.90563, 0.8…
+$ Freedom               &lt;dbl&gt; 0.66557, 0.62877, 0.64938, 0.66973, 0.63297, 0.6…
+$ Government_Corruption &lt;dbl&gt; 0.41978, 0.14145, 0.48357, 0.36503, 0.32957, 0.4…
+$ Generosity            &lt;dbl&gt; 0.29678, 0.43630, 0.34139, 0.34699, 0.45811, 0.2…
+$ Dystopia_Residual     &lt;dbl&gt; 2.51738, 2.70201, 2.49204, 2.46531, 2.45176, 2.6…
+$ Year                  &lt;int&gt; 2015, 2015, 2015, 2015, 2015, 2015, 2015, 2015, …
+Rows: 157
+Columns: 14
+$ Country                     &lt;chr&gt; "Denmark", "Switzerland", "Iceland", "Norw…
+$ Region                      &lt;chr&gt; "Western Europe", "Western Europe", "Weste…
+$ Rank                        &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,…
+$ Score                       &lt;dbl&gt; 7.526, 7.509, 7.501, 7.498, 7.413, 7.404, …
+$ `Lower Confidence Interval` &lt;dbl&gt; 7.460, 7.428, 7.333, 7.421, 7.351, 7.335, …
+$ `Upper Confidence Interval` &lt;dbl&gt; 7.592, 7.590, 7.669, 7.575, 7.475, 7.473, …
+$ GDP_per_Capita              &lt;dbl&gt; 1.44178, 1.52733, 1.42666, 1.57744, 1.4059…
+$ Family                      &lt;dbl&gt; 1.16374, 1.14524, 1.18326, 1.12690, 1.1346…
+$ Life_Expectancy             &lt;dbl&gt; 0.79504, 0.86303, 0.86733, 0.79579, 0.8109…
+$ Freedom                     &lt;dbl&gt; 0.57941, 0.58557, 0.56624, 0.59609, 0.5710…
+$ Government_Corruption       &lt;dbl&gt; 0.44453, 0.41203, 0.14975, 0.35776, 0.4100…
+$ Generosity                  &lt;dbl&gt; 0.36171, 0.28083, 0.47678, 0.37895, 0.2549…
+$ Dystopia_Residual           &lt;dbl&gt; 2.73939, 2.69463, 2.83137, 2.66465, 2.8259…
+$ Year                        &lt;int&gt; 2016, 2016, 2016, 2016, 2016, 2016, 2016, …
+Rows: 155
+Columns: 13
+$ Country               &lt;chr&gt; "Norway", "Denmark", "Iceland", "Switzerland", "…
+$ Rank                  &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1…
+$ Score                 &lt;dbl&gt; 7.537, 7.522, 7.504, 7.494, 7.469, 7.377, 7.316,…
+$ Whisker.high          &lt;dbl&gt; 7.594445, 7.581728, 7.622030, 7.561772, 7.527542…
+$ Whisker.low           &lt;dbl&gt; 7.479556, 7.462272, 7.385970, 7.426227, 7.410458…
+$ GDP_per_Capita        &lt;dbl&gt; 1.616463, 1.482383, 1.480633, 1.564980, 1.443572…
+$ Family                &lt;dbl&gt; 1.533524, 1.551122, 1.610574, 1.516912, 1.540247…
+$ Life_Expectancy       &lt;dbl&gt; 0.7966665, 0.7925655, 0.8335521, 0.8581313, 0.80…
+$ Freedom               &lt;dbl&gt; 0.6354226, 0.6260067, 0.6271626, 0.6200706, 0.61…
+$ Generosity            &lt;dbl&gt; 0.36201224, 0.35528049, 0.47554022, 0.29054928, …
+$ Government_Corruption &lt;dbl&gt; 0.31596383, 0.40077007, 0.15352656, 0.36700729, …
+$ Dystopia_Residual     &lt;dbl&gt; 2.277027, 2.313707, 2.322715, 2.276716, 2.430182…
+$ Year                  &lt;int&gt; 2017, 2017, 2017, 2017, 2017, 2017, 2017, 2017, …
+Rows: 156
+Columns: 10
+$ Rank                  &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1…
+$ Country               &lt;chr&gt; "Finland", "Norway", "Denmark", "Iceland", "Swit…
+$ Score                 &lt;dbl&gt; 7.632, 7.594, 7.555, 7.495, 7.487, 7.441, 7.328,…
+$ GDP_per_Capita        &lt;dbl&gt; 1.305, 1.456, 1.351, 1.343, 1.420, 1.361, 1.330,…
+$ Family                &lt;dbl&gt; 1.592, 1.582, 1.590, 1.644, 1.549, 1.488, 1.532,…
+$ Life_Expectancy       &lt;dbl&gt; 0.874, 0.861, 0.868, 0.914, 0.927, 0.878, 0.896,…
+$ Freedom               &lt;dbl&gt; 0.681, 0.686, 0.683, 0.677, 0.660, 0.638, 0.653,…
+$ Generosity            &lt;dbl&gt; 0.202, 0.286, 0.284, 0.353, 0.256, 0.333, 0.321,…
+$ Government_Corruption &lt;chr&gt; "0.393", "0.340", "0.408", "0.138", "0.357", "0.…
+$ Year                  &lt;int&gt; 2018, 2018, 2018, 2018, 2018, 2018, 2018, 2018, …
+Rows: 156
+Columns: 10
+$ Rank                  &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1…
+$ Country               &lt;chr&gt; "Finland", "Denmark", "Norway", "Iceland", "Neth…
+$ Score                 &lt;dbl&gt; 7.769, 7.600, 7.554, 7.494, 7.488, 7.480, 7.343,…
+$ GDP_per_Capita        &lt;dbl&gt; 1.340, 1.383, 1.488, 1.380, 1.396, 1.452, 1.387,…
+$ Family                &lt;dbl&gt; 1.587, 1.573, 1.582, 1.624, 1.522, 1.526, 1.487,…
+$ Life_Expectancy       &lt;dbl&gt; 0.986, 0.996, 1.028, 1.026, 0.999, 1.052, 1.009,…
+$ Freedom               &lt;dbl&gt; 0.596, 0.592, 0.603, 0.591, 0.557, 0.572, 0.574,…
+$ Generosity            &lt;dbl&gt; 0.153, 0.252, 0.271, 0.354, 0.322, 0.263, 0.267,…
+$ Government_Corruption &lt;dbl&gt; 0.393, 0.410, 0.341, 0.118, 0.298, 0.343, 0.373,…
+$ Year                  &lt;int&gt; 2019, 2019, 2019, 2019, 2019, 2019, 2019, 2019, …
+Rows: 153
+Columns: 21
+$ Country                          &lt;chr&gt; "Finland", "Denmark", "Switzerland", …
+$ `Regional indicator`             &lt;chr&gt; "Western Europe", "Western Europe", "…
+$ Score                            &lt;dbl&gt; 7.8087, 7.6456, 7.5599, 7.5045, 7.488…
+$ `Standard error of ladder score` &lt;dbl&gt; 0.03115630, 0.03349229, 0.03501417, 0…
+$ upperwhisker                     &lt;dbl&gt; 7.869766, 7.711245, 7.628528, 7.62134…
+$ lowerwhisker                     &lt;dbl&gt; 7.747634, 7.579955, 7.491272, 7.38765…
+$ `Logged GDP per capita`          &lt;dbl&gt; 10.639267, 10.774001, 10.979933, 10.7…
+$ `Social support`                 &lt;dbl&gt; 0.9543297, 0.9559908, 0.9428466, 0.97…
+$ `Healthy life expectancy`        &lt;dbl&gt; 71.90083, 72.40250, 74.10245, 73.0000…
+$ `Freedom to make life choices`   &lt;dbl&gt; 0.9491722, 0.9514443, 0.9213367, 0.94…
+$ `Perceptions of corruption`      &lt;dbl&gt; 0.1954446, 0.1684895, 0.3037284, 0.71…
+$ `Ladder score in Dystopia`       &lt;dbl&gt; 1.972317, 1.972317, 1.972317, 1.97231…
+$ GDP_per_Capita                   &lt;dbl&gt; 1.2851895, 1.3269485, 1.3907742, 1.32…
+$ Family                           &lt;dbl&gt; 1.499526, 1.503449, 1.472403, 1.54756…
+$ Life_Expectancy                  &lt;dbl&gt; 0.9612714, 0.9793326, 1.0405332, 1.00…
+$ Freedom                          &lt;dbl&gt; 0.6623167, 0.6650399, 0.6289545, 0.66…
+$ Generosity                       &lt;dbl&gt; 0.15967044, 0.24279340, 0.26905575, 0…
+$ Government_Corruption            &lt;dbl&gt; 0.47785726, 0.49526033, 0.40794590, 0…
+$ Dystopia_Residual                &lt;dbl&gt; 2.762835, 2.432741, 2.350267, 2.46068…
+$ Year                             &lt;int&gt; 2020, 2020, 2020, 2020, 2020, 2020, 2…
+$ Rank                             &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12…
+Rows: 149
+Columns: 21
+$ Country                          &lt;chr&gt; "Finland", "Denmark", "Switzerland", …
+$ `Regional indicator`             &lt;chr&gt; "Western Europe", "Western Europe", "…
+$ Score                            &lt;dbl&gt; 7.842, 7.620, 7.571, 7.554, 7.464, 7.…
+$ `Standard error of ladder score` &lt;dbl&gt; 0.032, 0.035, 0.036, 0.059, 0.027, 0.…
+$ upperwhisker                     &lt;dbl&gt; 7.904, 7.687, 7.643, 7.670, 7.518, 7.…
+$ lowerwhisker                     &lt;dbl&gt; 7.780, 7.552, 7.500, 7.438, 7.410, 7.…
+$ `Logged GDP per capita`          &lt;dbl&gt; 10.775, 10.933, 11.117, 10.878, 10.93…
+$ `Social support`                 &lt;dbl&gt; 0.954, 0.954, 0.942, 0.983, 0.942, 0.…
+$ `Healthy life expectancy`        &lt;dbl&gt; 72.000, 72.700, 74.400, 73.000, 72.40…
+$ `Freedom to make life choices`   &lt;dbl&gt; 0.949, 0.946, 0.919, 0.955, 0.913, 0.…
+$ `Perceptions of corruption`      &lt;dbl&gt; 0.186, 0.179, 0.292, 0.673, 0.338, 0.…
+$ `Ladder score in Dystopia`       &lt;dbl&gt; 2.43, 2.43, 2.43, 2.43, 2.43, 2.43, 2…
+$ GDP_per_Capita                   &lt;dbl&gt; 1.446, 1.502, 1.566, 1.482, 1.501, 1.…
+$ Family                           &lt;dbl&gt; 1.106, 1.108, 1.079, 1.172, 1.079, 1.…
+$ Life_Expectancy                  &lt;dbl&gt; 0.741, 0.763, 0.816, 0.772, 0.753, 0.…
+$ Freedom                          &lt;dbl&gt; 0.691, 0.686, 0.653, 0.698, 0.647, 0.…
+$ Generosity                       &lt;dbl&gt; 0.124, 0.208, 0.204, 0.293, 0.302, 0.…
+$ Government_Corruption            &lt;dbl&gt; 0.481, 0.485, 0.413, 0.170, 0.384, 0.…
+$ Dystopia_Residual                &lt;dbl&gt; 3.253, 2.868, 2.839, 2.967, 2.798, 2.…
+$ Year                             &lt;int&gt; 2021, 2021, 2021, 2021, 2021, 2021, 2…
+$ Rank                             &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12…
+Rows: 147
+Columns: 13
+$ Rank                  &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1…
+$ Country               &lt;chr&gt; "Finland", "Denmark", "Iceland", "Switzerland", …
+$ Score                 &lt;dbl&gt; 7.821, 7.636, 7.557, 7.512, 7.415, 7.404, 7.384,…
+$ `Whisker-high`        &lt;dbl&gt; 7.886, 7.710, 7.651, 7.586, 7.471, 7.501, 7.454,…
+$ `Whisker-low`         &lt;dbl&gt; 7.756, 7.563, 7.464, 7.437, 7.359, 7.307, 7.315,…
+$ Dystopia_Residual     &lt;dbl&gt; 2.518, 2.226, 2.320, 2.153, 2.137, 2.042, 2.003,…
+$ GDP_per_Capita        &lt;dbl&gt; 1.892, 1.953, 1.936, 2.026, 1.945, 2.209, 1.920,…
+$ Family                &lt;dbl&gt; 1.258, 1.243, 1.320, 1.226, 1.206, 1.155, 1.204,…
+$ Life_Expectancy       &lt;dbl&gt; 0.775, 0.777, 0.803, 0.822, 0.787, 0.790, 0.803,…
+$ Freedom               &lt;dbl&gt; 0.736, 0.719, 0.718, 0.677, 0.651, 0.700, 0.724,…
+$ Generosity            &lt;dbl&gt; 0.109, 0.188, 0.270, 0.147, 0.271, 0.120, 0.218,…
+$ Government_Corruption &lt;dbl&gt; 0.534, 0.532, 0.191, 0.461, 0.419, 0.388, 0.512,…
+$ Year                  &lt;dbl&gt; 2022, 2022, 2022, 2022, 2022, 2022, 2022, 2022, …</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+# A tibble: 158 × 13
+   Country     Region  Rank Score Stand…¹ GDP_p…² Family Life_…³ Freedom Gover…⁴
+   &lt;chr&gt;       &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1 Switzerland Weste…     1  7.59  0.0341    1.40   1.35   0.941   0.666   0.420
+ 2 Iceland     Weste…     2  7.56  0.0488    1.30   1.40   0.948   0.629   0.141
+ 3 Denmark     Weste…     3  7.53  0.0333    1.33   1.36   0.875   0.649   0.484
+ 4 Norway      Weste…     4  7.52  0.0388    1.46   1.33   0.885   0.670   0.365
+ 5 Canada      North…     5  7.43  0.0355    1.33   1.32   0.906   0.633   0.330
+ 6 Finland     Weste…     6  7.41  0.0314    1.29   1.32   0.889   0.642   0.414
+ 7 Netherlands Weste…     7  7.38  0.0280    1.33   1.28   0.893   0.616   0.318
+ 8 Sweden      Weste…     8  7.36  0.0316    1.33   1.29   0.911   0.660   0.438
+ 9 New Zealand Austr…     9  7.29  0.0337    1.25   1.32   0.908   0.639   0.429
+10 Australia   Austr…    10  7.28  0.0408    1.33   1.31   0.932   0.651   0.356
+# … with 148 more rows, 3 more variables: Generosity &lt;dbl&gt;,
+#   Dystopia_Residual &lt;dbl&gt;, Year &lt;int&gt;, and abbreviated variable names
+#   ¹​`Standard Error`, ²​GDP_per_Capita, ³​Life_Expectancy,
+#   ⁴​Government_Corruption
+
+[[2]]
+# A tibble: 157 × 14
+   Country     Region  Rank Score Lower…¹ Upper…² GDP_p…³ Family Life_…⁴ Freedom
+   &lt;chr&gt;       &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1 Denmark     Weste…     1  7.53    7.46    7.59    1.44   1.16   0.795   0.579
+ 2 Switzerland Weste…     2  7.51    7.43    7.59    1.53   1.15   0.863   0.586
+ 3 Iceland     Weste…     3  7.50    7.33    7.67    1.43   1.18   0.867   0.566
+ 4 Norway      Weste…     4  7.50    7.42    7.58    1.58   1.13   0.796   0.596
+ 5 Finland     Weste…     5  7.41    7.35    7.48    1.41   1.13   0.811   0.571
+ 6 Canada      North…     6  7.40    7.34    7.47    1.44   1.10   0.828   0.574
+ 7 Netherlands Weste…     7  7.34    7.28    7.39    1.46   1.03   0.812   0.552
+ 8 New Zealand Austr…     8  7.33    7.26    7.40    1.36   1.17   0.831   0.581
+ 9 Australia   Austr…     9  7.31    7.24    7.38    1.44   1.10   0.851   0.568
+10 Sweden      Weste…    10  7.29    7.23    7.36    1.45   1.09   0.831   0.582
+# … with 147 more rows, 4 more variables: Government_Corruption &lt;dbl&gt;,
+#   Generosity &lt;dbl&gt;, Dystopia_Residual &lt;dbl&gt;, Year &lt;int&gt;, and abbreviated
+#   variable names ¹​`Lower Confidence Interval`, ²​`Upper Confidence Interval`,
+#   ³​GDP_per_Capita, ⁴​Life_Expectancy
+
+[[3]]
+# A tibble: 155 × 13
+   Country     Rank Score Whisk…¹ Whisk…² GDP_p…³ Family Life_…⁴ Freedom Gener…⁵
+   &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1 Norway         1  7.54    7.59    7.48    1.62   1.53   0.797   0.635   0.362
+ 2 Denmark        2  7.52    7.58    7.46    1.48   1.55   0.793   0.626   0.355
+ 3 Iceland        3  7.50    7.62    7.39    1.48   1.61   0.834   0.627   0.476
+ 4 Switzerla…     4  7.49    7.56    7.43    1.56   1.52   0.858   0.620   0.291
+ 5 Finland        5  7.47    7.53    7.41    1.44   1.54   0.809   0.618   0.245
+ 6 Netherlan…     6  7.38    7.43    7.33    1.50   1.43   0.811   0.585   0.470
+ 7 Canada         7  7.32    7.38    7.25    1.48   1.48   0.835   0.611   0.436
+ 8 New Zeala…     8  7.31    7.38    7.25    1.41   1.55   0.817   0.614   0.500
+ 9 Sweden         9  7.28    7.34    7.22    1.49   1.48   0.831   0.613   0.385
+10 Australia     10  7.28    7.36    7.21    1.48   1.51   0.844   0.602   0.478
+# … with 145 more rows, 3 more variables: Government_Corruption &lt;dbl&gt;,
+#   Dystopia_Residual &lt;dbl&gt;, Year &lt;int&gt;, and abbreviated variable names
+#   ¹​Whisker.high, ²​Whisker.low, ³​GDP_per_Capita, ⁴​Life_Expectancy, ⁵​Generosity
+
+[[4]]
+# A tibble: 156 × 10
+    Rank Country     Score GDP_pe…¹ Family Life_…² Freedom Gener…³ Gover…⁴  Year
+   &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;int&gt;
+ 1     1 Finland      7.63     1.30   1.59   0.874   0.681   0.202 0.393    2018
+ 2     2 Norway       7.59     1.46   1.58   0.861   0.686   0.286 0.340    2018
+ 3     3 Denmark      7.56     1.35   1.59   0.868   0.683   0.284 0.408    2018
+ 4     4 Iceland      7.50     1.34   1.64   0.914   0.677   0.353 0.138    2018
+ 5     5 Switzerland  7.49     1.42   1.55   0.927   0.66    0.256 0.357    2018
+ 6     6 Netherlands  7.44     1.36   1.49   0.878   0.638   0.333 0.295    2018
+ 7     7 Canada       7.33     1.33   1.53   0.896   0.653   0.321 0.291    2018
+ 8     8 New Zealand  7.32     1.27   1.60   0.876   0.669   0.365 0.389    2018
+ 9     9 Sweden       7.31     1.36   1.50   0.913   0.659   0.285 0.383    2018
+10    10 Australia    7.27     1.34   1.57   0.91    0.647   0.361 0.302    2018
+# … with 146 more rows, and abbreviated variable names ¹​GDP_per_Capita,
+#   ²​Life_Expectancy, ³​Generosity, ⁴​Government_Corruption
+
+[[5]]
+# A tibble: 156 × 10
+    Rank Country     Score GDP_pe…¹ Family Life_…² Freedom Gener…³ Gover…⁴  Year
+   &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt;
+ 1     1 Finland      7.77     1.34   1.59   0.986   0.596   0.153   0.393  2019
+ 2     2 Denmark      7.6      1.38   1.57   0.996   0.592   0.252   0.41   2019
+ 3     3 Norway       7.55     1.49   1.58   1.03    0.603   0.271   0.341  2019
+ 4     4 Iceland      7.49     1.38   1.62   1.03    0.591   0.354   0.118  2019
+ 5     5 Netherlands  7.49     1.40   1.52   0.999   0.557   0.322   0.298  2019
+ 6     6 Switzerland  7.48     1.45   1.53   1.05    0.572   0.263   0.343  2019
+ 7     7 Sweden       7.34     1.39   1.49   1.01    0.574   0.267   0.373  2019
+ 8     8 New Zealand  7.31     1.30   1.56   1.03    0.585   0.33    0.38   2019
+ 9     9 Canada       7.28     1.36   1.50   1.04    0.584   0.285   0.308  2019
+10    10 Austria      7.25     1.38   1.48   1.02    0.532   0.244   0.226  2019
+# … with 146 more rows, and abbreviated variable names ¹​GDP_per_Capita,
+#   ²​Life_Expectancy, ³​Generosity, ⁴​Government_Corruption
+
+[[6]]
+# A tibble: 153 × 21
+   Country Regio…¹ Score Stand…² upper…³ lower…⁴ Logge…⁵ Socia…⁶ Healt…⁷ Freed…⁸
+   &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1 Finland Wester…  7.81  0.0312    7.87    7.75    10.6   0.954    71.9   0.949
+ 2 Denmark Wester…  7.65  0.0335    7.71    7.58    10.8   0.956    72.4   0.951
+ 3 Switze… Wester…  7.56  0.0350    7.63    7.49    11.0   0.943    74.1   0.921
+ 4 Iceland Wester…  7.50  0.0596    7.62    7.39    10.8   0.975    73     0.949
+ 5 Norway  Wester…  7.49  0.0348    7.56    7.42    11.1   0.952    73.2   0.956
+ 6 Nether… Wester…  7.45  0.0278    7.50    7.39    10.8   0.939    72.3   0.909
+ 7 Sweden  Wester…  7.35  0.0362    7.42    7.28    10.8   0.926    72.6   0.939
+ 8 New Ze… North …  7.30  0.0395    7.38    7.22    10.5   0.949    73.2   0.936
+ 9 Austria Wester…  7.29  0.0334    7.36    7.23    10.7   0.928    73.0   0.900
+10 Luxemb… Wester…  7.24  0.0309    7.30    7.18    11.5   0.907    72.6   0.906
+# … with 143 more rows, 11 more variables: `Perceptions of corruption` &lt;dbl&gt;,
+#   `Ladder score in Dystopia` &lt;dbl&gt;, GDP_per_Capita &lt;dbl&gt;, Family &lt;dbl&gt;,
+#   Life_Expectancy &lt;dbl&gt;, Freedom &lt;dbl&gt;, Generosity &lt;dbl&gt;,
+#   Government_Corruption &lt;dbl&gt;, Dystopia_Residual &lt;dbl&gt;, Year &lt;int&gt;,
+#   Rank &lt;dbl&gt;, and abbreviated variable names ¹​`Regional indicator`,
+#   ²​`Standard error of ladder score`, ³​upperwhisker, ⁴​lowerwhisker,
+#   ⁵​`Logged GDP per capita`, ⁶​`Social support`, ⁷​`Healthy life expectancy`, …
+
+[[7]]
+# A tibble: 149 × 21
+   Country Regio…¹ Score Stand…² upper…³ lower…⁴ Logge…⁵ Socia…⁶ Healt…⁷ Freed…⁸
+   &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1 Finland Wester…  7.84   0.032    7.90    7.78    10.8   0.954    72     0.949
+ 2 Denmark Wester…  7.62   0.035    7.69    7.55    10.9   0.954    72.7   0.946
+ 3 Switze… Wester…  7.57   0.036    7.64    7.5     11.1   0.942    74.4   0.919
+ 4 Iceland Wester…  7.55   0.059    7.67    7.44    10.9   0.983    73     0.955
+ 5 Nether… Wester…  7.46   0.027    7.52    7.41    10.9   0.942    72.4   0.913
+ 6 Norway  Wester…  7.39   0.035    7.46    7.32    11.1   0.954    73.3   0.96 
+ 7 Sweden  Wester…  7.36   0.036    7.43    7.29    10.9   0.934    72.7   0.945
+ 8 Luxemb… Wester…  7.32   0.037    7.40    7.25    11.6   0.908    72.6   0.907
+ 9 New Ze… North …  7.28   0.04     7.36    7.20    10.6   0.948    73.4   0.929
+10 Austria Wester…  7.27   0.036    7.34    7.20    10.9   0.934    73.3   0.908
+# … with 139 more rows, 11 more variables: `Perceptions of corruption` &lt;dbl&gt;,
+#   `Ladder score in Dystopia` &lt;dbl&gt;, GDP_per_Capita &lt;dbl&gt;, Family &lt;dbl&gt;,
+#   Life_Expectancy &lt;dbl&gt;, Freedom &lt;dbl&gt;, Generosity &lt;dbl&gt;,
+#   Government_Corruption &lt;dbl&gt;, Dystopia_Residual &lt;dbl&gt;, Year &lt;int&gt;,
+#   Rank &lt;dbl&gt;, and abbreviated variable names ¹​`Regional indicator`,
+#   ²​`Standard error of ladder score`, ³​upperwhisker, ⁴​lowerwhisker,
+#   ⁵​`Logged GDP per capita`, ⁶​`Social support`, ⁷​`Healthy life expectancy`, …
+
+[[8]]
+# A tibble: 147 × 13
+    Rank Country    Score Whisk…¹ Whisk…² Dysto…³ GDP_p…⁴ Family Life_…⁵ Freedom
+   &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1     1 Finland     7.82    7.89    7.76    2.52    1.89   1.26   0.775   0.736
+ 2     2 Denmark     7.64    7.71    7.56    2.23    1.95   1.24   0.777   0.719
+ 3     3 Iceland     7.56    7.65    7.46    2.32    1.94   1.32   0.803   0.718
+ 4     4 Switzerla…  7.51    7.59    7.44    2.15    2.03   1.23   0.822   0.677
+ 5     5 Netherlan…  7.42    7.47    7.36    2.14    1.94   1.21   0.787   0.651
+ 6     6 Luxembour…  7.40    7.50    7.31    2.04    2.21   1.16   0.79    0.7  
+ 7     7 Sweden      7.38    7.45    7.32    2.00    1.92   1.20   0.803   0.724
+ 8     8 Norway      7.36    7.44    7.29    1.92    2.00   1.24   0.786   0.728
+ 9     9 Israel      7.36    7.43    7.30    2.63    1.83   1.22   0.818   0.568
+10    10 New Zeala…  7.2     7.28    7.12    1.95    1.85   1.24   0.752   0.68 
+# … with 137 more rows, 3 more variables: Generosity &lt;dbl&gt;,
+#   Government_Corruption &lt;dbl&gt;, Year &lt;dbl&gt;, and abbreviated variable names
+#   ¹​`Whisker-high`, ²​`Whisker-low`, ³​Dystopia_Residual, ⁴​GDP_per_Capita,
+#   ⁵​Life_Expectancy</code></pre>
+</div>
+</div>
+<p>In the data cleaning stage, I standardized the format of the datasets from 2015 to 2022. This was done to eliminate differences between the datasets and ensure consistent structure and variable names. This process has several benefits for subsequent data analysis.</p>
+<p>By standardizing the format of the datasets, I ensured that the data had consistent structure and variable names across different years. This makes the data easier to understand and compare, reducing confusion and errors that can arise from varying naming conventions and structures.</p>
+<p>Additionally, standardizing the format enhances reproducibility. Once the cleaning and renaming rules are defined, future datasets can be processed using the same rules, eliminating the need for repetitive work. This improves efficiency and reduces the likelihood of errors.</p>
+<p>Using consistent variable names improves readability. Descriptive and clear variable names make it easier for others to understand the content of the dataset and facilitate my own analysis and reporting in subsequent stages.</p>
+<p>Standardizing the format also benefits data analysis. Consistent data formats make it easier to aggregate, filter, visualize, and model the data across multiple years without the need for different processing steps for each dataset. This provides a more efficient and streamlined data analysis process.</p>
+<p>In conclusion, by standardizing the format of the datasets from 2015 to 2022, I ensured consistency, reproducibility, and readability of the data, while improving the efficiency and accuracy of data analysis. This establishes a solid foundation for subsequent data exploration, analysis, and interpretation.</p>
+</section>
+<section id="data-integration" class="level3">
+<h3 class="anchored" data-anchor-id="data-integration">Data Integration</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Happy_2015 <span class="ot">&lt;-</span> Happy_2015 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Government_Corruption =</span> <span class="fu">as.numeric</span>(Government_Corruption))</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>Happy_2016 <span class="ot">&lt;-</span> Happy_2016 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Government_Corruption =</span> <span class="fu">as.numeric</span>(Government_Corruption))</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>Happy_2017 <span class="ot">&lt;-</span> Happy_2017 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Government_Corruption =</span> <span class="fu">as.numeric</span>(Government_Corruption))</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>Happy_2018 <span class="ot">&lt;-</span> Happy_2018 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Government_Corruption =</span> <span class="fu">as.numeric</span>(Government_Corruption))</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>Happy_2019 <span class="ot">&lt;-</span> Happy_2019 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Government_Corruption =</span> <span class="fu">as.numeric</span>(Government_Corruption))</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>Happy_2020 <span class="ot">&lt;-</span> Happy_2020 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Government_Corruption =</span> <span class="fu">as.numeric</span>(Government_Corruption))</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>Happy_2021 <span class="ot">&lt;-</span> Happy_2021 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Government_Corruption =</span> <span class="fu">as.numeric</span>(Government_Corruption))</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>Happy_2022 <span class="ot">&lt;-</span> Happy_2022 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Government_Corruption =</span> <span class="fu">as.numeric</span>(Government_Corruption))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>needed_columns <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Country"</span>, <span class="st">"Year"</span>, <span class="st">"Score"</span>, <span class="st">"Rank"</span>, <span class="st">"GDP_per_Capita"</span>, <span class="st">"Family"</span>, </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Life_Expectancy"</span>, <span class="st">"Freedom"</span>, <span class="st">"Generosity"</span>, <span class="st">"Government_Corruption"</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                    )</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a function to select a specific column</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>select_columns <span class="ot">&lt;-</span> <span class="cf">function</span>(df, columns) {</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">all_of</span>(columns))</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>Happy_2015_selected <span class="ot">&lt;-</span> <span class="fu">select_columns</span>(Happy_2015, needed_columns)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>Happy_2016_selected <span class="ot">&lt;-</span> <span class="fu">select_columns</span>(Happy_2016, needed_columns)</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>Happy_2017_selected <span class="ot">&lt;-</span> <span class="fu">select_columns</span>(Happy_2017, needed_columns)</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>Happy_2018_selected <span class="ot">&lt;-</span> <span class="fu">select_columns</span>(Happy_2018, needed_columns)</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>Happy_2019_selected <span class="ot">&lt;-</span> <span class="fu">select_columns</span>(Happy_2019, needed_columns)</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>Happy_2020_selected <span class="ot">&lt;-</span> <span class="fu">select_columns</span>(Happy_2020, needed_columns)</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>Happy_2021_selected <span class="ot">&lt;-</span> <span class="fu">select_columns</span>(Happy_2021, needed_columns)</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>Happy_2022_selected <span class="ot">&lt;-</span> <span class="fu">select_columns</span>(Happy_2022, needed_columns)</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Finally, combine all the selected data boxes together</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>all_years_selected <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(Happy_2015_selected, Happy_2016_selected, Happy_2017_selected,</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>                                Happy_2018_selected, Happy_2019_selected, Happy_2020_selected,</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>                                Happy_2021_selected, Happy_2022_selected)</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>all_years_selected <span class="ot">&lt;-</span> all_years_selected <span class="sc">%&gt;%</span></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Rank =</span> <span class="fu">as.integer</span>(Rank))</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>all_years_selected</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,231 × 10
+   Country      Year Score  Rank GDP_pe…¹ Family Life_…² Freedom Gener…³ Gover…⁴
+   &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;    &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1 Switzerland  2015  7.59     1     1.40   1.35   0.941   0.666   0.297   0.420
+ 2 Iceland      2015  7.56     2     1.30   1.40   0.948   0.629   0.436   0.141
+ 3 Denmark      2015  7.53     3     1.33   1.36   0.875   0.649   0.341   0.484
+ 4 Norway       2015  7.52     4     1.46   1.33   0.885   0.670   0.347   0.365
+ 5 Canada       2015  7.43     5     1.33   1.32   0.906   0.633   0.458   0.330
+ 6 Finland      2015  7.41     6     1.29   1.32   0.889   0.642   0.234   0.414
+ 7 Netherlands  2015  7.38     7     1.33   1.28   0.893   0.616   0.476   0.318
+ 8 Sweden       2015  7.36     8     1.33   1.29   0.911   0.660   0.363   0.438
+ 9 New Zealand  2015  7.29     9     1.25   1.32   0.908   0.639   0.475   0.429
+10 Australia    2015  7.28    10     1.33   1.31   0.932   0.651   0.436   0.356
+# … with 1,221 more rows, and abbreviated variable names ¹​GDP_per_Capita,
+#   ²​Life_Expectancy, ³​Generosity, ⁴​Government_Corruption</code></pre>
+</div>
+</div>
+</section>
+<section id="data-set-visualization-test" class="level3">
+<h3 class="anchored" data-anchor-id="data-set-visualization-test">Data set visualization test</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter for Japan</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>japan_data <span class="ot">&lt;-</span> all_years_selected <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">"Japan"</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot rank over time</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(japan_data, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Rank)) <span class="sc">+</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Ranking of Japan from 2015 to 2022"</span>) <span class="sc">+</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Year"</span>) <span class="sc">+</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Rank"</span>) <span class="sc">+</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_reverse</span>() <span class="co"># Reverse the y axis as rank 1 is the highest</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Homework_2_Zhongyue_Lin_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="for-this-dataset-the-research-questions" class="level2">
+<h2 class="anchored" data-anchor-id="for-this-dataset-the-research-questions">For this dataset the research questions</h2>
+<p>The World Happiness Report’s dataset offers a wealth of information that can help address numerous research questions related to national happiness levels and the factors that influence them. Here’s a more detailed look at the potential research questions mentioned:</p>
+<ol type="1">
+<li><p><strong>Which factors most significantly influence a country’s happiness?</strong> This question seeks to determine the primary drivers of happiness on a national scale. Are economic factors like GDP per capita more influential, or do social factors such as social support and freedom to make life choices hold more weight? Additionally, to what extent does a nation’s perception of corruption impact the overall happiness? Analyzing correlations and conducting regression analysis could shed light on these relationships.</p></li>
+<li><p><strong>How does happiness differ among countries?</strong> This question explores the disparities in happiness levels across various nations. Which countries consistently rank at the top, and which ones at the bottom? Are there discernible patterns geographically, economically, or culturally? Comparing and analyzing the happiness scores and their respective factors across different countries can provide insights.</p></li>
+<li><p><strong>How do various factors and overall happiness evolve over time?</strong> This question addresses the temporal dynamics of happiness and its influencing factors. Are there trends showing that certain factors become more or less influential over time? Does the overall happiness level of countries or the world at large rise, fall, or remain stable? Time series analysis could be useful in this context.</p></li>
+<li><p><strong>How does a specific factor impact happiness?</strong> This question focuses on the relationship between a single factor and happiness. For instance, how does a rise in GDP per capita or a decrease in perceived corruption affect the happiness score? Understanding this can help pinpoint what initiatives might be most effective in increasing a country’s happiness. Conducting detailed analysis for individual factors and their impact on the happiness score would be required to address this question.</p></li>
+</ol>
+<p>By meticulously examining these questions using the dataset, researchers can gain valuable insights into the complex dynamics of happiness, potentially guiding policy decisions and initiatives aimed at enhancing national well-being.</p>
+<p><strong>Reference</strong></p>
+<p>Sustainable Development Solutions Network. (2023). World Happiness Report. Worldhappiness.report. <a href="https://worldhappiness.report/" class="uri">https://worldhappiness.report/</a></p>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="DACSS/SummerCommentRepo" data-repo-id="R_kgDOJrwrQw" data-category="Announcements" data-category-id="DIC_kwDOJrwrQ84CW_wq" data-mapping="url" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb18" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "HW2 - World Happiness Data"</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Zhongyue Lin"</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Read the final project dataset - World Happiness Data"</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "6/12/2023"</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - HW_2</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - Zhongyue Lin</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="co">  - Happiness</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a><span class="fu">## Definition and measurement of happiness</span></span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>Happiness, a deeply personal and subjective experience, is often defined as a state of well-being and contentment, characterized by the presence of positive emotions and the absence of negative ones. The measurement of happiness is a complex task due to its highly subjective nature, necessitating an interdisciplinary approach. The World Happiness Report, an annual survey that assesses happiness levels across 153 countries globally, is a prime example of this approach.</span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>Psychology contributes to our understanding of happiness, particularly in the use of the World Happiness Report's data, by exploring emotions, cognitions, and behaviors. It emphasizes factors such as social support and freedom to make life choices, both key elements examined in the report. Similarly, behavioral economics, which explores how individual decision-making impacts happiness, is reflected in the report's inclusion of GDP per capita and perceptions of corruption as potential influences on happiness.</span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>Sociology and political science provide broader perspectives on how societal structures and governance impact happiness, offering context to the varying happiness levels between countries. Moreover, insights from neuroscience help us comprehend the physiological basis of happiness, illuminating why certain factors in the report, such as generosity or a healthy life expectancy, might elicit positive emotional responses.</span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a>The World Happiness Report, in its extensive data collection and analysis, embodies the interdisciplinary approach to defining and measuring happiness. It draws from various academic disciplines, such as psychology, behavioral economics, sociology, political science, and neuroscience, providing a comprehensive understanding of happiness on a global scale. By analyzing factors like GDP per capita, social support, freedom to make life choices, generosity, perceptions of corruption, and more, the report offers a robust tool for exploring the multi-faceted nature of happiness.</span>
+<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a><span class="fu">## Dataset Description</span></span>
+<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a>This dataset is from the World Happiness Report up to 2022 on the Kaggle platform <span class="ot">&lt;https://www.kaggle.com/datasets/mathurinache/world-happiness-report&gt;</span></span>
+<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a>The World Happiness Report is an annual survey that evaluates the sense of happiness in 153 countries globally. The dataset of this report typically includes the happiness score of each country, along with various factors used to explain that score. These factors include: GDP per capita, healthy life expectancy, social support, freedom to make life choices, generosity, and perceptions of corruption. In addition, there is an indicator named "dystopia residual" that is used to compare the worst possible life in every aspect.</span>
+<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a>The report uses data from the Gallup World Poll to calculate happiness ratings and rankings. Based on responses to the survey, the results are calculated. One tool used is the Cantril ladder, a questionnaire that asks respondents to rank their current lives on a scale from 0 to 10, with 10 representing the best possible life they can imagine and 0 representing the worst possible existence. The responses from citizens are then averaged to obtain the happiness score for the country. Countries around the world are ranked in descending order of happiness. The World Happiness Report uses several key measures to evaluate the sense of happiness in each country:</span>
+<span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**GDP per Capital**: This is the measure of a country's economic output that accounts for its number of people. It serves as an indicator of the standard of living and economic prosperity. A higher GDP usually signifies better living conditions and opportunities, contributing to the happiness of the citizens.</span>
+<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Healthy Life Expectancy**: This measure indicates the average lifespan of people in a country in a physically and mentally healthy state. It reflects people's health status and their expectations of longevity, which significantly impact their sense of happiness.</span>
+<span id="cb18-52"><a href="#cb18-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-53"><a href="#cb18-53" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Social Support**: This factor represents whether individuals feel they have someone to rely on during tough times. It could include friends, family, or community members. Strong social support networks contribute positively to individuals' sense of happiness.</span>
+<span id="cb18-54"><a href="#cb18-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-55"><a href="#cb18-55" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**Freedom to Make Life Choices**: This factor evaluates the extent to which individuals feel they have the liberty to make key life decisions. The ability to choose how to live one's life freely is essential to the overall sense of satisfaction and happiness.</span>
+<span id="cb18-56"><a href="#cb18-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-57"><a href="#cb18-57" aria-hidden="true" tabindex="-1"></a><span class="ss">5.  </span>**Generosity**: This measure determines the extent to which people in a country are willing to help others. Acts of generosity can enhance an individual's sense of happiness and contribute to stronger community ties.</span>
+<span id="cb18-58"><a href="#cb18-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-59"><a href="#cb18-59" aria-hidden="true" tabindex="-1"></a><span class="ss">6.  </span>**Perceptions of Corruption**: This measure examines how corrupt individuals perceive their government and private sector to be. High levels of perceived corruption can lead to lower trust in societal systems, negatively impacting the happiness of citizens.</span>
+<span id="cb18-60"><a href="#cb18-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-61"><a href="#cb18-61" aria-hidden="true" tabindex="-1"></a><span class="ss">7.  </span>**Dystopia Residual**: This is a hypothetical measure that represents the worst possible living conditions. It's used as a benchmark to compare the actual living conditions in each country. It's essentially the 'unexplained' component of happiness, encapsulating any aspects of happiness not covered by the other six factors.</span>
+<span id="cb18-62"><a href="#cb18-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-63"><a href="#cb18-63" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data cleaning and sorting</span></span>
+<span id="cb18-64"><a href="#cb18-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-65"><a href="#cb18-65" aria-hidden="true" tabindex="-1"></a><span class="fu">### Data Reading</span></span>
+<span id="cb18-68"><a href="#cb18-68" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-69"><a href="#cb18-69" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the years you want to read in</span></span>
+<span id="cb18-70"><a href="#cb18-70" aria-hidden="true" tabindex="-1"></a>years <span class="ot">&lt;-</span> <span class="dv">2015</span><span class="sc">:</span><span class="dv">2022</span></span>
+<span id="cb18-71"><a href="#cb18-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-72"><a href="#cb18-72" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop over the years</span></span>
+<span id="cb18-73"><a href="#cb18-73" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (year <span class="cf">in</span> years) {</span>
+<span id="cb18-74"><a href="#cb18-74" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb18-75"><a href="#cb18-75" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Define the path to the csv file</span></span>
+<span id="cb18-76"><a href="#cb18-76" aria-hidden="true" tabindex="-1"></a>  file_path <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"_data/Happiness_Zhongyue_Lin/"</span>, year, <span class="st">".csv"</span>)</span>
+<span id="cb18-77"><a href="#cb18-77" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb18-78"><a href="#cb18-78" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Read the csv file</span></span>
+<span id="cb18-79"><a href="#cb18-79" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(file_path)</span>
+<span id="cb18-80"><a href="#cb18-80" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb18-81"><a href="#cb18-81" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add the year to the data frame</span></span>
+<span id="cb18-82"><a href="#cb18-82" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">mutate</span>(df, <span class="at">Year =</span> year)</span>
+<span id="cb18-83"><a href="#cb18-83" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb18-84"><a href="#cb18-84" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Define the variable name</span></span>
+<span id="cb18-85"><a href="#cb18-85" aria-hidden="true" tabindex="-1"></a>  var_name <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"Happy_"</span>, year)</span>
+<span id="cb18-86"><a href="#cb18-86" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb18-87"><a href="#cb18-87" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Assign the data frame to the variable name in the global environment</span></span>
+<span id="cb18-88"><a href="#cb18-88" aria-hidden="true" tabindex="-1"></a>  <span class="fu">assign</span>(var_name, df, <span class="at">envir =</span> .GlobalEnv)</span>
+<span id="cb18-89"><a href="#cb18-89" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb18-90"><a href="#cb18-90" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Print the head and structure of the data frame</span></span>
+<span id="cb18-91"><a href="#cb18-91" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">head</span>(df))</span>
+<span id="cb18-92"><a href="#cb18-92" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb18-93"><a href="#cb18-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-94"><a href="#cb18-94" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-95"><a href="#cb18-95" aria-hidden="true" tabindex="-1"></a>The logic of this code is to read happiness index datasets from 2015 to 2022 and assign each dataset to a corresponding variable name based on the year. First, a vector is defined to include the years from 2015 to 2022. Then, through a loop, the code constructs the file path for each dataset and uses the <span class="in">`read_csv()`</span> function to read the dataset, storing it in a variable named df.</span>
+<span id="cb18-96"><a href="#cb18-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-97"><a href="#cb18-97" aria-hidden="true" tabindex="-1"></a>Next, the code uses the <span class="in">`mutate()`</span> function to add a new column named "Year" to the dataset, with the value set to the current year in the loop. The code also constructs a variable name based on the current year and uses the <span class="in">`assign()`</span> function to assign the dataset to that variable name in the global environment.</span>
+<span id="cb18-98"><a href="#cb18-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-99"><a href="#cb18-99" aria-hidden="true" tabindex="-1"></a>Finally, the code prints the first few rows of each dataset to examine the data's contents.</span>
+<span id="cb18-100"><a href="#cb18-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-101"><a href="#cb18-101" aria-hidden="true" tabindex="-1"></a>Through this loop, the code reads each dataset for each year, adds a new column for the year, and assigns the dataset to the corresponding variable name in the global environment. This allows each dataset for each year to be accessible and the first few rows can be printed to review the dataset's contents.</span>
+<span id="cb18-102"><a href="#cb18-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-103"><a href="#cb18-103" aria-hidden="true" tabindex="-1"></a><span class="fu">### Data Cleaning</span></span>
+<span id="cb18-106"><a href="#cb18-106" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-107"><a href="#cb18-107" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate rank for Happy_2020</span></span>
+<span id="cb18-108"><a href="#cb18-108" aria-hidden="true" tabindex="-1"></a>Happy_2020 <span class="ot">&lt;-</span> Happy_2020 <span class="sc">%&gt;%</span></span>
+<span id="cb18-109"><a href="#cb18-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Rank =</span> <span class="fu">rank</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">Ladder score</span><span class="st">`</span>)))</span>
+<span id="cb18-110"><a href="#cb18-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-111"><a href="#cb18-111" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate rank for Happy_2021</span></span>
+<span id="cb18-112"><a href="#cb18-112" aria-hidden="true" tabindex="-1"></a>Happy_2021 <span class="ot">&lt;-</span> Happy_2021 <span class="sc">%&gt;%</span></span>
+<span id="cb18-113"><a href="#cb18-113" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Rank =</span> <span class="fu">rank</span>(<span class="fu">desc</span>(<span class="st">`</span><span class="at">Ladder score</span><span class="st">`</span>)))</span>
+<span id="cb18-114"><a href="#cb18-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-115"><a href="#cb18-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-116"><a href="#cb18-116" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-117"><a href="#cb18-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-120"><a href="#cb18-120" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-121"><a href="#cb18-121" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a function to rename rank column</span></span>
+<span id="cb18-122"><a href="#cb18-122" aria-hidden="true" tabindex="-1"></a>rename_rank_column <span class="ot">&lt;-</span> <span class="cf">function</span>(df, old_name) {</span>
+<span id="cb18-123"><a href="#cb18-123" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">%&gt;%</span></span>
+<span id="cb18-124"><a href="#cb18-124" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">Rank =</span> old_name)</span>
+<span id="cb18-125"><a href="#cb18-125" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb18-126"><a href="#cb18-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-127"><a href="#cb18-127" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply this function to all dataframes</span></span>
+<span id="cb18-128"><a href="#cb18-128" aria-hidden="true" tabindex="-1"></a>Happy_2015 <span class="ot">&lt;-</span> <span class="fu">rename_rank_column</span>(Happy_2015, <span class="st">'Happiness Rank'</span>)</span>
+<span id="cb18-129"><a href="#cb18-129" aria-hidden="true" tabindex="-1"></a>Happy_2016 <span class="ot">&lt;-</span> <span class="fu">rename_rank_column</span>(Happy_2016, <span class="st">'Happiness Rank'</span>)</span>
+<span id="cb18-130"><a href="#cb18-130" aria-hidden="true" tabindex="-1"></a>Happy_2017 <span class="ot">&lt;-</span> <span class="fu">rename_rank_column</span>(Happy_2017, <span class="st">'Happiness.Rank'</span>)</span>
+<span id="cb18-131"><a href="#cb18-131" aria-hidden="true" tabindex="-1"></a>Happy_2018 <span class="ot">&lt;-</span> <span class="fu">rename_rank_column</span>(Happy_2018, <span class="st">'Overall rank'</span>)</span>
+<span id="cb18-132"><a href="#cb18-132" aria-hidden="true" tabindex="-1"></a>Happy_2019 <span class="ot">&lt;-</span> <span class="fu">rename_rank_column</span>(Happy_2019, <span class="st">'Overall rank'</span>)</span>
+<span id="cb18-133"><a href="#cb18-133" aria-hidden="true" tabindex="-1"></a>Happy_2020 <span class="ot">&lt;-</span> <span class="fu">rename_rank_column</span>(Happy_2020, <span class="st">'Rank'</span>)</span>
+<span id="cb18-134"><a href="#cb18-134" aria-hidden="true" tabindex="-1"></a>Happy_2021 <span class="ot">&lt;-</span> <span class="fu">rename_rank_column</span>(Happy_2021, <span class="st">'Rank'</span>)</span>
+<span id="cb18-135"><a href="#cb18-135" aria-hidden="true" tabindex="-1"></a>Happy_2022 <span class="ot">&lt;-</span> <span class="fu">rename_rank_column</span>(Happy_2022, <span class="st">'RANK'</span>)</span>
+<span id="cb18-136"><a href="#cb18-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-137"><a href="#cb18-137" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-138"><a href="#cb18-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-141"><a href="#cb18-141" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-142"><a href="#cb18-142" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a function to rename country column</span></span>
+<span id="cb18-143"><a href="#cb18-143" aria-hidden="true" tabindex="-1"></a>rename_country_column <span class="ot">&lt;-</span> <span class="cf">function</span>(df, old_name) {</span>
+<span id="cb18-144"><a href="#cb18-144" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">%&gt;%</span></span>
+<span id="cb18-145"><a href="#cb18-145" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">Country =</span> old_name)</span>
+<span id="cb18-146"><a href="#cb18-146" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb18-147"><a href="#cb18-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-148"><a href="#cb18-148" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply this function to all dataframes</span></span>
+<span id="cb18-149"><a href="#cb18-149" aria-hidden="true" tabindex="-1"></a>Happy_2015 <span class="ot">&lt;-</span> <span class="fu">rename_country_column</span>(Happy_2015, <span class="st">'Country'</span>)</span>
+<span id="cb18-150"><a href="#cb18-150" aria-hidden="true" tabindex="-1"></a>Happy_2016 <span class="ot">&lt;-</span> <span class="fu">rename_country_column</span>(Happy_2016, <span class="st">'Country'</span>)</span>
+<span id="cb18-151"><a href="#cb18-151" aria-hidden="true" tabindex="-1"></a>Happy_2017 <span class="ot">&lt;-</span> <span class="fu">rename_country_column</span>(Happy_2017, <span class="st">'Country'</span>)</span>
+<span id="cb18-152"><a href="#cb18-152" aria-hidden="true" tabindex="-1"></a>Happy_2018 <span class="ot">&lt;-</span> <span class="fu">rename_country_column</span>(Happy_2018, <span class="st">'Country or region'</span>)</span>
+<span id="cb18-153"><a href="#cb18-153" aria-hidden="true" tabindex="-1"></a>Happy_2019 <span class="ot">&lt;-</span> <span class="fu">rename_country_column</span>(Happy_2019, <span class="st">'Country or region'</span>)</span>
+<span id="cb18-154"><a href="#cb18-154" aria-hidden="true" tabindex="-1"></a>Happy_2020 <span class="ot">&lt;-</span> <span class="fu">rename_country_column</span>(Happy_2020, <span class="st">'Country name'</span>)</span>
+<span id="cb18-155"><a href="#cb18-155" aria-hidden="true" tabindex="-1"></a>Happy_2021 <span class="ot">&lt;-</span> <span class="fu">rename_country_column</span>(Happy_2021, <span class="st">'Country name'</span>)</span>
+<span id="cb18-156"><a href="#cb18-156" aria-hidden="true" tabindex="-1"></a>Happy_2022 <span class="ot">&lt;-</span> <span class="fu">rename_country_column</span>(Happy_2022, <span class="st">'Country'</span>)</span>
+<span id="cb18-157"><a href="#cb18-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-158"><a href="#cb18-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-159"><a href="#cb18-159" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-160"><a href="#cb18-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-163"><a href="#cb18-163" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-164"><a href="#cb18-164" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a function to rename score column</span></span>
+<span id="cb18-165"><a href="#cb18-165" aria-hidden="true" tabindex="-1"></a>rename_score_column <span class="ot">&lt;-</span> <span class="cf">function</span>(df, old_name) {</span>
+<span id="cb18-166"><a href="#cb18-166" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">%&gt;%</span></span>
+<span id="cb18-167"><a href="#cb18-167" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">Score =</span> old_name)</span>
+<span id="cb18-168"><a href="#cb18-168" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb18-169"><a href="#cb18-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-170"><a href="#cb18-170" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply this function to all dataframes</span></span>
+<span id="cb18-171"><a href="#cb18-171" aria-hidden="true" tabindex="-1"></a>Happy_2015 <span class="ot">&lt;-</span> <span class="fu">rename_score_column</span>(Happy_2015, <span class="st">'Happiness Score'</span>)</span>
+<span id="cb18-172"><a href="#cb18-172" aria-hidden="true" tabindex="-1"></a>Happy_2016 <span class="ot">&lt;-</span> <span class="fu">rename_score_column</span>(Happy_2016, <span class="st">'Happiness Score'</span>)</span>
+<span id="cb18-173"><a href="#cb18-173" aria-hidden="true" tabindex="-1"></a>Happy_2017 <span class="ot">&lt;-</span> <span class="fu">rename_score_column</span>(Happy_2017, <span class="st">'Happiness.Score'</span>)</span>
+<span id="cb18-174"><a href="#cb18-174" aria-hidden="true" tabindex="-1"></a>Happy_2020 <span class="ot">&lt;-</span> <span class="fu">rename_score_column</span>(Happy_2020, <span class="st">'Ladder score'</span>)</span>
+<span id="cb18-175"><a href="#cb18-175" aria-hidden="true" tabindex="-1"></a>Happy_2021 <span class="ot">&lt;-</span> <span class="fu">rename_score_column</span>(Happy_2021, <span class="st">'Ladder score'</span>)</span>
+<span id="cb18-176"><a href="#cb18-176" aria-hidden="true" tabindex="-1"></a>Happy_2022 <span class="ot">&lt;-</span> <span class="fu">rename_score_column</span>(Happy_2022, <span class="st">'Happiness score'</span>)</span>
+<span id="cb18-177"><a href="#cb18-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-178"><a href="#cb18-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-179"><a href="#cb18-179" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-180"><a href="#cb18-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-183"><a href="#cb18-183" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-184"><a href="#cb18-184" aria-hidden="true" tabindex="-1"></a>Happy_2022 <span class="ot">&lt;-</span> Happy_2022 <span class="sc">%&gt;%</span></span>
+<span id="cb18-185"><a href="#cb18-185" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(<span class="st">'Dystopia (1.83) + residual'</span>, </span>
+<span id="cb18-186"><a href="#cb18-186" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'Explained by: GDP per capita'</span>,</span>
+<span id="cb18-187"><a href="#cb18-187" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'Explained by: Healthy life expectancy'</span>,</span>
+<span id="cb18-188"><a href="#cb18-188" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'Explained by: Freedom to make life choices'</span>,<span class="st">'Explained by: Social support'</span>,</span>
+<span id="cb18-189"><a href="#cb18-189" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'Explained by: Generosity'</span>,</span>
+<span id="cb18-190"><a href="#cb18-190" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'Explained by: Perceptions of corruption'</span>), <span class="sc">~</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">","</span>, <span class="st">"."</span>, .))),</span>
+<span id="cb18-191"><a href="#cb18-191" aria-hidden="true" tabindex="-1"></a>         <span class="fu">across</span>(<span class="sc">-</span>Country, as.numeric))</span>
+<span id="cb18-192"><a href="#cb18-192" aria-hidden="true" tabindex="-1"></a>Happy_2022 <span class="ot">&lt;-</span> Happy_2022 <span class="sc">%&gt;%</span></span>
+<span id="cb18-193"><a href="#cb18-193" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">c</span>(<span class="st">"Score"</span>, <span class="st">"Whisker-high"</span>, <span class="st">"Whisker-low"</span>), <span class="sc">~</span> . <span class="sc">/</span> <span class="dv">1000</span>))</span>
+<span id="cb18-194"><a href="#cb18-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-195"><a href="#cb18-195" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-196"><a href="#cb18-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-199"><a href="#cb18-199" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-200"><a href="#cb18-200" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a function to rename multiple columns</span></span>
+<span id="cb18-201"><a href="#cb18-201" aria-hidden="true" tabindex="-1"></a>rename_columns <span class="ot">&lt;-</span> <span class="cf">function</span>(df, old_names, new_names) {</span>
+<span id="cb18-202"><a href="#cb18-202" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">%&gt;%</span></span>
+<span id="cb18-203"><a href="#cb18-203" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename_at</span>(<span class="fu">vars</span>(old_names), <span class="sc">~</span> new_names)</span>
+<span id="cb18-204"><a href="#cb18-204" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb18-205"><a href="#cb18-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-206"><a href="#cb18-206" aria-hidden="true" tabindex="-1"></a><span class="co"># Define new names</span></span>
+<span id="cb18-207"><a href="#cb18-207" aria-hidden="true" tabindex="-1"></a>new_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"GDP_per_Capita"</span>, <span class="st">"Family"</span>, <span class="st">"Life_Expectancy"</span>, <span class="st">"Freedom"</span>, </span>
+<span id="cb18-208"><a href="#cb18-208" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Generosity"</span>, <span class="st">"Government_Corruption"</span>, <span class="st">"Dystopia_Residual"</span>)</span>
+<span id="cb18-209"><a href="#cb18-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-210"><a href="#cb18-210" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply this function to all dataframes</span></span>
+<span id="cb18-211"><a href="#cb18-211" aria-hidden="true" tabindex="-1"></a>Happy_2015 <span class="ot">&lt;-</span> <span class="fu">rename_columns</span>(Happy_2015, </span>
+<span id="cb18-212"><a href="#cb18-212" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">c</span>(<span class="st">"Economy (GDP per Capita)"</span>, <span class="st">"Family"</span>, <span class="st">"Health (Life Expectancy)"</span>, </span>
+<span id="cb18-213"><a href="#cb18-213" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Freedom"</span>, <span class="st">"Generosity"</span>, <span class="st">"Trust (Government Corruption)"</span>, <span class="st">"Dystopia Residual"</span>), </span>
+<span id="cb18-214"><a href="#cb18-214" aria-hidden="true" tabindex="-1"></a>                             new_names)</span>
+<span id="cb18-215"><a href="#cb18-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-216"><a href="#cb18-216" aria-hidden="true" tabindex="-1"></a>Happy_2016 <span class="ot">&lt;-</span> <span class="fu">rename_columns</span>(Happy_2016, </span>
+<span id="cb18-217"><a href="#cb18-217" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">c</span>(<span class="st">"Economy (GDP per Capita)"</span>, <span class="st">"Family"</span>, <span class="st">"Health (Life Expectancy)"</span>, </span>
+<span id="cb18-218"><a href="#cb18-218" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Freedom"</span>, <span class="st">"Generosity"</span>, <span class="st">"Trust (Government Corruption)"</span>, <span class="st">"Dystopia Residual"</span>), </span>
+<span id="cb18-219"><a href="#cb18-219" aria-hidden="true" tabindex="-1"></a>                             new_names)</span>
+<span id="cb18-220"><a href="#cb18-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-221"><a href="#cb18-221" aria-hidden="true" tabindex="-1"></a>Happy_2017 <span class="ot">&lt;-</span> <span class="fu">rename_columns</span>(Happy_2017, </span>
+<span id="cb18-222"><a href="#cb18-222" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">c</span>(<span class="st">"Economy..GDP.per.Capita."</span>, <span class="st">"Family"</span>, <span class="st">"Health..Life.Expectancy."</span>, </span>
+<span id="cb18-223"><a href="#cb18-223" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Freedom"</span>, <span class="st">"Generosity"</span>, <span class="st">"Trust..Government.Corruption."</span>, <span class="st">"Dystopia.Residual"</span>), </span>
+<span id="cb18-224"><a href="#cb18-224" aria-hidden="true" tabindex="-1"></a>                             new_names)</span>
+<span id="cb18-225"><a href="#cb18-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-226"><a href="#cb18-226" aria-hidden="true" tabindex="-1"></a>Happy_2018 <span class="ot">&lt;-</span> <span class="fu">rename_columns</span>(Happy_2018, </span>
+<span id="cb18-227"><a href="#cb18-227" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">c</span>(<span class="st">"GDP per capita"</span>, <span class="st">"Social support"</span>, <span class="st">"Healthy life expectancy"</span>, </span>
+<span id="cb18-228"><a href="#cb18-228" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Freedom to make life choices"</span>, <span class="st">"Generosity"</span>, <span class="st">"Perceptions of corruption"</span>), </span>
+<span id="cb18-229"><a href="#cb18-229" aria-hidden="true" tabindex="-1"></a>                             new_names[<span class="sc">-</span><span class="fu">length</span>(new_names)])</span>
+<span id="cb18-230"><a href="#cb18-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-231"><a href="#cb18-231" aria-hidden="true" tabindex="-1"></a>Happy_2019 <span class="ot">&lt;-</span> <span class="fu">rename_columns</span>(Happy_2019, </span>
+<span id="cb18-232"><a href="#cb18-232" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">c</span>(<span class="st">"GDP per capita"</span>, <span class="st">"Social support"</span>, <span class="st">"Healthy life expectancy"</span>, </span>
+<span id="cb18-233"><a href="#cb18-233" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Freedom to make life choices"</span>, <span class="st">"Generosity"</span>, <span class="st">"Perceptions of corruption"</span>), </span>
+<span id="cb18-234"><a href="#cb18-234" aria-hidden="true" tabindex="-1"></a>                             new_names[<span class="sc">-</span><span class="fu">length</span>(new_names)])</span>
+<span id="cb18-235"><a href="#cb18-235" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-236"><a href="#cb18-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-239"><a href="#cb18-239" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-240"><a href="#cb18-240" aria-hidden="true" tabindex="-1"></a>old_names_2020_to_2021 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Explained by: Log GDP per capita"</span>, </span>
+<span id="cb18-241"><a href="#cb18-241" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"Explained by: Social support"</span>, </span>
+<span id="cb18-242"><a href="#cb18-242" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"Explained by: Healthy life expectancy"</span>, </span>
+<span id="cb18-243"><a href="#cb18-243" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"Explained by: Freedom to make life choices"</span>, </span>
+<span id="cb18-244"><a href="#cb18-244" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"Explained by: Generosity"</span>, </span>
+<span id="cb18-245"><a href="#cb18-245" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"Explained by: Perceptions of corruption"</span>, </span>
+<span id="cb18-246"><a href="#cb18-246" aria-hidden="true" tabindex="-1"></a>                             <span class="st">"Dystopia + residual"</span>)</span>
+<span id="cb18-247"><a href="#cb18-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-248"><a href="#cb18-248" aria-hidden="true" tabindex="-1"></a>old_names_2022 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Explained by: GDP per capita"</span>, </span>
+<span id="cb18-249"><a href="#cb18-249" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"Explained by: Social support"</span>, </span>
+<span id="cb18-250"><a href="#cb18-250" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"Explained by: Healthy life expectancy"</span>, </span>
+<span id="cb18-251"><a href="#cb18-251" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"Explained by: Freedom to make life choices"</span>, </span>
+<span id="cb18-252"><a href="#cb18-252" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"Explained by: Generosity"</span>, </span>
+<span id="cb18-253"><a href="#cb18-253" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"Explained by: Perceptions of corruption"</span>, </span>
+<span id="cb18-254"><a href="#cb18-254" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"Dystopia (1.83) + residual"</span>)</span>
+<span id="cb18-255"><a href="#cb18-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-256"><a href="#cb18-256" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a function to drop a column if it exists</span></span>
+<span id="cb18-257"><a href="#cb18-257" aria-hidden="true" tabindex="-1"></a>drop_column_if_exists <span class="ot">&lt;-</span> <span class="cf">function</span>(df, column_name) {</span>
+<span id="cb18-258"><a href="#cb18-258" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (column_name <span class="sc">%in%</span> <span class="fu">colnames</span>(df)) {</span>
+<span id="cb18-259"><a href="#cb18-259" aria-hidden="true" tabindex="-1"></a>    df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>column_name)</span>
+<span id="cb18-260"><a href="#cb18-260" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb18-261"><a href="#cb18-261" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(df)</span>
+<span id="cb18-262"><a href="#cb18-262" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb18-263"><a href="#cb18-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-264"><a href="#cb18-264" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop original 'Generosity' column if it exists in Happy_2020 and Happy_2021 datasets</span></span>
+<span id="cb18-265"><a href="#cb18-265" aria-hidden="true" tabindex="-1"></a>Happy_2020 <span class="ot">&lt;-</span> <span class="fu">drop_column_if_exists</span>(Happy_2020, <span class="st">'Generosity'</span>)</span>
+<span id="cb18-266"><a href="#cb18-266" aria-hidden="true" tabindex="-1"></a>Happy_2021 <span class="ot">&lt;-</span> <span class="fu">drop_column_if_exists</span>(Happy_2021, <span class="st">'Generosity'</span>)</span>
+<span id="cb18-267"><a href="#cb18-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-268"><a href="#cb18-268" aria-hidden="true" tabindex="-1"></a><span class="co"># Then proceed with the renaming process</span></span>
+<span id="cb18-269"><a href="#cb18-269" aria-hidden="true" tabindex="-1"></a>Happy_2020 <span class="ot">&lt;-</span> <span class="fu">rename_columns</span>(Happy_2020, old_names_2020_to_2021, new_names)</span>
+<span id="cb18-270"><a href="#cb18-270" aria-hidden="true" tabindex="-1"></a>Happy_2021 <span class="ot">&lt;-</span> <span class="fu">rename_columns</span>(Happy_2021, old_names_2020_to_2021, new_names)</span>
+<span id="cb18-271"><a href="#cb18-271" aria-hidden="true" tabindex="-1"></a>Happy_2022 <span class="ot">&lt;-</span> <span class="fu">rename_columns</span>(Happy_2022, old_names_2022, new_names)</span>
+<span id="cb18-272"><a href="#cb18-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-273"><a href="#cb18-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-274"><a href="#cb18-274" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-275"><a href="#cb18-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-278"><a href="#cb18-278" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-279"><a href="#cb18-279" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a list of datasets</span></span>
+<span id="cb18-280"><a href="#cb18-280" aria-hidden="true" tabindex="-1"></a>datasets <span class="ot">&lt;-</span> <span class="fu">list</span>(Happy_2015, Happy_2016, Happy_2017, Happy_2018, Happy_2019, Happy_2020, Happy_2021, Happy_2022)</span>
+<span id="cb18-281"><a href="#cb18-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-282"><a href="#cb18-282" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply glimpse() function to each dataset in the list</span></span>
+<span id="cb18-283"><a href="#cb18-283" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(datasets, glimpse)</span>
+<span id="cb18-284"><a href="#cb18-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-285"><a href="#cb18-285" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-286"><a href="#cb18-286" aria-hidden="true" tabindex="-1"></a>In the data cleaning stage, I standardized the format of the datasets from 2015 to 2022. This was done to eliminate differences between the datasets and ensure consistent structure and variable names. This process has several benefits for subsequent data analysis.</span>
+<span id="cb18-287"><a href="#cb18-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-288"><a href="#cb18-288" aria-hidden="true" tabindex="-1"></a>By standardizing the format of the datasets, I ensured that the data had consistent structure and variable names across different years. This makes the data easier to understand and compare, reducing confusion and errors that can arise from varying naming conventions and structures.</span>
+<span id="cb18-289"><a href="#cb18-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-290"><a href="#cb18-290" aria-hidden="true" tabindex="-1"></a>Additionally, standardizing the format enhances reproducibility. Once the cleaning and renaming rules are defined, future datasets can be processed using the same rules, eliminating the need for repetitive work. This improves efficiency and reduces the likelihood of errors.</span>
+<span id="cb18-291"><a href="#cb18-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-292"><a href="#cb18-292" aria-hidden="true" tabindex="-1"></a>Using consistent variable names improves readability. Descriptive and clear variable names make it easier for others to understand the content of the dataset and facilitate my own analysis and reporting in subsequent stages.</span>
+<span id="cb18-293"><a href="#cb18-293" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-294"><a href="#cb18-294" aria-hidden="true" tabindex="-1"></a>Standardizing the format also benefits data analysis. Consistent data formats make it easier to aggregate, filter, visualize, and model the data across multiple years without the need for different processing steps for each dataset. This provides a more efficient and streamlined data analysis process.</span>
+<span id="cb18-295"><a href="#cb18-295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-296"><a href="#cb18-296" aria-hidden="true" tabindex="-1"></a>In conclusion, by standardizing the format of the datasets from 2015 to 2022, I ensured consistency, reproducibility, and readability of the data, while improving the efficiency and accuracy of data analysis. This establishes a solid foundation for subsequent data exploration, analysis, and interpretation.</span>
+<span id="cb18-297"><a href="#cb18-297" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-298"><a href="#cb18-298" aria-hidden="true" tabindex="-1"></a><span class="fu">### Data Integration</span></span>
+<span id="cb18-301"><a href="#cb18-301" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-302"><a href="#cb18-302" aria-hidden="true" tabindex="-1"></a>Happy_2015 <span class="ot">&lt;-</span> Happy_2015 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Government_Corruption =</span> <span class="fu">as.numeric</span>(Government_Corruption))</span>
+<span id="cb18-303"><a href="#cb18-303" aria-hidden="true" tabindex="-1"></a>Happy_2016 <span class="ot">&lt;-</span> Happy_2016 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Government_Corruption =</span> <span class="fu">as.numeric</span>(Government_Corruption))</span>
+<span id="cb18-304"><a href="#cb18-304" aria-hidden="true" tabindex="-1"></a>Happy_2017 <span class="ot">&lt;-</span> Happy_2017 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Government_Corruption =</span> <span class="fu">as.numeric</span>(Government_Corruption))</span>
+<span id="cb18-305"><a href="#cb18-305" aria-hidden="true" tabindex="-1"></a>Happy_2018 <span class="ot">&lt;-</span> Happy_2018 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Government_Corruption =</span> <span class="fu">as.numeric</span>(Government_Corruption))</span>
+<span id="cb18-306"><a href="#cb18-306" aria-hidden="true" tabindex="-1"></a>Happy_2019 <span class="ot">&lt;-</span> Happy_2019 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Government_Corruption =</span> <span class="fu">as.numeric</span>(Government_Corruption))</span>
+<span id="cb18-307"><a href="#cb18-307" aria-hidden="true" tabindex="-1"></a>Happy_2020 <span class="ot">&lt;-</span> Happy_2020 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Government_Corruption =</span> <span class="fu">as.numeric</span>(Government_Corruption))</span>
+<span id="cb18-308"><a href="#cb18-308" aria-hidden="true" tabindex="-1"></a>Happy_2021 <span class="ot">&lt;-</span> Happy_2021 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Government_Corruption =</span> <span class="fu">as.numeric</span>(Government_Corruption))</span>
+<span id="cb18-309"><a href="#cb18-309" aria-hidden="true" tabindex="-1"></a>Happy_2022 <span class="ot">&lt;-</span> Happy_2022 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Government_Corruption =</span> <span class="fu">as.numeric</span>(Government_Corruption))</span>
+<span id="cb18-310"><a href="#cb18-310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-311"><a href="#cb18-311" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-312"><a href="#cb18-312" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-315"><a href="#cb18-315" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-316"><a href="#cb18-316" aria-hidden="true" tabindex="-1"></a>needed_columns <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Country"</span>, <span class="st">"Year"</span>, <span class="st">"Score"</span>, <span class="st">"Rank"</span>, <span class="st">"GDP_per_Capita"</span>, <span class="st">"Family"</span>, </span>
+<span id="cb18-317"><a href="#cb18-317" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Life_Expectancy"</span>, <span class="st">"Freedom"</span>, <span class="st">"Generosity"</span>, <span class="st">"Government_Corruption"</span></span>
+<span id="cb18-318"><a href="#cb18-318" aria-hidden="true" tabindex="-1"></a>                    )</span>
+<span id="cb18-319"><a href="#cb18-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-320"><a href="#cb18-320" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a function to select a specific column</span></span>
+<span id="cb18-321"><a href="#cb18-321" aria-hidden="true" tabindex="-1"></a>select_columns <span class="ot">&lt;-</span> <span class="cf">function</span>(df, columns) {</span>
+<span id="cb18-322"><a href="#cb18-322" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">all_of</span>(columns))</span>
+<span id="cb18-323"><a href="#cb18-323" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb18-324"><a href="#cb18-324" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-325"><a href="#cb18-325" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-326"><a href="#cb18-326" aria-hidden="true" tabindex="-1"></a>Happy_2015_selected <span class="ot">&lt;-</span> <span class="fu">select_columns</span>(Happy_2015, needed_columns)</span>
+<span id="cb18-327"><a href="#cb18-327" aria-hidden="true" tabindex="-1"></a>Happy_2016_selected <span class="ot">&lt;-</span> <span class="fu">select_columns</span>(Happy_2016, needed_columns)</span>
+<span id="cb18-328"><a href="#cb18-328" aria-hidden="true" tabindex="-1"></a>Happy_2017_selected <span class="ot">&lt;-</span> <span class="fu">select_columns</span>(Happy_2017, needed_columns)</span>
+<span id="cb18-329"><a href="#cb18-329" aria-hidden="true" tabindex="-1"></a>Happy_2018_selected <span class="ot">&lt;-</span> <span class="fu">select_columns</span>(Happy_2018, needed_columns)</span>
+<span id="cb18-330"><a href="#cb18-330" aria-hidden="true" tabindex="-1"></a>Happy_2019_selected <span class="ot">&lt;-</span> <span class="fu">select_columns</span>(Happy_2019, needed_columns)</span>
+<span id="cb18-331"><a href="#cb18-331" aria-hidden="true" tabindex="-1"></a>Happy_2020_selected <span class="ot">&lt;-</span> <span class="fu">select_columns</span>(Happy_2020, needed_columns)</span>
+<span id="cb18-332"><a href="#cb18-332" aria-hidden="true" tabindex="-1"></a>Happy_2021_selected <span class="ot">&lt;-</span> <span class="fu">select_columns</span>(Happy_2021, needed_columns)</span>
+<span id="cb18-333"><a href="#cb18-333" aria-hidden="true" tabindex="-1"></a>Happy_2022_selected <span class="ot">&lt;-</span> <span class="fu">select_columns</span>(Happy_2022, needed_columns)</span>
+<span id="cb18-334"><a href="#cb18-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-335"><a href="#cb18-335" aria-hidden="true" tabindex="-1"></a><span class="co"># Finally, combine all the selected data boxes together</span></span>
+<span id="cb18-336"><a href="#cb18-336" aria-hidden="true" tabindex="-1"></a>all_years_selected <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(Happy_2015_selected, Happy_2016_selected, Happy_2017_selected,</span>
+<span id="cb18-337"><a href="#cb18-337" aria-hidden="true" tabindex="-1"></a>                                Happy_2018_selected, Happy_2019_selected, Happy_2020_selected,</span>
+<span id="cb18-338"><a href="#cb18-338" aria-hidden="true" tabindex="-1"></a>                                Happy_2021_selected, Happy_2022_selected)</span>
+<span id="cb18-339"><a href="#cb18-339" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-340"><a href="#cb18-340" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-341"><a href="#cb18-341" aria-hidden="true" tabindex="-1"></a>all_years_selected <span class="ot">&lt;-</span> all_years_selected <span class="sc">%&gt;%</span></span>
+<span id="cb18-342"><a href="#cb18-342" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Rank =</span> <span class="fu">as.integer</span>(Rank))</span>
+<span id="cb18-343"><a href="#cb18-343" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-344"><a href="#cb18-344" aria-hidden="true" tabindex="-1"></a>all_years_selected</span>
+<span id="cb18-345"><a href="#cb18-345" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-346"><a href="#cb18-346" aria-hidden="true" tabindex="-1"></a><span class="fu">### Data set visualization test</span></span>
+<span id="cb18-349"><a href="#cb18-349" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-350"><a href="#cb18-350" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter for Japan</span></span>
+<span id="cb18-351"><a href="#cb18-351" aria-hidden="true" tabindex="-1"></a>japan_data <span class="ot">&lt;-</span> all_years_selected <span class="sc">%&gt;%</span></span>
+<span id="cb18-352"><a href="#cb18-352" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Country <span class="sc">==</span> <span class="st">"Japan"</span>)</span>
+<span id="cb18-353"><a href="#cb18-353" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-354"><a href="#cb18-354" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot rank over time</span></span>
+<span id="cb18-355"><a href="#cb18-355" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb18-356"><a href="#cb18-356" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-357"><a href="#cb18-357" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(japan_data, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Rank)) <span class="sc">+</span></span>
+<span id="cb18-358"><a href="#cb18-358" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb18-359"><a href="#cb18-359" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb18-360"><a href="#cb18-360" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb18-361"><a href="#cb18-361" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Ranking of Japan from 2015 to 2022"</span>) <span class="sc">+</span></span>
+<span id="cb18-362"><a href="#cb18-362" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Year"</span>) <span class="sc">+</span></span>
+<span id="cb18-363"><a href="#cb18-363" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Rank"</span>) <span class="sc">+</span></span>
+<span id="cb18-364"><a href="#cb18-364" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_reverse</span>() <span class="co"># Reverse the y axis as rank 1 is the highest</span></span>
+<span id="cb18-365"><a href="#cb18-365" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-366"><a href="#cb18-366" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-367"><a href="#cb18-367" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-368"><a href="#cb18-368" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-369"><a href="#cb18-369" aria-hidden="true" tabindex="-1"></a><span class="fu">## For this dataset the research questions</span></span>
+<span id="cb18-370"><a href="#cb18-370" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-371"><a href="#cb18-371" aria-hidden="true" tabindex="-1"></a>The World Happiness Report's dataset offers a wealth of information that can help address numerous research questions related to national happiness levels and the factors that influence them. Here's a more detailed look at the potential research questions mentioned:</span>
+<span id="cb18-372"><a href="#cb18-372" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-373"><a href="#cb18-373" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Which factors most significantly influence a country's happiness?** This question seeks to determine the primary drivers of happiness on a national scale. Are economic factors like GDP per capita more influential, or do social factors such as social support and freedom to make life choices hold more weight? Additionally, to what extent does a nation's perception of corruption impact the overall happiness? Analyzing correlations and conducting regression analysis could shed light on these relationships.</span>
+<span id="cb18-374"><a href="#cb18-374" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-375"><a href="#cb18-375" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**How does happiness differ among countries?** This question explores the disparities in happiness levels across various nations. Which countries consistently rank at the top, and which ones at the bottom? Are there discernible patterns geographically, economically, or culturally? Comparing and analyzing the happiness scores and their respective factors across different countries can provide insights.</span>
+<span id="cb18-376"><a href="#cb18-376" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-377"><a href="#cb18-377" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**How do various factors and overall happiness evolve over time?** This question addresses the temporal dynamics of happiness and its influencing factors. Are there trends showing that certain factors become more or less influential over time? Does the overall happiness level of countries or the world at large rise, fall, or remain stable? Time series analysis could be useful in this context.</span>
+<span id="cb18-378"><a href="#cb18-378" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-379"><a href="#cb18-379" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**How does a specific factor impact happiness?** This question focuses on the relationship between a single factor and happiness. For instance, how does a rise in GDP per capita or a decrease in perceived corruption affect the happiness score? Understanding this can help pinpoint what initiatives might be most effective in increasing a country's happiness. Conducting detailed analysis for individual factors and their impact on the happiness score would be required to address this question.</span>
+<span id="cb18-380"><a href="#cb18-380" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-381"><a href="#cb18-381" aria-hidden="true" tabindex="-1"></a>By meticulously examining these questions using the dataset, researchers can gain valuable insights into the complex dynamics of happiness, potentially guiding policy decisions and initiatives aimed at enhancing national well-being.</span>
+<span id="cb18-382"><a href="#cb18-382" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-383"><a href="#cb18-383" aria-hidden="true" tabindex="-1"></a>**Reference**</span>
+<span id="cb18-384"><a href="#cb18-384" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-385"><a href="#cb18-385" aria-hidden="true" tabindex="-1"></a>Sustainable Development Solutions Network. (2023). World Happiness Report. Worldhappiness.report. <span class="ot">&lt;https://worldhappiness.report/&gt;</span></span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+</body></html>
