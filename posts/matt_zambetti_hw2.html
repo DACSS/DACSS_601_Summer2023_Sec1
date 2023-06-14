@@ -210,7 +210,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="choosing-the-data-set" class="level2">
 <h2 class="anchored" data-anchor-id="choosing-the-data-set">Choosing the Data Set</h2>
 <p>The data that I am using is the McDonalds menu data. The first few entries can be seen below.</p>
-<p>I got the data at: (https://www.kaggle.com/datasets/deepcontractor/mcdonalds-india-menu-nutrition-facts)</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -719,42 +718,40 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>The data that I am using is the McDonalds menu data. The first few entries can be seen below.</span>
 <span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>I got the data at: (https://www.kaggle.com/datasets/deepcontractor/mcdonalds-india-menu-nutrition-facts)</span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>mcdonalds_tidy <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"_data/mcdonaldata.csv"</span>)</span>
-<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mcdonalds_tidy)</span>
-<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>mcdonalds_tidy <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"_data/mcdonaldata.csv"</span>)</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mcdonalds_tidy)</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a><span class="fu">## Cleaning the Data Set</span></span>
 <span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="fu">## Cleaning the Data Set</span></span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>In my opinion, there is nothing I need to do with cleaning the data. It is nicely organized and in a "tidy" form.</span>
 <span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>In my opinion, there is nothing I need to do with cleaning the data. It is nicely organized and in a "tidy" form.</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a><span class="fu">## Narrative About the Data Set</span></span>
 <span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a><span class="fu">## Narrative About the Data Set</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>This data provides a plethora of information of each menu option at McDonalds. Each entry contains the serving size, the calories for that serving, common macro-nutrients, and the type of product the entry is (whether its on the regular, gourmet, beverages, etc. menus).</span>
 <span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>This data provides a plethora of information of each menu option at McDonalds. Each entry contains the serving size, the calories for that serving, common macro-nutrients, and the type of product the entry is (whether its on the regular, gourmet, beverages, etc. menus).</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>Below is a list of each variable and their type.</span>
 <span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>Below is a list of each variable and their type.</span>
-<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (idx <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">14</span>) {</span>
-<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="fu">colnames</span>(mcdonalds_tidy)[idx], <span class="st">": "</span>, <span class="fu">sapply</span>(mcdonalds_tidy[idx], typeof),<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (idx <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">14</span>) {</span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="fu">colnames</span>(mcdonalds_tidy)[idx], <span class="st">": "</span>, <span class="fu">sapply</span>(mcdonalds_tidy[idx], typeof),<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>Here we can see the first few entries are character and then once we get into the nutrition facts all of the values are doubles. The final variable 'menu' can be seen as a character as well.</span>
 <span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>Here we can see the first few entries are character and then once we get into the nutrition facts all of the values are doubles. The final variable 'menu' can be seen as a character as well.</span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a><span class="fu">## Potential Research Questions</span></span>
 <span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a><span class="fu">## Potential Research Questions</span></span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>As a student athlete that travels a lot I am interested in healthier options in fast food all the time. Using this data I could answer a few potential research questions. What are some lower calorie options at McDonalds, and what are some higher calorie foods that contain more protein? A lot of times I will still eat higher calorie foods even if the macro-nutrients are good. This means finding things that are low in fat and high in protein.</span>
 <span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>As a student athlete that travels a lot I am interested in healthier options in fast food all the time. Using this data I could answer a few potential research questions. What are some lower calorie options at McDonalds, and what are some higher calorie foods that contain more protein? A lot of times I will still eat higher calorie foods even if the macro-nutrients are good. This means finding things that are low in fat and high in protein.</span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>This data can be very useful in finding foods with low saturated and total fat, and also to find foods that I should avoid because of the high fat content. To my surprise, many foods that are lower in carbohydrates tend to be very high in fat which is not always good.</span>
 <span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>This data can be very useful in finding foods with low saturated and total fat, and also to find foods that I should avoid because of the high fat content. To my surprise, many foods that are lower in carbohydrates tend to be very high in fat which is not always good.</span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>Not only can this analysis of the data be useful for me, but it can be useful for many other athletes are I am sure many experience the same dilemmas.</span>
 <span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>Not only can this analysis of the data be useful for me, but it can be useful for many other athletes are I am sure many experience the same dilemmas.</span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>Another useful piece of data is to find healthier options in each of the menu categories, for example there are the categories "regular" and "beverage", which finding good options in both of these can help make a better complete meal.</span>
 <span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>Another useful piece of data is to find healthier options in each of the menu categories, for example there are the categories "regular" and "beverage", which finding good options in both of these can help make a better complete meal.</span>
-<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
