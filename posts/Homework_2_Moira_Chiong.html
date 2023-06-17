@@ -215,31 +215,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "C:/Users/chion/OneDrive/Desktop/DACSS 601/DACSS_601_Summer2023_Sec1/posts"</code></pre>
-</div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"C:/Users/chion/OneDrive/Desktop/DACSS 601/DACSS_601_Summer2023_Sec1/posts"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: package 'readxl' was built under R version 4.1.3</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pseo_ma_SANDBOX <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"pseo_ma_SANDBOX.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>pseo_ma_SANDBOX <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"pseo_ma_SANDBOX.xlsx"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>pseo_ma_SANDBOX</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error: `path` does not exist: 'pseo_ma_SANDBOX.xlsx'</code></pre>
-</div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>pseo_ma_SANDBOX</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'pseo_ma_SANDBOX' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12,639 x 48
+   agg_level_pseo label_agg_level_pseo   inst_level label_inst_level institution
+            &lt;dbl&gt; &lt;chr&gt;                  &lt;chr&gt;      &lt;chr&gt;            &lt;chr&gt;      
+ 1             38 "Degree Level *\r\nIn~ I          Institution      00216100   
+ 2             38 "Degree Level *\r\nIn~ I          Institution      00216100   
+ 3             38 "Degree Level *\r\nIn~ I          Institution      00216100   
+ 4             38 "Degree Level *\r\nIn~ I          Institution      00216100   
+ 5             38 "Degree Level *\r\nIn~ I          Institution      00216100   
+ 6             38 "Degree Level *\r\nIn~ I          Institution      00216100   
+ 7             38 "Degree Level *\r\nIn~ I          Institution      00216700   
+ 8             38 "Degree Level *\r\nIn~ I          Institution      00216700   
+ 9             38 "Degree Level *\r\nIn~ I          Institution      00216700   
+10             38 "Degree Level *\r\nIn~ I          Institution      00216800   
+# i 12,629 more rows
+# i 43 more variables: label_institution &lt;chr&gt;,
+#   `Degree\r\nAward\r\nLevel` &lt;chr&gt;, label_degree_level &lt;chr&gt;,
+#   cip_level &lt;chr&gt;, label_cip_level &lt;chr&gt;, cipcode &lt;chr&gt;, label_cipcode &lt;chr&gt;,
+#   grad_cohort &lt;chr&gt;, label_grad_cohort &lt;chr&gt;, grad_cohort_years &lt;chr&gt;,
+#   label_grad_cohort_years &lt;chr&gt;, geo_level &lt;chr&gt;, label_geo_level &lt;chr&gt;,
+#   geography &lt;chr&gt;, label_geography &lt;chr&gt;, ind_level &lt;chr&gt;, ...</code></pre>
 </div>
 </div></li>
 <li></li>
@@ -260,130 +267,119 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#list the unique degree levels</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(pseo_ma_SANDBOX<span class="sc">$</span>label_degree_level)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#list the unique degree levels</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(pseo_ma_SANDBOX<span class="sc">$</span>label_degree_level)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in unique(pseo_ma_SANDBOX$label_degree_level): object 'pseo_ma_SANDBOX' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Certificate &lt; 1 year"                "Associates"                         
+[3] "Baccalaureate"                       "Masters"                            
+[5] "Doctoral -\r\nResearch/Scholarship"  "Doctoral -\r\nProfessional Practice"
+[7] "Certificate 1-2 years"               "Certificate 2-4 years"              </code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#convert to numeric</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>y1_num<span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(pseo_ma_SANDBOX<span class="sc">$</span>y1_p50_earnings) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#convert to numeric</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>y1_num<span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(pseo_ma_SANDBOX<span class="sc">$</span>y1_p50_earnings) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'pseo_ma_SANDBOX' not found</code></pre>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: NAs introduced by coercion</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#find summary statistics on whole data set, 1 year after graduation</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(y1_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#find summary statistics on whole data set, 1 year after graduation</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(y1_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in mean(y1_num, na.rm = TRUE): object 'y1_num' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 41256.48</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(y1_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(y1_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in median(y1_num, na.rm = TRUE): object 'y1_num' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 36197</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(y1_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(y1_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'y1_num' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 19766</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(y1_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(y1_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'y1_num' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 147728</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>(y1_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>(y1_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in quantile(as.numeric(x), c(0.25, 0.75), na.rm = na.rm, names = FALSE, : object 'y1_num' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 15153</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#find summary statistics on whole data set, 5 years after graduation</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>y5_num<span class="ot">&lt;-</span><span class="fu">as.numeric</span>(pseo_ma_SANDBOX<span class="sc">$</span>y5_p50_earnings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#find summary statistics on whole data set, 5 years after graduation</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>y5_num<span class="ot">&lt;-</span><span class="fu">as.numeric</span>(pseo_ma_SANDBOX<span class="sc">$</span>y5_p50_earnings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'pseo_ma_SANDBOX' not found</code></pre>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: NAs introduced by coercion</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(y5_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(y5_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in mean(y5_num, na.rm = TRUE): object 'y5_num' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 57653.91</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(y5_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(y5_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in median(y5_num, na.rm = TRUE): object 'y5_num' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 53677.5</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(y5_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(y5_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'y5_num' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 28528</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(y5_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(y5_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'y5_num' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 189604</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>(y5_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>(y5_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in quantile(as.numeric(x), c(0.25, 0.75), na.rm = na.rm, names = FALSE, : object 'y5_num' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 18766.25</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pseo_ma_SANDBOX_num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pseo_ma_SANDBOX_num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-error">
 <pre><code>Error in summary(pseo_ma_SANDBOX_num): object 'pseo_ma_SANDBOX_num' not found</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">typeof</span>(pseo_ma_SANDBOX<span class="sc">$</span>y1_p50_earnings))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">typeof</span>(pseo_ma_SANDBOX<span class="sc">$</span>y1_p50_earnings))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in typeof(pseo_ma_SANDBOX$y1_p50_earnings): object 'pseo_ma_SANDBOX' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character"</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(pseo_ma_SANDBOX_num, max,<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in lapply(X = X, FUN = FUN, ...): object 'pseo_ma_SANDBOX_num' not found</code></pre>
-</div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(pseo_ma_SANDBOX_num, min, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in lapply(X = X, FUN = FUN, ...): object 'pseo_ma_SANDBOX_num' not found</code></pre>
-</div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"dplyr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"dplyr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>Installing package into 'C:/Users/chion/OneDrive/Documents/R/win-library/4.1'
@@ -394,7 +390,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: package 'dplyr' was built under R version 4.1.3</code></pre>
@@ -415,76 +411,69 @@ Attaching package: 'dplyr'</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(y1_num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(y1_num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in summary(y1_num): object 'y1_num' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+  19766   31280   36197   41256   46433  147728    9174 </code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(y5_num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(y5_num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in summary(y5_num): object 'y5_num' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+  28528   46162   53678   57654   64928  189604    9495 </code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co">#find the number of rows and columns in the dataset</span></span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(pseo_ma_SANDBOX)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co">#find the number of rows and columns in the dataset</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(pseo_ma_SANDBOX)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in nrow(pseo_ma_SANDBOX): object 'pseo_ma_SANDBOX' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 12639</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(pseo_ma_SANDBOX)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(pseo_ma_SANDBOX)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in ncol(pseo_ma_SANDBOX): object 'pseo_ma_SANDBOX' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 48</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co">#filter for Baccalaureate degrees</span></span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>pseo_filtered <span class="ot">&lt;-</span><span class="fu">filter</span>(pseo_ma_SANDBOX, pseo_ma_SANDBOX<span class="sc">$</span>label_degree_level<span class="sc">==</span><span class="st">"Baccalaureate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co">#filter for Baccalaureate degrees</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>pseo_filtered <span class="ot">&lt;-</span><span class="fu">filter</span>(pseo_ma_SANDBOX, pseo_ma_SANDBOX<span class="sc">$</span>label_degree_level<span class="sc">==</span><span class="st">"Baccalaureate"</span>)</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(pseo_filtered)</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="co">#find summary statistics of filtered data-- just BA degrees</span></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>y1a_num<span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(pseo_filtered<span class="sc">$</span>y1_p50_earnings) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in filter(pseo_ma_SANDBOX, pseo_ma_SANDBOX$label_degree_level == : object 'pseo_ma_SANDBOX' not found</code></pre>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: NAs introduced by coercion</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(pseo_filtered)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>y1a_num  <span class="sc">%&gt;%</span> <span class="fu">summary</span>(y1_p50_earnings, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in as.data.frame(x): object 'pseo_filtered' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+  19825   31970   36050   39966   43117  110317    2714 </code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co">#find summary statistics of filtered data-- just BA degrees</span></span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>y1a_num<span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(pseo_filtered<span class="sc">$</span>y1_p50_earnings) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>y5a_num <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(pseo_filtered<span class="sc">$</span>y5_p50_earnings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'pseo_filtered' not found</code></pre>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: NAs introduced by coercion</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>y1a_num  <span class="sc">%&gt;%</span> <span class="fu">summary</span>(y1_p50_earnings, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>y5a_num <span class="sc">%&gt;%</span> <span class="fu">summary</span>(y5_p50_earnings, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in summary(., y1_p50_earnings, na.rm = TRUE): object 'y1a_num' not found</code></pre>
-</div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>y5a_num <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(pseo_filtered<span class="sc">$</span>y5_p50_earnings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'pseo_filtered' not found</code></pre>
-</div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>y5a_num <span class="sc">%&gt;%</span> <span class="fu">summary</span>(y5_p50_earnings, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in summary(., y5_p50_earnings, na.rm = TRUE): object 'y5a_num' not found</code></pre>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+  29649   48861   54870   58696   63958  120707    3191 </code></pre>
 </div>
 </div>
 <pre><code></code></pre>
@@ -896,124 +885,118 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <script src="https://giscus.app/client.js" data-repo="DACSS/SummerCommentRepo" data-repo-id="R_kgDOJrwrQw" data-category="Announcements" data-category-id="DIC_kwDOJrwrQ84CW_wq" data-mapping="url" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb73" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Homework 2"</span></span>
-<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Moira Chiong"</span></span>
-<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Summary Statistics"</span></span>
-<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "6/12/2023"</span></span>
-<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb73-7"><a href="#cb73-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb73-8"><a href="#cb73-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb73-9"><a href="#cb73-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
-<span id="cb73-10"><a href="#cb73-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
-<span id="cb73-11"><a href="#cb73-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb73-12"><a href="#cb73-12" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb73-13"><a href="#cb73-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-14"><a href="#cb73-14" aria-hidden="true" tabindex="-1"></a><span class="fu"># Homework Two: Reading in Data</span></span>
-<span id="cb73-15"><a href="#cb73-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-16"><a href="#cb73-16" aria-hidden="true" tabindex="-1"></a>Sean Conway</span>
-<span id="cb73-17"><a href="#cb73-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-18"><a href="#cb73-18" aria-hidden="true" tabindex="-1"></a>•</span>
-<span id="cb73-19"><a href="#cb73-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-20"><a href="#cb73-20" aria-hidden="true" tabindex="-1"></a>Jun 6</span>
-<span id="cb73-21"><a href="#cb73-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-22"><a href="#cb73-22" aria-hidden="true" tabindex="-1"></a>**100 points**</span>
-<span id="cb73-23"><a href="#cb73-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-24"><a href="#cb73-24" aria-hidden="true" tabindex="-1"></a>For this homework, your goal is to read in a more complicated dataset. Please use the category tag "hw2" as well as a tag for the dataset you choose to use.</span>
-<span id="cb73-25"><a href="#cb73-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-26"><a href="#cb73-26" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Read in a dataset. **It's strongly recommended that you choose a dataset you're considering using for the final project.** If you decide to use one of the datasets we have provided, please use a challenging dataset - check with us if you are not sure.</span>
-<span id="cb73-27"><a href="#cb73-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-28"><a href="#cb73-28" aria-hidden="true" tabindex="-1"></a>    <span class="in">```{r}</span></span>
-<span id="cb73-29"><a href="#cb73-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">getwd</span>()</span>
-<span id="cb73-30"><a href="#cb73-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">library</span>(readxl)</span>
-<span id="cb73-31"><a href="#cb73-31" aria-hidden="true" tabindex="-1"></a>    pseo_ma_SANDBOX <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"pseo_ma_SANDBOX.xlsx"</span>)</span>
-<span id="cb73-32"><a href="#cb73-32" aria-hidden="true" tabindex="-1"></a>    pseo_ma_SANDBOX</span>
-<span id="cb73-33"><a href="#cb73-33" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
-<span id="cb73-34"><a href="#cb73-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-35"><a href="#cb73-35" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span></span>
-<span id="cb73-36"><a href="#cb73-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-37"><a href="#cb73-37" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Clean the data as needed using dplyr and related tidyverse packages.</span>
-<span id="cb73-38"><a href="#cb73-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-39"><a href="#cb73-39" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Provide a narrative about the data set (look it up if you aren't sure what you have got) and the variables in your dataset, including what type of data each variable is. The goal of this step is to communicate in a visually appealing way to non-experts - not to replicate r-code.</span>
-<span id="cb73-40"><a href="#cb73-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-41"><a href="#cb73-41" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Identify potential research questions that your dataset can help answer.</span>
-<span id="cb73-42"><a href="#cb73-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-43"><a href="#cb73-43" aria-hidden="true" tabindex="-1"></a>##Commentary</span>
-<span id="cb73-44"><a href="#cb73-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-45"><a href="#cb73-45" aria-hidden="true" tabindex="-1"></a>For Homework 2, I used the Census Bureau Post-Secondary Employment Outcomes (PSEO) database filtered for Massachusetts. This database cites the employment outcomes (earnings 1, 5 and 10 years after graduation) for all public Massachusetts higher education institutions. The data set provides postsecondary employment outcomes for graduates at all credential levels, from certificate to doctorate.</span>
-<span id="cb73-46"><a href="#cb73-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-47"><a href="#cb73-47" aria-hidden="true" tabindex="-1"></a>##Potential Research Questions:</span>
-<span id="cb73-48"><a href="#cb73-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-49"><a href="#cb73-49" aria-hidden="true" tabindex="-1"></a>What is the relationship between credential level and earnings? Do earnings grow over time?</span>
-<span id="cb73-50"><a href="#cb73-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-51"><a href="#cb73-51" aria-hidden="true" tabindex="-1"></a>Questions for further research: What is the relationship between race/ethnicity, age, Pell status and earnings?</span>
-<span id="cb73-52"><a href="#cb73-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-53"><a href="#cb73-53" aria-hidden="true" tabindex="-1"></a>##Notes on Code</span>
-<span id="cb73-54"><a href="#cb73-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-55"><a href="#cb73-55" aria-hidden="true" tabindex="-1"></a>The mean for all graduates for 1 year after graduation was 41256, with the median lower at 36197, demonstrating a skewed left distribution. The mean for all graduates five years after graduation 57654, while the median was 53678, again skewed left distribution. The mean of the 1st year after graduation data for Baccalaureates was 39966, while the median was 36050. This reveals to me that the data were skewed to the left with more observations towards the beginning of the number line. For the mean of the 5th year after graduation for Baccalaureates, mean at 58696 again was higher than the median 54870, again representing a left skew of the data. The minimum of the Baccalaureate earnings the first year after graduation was low at 19825, while the Baccalaureate maximum was at 110317. The minimum of the Baccalaureate earnings the fifth year after graduation were much higher at 29649 and the maximum at 120707. The minimum and maximum for the entire sample the first year after graduation were 19766 and 147728 respectively. Conversely, the minimum and maximum for fifth year earnings were 28528 and 189604 respectively. This represents that earnings increased the longer the time elapsed since graduation as well as by credential level.</span>
-<span id="cb73-56"><a href="#cb73-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-57"><a href="#cb73-57" aria-hidden="true" tabindex="-1"></a>There were 12639 rows and 48 columns in the dataset.</span>
-<span id="cb73-58"><a href="#cb73-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-59"><a href="#cb73-59" aria-hidden="true" tabindex="-1"></a><span class="in">```         </span></span>
-<span id="cb73-60"><a href="#cb73-60" aria-hidden="true" tabindex="-1"></a><span class="in">y1a_num  %&gt;% summary(y1_p50_earnings, na.rm=TRUE)    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's    19825   31970   36050   39966   43117  110317    2714 </span></span>
-<span id="cb73-61"><a href="#cb73-61" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb73-62"><a href="#cb73-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-63"><a href="#cb73-63" aria-hidden="true" tabindex="-1"></a>##Code</span>
-<span id="cb73-64"><a href="#cb73-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-67"><a href="#cb73-67" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb73-68"><a href="#cb73-68" aria-hidden="true" tabindex="-1"></a><span class="co">#list the unique degree levels</span></span>
-<span id="cb73-69"><a href="#cb73-69" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(pseo_ma_SANDBOX<span class="sc">$</span>label_degree_level)</span>
-<span id="cb73-70"><a href="#cb73-70" aria-hidden="true" tabindex="-1"></a><span class="co">#convert to numeric</span></span>
-<span id="cb73-71"><a href="#cb73-71" aria-hidden="true" tabindex="-1"></a>y1_num<span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(pseo_ma_SANDBOX<span class="sc">$</span>y1_p50_earnings) </span>
-<span id="cb73-72"><a href="#cb73-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-73"><a href="#cb73-73" aria-hidden="true" tabindex="-1"></a><span class="co">#find summary statistics on whole data set, 1 year after graduation</span></span>
-<span id="cb73-74"><a href="#cb73-74" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(y1_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb73-75"><a href="#cb73-75" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(y1_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb73-76"><a href="#cb73-76" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(y1_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb73-77"><a href="#cb73-77" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(y1_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb73-78"><a href="#cb73-78" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>(y1_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb73-79"><a href="#cb73-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-80"><a href="#cb73-80" aria-hidden="true" tabindex="-1"></a><span class="co">#find summary statistics on whole data set, 5 years after graduation</span></span>
-<span id="cb73-81"><a href="#cb73-81" aria-hidden="true" tabindex="-1"></a>y5_num<span class="ot">&lt;-</span><span class="fu">as.numeric</span>(pseo_ma_SANDBOX<span class="sc">$</span>y5_p50_earnings)</span>
-<span id="cb73-82"><a href="#cb73-82" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(y5_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb73-83"><a href="#cb73-83" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(y5_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb73-84"><a href="#cb73-84" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(y5_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb73-85"><a href="#cb73-85" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(y5_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb73-86"><a href="#cb73-86" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>(y5_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb73-87"><a href="#cb73-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-88"><a href="#cb73-88" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pseo_ma_SANDBOX_num)</span>
-<span id="cb73-89"><a href="#cb73-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-90"><a href="#cb73-90" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">typeof</span>(pseo_ma_SANDBOX<span class="sc">$</span>y1_p50_earnings))</span>
-<span id="cb73-91"><a href="#cb73-91" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb73-92"><a href="#cb73-92" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(pseo_ma_SANDBOX_num, max,<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb73-93"><a href="#cb73-93" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(pseo_ma_SANDBOX_num, min, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb73-94"><a href="#cb73-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-95"><a href="#cb73-95" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"dplyr"</span>)</span>
-<span id="cb73-96"><a href="#cb73-96" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb73-97"><a href="#cb73-97" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(y1_num)</span>
-<span id="cb73-98"><a href="#cb73-98" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(y5_num)</span>
-<span id="cb73-99"><a href="#cb73-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-100"><a href="#cb73-100" aria-hidden="true" tabindex="-1"></a><span class="co">#find the number of rows and columns in the dataset</span></span>
-<span id="cb73-101"><a href="#cb73-101" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(pseo_ma_SANDBOX)</span>
-<span id="cb73-102"><a href="#cb73-102" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(pseo_ma_SANDBOX)</span>
-<span id="cb73-103"><a href="#cb73-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-104"><a href="#cb73-104" aria-hidden="true" tabindex="-1"></a><span class="co">#filter for Baccalaureate degrees</span></span>
-<span id="cb73-105"><a href="#cb73-105" aria-hidden="true" tabindex="-1"></a>pseo_filtered <span class="ot">&lt;-</span><span class="fu">filter</span>(pseo_ma_SANDBOX, pseo_ma_SANDBOX<span class="sc">$</span>label_degree_level<span class="sc">==</span><span class="st">"Baccalaureate"</span>)</span>
-<span id="cb73-106"><a href="#cb73-106" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(pseo_filtered)</span>
-<span id="cb73-107"><a href="#cb73-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-108"><a href="#cb73-108" aria-hidden="true" tabindex="-1"></a><span class="co">#find summary statistics of filtered data-- just BA degrees</span></span>
-<span id="cb73-109"><a href="#cb73-109" aria-hidden="true" tabindex="-1"></a>y1a_num<span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(pseo_filtered<span class="sc">$</span>y1_p50_earnings) </span>
-<span id="cb73-110"><a href="#cb73-110" aria-hidden="true" tabindex="-1"></a>y1a_num  <span class="sc">%&gt;%</span> <span class="fu">summary</span>(y1_p50_earnings, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb73-111"><a href="#cb73-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-112"><a href="#cb73-112" aria-hidden="true" tabindex="-1"></a>y5a_num <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(pseo_filtered<span class="sc">$</span>y5_p50_earnings)</span>
-<span id="cb73-113"><a href="#cb73-113" aria-hidden="true" tabindex="-1"></a>y5a_num <span class="sc">%&gt;%</span> <span class="fu">summary</span>(y5_p50_earnings, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb73-114"><a href="#cb73-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-115"><a href="#cb73-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-116"><a href="#cb73-116" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-117"><a href="#cb73-117" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb73-118"><a href="#cb73-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb73-119"><a href="#cb73-119" aria-hidden="true" tabindex="-1"></a><span class="in">```         </span></span>
-<span id="cb73-120"><a href="#cb73-120" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<div class="sourceCode" id="cb61" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Homework 2"</span></span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Moira Chiong"</span></span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Summary Statistics"</span></span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "6/12/2023"</span></span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb61-11"><a href="#cb61-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb61-12"><a href="#cb61-12" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb61-13"><a href="#cb61-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-14"><a href="#cb61-14" aria-hidden="true" tabindex="-1"></a><span class="fu"># Homework Two: Reading in Data</span></span>
+<span id="cb61-15"><a href="#cb61-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-16"><a href="#cb61-16" aria-hidden="true" tabindex="-1"></a>Sean Conway</span>
+<span id="cb61-17"><a href="#cb61-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-18"><a href="#cb61-18" aria-hidden="true" tabindex="-1"></a>•</span>
+<span id="cb61-19"><a href="#cb61-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-20"><a href="#cb61-20" aria-hidden="true" tabindex="-1"></a>Jun 6</span>
+<span id="cb61-21"><a href="#cb61-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-22"><a href="#cb61-22" aria-hidden="true" tabindex="-1"></a>**100 points**</span>
+<span id="cb61-23"><a href="#cb61-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-24"><a href="#cb61-24" aria-hidden="true" tabindex="-1"></a>For this homework, your goal is to read in a more complicated dataset. Please use the category tag "hw2" as well as a tag for the dataset you choose to use.</span>
+<span id="cb61-25"><a href="#cb61-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-26"><a href="#cb61-26" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Read in a dataset. **It's strongly recommended that you choose a dataset you're considering using for the final project.** If you decide to use one of the datasets we have provided, please use a challenging dataset - check with us if you are not sure.</span>
+<span id="cb61-27"><a href="#cb61-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-28"><a href="#cb61-28" aria-hidden="true" tabindex="-1"></a>    <span class="in">```{r}</span></span>
+<span id="cb61-29"><a href="#cb61-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">setwd</span>(<span class="st">"C:/Users/chion/OneDrive/Desktop/DACSS 601/DACSS_601_Summer2023_Sec1/posts"</span>)</span>
+<span id="cb61-30"><a href="#cb61-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">library</span>(readxl)</span>
+<span id="cb61-31"><a href="#cb61-31" aria-hidden="true" tabindex="-1"></a>    pseo_ma_SANDBOX <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"pseo_ma_SANDBOX.xlsx"</span>)</span>
+<span id="cb61-32"><a href="#cb61-32" aria-hidden="true" tabindex="-1"></a>    pseo_ma_SANDBOX</span>
+<span id="cb61-33"><a href="#cb61-33" aria-hidden="true" tabindex="-1"></a>    <span class="in">```</span></span>
+<span id="cb61-34"><a href="#cb61-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-35"><a href="#cb61-35" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span></span>
+<span id="cb61-36"><a href="#cb61-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-37"><a href="#cb61-37" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Clean the data as needed using dplyr and related tidyverse packages.</span>
+<span id="cb61-38"><a href="#cb61-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-39"><a href="#cb61-39" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Provide a narrative about the data set (look it up if you aren't sure what you have got) and the variables in your dataset, including what type of data each variable is. The goal of this step is to communicate in a visually appealing way to non-experts - not to replicate r-code.</span>
+<span id="cb61-40"><a href="#cb61-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-41"><a href="#cb61-41" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Identify potential research questions that your dataset can help answer.</span>
+<span id="cb61-42"><a href="#cb61-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-43"><a href="#cb61-43" aria-hidden="true" tabindex="-1"></a>##Commentary</span>
+<span id="cb61-44"><a href="#cb61-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-45"><a href="#cb61-45" aria-hidden="true" tabindex="-1"></a>For Homework 2, I used the Census Bureau Post-Secondary Employment Outcomes (PSEO) database filtered for Massachusetts. This database cites the employment outcomes (earnings 1, 5 and 10 years after graduation) for all public Massachusetts higher education institutions. The data set provides postsecondary employment outcomes for graduates at all credential levels, from certificate to doctorate.</span>
+<span id="cb61-46"><a href="#cb61-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-47"><a href="#cb61-47" aria-hidden="true" tabindex="-1"></a>##Potential Research Questions:</span>
+<span id="cb61-48"><a href="#cb61-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-49"><a href="#cb61-49" aria-hidden="true" tabindex="-1"></a>What is the relationship between credential level and earnings? Do earnings grow over time?</span>
+<span id="cb61-50"><a href="#cb61-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-51"><a href="#cb61-51" aria-hidden="true" tabindex="-1"></a>Questions for further research: What is the relationship between race/ethnicity, age, Pell status and earnings?</span>
+<span id="cb61-52"><a href="#cb61-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-53"><a href="#cb61-53" aria-hidden="true" tabindex="-1"></a>##Notes on Code</span>
+<span id="cb61-54"><a href="#cb61-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-55"><a href="#cb61-55" aria-hidden="true" tabindex="-1"></a>The mean for all graduates for 1 year after graduation was 41256, with the median lower at 36197, demonstrating a skewed left distribution. The mean for all graduates five years after graduation 57654, while the median was 53678, again skewed left distribution. The mean of the 1st year after graduation data for Baccalaureates was 39966, while the median was 36050. This reveals to me that the data were skewed to the left with more observations towards the beginning of the number line. For the mean of the 5th year after graduation for Baccalaureates, mean at 58696 again was higher than the median 54870, again representing a left skew of the data. The minimum of the Baccalaureate earnings the first year after graduation was low at 19825, while the Baccalaureate maximum was at 110317. The minimum of the Baccalaureate earnings the fifth year after graduation were much higher at 29649 and the maximum at 120707. The minimum and maximum for the entire sample the first year after graduation were 19766 and 147728 respectively. Conversely, the minimum and maximum for fifth year earnings were 28528 and 189604 respectively. This represents that earnings increased the longer the time elapsed since graduation as well as by credential level.</span>
+<span id="cb61-56"><a href="#cb61-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-57"><a href="#cb61-57" aria-hidden="true" tabindex="-1"></a>There were 12639 rows and 48 columns in the dataset.</span>
+<span id="cb61-58"><a href="#cb61-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-59"><a href="#cb61-59" aria-hidden="true" tabindex="-1"></a><span class="in">```         </span></span>
+<span id="cb61-60"><a href="#cb61-60" aria-hidden="true" tabindex="-1"></a><span class="in">y1a_num  %&gt;% summary(y1_p50_earnings, na.rm=TRUE)    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's    19825   31970   36050   39966   43117  110317    2714 </span></span>
+<span id="cb61-61"><a href="#cb61-61" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb61-62"><a href="#cb61-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-63"><a href="#cb61-63" aria-hidden="true" tabindex="-1"></a>##Code</span>
+<span id="cb61-64"><a href="#cb61-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-67"><a href="#cb61-67" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb61-68"><a href="#cb61-68" aria-hidden="true" tabindex="-1"></a><span class="co">#list the unique degree levels</span></span>
+<span id="cb61-69"><a href="#cb61-69" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(pseo_ma_SANDBOX<span class="sc">$</span>label_degree_level)</span>
+<span id="cb61-70"><a href="#cb61-70" aria-hidden="true" tabindex="-1"></a><span class="co">#convert to numeric</span></span>
+<span id="cb61-71"><a href="#cb61-71" aria-hidden="true" tabindex="-1"></a>y1_num<span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(pseo_ma_SANDBOX<span class="sc">$</span>y1_p50_earnings) </span>
+<span id="cb61-72"><a href="#cb61-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-73"><a href="#cb61-73" aria-hidden="true" tabindex="-1"></a><span class="co">#find summary statistics on whole data set, 1 year after graduation</span></span>
+<span id="cb61-74"><a href="#cb61-74" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(y1_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb61-75"><a href="#cb61-75" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(y1_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb61-76"><a href="#cb61-76" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(y1_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb61-77"><a href="#cb61-77" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(y1_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb61-78"><a href="#cb61-78" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>(y1_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb61-79"><a href="#cb61-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-80"><a href="#cb61-80" aria-hidden="true" tabindex="-1"></a><span class="co">#find summary statistics on whole data set, 5 years after graduation</span></span>
+<span id="cb61-81"><a href="#cb61-81" aria-hidden="true" tabindex="-1"></a>y5_num<span class="ot">&lt;-</span><span class="fu">as.numeric</span>(pseo_ma_SANDBOX<span class="sc">$</span>y5_p50_earnings)</span>
+<span id="cb61-82"><a href="#cb61-82" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(y5_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb61-83"><a href="#cb61-83" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(y5_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb61-84"><a href="#cb61-84" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(y5_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb61-85"><a href="#cb61-85" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(y5_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb61-86"><a href="#cb61-86" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>(y5_num, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb61-87"><a href="#cb61-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-88"><a href="#cb61-88" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pseo_ma_SANDBOX_num)</span>
+<span id="cb61-89"><a href="#cb61-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-90"><a href="#cb61-90" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">typeof</span>(pseo_ma_SANDBOX<span class="sc">$</span>y1_p50_earnings))</span>
+<span id="cb61-91"><a href="#cb61-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-92"><a href="#cb61-92" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"dplyr"</span>)</span>
+<span id="cb61-93"><a href="#cb61-93" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb61-94"><a href="#cb61-94" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(y1_num)</span>
+<span id="cb61-95"><a href="#cb61-95" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(y5_num)</span>
+<span id="cb61-96"><a href="#cb61-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-97"><a href="#cb61-97" aria-hidden="true" tabindex="-1"></a><span class="co">#find the number of rows and columns in the dataset</span></span>
+<span id="cb61-98"><a href="#cb61-98" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(pseo_ma_SANDBOX)</span>
+<span id="cb61-99"><a href="#cb61-99" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(pseo_ma_SANDBOX)</span>
+<span id="cb61-100"><a href="#cb61-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-101"><a href="#cb61-101" aria-hidden="true" tabindex="-1"></a><span class="co">#filter for Baccalaureate degrees</span></span>
+<span id="cb61-102"><a href="#cb61-102" aria-hidden="true" tabindex="-1"></a>pseo_filtered <span class="ot">&lt;-</span><span class="fu">filter</span>(pseo_ma_SANDBOX, pseo_ma_SANDBOX<span class="sc">$</span>label_degree_level<span class="sc">==</span><span class="st">"Baccalaureate"</span>)</span>
+<span id="cb61-103"><a href="#cb61-103" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(pseo_filtered)</span>
+<span id="cb61-104"><a href="#cb61-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-105"><a href="#cb61-105" aria-hidden="true" tabindex="-1"></a><span class="co">#find summary statistics of filtered data-- just BA degrees</span></span>
+<span id="cb61-106"><a href="#cb61-106" aria-hidden="true" tabindex="-1"></a>y1a_num<span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(pseo_filtered<span class="sc">$</span>y1_p50_earnings) </span>
+<span id="cb61-107"><a href="#cb61-107" aria-hidden="true" tabindex="-1"></a>y1a_num  <span class="sc">%&gt;%</span> <span class="fu">summary</span>(y1_p50_earnings, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb61-108"><a href="#cb61-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-109"><a href="#cb61-109" aria-hidden="true" tabindex="-1"></a>y5a_num <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(pseo_filtered<span class="sc">$</span>y5_p50_earnings)</span>
+<span id="cb61-110"><a href="#cb61-110" aria-hidden="true" tabindex="-1"></a>y5a_num <span class="sc">%&gt;%</span> <span class="fu">summary</span>(y5_p50_earnings, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb61-111"><a href="#cb61-111" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb61-112"><a href="#cb61-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-113"><a href="#cb61-113" aria-hidden="true" tabindex="-1"></a><span class="in">```         </span></span>
+<span id="cb61-114"><a href="#cb61-114" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
