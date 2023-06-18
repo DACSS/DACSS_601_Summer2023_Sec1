@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.361">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Linus Jen">
+<meta name="dcterms.date" content="2023-06-20">
+<meta name="description" content="Visualizing Time and Relationships">
+
+<title>Challenge 6 Solution - Airbnbs in NYC 2019</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/DACSS_Round_Network.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+<link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+
+<meta name="twitter:title" content="Challenge 6 Solution - Airbnbs in NYC 2019">
+<meta name="twitter:description" content="Visualizing Time and Relationships">
+<meta name="twitter:image" content="https://dacss.github.io/DACSS_601_Summer2023_Sec1/posts/data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX/9/v2mpqbw8PD/+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5wYSADgCS1Q2+QAAAK1JREFUWMPt0mEOgyAMBWCPMDzB9naDvfvfzaWBtTFlsWqWyNofxBY+UpBpGj/K9gBQyi3unnylG8XJI/BiBh5fnCSuI4876WqHk1XpPAd0nNy1PoO1IztOe/m9ez9OkNp018312C3lZ2Gb67hadp18XdnJ7amTtC1sc57TsqamcrKzvyfibFm3CbuaHnN6hphbDRd39hYizg7p0v2NA+67HJkuXbrzHILR3MixAOWj9+LMld2XAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIzLTA2LTE4VDAwOjU2OjAyKzAwOjAwt1tZgQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMy0wNi0xOFQwMDo1NjowMiswMDowMMYG4T0AAAAASUVORK5CYII=">
+<meta name="twitter:creator" content="@UMassDACSS">
+<meta name="twitter:site" content="@UMassDACSS">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://dacss.github.io/DACSS_601_Summer2023_Sec1/" rel="" target="">
+ <span class="menu-text">Summer 2023 Posts</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html" rel="" target="">
+ <span class="menu-text">Contributors</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://umass.edu/sbs/dacss" rel="" target="">
+ <span class="menu-text">DACSS</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://dacss.github.io/DACSS_601_Summer2023_Sec1/" rel="" target=""><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#read-in-data" id="toc-read-in-data" class="nav-link active" data-scroll-target="#read-in-data">Read in data</a>
+  <ul class="collapse">
+  <li><a href="#briefly-describe-the-data" id="toc-briefly-describe-the-data" class="nav-link" data-scroll-target="#briefly-describe-the-data">Briefly describe the data</a></li>
+  </ul></li>
+  <li><a href="#time-dependent-visualization" id="toc-time-dependent-visualization" class="nav-link" data-scroll-target="#time-dependent-visualization">Time Dependent Visualization</a></li>
+  <li><a href="#visualizing-part-whole-relationships" id="toc-visualizing-part-whole-relationships" class="nav-link" data-scroll-target="#visualizing-part-whole-relationships">Visualizing Part-Whole Relationships</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Challenge 6 Solution - Airbnbs in NYC 2019</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">challenge_6</div>
+    <div class="quarto-category">air_bnb</div>
+    <div class="quarto-category">Linus Jen</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Visualizing Time and Relationships
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Linus Jen </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 20, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="read-in-data" class="level2">
+<h2 class="anchored" data-anchor-id="read-in-data">Read in data</h2>
+<p>For this challenge, I will be working with the <code>AB_NYC_2019.csv</code> file.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"posts"</span>, <span class="st">"_data"</span>, <span class="st">"AB_NYC_2019.csv"</span>))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># View data</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["name"],"name":[2],"type":["chr"],"align":["left"]},{"label":["host_id"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["host_name"],"name":[4],"type":["chr"],"align":["left"]},{"label":["neighbourhood_group"],"name":[5],"type":["chr"],"align":["left"]},{"label":["neighbourhood"],"name":[6],"type":["chr"],"align":["left"]},{"label":["latitude"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["longitude"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["room_type"],"name":[9],"type":["chr"],"align":["left"]},{"label":["price"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["minimum_nights"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["number_of_reviews"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["last_review"],"name":[13],"type":["date"],"align":["right"]},{"label":["reviews_per_month"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["calculated_host_listings_count"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["availability_365"],"name":[16],"type":["dbl"],"align":["right"]}],"data":[{"1":"2539","2":"Clean & quiet apt home by the park","3":"2787","4":"John","5":"Brooklyn","6":"Kensington","7":"40.64749","8":"-73.97237","9":"Private room","10":"149","11":"1","12":"9","13":"2018-10-19","14":"0.21","15":"6","16":"365"},{"1":"2595","2":"Skylit Midtown Castle","3":"2845","4":"Jennifer","5":"Manhattan","6":"Midtown","7":"40.75362","8":"-73.98377","9":"Entire home/apt","10":"225","11":"1","12":"45","13":"2019-05-21","14":"0.38","15":"2","16":"355"},{"1":"3647","2":"THE VILLAGE OF HARLEM....NEW YORK !","3":"4632","4":"Elisabeth","5":"Manhattan","6":"Harlem","7":"40.80902","8":"-73.94190","9":"Private room","10":"150","11":"3","12":"0","13":"<NA>","14":"NA","15":"1","16":"365"},{"1":"3831","2":"Cozy Entire Floor of Brownstone","3":"4869","4":"LisaRoxanne","5":"Brooklyn","6":"Clinton Hill","7":"40.68514","8":"-73.95976","9":"Entire home/apt","10":"89","11":"1","12":"270","13":"2019-07-05","14":"4.64","15":"1","16":"194"},{"1":"5022","2":"Entire Apt: Spacious Studio/Loft by central park","3":"7192","4":"Laura","5":"Manhattan","6":"East Harlem","7":"40.79851","8":"-73.94399","9":"Entire home/apt","10":"80","11":"10","12":"9","13":"2018-11-19","14":"0.10","15":"1","16":"0"},{"1":"5099","2":"Large Cozy 1 BR Apartment In Midtown East","3":"7322","4":"Chris","5":"Manhattan","6":"Murray Hill","7":"40.74767","8":"-73.97500","9":"Entire home/apt","10":"200","11":"3","12":"74","13":"2019-06-22","14":"0.59","15":"1","16":"129"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use dfSummary!</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(summarytools<span class="sc">::</span><span class="fu">dfSummary</span>(data,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">varnumbers=</span><span class="cn">FALSE</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">plain.ascii=</span><span class="cn">FALSE</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">style=</span><span class="st">"grid"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                              <span class="at">graph.magnif =</span> <span class="fl">0.70</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                              <span class="at">valid.col=</span><span class="cn">FALSE</span>),</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">method=</span><span class="st">"render"</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">table.classes=</span><span class="st">"table-condensed"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="container st-container">
+<h3 class="anchored">Data Frame Summary</h3>
+<h4 class="anchored">data</h4>
+<strong>Dimensions</strong>: 48895 x 16
+  <br><strong>Duplicates</strong>: 0
+<br>
+
+<table class="table table-striped table-bordered st-table st-table-striped st-table-bordered st-multiline table-condensed table-sm small" data-quarto-postprocess="true">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th class="st-protect-top-border" style="text-align: center;" data-quarto-table-cell-role="th"><strong>Variable</strong></th>
+<th class="st-protect-top-border" style="text-align: center;" data-quarto-table-cell-role="th"><strong>Stats / Values</strong></th>
+<th class="st-protect-top-border" style="text-align: center;" data-quarto-table-cell-role="th"><strong>Freqs (% of Valid)</strong></th>
+<th class="st-protect-top-border" style="text-align: center;" data-quarto-table-cell-role="th"><strong>Graph</strong></th>
+<th class="st-protect-top-border" style="text-align: center;" data-quarto-table-cell-role="th"><strong>Missing</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">id [numeric]</td>
+<td style="text-align: left; padding: 8; vertical-align: middle;"><table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<tbody>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">Mean (sd) : 19017143 (10983108)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">min ≤ med ≤ max:</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">2539 ≤ 19677284 ≤ 36487245</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">IQR (CV) : 19680234 (0.6)</td>
+</tr>
+</tbody>
+</table></td>
+<td style="text-align: left; vertical-align: middle;">48895 distinct values</td>
+<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5wYSADgCS1Q2+QAAAK1JREFUWMPt0mEOgyAMBWCPMDzB9naDvfvfzaWBtTFlsWqWyNofxBY+UpBpGj/K9gBQyi3unnylG8XJI/BiBh5fnCSuI4876WqHk1XpPAd0nNy1PoO1IztOe/m9ez9OkNp018312C3lZ2Gb67hadp18XdnJ7amTtC1sc57TsqamcrKzvyfibFm3CbuaHnN6hphbDRd39hYizg7p0v2NA+67HJkuXbrzHILR3MixAOWj9+LMld2XAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIzLTA2LTE4VDAwOjU2OjAyKzAwOjAwt1tZgQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMy0wNi0xOFQwMDo1NjowMiswMDowMMYG4T0AAAAASUVORK5CYII=" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
+<td style="text-align: center;">0 (0.0%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">name [character]</td>
+<td style="text-align: left; padding: 8; vertical-align: middle;"><table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<tbody>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">1. Hillside Hotel</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">2. Home away from home</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">3. New york Multi-unit build</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">4. Brooklyn Apartment</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">5. Loft Suite @ The Box Hous</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">6. Private Room</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">7. Artsy Private BR in Fort</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">8. Private room</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">9. Beautiful Brooklyn Browns</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">10. Cozy Brooklyn Apartment</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">[ 47884 others ]</td>
+</tr>
+</tbody>
+</table></td>
+<td style="text-align: left; padding: 0; vertical-align: middle;"><table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<tbody>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">18</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">0.0%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">17</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">0.0%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">16</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">0.0%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">12</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">0.0%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">11</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">0.0%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">11</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">0.0%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">10</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">0.0%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">10</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">0.0%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">8</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">0.0%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">8</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">0.0%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">48758</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">99.8%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+</tbody>
+</table></td>
+<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAHUAAAC8BAMAAAC0zfzzAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5wYSADgEojeTzAAAAHpJREFUaN7t1bsNgDAQA9CMABvwGYH9d6OhocRECiTP/ZOsk6wrZbys8/NMLMvebECr2D/eimV7sgG1fZbtwAa0eWeWZf1ulh3ZBtT2WfYjNqD2y7Id2IDaPst2YAPavDPLsn43y45sA1rFbkGWy+7H87DsV+2bLYyUE70+3Bd2V7qFAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIzLTA2LTE4VDAwOjU2OjA0KzAwOjAw1ItsuwAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMy0wNi0xOFQwMDo1NjowNCswMDowMKXW1AcAAAAASUVORK5CYII=" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
+<td style="text-align: center;">16 (0.0%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">host_id [numeric]</td>
+<td style="text-align: left; padding: 8; vertical-align: middle;"><table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<tbody>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">Mean (sd) : 67620011 (78610967)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">min ≤ med ≤ max:</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">2438 ≤ 30793816 ≤ 274321313</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">IQR (CV) : 99612390 (1.2)</td>
+</tr>
+</tbody>
+</table></td>
+<td style="text-align: left; vertical-align: middle;">37457 distinct values</td>
+<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5wYSADgEojeTzAAAAHtJREFUWMPt11EKgCAMBmCPUJ6g9Abt/ndrgmEzQxdFMP7/Ze7hYy9D1Dn7CZxZkSm7SLTBwcHBwcHBwcF94zRPtLPTjIQz5Xhl1ieOiODedWM/rKsbuzFuXWds27GJ9fZ40bVdKWWsF13P5bEpolsGXF3S6S8XlDmc5ezdJjMo6Sr2rgAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMy0wNi0xOFQwMDo1NjowNCswMDowMNSLbLsAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjMtMDYtMThUMDA6NTY6MDQrMDA6MDCl1tQHAAAAAElFTkSuQmCC" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
+<td style="text-align: center;">0 (0.0%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">host_name [character]</td>
+<td style="text-align: left; padding: 8; vertical-align: middle;"><table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<tbody>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">1. Michael</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">2. David</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">3. Sonder (NYC)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">4. John</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">5. Alex</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">6. Blueground</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">7. Sarah</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">8. Daniel</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">9. Jessica</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">10. Maria</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">[ 11442 others ]</td>
+</tr>
+</tbody>
+</table></td>
+<td style="text-align: left; padding: 0; vertical-align: middle;"><table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<tbody>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">417</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">0.9%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">403</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">0.8%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">327</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">0.7%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">294</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">0.6%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">279</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">0.6%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">232</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">0.5%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">227</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">0.5%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">226</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">0.5%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">205</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">0.4%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">204</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">0.4%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">46060</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">94.2%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+</tbody>
+</table></td>
+<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAG8AAAC8BAMAAACEQe3SAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5wYSADgEojeTzAAAAH9JREFUaN7t2rkRgEAMA0BKgA54SqD/3khoQBwMZ1jlG9hjZR6Gf2Sdwowg+BeYunZYaDkgWAWmrh0uIAjeDVNXcUYQrAJTp8gg2CFMnSKD4HMwdfoIgh3C1CkyCHYIU1dxRhCsAlOnyCDYIUzdDV8WaeYTbnsYEHwJXj7yr+cAq0KzKnYXWUUAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDYtMThUMDA6NTY6MDQrMDA6MDDUi2y7AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTA2LTE4VDAwOjU2OjA0KzAwOjAwpdbUBwAAAABJRU5ErkJggg==" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
+<td style="text-align: center;">21 (0.0%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">neighbourhood_group [character]</td>
+<td style="text-align: left; padding: 8; vertical-align: middle;"><table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<tbody>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">1. Bronx</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">2. Brooklyn</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">3. Manhattan</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">4. Queens</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">5. Staten Island</td>
+</tr>
+</tbody>
+</table></td>
+<td style="text-align: left; padding: 0; vertical-align: middle;"><table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<tbody>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">1091</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">2.2%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">20104</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">41.1%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">21661</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">44.3%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">5666</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">11.6%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">373</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">0.8%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+</tbody>
+</table></td>
+<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAADsAAABZBAMAAAByN0HRAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5wYSADgEojeTzAAAAFxJREFUSMdjYBhYoKQoiA0IQKWVR6XpLk0gSgQFKZFWwgoQTjPGAoxGpQdQmkCM0SI5KCngc5qx8aj0wEkTiDFqJAdFXNIQp41KDyJpAjFGIL4JSCuNSg8x6YECAItM4ccvy/z+AAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIzLTA2LTE4VDAwOjU2OjA0KzAwOjAw1ItsuwAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMy0wNi0xOFQwMDo1NjowNCswMDowMKXW1AcAAAAASUVORK5CYII=" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
+<td style="text-align: center;">0 (0.0%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">neighbourhood [character]</td>
+<td style="text-align: left; padding: 8; vertical-align: middle;"><table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<tbody>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">1. Williamsburg</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">2. Bedford-Stuyvesant</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">3. Harlem</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">4. Bushwick</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">5. Upper West Side</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">6. Hell's Kitchen</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">7. East Village</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">8. Upper East Side</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">9. Crown Heights</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">10. Midtown</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">[ 211 others ]</td>
+</tr>
+</tbody>
+</table></td>
+<td style="text-align: left; padding: 0; vertical-align: middle;"><table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<tbody>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">3920</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">8.0%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">3714</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">7.6%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">2658</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">5.4%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">2465</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">5.0%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">1971</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">4.0%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">1958</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">4.0%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">1853</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">3.8%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">1798</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">3.7%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">1564</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">3.2%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">1545</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">3.2%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">25449</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">52.0%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+</tbody>
+</table></td>
+<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAEMAAAC8BAMAAADRIA6MAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5wYSADgF1TCjWgAAAIpJREFUWMPt1sENgDAMA8COQDYAukGz/27wQMADiyBFVWjs9z0q2YpaSqysexZ5zHSQqqoksYmhRsH5QLiXLKTnpN5I1Ubyf2JoWnC4l2zEZy8GAi/d/bkkAxBD04LDSWUj3AsJJ0USm/hMCv+2rrc0kgGIoWkRD8JJZSEdJwUznxcThiQIMdQYJRtuDamizMpIBwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMy0wNi0xOFQwMDo1NjowNSswMDowMHL8Zw8AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjMtMDYtMThUMDA6NTY6MDUrMDA6MDADod+zAAAAAElFTkSuQmCC" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
+<td style="text-align: center;">0 (0.0%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">latitude [numeric]</td>
+<td style="text-align: left; padding: 8; vertical-align: middle;"><table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<tbody>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">Mean (sd) : 40.7 (0.1)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">min ≤ med ≤ max:</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">40.5 ≤ 40.7 ≤ 40.9</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">IQR (CV) : 0.1 (0)</td>
+</tr>
+</tbody>
+</table></td>
+<td style="text-align: left; vertical-align: middle;">19048 distinct values</td>
+<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5wYSADgF1TCjWgAAAKlJREFUWMPt1mEKwyAMBWCPsO0E2/MGzf3vVkUEtZlNwhgoyS8p+bAoxBfC/vX8UsCH/f6YOiCSxUVyt7oDYHKRDndrO+bmRY7ZUegu40noiNy5m7tXfsUsjsidu+1dN3sVrosWYjdESrEboszyLk0lm6vNP3BNxFO5Jlq4U7l04ibXNzfLeoNaV3f8nytjhnHpTDBxZbQxjm++cX0Y4Jf5T6uDst5h/zoBKDJaIAayJaMAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDYtMThUMDA6NTY6MDUrMDA6MDBy/GcPAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTA2LTE4VDAwOjU2OjA1KzAwOjAwA6HfswAAAABJRU5ErkJggg==" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
+<td style="text-align: center;">0 (0.0%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">longitude [numeric]</td>
+<td style="text-align: left; padding: 8; vertical-align: middle;"><table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<tbody>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">Mean (sd) : -74 (0)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">min ≤ med ≤ max:</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">-74.2 ≤ -74 ≤ -73.7</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">IQR (CV) : 0 (0)</td>
+</tr>
+</tbody>
+</table></td>
+<td style="text-align: left; vertical-align: middle;">14718 distinct values</td>
+<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5wYSADgF1TCjWgAAAGxJREFUWMPt18EJgDAMheGMoE6gdQOz/24asIfWIqYHhfg/yKl80FzKq0j8jM2kI0vzZLh1q6ricDjc3529oanD2Ww4HA6Hw+EiuMnqQI/T03ziLh/Bh07r4vSCKwqXwxWLel2+cHbJmVniZwfm9jGCK/oCygAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMy0wNi0xOFQwMDo1NjowNSswMDowMHL8Zw8AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjMtMDYtMThUMDA6NTY6MDUrMDA6MDADod+zAAAAAElFTkSuQmCC" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
+<td style="text-align: center;">0 (0.0%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">room_type [character]</td>
+<td style="text-align: left; padding: 8; vertical-align: middle;"><table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<tbody>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">1. Entire home/apt</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">2. Private room</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">3. Shared room</td>
+</tr>
+</tbody>
+</table></td>
+<td style="text-align: left; padding: 0; vertical-align: middle;"><table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<tbody>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">25409</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">52.0%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">22326</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">45.7%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: right; padding: 0 5px 0 7px; margin: 0; border: 0;">1160</td>
+<td style="text-align: left; padding: 0 2px 0 0; border: 0;">(</td>
+<td style="text-align: right; padding: 0; border: 0;">2.4%</td>
+<td style="text-align: left; padding: 0 4px 0 2px; border: 0;">)</td>
+</tr>
+</tbody>
+</table></td>
+<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAEMAAAA5BAMAAACfXYvnAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5wYSADgF1TCjWgAAAERJREFUOMtjYBhcQAk3UIAqUTbGCUaVDB0lRMS0IG4gQLwSXLYgKcHhXKNRJUNKCRExTaUkpUhQifKokuGghIiYHiwAAJ78uv8vI0hdAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIzLTA2LTE4VDAwOjU2OjA1KzAwOjAwcvxnDwAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMy0wNi0xOFQwMDo1NjowNSswMDowMAOh37MAAAAASUVORK5CYII=" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
+<td style="text-align: center;">0 (0.0%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">price [numeric]</td>
+<td style="text-align: left; padding: 8; vertical-align: middle;"><table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<tbody>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">Mean (sd) : 152.7 (240.2)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">min ≤ med ≤ max:</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">0 ≤ 106 ≤ 10000</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">IQR (CV) : 106 (1.6)</td>
+</tr>
+</tbody>
+</table></td>
+<td style="text-align: left; vertical-align: middle;">674 distinct values</td>
+<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5wYSADgF1TCjWgAAADtJREFUWMPtyzEVwCAQBbCTUBzQjwT8e2OpATreS/ZU9Ze848bzvbU9z/M8z/M8z/M8r8NL8uPl0qz+DgDP/KrRFgTMAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIzLTA2LTE4VDAwOjU2OjA1KzAwOjAwcvxnDwAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMy0wNi0xOFQwMDo1NjowNSswMDowMAOh37MAAAAASUVORK5CYII=" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
+<td style="text-align: center;">0 (0.0%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">minimum_nights [numeric]</td>
+<td style="text-align: left; padding: 8; vertical-align: middle;"><table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<tbody>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">Mean (sd) : 7 (20.5)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">min ≤ med ≤ max:</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">1 ≤ 3 ≤ 1250</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">IQR (CV) : 4 (2.9)</td>
+</tr>
+</tbody>
+</table></td>
+<td style="text-align: left; vertical-align: middle;">109 distinct values</td>
+<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5wYSADgF1TCjWgAAADhJREFUWMPty7ERABAQALAfgQ0cG/j9d6OwgJakT8T7+lYvlPNG5vQ8z/M8z/M8z/O8X1+/1OJ9C+2gCmf2Ic+0AAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIzLTA2LTE4VDAwOjU2OjA1KzAwOjAwcvxnDwAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMy0wNi0xOFQwMDo1NjowNSswMDowMAOh37MAAAAASUVORK5CYII=" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
+<td style="text-align: center;">0 (0.0%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">number_of_reviews [numeric]</td>
+<td style="text-align: left; padding: 8; vertical-align: middle;"><table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<tbody>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">Mean (sd) : 23.3 (44.6)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">min ≤ med ≤ max:</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">0 ≤ 5 ≤ 629</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">IQR (CV) : 23 (1.9)</td>
+</tr>
+</tbody>
+</table></td>
+<td style="text-align: left; vertical-align: middle;">394 distinct values</td>
+<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5wYSADgF1TCjWgAAAFNJREFUWMPt17sJACAMANGMoBv42cDsv5spFCyN2Ch3kPKRYKfI/xUrOgrDVdWGw+FwOBwOh8PhcLi3nOcPuDp17Lzl7NR84mxO3dbzTFecJfm/DglIDrEK//CpAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIzLTA2LTE4VDAwOjU2OjA1KzAwOjAwcvxnDwAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMy0wNi0xOFQwMDo1NjowNSswMDowMAOh37MAAAAASUVORK5CYII=" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
+<td style="text-align: center;">0 (0.0%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">last_review [Date]</td>
+<td style="text-align: left; padding: 8; vertical-align: middle;"><table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<tbody>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">min : 2011-03-28</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">med : 2019-05-19</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">max : 2019-07-08</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">range : 8y 3m 10d</td>
+</tr>
+</tbody>
+</table></td>
+<td style="text-align: left; vertical-align: middle;">1764 distinct values</td>
+<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5wYSADgF1TCjWgAAAGpJREFUWMPt1kEKgCAQRmGv0A3q7wje/24NSZIhMeOiQN7D5XyM4MaU5m+JJGkdcXvOOBwOh8PhcDgc7p59roecIdzfrjxe3BX0kauXDLqK3E5nEWfjW7vJ52zkscntuufVdTe1TsEuN3MHO7EWl47HM90AAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDYtMThUMDA6NTY6MDUrMDA6MDBy/GcPAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTA2LTE4VDAwOjU2OjA1KzAwOjAwA6HfswAAAABJRU5ErkJggg==" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
+<td style="text-align: center;">10052 (20.6%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">reviews_per_month [numeric]</td>
+<td style="text-align: left; padding: 8; vertical-align: middle;"><table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<tbody>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">Mean (sd) : 1.4 (1.7)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">min ≤ med ≤ max:</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">0 ≤ 0.7 ≤ 58.5</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">IQR (CV) : 1.8 (1.2)</td>
+</tr>
+</tbody>
+</table></td>
+<td style="text-align: left; vertical-align: middle;">937 distinct values</td>
+<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5wYSADgF1TCjWgAAAEZJREFUWMPt17ENACAMA0GPABtAGCH77wYFSJSkQ9F/f3JtKX+26vW9st1wdxwOh8PhcDgcDofD4X5ykY97u8jmcRasKX8T54EPyEyo/+kAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDYtMThUMDA6NTY6MDUrMDA6MDBy/GcPAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTA2LTE4VDAwOjU2OjA1KzAwOjAwA6HfswAAAABJRU5ErkJggg==" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
+<td style="text-align: center;">10052 (20.6%)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">calculated_host_listings_count [numeric]</td>
+<td style="text-align: left; padding: 8; vertical-align: middle;"><table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<tbody>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">Mean (sd) : 7.1 (33)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">min ≤ med ≤ max:</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">1 ≤ 1 ≤ 327</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">IQR (CV) : 1 (4.6)</td>
+</tr>
+</tbody>
+</table></td>
+<td style="text-align: left; vertical-align: middle;">47 distinct values</td>
+<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5wYSADgF1TCjWgAAAD9JREFUWMPt1zERACEMAMFI4B0wwcHj3xsNCEib2etXwEX0LzO/SuO6tX+O4ziO4ziO4ziO6+BKa/xcFpvRvwMkOAFfgUMPwQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMy0wNi0xOFQwMDo1NjowNSswMDowMHL8Zw8AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjMtMDYtMThUMDA6NTY6MDUrMDA6MDADod+zAAAAAElFTkSuQmCC" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
+<td style="text-align: center;">0 (0.0%)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">availability_365 [numeric]</td>
+<td style="text-align: left; padding: 8; vertical-align: middle;"><table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<tbody>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">Mean (sd) : 112.8 (131.6)</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">min ≤ med ≤ max:</td>
+</tr>
+<tr class="odd" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">0 ≤ 45 ≤ 365</td>
+</tr>
+<tr class="even" style="background-color:transparent">
+<td style="text-align: left; padding: 0; margin: 0; border: 0;">IQR (CV) : 227 (1.2)</td>
+</tr>
+</tbody>
+</table></td>
+<td style="text-align: left; vertical-align: middle;">366 distinct values</td>
+<td style="text-align: left; vertical-align: middle; padding: 0; background-color: transparent;"><img src="data:image/png;base64,%20iVBORw0KGgoAAAANSUhEUgAAAG0AAABPBAMAAAATslZYAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5wYSADgGTDny4AAAAHZJREFUWMPt18EJwCAMBVBHaDNB+7uB2X+3ohhMERVPBfn/kIPmJV4NYf8AOFdyFPdopKOjo6Ojo6Ojo6Ojo/vHAXc6mf7okHJVp5pPxpslN6h+nJU6uF1VurpO/GYB7C1jZ4NLP+rdyPnBsSF958vEYTHmds4LHbcZHjdI6/AAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDYtMThUMDA6NTY6MDYrMDA6MDBDFH2SAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTA2LTE4VDAwOjU2OjA2KzAwOjAwMknFLgAAAABJRU5ErkJggg==" class="img-fluid" style="border:none;background-color:transparent;padding:0;max-width:max-content;"></td>
+<td style="text-align: center;">0 (0.0%)</td>
+</tr>
+</tbody>
+</table>
+
+<p>Generated by <a href="https://github.com/dcomtois/summarytools">summarytools</a> 1.0.1 (<a href="https://www.r-project.org/">R</a> version 4.3.0)<br>2023-06-17</p>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check for NAs</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span><span class="fu">sum</span>(<span class="fu">is.na</span>(.))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["id"],"name":[1],"type":["int"],"align":["right"]},{"label":["name"],"name":[2],"type":["int"],"align":["right"]},{"label":["host_id"],"name":[3],"type":["int"],"align":["right"]},{"label":["host_name"],"name":[4],"type":["int"],"align":["right"]},{"label":["neighbourhood_group"],"name":[5],"type":["int"],"align":["right"]},{"label":["neighbourhood"],"name":[6],"type":["int"],"align":["right"]},{"label":["latitude"],"name":[7],"type":["int"],"align":["right"]},{"label":["longitude"],"name":[8],"type":["int"],"align":["right"]},{"label":["room_type"],"name":[9],"type":["int"],"align":["right"]},{"label":["price"],"name":[10],"type":["int"],"align":["right"]},{"label":["minimum_nights"],"name":[11],"type":["int"],"align":["right"]},{"label":["number_of_reviews"],"name":[12],"type":["int"],"align":["right"]},{"label":["last_review"],"name":[13],"type":["int"],"align":["right"]},{"label":["reviews_per_month"],"name":[14],"type":["int"],"align":["right"]},{"label":["calculated_host_listings_count"],"name":[15],"type":["int"],"align":["right"]},{"label":["availability_365"],"name":[16],"type":["int"],"align":["right"]}],"data":[{"1":"0","2":"16","3":"0","4":"21","5":"0","6":"0","7":"0","8":"0","9":"0","10":"0","11":"0","12":"0","13":"10052","14":"10052","15":"0","16":"0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Interesting that there are lots of missing data, let's check how many units have no reviews</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(number_of_reviews <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="fu">nrow</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10052</code></pre>
+</div>
+</div>
+<section id="briefly-describe-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="briefly-describe-the-data">Briefly describe the data</h3>
+<p>This data is probably a collection of all Airbnbs in New York City in 2019, and includes variables such as cost, availability, the neighborhood for where the Airbnb is located, the room type, IDs for both the location and host, and various review information.</p>
+<p>Our data seems to already be tidy! Each row represents an Airbnb location, as every location has its own id. Other columns include the place’s <code>name</code>, the <code>host_id</code> for the host of the location, the <code>neighborhood_group</code> and <code>neighborhood</code> the place is located in NYC, the <code>latitude</code> and <code>longitude</code> for the Airbnb, the <code>room_type</code> of the Airbnb, <code>price</code> and <code>minimum_nights</code> that describe the specifics for booking the location, date of <code>last_review</code>, approximate <code>reviews_per_month</code>, the <code>calculated_host_listings_count</code>, and <code>availability_365</code> for the Airbnb for the year. There are 48,895 rows and 16 columns.</p>
+<p>While there are some missing data (such as the <code>name</code>, <code>host_name</code>, <code>last_review</code>, and <code>reviews_per_month</code>). It’s interesting though that the review related columns are both missing 10,052 rows, or 20.26% of all observations. This is probably because these units have never been rented out or are new, so customers have not left any reviews yet. My suspicions are supported because 10,052 rows have <code>number_of_reviews</code> as 0.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Only column that needs "fixing" is the `room_type` </span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(data<span class="sc">$</span>room_type)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Private room"    "Entire home/apt" "Shared room"    </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 unique values, convert to factors</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>room_type <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>room_type)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert `last_review` into yearly groups</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">last_rev_year =</span> <span class="fu">year</span>(last_review))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="time-dependent-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="time-dependent-visualization">Time Dependent Visualization</h2>
+<p>For this section, I’ll be looking at the number of properties based on the date of last review, by year. This is because <code>last_review</code> is the only date variable in the dataset. To do this, I will create a time series plot visualizing the dates on the x-axis, and the number of properties on the y-axis. I chose a line graph because this tends to be the best way to visualize time-series related data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(last_rev_year) <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(last_rev_year)) <span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">num_props =</span> <span class="fu">n_distinct</span>(id)) <span class="sc">%&gt;%</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>last_rev_year, <span class="at">y=</span>num_props)) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span>last_rev_year, <span class="at">y=</span>num_props, <span class="at">label=</span>num_props), <span class="at">vjust=</span><span class="sc">-</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Breakdown of Properties Based on Year of Last Review"</span>,</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">"For Airbnbs listed in NYC"</span>,</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">"Year"</span>,</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Number of Properties"</span>) <span class="sc">+</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="dv">2011</span><span class="sc">:</span><span class="dv">2019</span>, <span class="at">labels=</span><span class="dv">2011</span><span class="sc">:</span><span class="dv">2019</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="LinusJen_challenge6_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="visualizing-part-whole-relationships" class="level2">
+<h2 class="anchored" data-anchor-id="visualizing-part-whole-relationships">Visualizing Part-Whole Relationships</h2>
+<p>For this section, I’ll visualize the <code>room_type</code>s by each <code>neighborhood_group</code> and use a stacked barchart to visualize this data. This would provide a quick way to compare the number of each <code>room_type</code> across each <code>neighborhood_group</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(neighbourhood_group, room_type) <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">val=</span><span class="fu">n_distinct</span>(id)) <span class="sc">%&gt;%</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>neighbourhood_group, <span class="at">y=</span>val, <span class="at">fill=</span>room_type)) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position=</span><span class="st">"stack"</span>, <span class="at">stat=</span><span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Types of Rooms Offered per NYC Neighborhood Group"</span>,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">"For Airbnbs listed in NYC"</span>,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">"Neighborhood Group"</span>,</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Count"</span>) <span class="sc">+</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill=</span><span class="fu">guide_legend</span>(<span class="at">title=</span><span class="st">"Room Type"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="LinusJen_challenge6_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="DACSS/SummerCommentRepo" data-repo-id="R_kgDOJrwrQw" data-category="Announcements" data-category-id="DIC_kwDOJrwrQ84CW_wq" data-mapping="url" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb12" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Challenge 6 Solution - Airbnbs in NYC 2019"</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Linus Jen"</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Visualizing Time and Relationships"</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "6/20/2023"</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">    df-print: paged</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - challenge_6</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - air_bnb</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co">  - Linus Jen</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a><span class="fu">## Read in data</span></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>For this challenge, I will be working with the <span class="in">`AB_NYC_2019.csv`</span> file.</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"posts"</span>, <span class="st">"_data"</span>, <span class="st">"AB_NYC_2019.csv"</span>))</span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a><span class="co"># View data</span></span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)</span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Use dfSummary!</span></span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(summarytools<span class="sc">::</span><span class="fu">dfSummary</span>(data,</span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>                              <span class="at">varnumbers=</span><span class="cn">FALSE</span>,</span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>                              <span class="at">plain.ascii=</span><span class="cn">FALSE</span>,</span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>                              <span class="at">style=</span><span class="st">"grid"</span>,</span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>                              <span class="at">graph.magnif =</span> <span class="fl">0.70</span>,</span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a>                              <span class="at">valid.col=</span><span class="cn">FALSE</span>),</span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a>      <span class="at">method=</span><span class="st">"render"</span>,</span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a>      <span class="at">table.classes=</span><span class="st">"table-condensed"</span>)</span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a><span class="co"># Check for NAs</span></span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span><span class="fu">sum</span>(<span class="fu">is.na</span>(.))))</span>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a><span class="co"># Interesting that there are lots of missing data, let's check how many units have no reviews</span></span>
+<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(number_of_reviews <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="fu">nrow</span>()</span>
+<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a><span class="fu">### Briefly describe the data</span></span>
+<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a>This data is probably a collection of all Airbnbs in New York City in 2019, and includes variables such as cost, availability, the neighborhood for where the Airbnb is located, the room type, IDs for both the location and host, and various review information.</span>
+<span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a>Our data seems to already be tidy! Each row represents an Airbnb location, as every location has its own id. Other columns include the place’s <span class="in">`name`</span>, the <span class="in">`host_id`</span> for the host of the location, the <span class="in">`neighborhood_group`</span> and <span class="in">`neighborhood`</span> the place is located in NYC, the <span class="in">`latitude`</span> and <span class="in">`longitude`</span> for the Airbnb, the <span class="in">`room_type`</span> of the Airbnb, <span class="in">`price`</span> and <span class="in">`minimum_nights`</span> that describe the specifics for booking the location, date of <span class="in">`last_review`</span>, approximate <span class="in">`reviews_per_month`</span>, the <span class="in">`calculated_host_listings_count`</span>, and <span class="in">`availability_365`</span> for the Airbnb for the year. There are 48,895 rows and 16 columns.</span>
+<span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a>While there are some missing data (such as the <span class="in">`name`</span>, <span class="in">`host_name`</span>, <span class="in">`last_review`</span>, and <span class="in">`reviews_per_month`</span>). It’s interesting though that the review related columns are both missing 10,052 rows, or 20.26% of all observations. This is probably because these units have never been rented out or are new, so customers have not left any reviews yet. My suspicions are supported because 10,052 rows have <span class="in">`number_of_reviews`</span> as 0.</span>
+<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a><span class="co"># Only column that needs "fixing" is the `room_type` </span></span>
+<span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(data<span class="sc">$</span>room_type)</span>
+<span id="cb12-76"><a href="#cb12-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-77"><a href="#cb12-77" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 unique values, convert to factors</span></span>
+<span id="cb12-78"><a href="#cb12-78" aria-hidden="true" tabindex="-1"></a>data<span class="sc">$</span>room_type <span class="ot">&lt;-</span> <span class="fu">factor</span>(data<span class="sc">$</span>room_type)</span>
+<span id="cb12-79"><a href="#cb12-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-80"><a href="#cb12-80" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert `last_review` into yearly groups</span></span>
+<span id="cb12-81"><a href="#cb12-81" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb12-82"><a href="#cb12-82" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">last_rev_year =</span> <span class="fu">year</span>(last_review))</span>
+<span id="cb12-83"><a href="#cb12-83" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-84"><a href="#cb12-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-85"><a href="#cb12-85" aria-hidden="true" tabindex="-1"></a><span class="fu">## Time Dependent Visualization</span></span>
+<span id="cb12-86"><a href="#cb12-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-87"><a href="#cb12-87" aria-hidden="true" tabindex="-1"></a>For this section, I'll be looking at the number of properties based on the date of last review, by year. This is because <span class="in">`last_review`</span> is the only date variable in the dataset. To do this, I will create a time series plot visualizing the dates on the x-axis, and the number of properties on the y-axis. I chose a line graph because this tends to be the best way to visualize time-series related data.</span>
+<span id="cb12-88"><a href="#cb12-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-91"><a href="#cb12-91" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-92"><a href="#cb12-92" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
+<span id="cb12-93"><a href="#cb12-93" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(last_rev_year) <span class="sc">%&gt;%</span></span>
+<span id="cb12-94"><a href="#cb12-94" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(last_rev_year)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-95"><a href="#cb12-95" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">num_props =</span> <span class="fu">n_distinct</span>(id)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-96"><a href="#cb12-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>last_rev_year, <span class="at">y=</span>num_props)) <span class="sc">+</span></span>
+<span id="cb12-97"><a href="#cb12-97" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb12-98"><a href="#cb12-98" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb12-99"><a href="#cb12-99" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x=</span>last_rev_year, <span class="at">y=</span>num_props, <span class="at">label=</span>num_props), <span class="at">vjust=</span><span class="sc">-</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb12-100"><a href="#cb12-100" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb12-101"><a href="#cb12-101" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Breakdown of Properties Based on Year of Last Review"</span>,</span>
+<span id="cb12-102"><a href="#cb12-102" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">"For Airbnbs listed in NYC"</span>,</span>
+<span id="cb12-103"><a href="#cb12-103" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">"Year"</span>,</span>
+<span id="cb12-104"><a href="#cb12-104" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Number of Properties"</span>) <span class="sc">+</span></span>
+<span id="cb12-105"><a href="#cb12-105" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks=</span><span class="dv">2011</span><span class="sc">:</span><span class="dv">2019</span>, <span class="at">labels=</span><span class="dv">2011</span><span class="sc">:</span><span class="dv">2019</span>)</span>
+<span id="cb12-106"><a href="#cb12-106" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-107"><a href="#cb12-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-108"><a href="#cb12-108" aria-hidden="true" tabindex="-1"></a><span class="fu">## Visualizing Part-Whole Relationships</span></span>
+<span id="cb12-109"><a href="#cb12-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-110"><a href="#cb12-110" aria-hidden="true" tabindex="-1"></a>For this section, I'll visualize the <span class="in">`room_type`</span>s by each <span class="in">`neighborhood_group`</span> and use a stacked barchart to visualize this data. This would provide a quick way to compare the number of each <span class="in">`room_type`</span> across each <span class="in">`neighborhood_group`</span>.</span>
+<span id="cb12-111"><a href="#cb12-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-114"><a href="#cb12-114" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb12-115"><a href="#cb12-115" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
+<span id="cb12-116"><a href="#cb12-116" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(neighbourhood_group, room_type) <span class="sc">%&gt;%</span></span>
+<span id="cb12-117"><a href="#cb12-117" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">val=</span><span class="fu">n_distinct</span>(id)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-118"><a href="#cb12-118" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>neighbourhood_group, <span class="at">y=</span>val, <span class="at">fill=</span>room_type)) <span class="sc">+</span></span>
+<span id="cb12-119"><a href="#cb12-119" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position=</span><span class="st">"stack"</span>, <span class="at">stat=</span><span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb12-120"><a href="#cb12-120" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb12-121"><a href="#cb12-121" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">"Types of Rooms Offered per NYC Neighborhood Group"</span>,</span>
+<span id="cb12-122"><a href="#cb12-122" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">"For Airbnbs listed in NYC"</span>,</span>
+<span id="cb12-123"><a href="#cb12-123" aria-hidden="true" tabindex="-1"></a>       <span class="at">x=</span><span class="st">"Neighborhood Group"</span>,</span>
+<span id="cb12-124"><a href="#cb12-124" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"Count"</span>) <span class="sc">+</span></span>
+<span id="cb12-125"><a href="#cb12-125" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill=</span><span class="fu">guide_legend</span>(<span class="at">title=</span><span class="st">"Room Type"</span>))</span>
+<span id="cb12-126"><a href="#cb12-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-127"><a href="#cb12-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-128"><a href="#cb12-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-129"><a href="#cb12-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-130"><a href="#cb12-130" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+</body></html>
