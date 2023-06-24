@@ -1,11 +1,36 @@
 [
   {
+    "listing": "/about.html",
+    "items": [
+      "/about/MoiraChiong.html",
+      "/about/AudreyBertin.html",
+      "/about/DannyHolt.html",
+      "/about/GabrielleRoman.html",
+      "/about/HunterMajorAboutMe.html",
+      "/about/JocelynLutes.html",
+      "/about/LinusJen.html",
+      "/about/MattZambetti.html",
+      "/about/NayaabKazmi.html",
+      "/about/NoahDixon.html",
+      "/about/PrasannDesai.html",
+      "/about/SeanConway.html",
+      "/about/ShreyaVarma.html",
+      "/about/ShuqiHong.html",
+      "/about/AboutSusannahPoland.html",
+      "/about/HW1_SuyashBhagwat.html",
+      "/about/TenzinLatoe.html",
+      "/about/XinpengLiu.html",
+      "/about/Zhongyue Lin.html"
+    ]
+  },
+  {
     "listing": "/index.html",
     "items": [
       "/posts/AudreyBertin_challenge10.html",
       "/posts/AudreyBertin_Homework3.html",
       "/posts/AudreyBertin_Challenge9.html",
       "/posts/LinusJen_challenge8.html",
+      "/posts/challenge5_solution_SRP.html",
       "/posts/JocelynLutes_challenge7.html",
       "/posts/AudreyBertin_Challenge8.html",
       "/posts/Homework_3_Zhongyue_Lin.html",
@@ -136,30 +161,6 @@
       "/posts/AudreyBertin_Challenge1.html",
       "/posts/challenge1_solution_Xinpeng_Liu.html",
       "/posts/example-data_import.html"
-    ]
-  },
-  {
-    "listing": "/about.html",
-    "items": [
-      "/about/MoiraChiong.html",
-      "/about/AudreyBertin.html",
-      "/about/DannyHolt.html",
-      "/about/GabrielleRoman.html",
-      "/about/HunterMajorAboutMe.html",
-      "/about/JocelynLutes.html",
-      "/about/LinusJen.html",
-      "/about/MattZambetti.html",
-      "/about/NayaabKazmi.html",
-      "/about/NoahDixon.html",
-      "/about/PrasannDesai.html",
-      "/about/SeanConway.html",
-      "/about/ShreyaVarma.html",
-      "/about/ShuqiHong.html",
-      "/about/AboutSusannahPoland.html",
-      "/about/HW1_SuyashBhagwat.html",
-      "/about/TenzinLatoe.html",
-      "/about/XinpengLiu.html",
-      "/about/Zhongyue Lin.html"
     ]
   }
 ]
