@@ -5,6 +5,7 @@
       "/about/MoiraChiong.html",
       "/about/AudreyBertin.html",
       "/about/DannyHolt.html",
+      "/about/EliBoahen_HW1_About_Me.html",
       "/about/GabrielleRoman.html",
       "/about/HunterMajorAboutMe.html",
       "/about/JocelynLutes.html",
@@ -26,6 +27,8 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/EliBoahen_HW1_About_Me.html",
+      "/posts/EliBoahen_Tutorial_1.html",
       "/posts/matt_zambetti_hw3.html",
       "/posts/challenge9_ShuqiHong.html",
       "/posts/HW3_huntermajor.html",
@@ -84,7 +87,6 @@
       "/posts/challenge3_ShuqiHong.html",
       "/posts/challenge1_Moira_latest.html",
       "/posts/challenge1_solution_SRP.html",
-      "/posts/challenge2_solutions.html",
       "/posts/LinusJen_challenge2.html",
       "/posts/challenge1_GabrielleRoman.html",
       "/posts/challenge1_noahdixon.html",
@@ -157,6 +159,7 @@
       "/posts/challenge3_Zhongyue_Lin.html",
       "/posts/challenge2_solution_SRP.html",
       "/posts/challenge2_Moira_latest.html",
+      "/posts/challenge2_solutions.html",
       "/posts/AudreyBertin_Challenge3.html",
       "/posts/challenge2_ShuqiHong.html",
       "/posts/challenge_2_Prasann_Desai.html",

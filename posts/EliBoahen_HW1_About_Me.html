@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Contributors</title>
+<title>Eli Boahen</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,30 +20,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./images/DACSS_Round_Network.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/DACSS_Round_Network.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -64,57 +95,25 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-image','listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      page: 18,
-    pagination: { item: "<li class='page-item'><a class='page page-link' href='#'></a></li>" },
-      searchColumns: ["listing-title","listing-author","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<meta name="twitter:title" content="Contributors">
-<meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://dacss.github.io/DACSS_601_Summer2023_Sec1/about/images/AudreyBertin.jpeg">
+<meta name="twitter:title" content="Eli Boahen">
+<meta name="twitter:description" content="( they / them )">
+<meta name="twitter:image" content="https://dacss.github.io/DACSS_601_Summer2023_Sec1/posts/images/Eli_Boahen_Blog_Image.jpg">
 <meta name="twitter:creator" content="@UMassDACSS">
 <meta name="twitter:site" content="@UMassDACSS">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="nav-fixed">
+<body class="floating nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./images/UMass White Wordmark Horiz.png" alt="" class="navbar-logo">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="" class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -128,7 +127,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Summer 2023 Posts</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="../about.html" rel="" target="">
  <span class="menu-text">Contributors</span></a>
   </li>  
   <li class="nav-item">
@@ -151,323 +150,93 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    </div>
-<!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Contributors</h1>
-</div>
-
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-</header>
-
-<p>Find out more about our DACSS students who contributed to the blog.</p>
-
-
-
-
-<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-listing-file-modified-sort="1688278204718" data-listing-reading-time-sort="2">
-<a href="./about/MoiraChiong.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-AboutMe_MoiraChiong
-</h5>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="1" data-listing-file-modified-sort="1688278204718" data-listing-reading-time-sort="2">
-<a href="./about/AudreyBertin.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img src="./about/images/AudreyBertin.jpeg" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Audrey Bertin
-</h5>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="2" data-listing-file-modified-sort="1688278204718" data-listing-reading-time-sort="1">
-<a href="./about/DannyHolt.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img src="./about/images/YourName.jpeg" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Danny Holt
-</h5>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="3" data-listing-file-modified-sort="1688278204718" data-listing-reading-time-sort="2">
-<a href="./about/EliBoahen_HW1_About_Me.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img src="./about/images/Eli_Boahen_Blog_Image.jpg" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Eli Boahen
-</h5>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="4" data-listing-file-modified-sort="1688278204718" data-listing-reading-time-sort="1">
-<a href="./about/GabrielleRoman.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img src="./about/images/Pumpkin.JPG" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Gabrielle Roman
-</h5>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="5" data-listing-file-modified-sort="1688278204718" data-listing-reading-time-sort="1">
-<a href="./about/HunterMajorAboutMe.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img src="./about/images/HunterMajor.jpeg" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Hunter Major
-</h5>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="6" data-listing-file-modified-sort="1688278204718" data-listing-reading-time-sort="2">
-<a href="./about/JocelynLutes.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img src="./about/images/JocelynLutes.JPG" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Jocelyn Lutes
-</h5>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="7" data-listing-file-modified-sort="1688278204718" data-listing-reading-time-sort="2">
-<a href="./about/LinusJen.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img src="./about/images/LinusJen.jpg" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Linus Jen
-</h5>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="8" data-listing-file-modified-sort="1688278204718" data-listing-reading-time-sort="1">
-<a href="./about/MattZambetti.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img src="./about/images/matt_zambetti.jpg" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Matt Zambetti
-</h5>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="9" data-listing-file-modified-sort="1688278204718" data-listing-reading-time-sort="1">
-<a href="./about/NayaabKazmi.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img src="./about/images/NayaabKazmi.jpeg" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Nayaab Kazmi
-</h5>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="10" data-listing-file-modified-sort="1688278204718" data-listing-reading-time-sort="1">
-<a href="./about/NoahDixon.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img src="./about/images/NoahDixon.jpeg" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Noah Dixon
-</h5>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="11" data-listing-file-modified-sort="1688278204718" data-listing-reading-time-sort="1">
-<a href="./about/PrasannDesai.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img src="./about/images/prasann_ozil.jpg" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Prasann Desai
-</h5>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="12" data-listing-file-modified-sort="1688278204718" data-listing-reading-time-sort="1">
-<a href="./about/SeanConway.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img src="./about/images/sean_conway.jpeg" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Sean Conway
-</h5>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="13" data-listing-file-modified-sort="1688278204718" data-listing-reading-time-sort="1">
-<a href="./about/ShreyaVarma.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img src="./about/images/Shre.jpeg" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Shreya Varma
-</h5>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="14" data-listing-file-modified-sort="1688278204718" data-listing-reading-time-sort="1">
-<a href="./about/ShuqiHong.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img src="./about/ShuqiHong.jpg" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Shuqi Hong
-</h5>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="15" data-listing-file-modified-sort="1688278204718" data-listing-reading-time-sort="3">
-<a href="./about/AboutSusannahPoland.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img src="./about/images/SusannahPolandPic.jpeg" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Susannah Reed Poland
-</h5>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="16" data-listing-file-modified-sort="1688278204718" data-listing-reading-time-sort="2">
-<a href="./about/HW1_SuyashBhagwat.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img src="./about/images/SuyashBhagwat_profilePic.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Suyash Bhagwat
-</h5>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="17" data-listing-file-modified-sort="1688278204718" data-listing-reading-time-sort="1">
-<a href="./about/TenzinLatoe.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img src="./about/images/Panda.jpeg" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Tenzin Latoe
-</h5>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="18" data-listing-file-modified-sort="1688278204718" data-listing-reading-time-sort="1">
-<a href="./about/XinpengLiu.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img data-src="./about/images/xinpengliu.jpg" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Xinpeng Liu
-</h5>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="19" data-listing-file-modified-sort="1688278204718" data-listing-reading-time-sort="2">
-<a href="./about/Zhongyue Lin.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img data-src="./about/images/Zhongyue Lin.jpeg" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Zhongyue Lin
-</h5>
-</div>
-</div>
-</a>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-<nav id="listing-pagination" class="listing-pagination" aria-label="Page Navigation">
-  <ul class="pagination"></ul>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+  <ul>
+  <li><a href="#introductions" id="toc-introductions" class="nav-link active" data-scroll-target="#introductions">Introductions</a></li>
+  <li><a href="#educationwork-background" id="toc-educationwork-background" class="nav-link" data-scroll-target="#educationwork-background">Education/Work Background</a></li>
+  <li><a href="#r-experience" id="toc-r-experience" class="nav-link" data-scroll-target="#r-experience">R experience</a></li>
+  <li><a href="#research-interests" id="toc-research-interests" class="nav-link" data-scroll-target="#research-interests">Research interests</a></li>
+  <li><a href="#hometown" id="toc-hometown" class="nav-link" data-scroll-target="#hometown">Hometown</a></li>
+  <li><a href="#hobbies" id="toc-hobbies" class="nav-link" data-scroll-target="#hobbies">Hobbies</a></li>
+  <li><a href="#fun-fact" id="toc-fun-fact" class="nav-link" data-scroll-target="#fun-fact">Fun fact</a></li>
+  </ul>
 </nav>
-</div></main> <!-- /main -->
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<div class="quarto-about-solana column-body">
+  <div class="about-entity">
+    <div class="entity-contents">
+      <header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Eli Boahen</h1>
+<p class="subtitle lead">( they / them )</p>
+</div>
+<div class="quarto-title-meta">
+  </div>
+</header> <div class="about-links">
+  <a href="https://github.com/ElizBoahen" class="about-link" rel="" target="">
+    <i class="bi bi-github"></i>
+     <span class="about-link-text">Github</span>
+  </a>
+</div>
+      <div class="about-contents"><main class="content" id="quarto-document-content">
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Received an error message from Github bot "This is Sidharth's bot - Please render your challenge qmd file in post folder to generate freeze files" so I created a duplicate file. The file in the about folder works smoothly.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="introductions" class="level2">
+<h2 data-anchor-id="introductions">Introductions</h2>
+<blockquote class="blockquote">
+<p>Hi, I’m Eli</p>
+</blockquote>
+<p>I’m new to grad school and looking for global and domestic opportunities to change technology</p>
+</section>
+<section id="educationwork-background" class="level2">
+<h2 data-anchor-id="educationwork-background">Education/Work Background</h2>
+<blockquote class="blockquote">
+<p>Undergrad at Smith College as a STEM Posse 2 Scholar</p>
+</blockquote>
+<p>I did a self Designed major in Arts and Technology, combining Computer Science, Engineering, Art, and Design into one field of study. I believe that IDP ( interdisciplinary ) is an amazing way to not only problem solve, but verify a problem in the first place.</p>
+</section>
+<section id="r-experience" class="level2">
+<h2 data-anchor-id="r-experience">R experience</h2>
+<p>I took DACSS 601 in the Spring, then I did an ISSR Workshop this summer ( Hi Techaer Fei! ).</p>
+</section>
+<section id="research-interests" class="level2">
+<h2 data-anchor-id="research-interests">Research interests</h2>
+<blockquote class="blockquote">
+<p>AI and Data Ethics | Cyborg Anthropology | HCI | Technoliteracy</p>
+</blockquote>
+<p>I want to work in the IOT and assistant device space to create technology that supports user well being as well as autonomy. I would like to work in industry, though everyday a PhD sounds more and more tempting. Ultimately, I want to improve the course of future-tech.</p>
+<p>I am interested in the IOT and assistive device space because of its privacy, security, and autonomy challenges. There are overlaps with robotics, digital media, and the health sector! However other the course of this masters, I’ve taken an interest in technoliteracy.</p>
+<p>I’ve enjoyed improving digital experiences through design, now I want to use data to build and advocate for those experiences. Technoliteracy effects access, autonomy, and blurs consent when it comes to technology–and blurred consent s not true consent. Through research, projects, and initiatives, I hope to change the current status quo.</p>
+</section>
+<section id="hometown" class="level2">
+<h2 data-anchor-id="hometown">Hometown</h2>
+<p>New York City</p>
+</section>
+<section id="hobbies" class="level2">
+<h2 data-anchor-id="hobbies">Hobbies</h2>
+<p>I love my houseplants, DIY, listening to music, and I study Japanese with my friend.</p>
+</section>
+<section id="fun-fact" class="level2">
+<h2 data-anchor-id="fun-fact">Fun fact</h2>
+<p>I’m Ghanaian-American and I love okonomiyaki</p>
+
+
+</section>
+</main></div>
+    </div>
+    <img src="images/Eli_Boahen_Blog_Image.jpg" class="about-image
+  round " style="height: 15em; width: 15em;">
+  </div>
+</div>
+ <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -603,13 +372,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   } else {
     toggleColorMode(false);
   }
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
   const isCodeAnnotation = (el) => {
     for (const clz of el.classList) {
       if (clz.startsWith('code-annotation-')) {                     
@@ -815,6 +577,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
+</script>
+<script src="https://giscus.app/client.js" data-repo="DACSS/SummerCommentRepo" data-repo-id="R_kgDOJrwrQw" data-category="Announcements" data-category-id="DIC_kwDOJrwrQ84CW_wq" data-mapping="url" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
 </script>
 </div> <!-- /content -->
 
