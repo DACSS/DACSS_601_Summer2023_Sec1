@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Susannah Reed Poland">
+<meta name="dcterms.date" content="2023-07-02">
+<meta name="description" content="Joining Data">
+
+<title>Challenge 8 Solution</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/DACSS_Round_Network.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+<link href="../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+
+<meta name="twitter:title" content="Challenge 8 Solution">
+<meta name="twitter:description" content="Joining Data">
+<meta name="twitter:image" content="https://dacss.github.io/DACSS_601_Summer2023_Sec1/posts/challenge8_solution_SRP_files/figure-html/unnamed-chunk-8-1.png">
+<meta name="twitter:creator" content="@UMassDACSS">
+<meta name="twitter:site" content="@UMassDACSS">
+<meta name="twitter:image-height" content="960">
+<meta name="twitter:image-width" content="1344">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://dacss.github.io/DACSS_601_Summer2023_Sec1/" rel="" target="">
+ <span class="menu-text">Summer 2023 Posts</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html" rel="" target="">
+ <span class="menu-text">Contributors</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://umass.edu/sbs/dacss" rel="" target="">
+ <span class="menu-text">DACSS</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://dacss.github.io/DACSS_601_Summer2023_Sec1/" rel="" target=""><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#read-in-the-military-marital-status-dataset-and-tidy" id="toc-read-in-the-military-marital-status-dataset-and-tidy" class="nav-link active" data-scroll-target="#read-in-the-military-marital-status-dataset-and-tidy">Read in the Military Marital Status dataset and tidy</a></li>
+  <li><a href="#join-sheets-or-merge-data-from-all-sheets-into-one-dataframe" id="toc-join-sheets-or-merge-data-from-all-sheets-into-one-dataframe" class="nav-link" data-scroll-target="#join-sheets-or-merge-data-from-all-sheets-into-one-dataframe">Join sheets (or, merge data from all sheets into one dataframe)</a></li>
+  <li><a href="#demonstrate-that-we-can-analyze-the-whole-dataset" id="toc-demonstrate-that-we-can-analyze-the-whole-dataset" class="nav-link" data-scroll-target="#demonstrate-that-we-can-analyze-the-whole-dataset">Demonstrate that we can analyze the whole dataset</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Challenge 8 Solution</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">challenge_8</div>
+    <div class="quarto-category">military_marriages</div>
+    <div class="quarto-category">Susannah Reed Poland</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Joining Data
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Susannah Reed Poland </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 2, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="read-in-the-military-marital-status-dataset-and-tidy" class="level2">
+<h2 class="anchored" data-anchor-id="read-in-the-military-marital-status-dataset-and-tidy">Read in the Military Marital Status dataset and tidy</h2>
+<p>Read in one the “Military Marital Status” dataset, and tidy it in preparation for wrangling. This dataset is an excel workbook that is spread across several sheets, so I will need to join sheets together to create a single dataframe for analysis.</p>
+<p>THe Military Marital Status dataset contains information on all activie military members in April of 2010. It classifies each member by marital and family status, and groups them by their respective branch of government. It also provides data on the military as whole, as a kind of “cover sheet”. The following sheets represent the same classifications for each of branches: Air Force, Marine Corps, Navy, and Army.</p>
+<p>From inspection, I can see that the spreadsheet title and other metadata span 7 rows, and the data actually begin on row 9, so will need to skip 7 or 8 rows as I read it in. (Column headers span 2 rows, so I will need to collapse them into 1.) The values represent the number of employees that fall into various categories. The categories are created by the variables: Pay Grade Type, Pay Grade Level, Marital Status, Parent, Spouse affiliation, and Gender.</p>
+<p>To tidy the data, I will want to delete the “total” columns and rename the other variables so that each designates the gender with the respective variable. I will also collapse the Spouse and Parent variables.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a vector with the desired column names, and label the ones to be deleted as "delete"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>marital_status_cols<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"delete"</span>, <span class="st">"payGrade_payLevel"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>            <span class="st">"single_nokids_male"</span>, <span class="st">"single_nokids_female"</span>, <span class="st">"delete"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>            <span class="st">"single_kids_male"</span>, <span class="st">"single_kids_female"</span>, <span class="st">"delete"</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>            <span class="st">"married_military_male"</span>, <span class="st">"married_military_female"</span>, <span class="st">"delete"</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">"married_civilian_male"</span>, <span class="st">"married_civilian_female"</span>, <span class="st">"delete"</span>, <span class="st">"delete"</span>, <span class="st">"delete"</span>, <span class="st">"delete"</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>mm_orig<span class="ot">&lt;-</span><span class="fu">read_excel</span>(<span class="st">"_data/ActiveDuty_MaritalStatus.xls"</span>, <span class="at">skip=</span><span class="dv">8</span>, <span class="at">col_names=</span>marital_status_cols)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#check out the new headers: </span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>mm_orig<span class="sc">%&gt;%</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["delete...1"],"name":[1],"type":["chr"],"align":["left"]},{"label":["payGrade_payLevel"],"name":[2],"type":["chr"],"align":["left"]},{"label":["single_nokids_male"],"name":[3],"type":["chr"],"align":["left"]},{"label":["single_nokids_female"],"name":[4],"type":["chr"],"align":["left"]},{"label":["delete...5"],"name":[5],"type":["chr"],"align":["left"]},{"label":["single_kids_male"],"name":[6],"type":["chr"],"align":["left"]},{"label":["single_kids_female"],"name":[7],"type":["chr"],"align":["left"]},{"label":["delete...8"],"name":[8],"type":["chr"],"align":["left"]},{"label":["married_military_male"],"name":[9],"type":["chr"],"align":["left"]},{"label":["married_military_female"],"name":[10],"type":["chr"],"align":["left"]},{"label":["delete...11"],"name":[11],"type":["chr"],"align":["left"]},{"label":["married_civilian_male"],"name":[12],"type":["chr"],"align":["left"]},{"label":["married_civilian_female"],"name":[13],"type":["chr"],"align":["left"]},{"label":["delete...14"],"name":[14],"type":["chr"],"align":["left"]},{"label":["delete...15"],"name":[15],"type":["chr"],"align":["left"]},{"label":["delete...16"],"name":[16],"type":["chr"],"align":["left"]},{"label":["delete...17"],"name":[17],"type":["chr"],"align":["left"]}],"data":[{"1":"NA","2":"Pay Grade","3":"Male","4":"Female","5":"Total","6":"Male","7":"Female","8":"Total","9":"Male","10":"Female","11":"Total","12":"Male","13":"Female","14":"Total","15":"Male","16":"Female","17":"Total"},{"1":"NA","2":"E-1","3":"31229","4":"5717","5":"36946","6":"563","7":"122","8":"685","9":"139","10":"141","11":"280","12":"5060","13":"719","14":"5779","15":"36991","16":"6699","17":"43690"},{"1":"NA","2":"E-2","3":"53094","4":"8388","5":"61482","6":"1457","7":"275","8":"1732","9":"438","10":"579","11":"1017","12":"12483","13":"1682","14":"14165","15":"67472","16":"10924","17":"78396"},{"1":"NA","2":"E-3","3":"131091","4":"21019","5":"152110","6":"4264","7":"1920","8":"6184","9":"3579","10":"4902","11":"8481","12":"54795","13":"6641","14":"61436","15":"193729","16":"34482","17":"228211"},{"1":"NA","2":"E-4","3":"112710","4":"16381","5":"129091","6":"9491","7":"4662","8":"14153","9":"8661","10":"9778","11":"18439","12":"105556","13":"9961","14":"115517","15":"236418","16":"40782","17":"277200"},{"1":"NA","2":"E-5","3":"57989","4":"11021","5":"69010","6":"10937","7":"6576","8":"17513","9":"12459","10":"11117","11":"23576","12":"130944","13":"8592","14":"139536","15":"212329","16":"37306","17":"249635"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>I can now delete the old header row, and the columns that contain the totaled values, which I won’t need in my analysis.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#delete 1st row (old header) </span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>mm_tidy_sheet<span class="ot">&lt;-</span>mm_orig[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>),]<span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">starts_with</span>(<span class="st">"delete"</span>))<span class="sc">%&gt;%</span> <span class="co">#select all columns that are NOT "delete"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(payGrade_payLevel, <span class="st">"TOTAL"</span>, <span class="at">negate=</span><span class="cn">TRUE</span>)) <span class="co">#negate=true will invert this function, so that filter OUT the "total" columns</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>mm_tidy_sheet<span class="sc">%&gt;%</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["payGrade_payLevel"],"name":[1],"type":["chr"],"align":["left"]},{"label":["single_nokids_male"],"name":[2],"type":["chr"],"align":["left"]},{"label":["single_nokids_female"],"name":[3],"type":["chr"],"align":["left"]},{"label":["single_kids_male"],"name":[4],"type":["chr"],"align":["left"]},{"label":["single_kids_female"],"name":[5],"type":["chr"],"align":["left"]},{"label":["married_military_male"],"name":[6],"type":["chr"],"align":["left"]},{"label":["married_military_female"],"name":[7],"type":["chr"],"align":["left"]},{"label":["married_civilian_male"],"name":[8],"type":["chr"],"align":["left"]},{"label":["married_civilian_female"],"name":[9],"type":["chr"],"align":["left"]}],"data":[{"1":"E-1","2":"31229","3":"5717","4":"563","5":"122","6":"139","7":"141","8":"5060","9":"719"},{"1":"E-2","2":"53094","3":"8388","4":"1457","5":"275","6":"438","7":"579","8":"12483","9":"1682"},{"1":"E-3","2":"131091","3":"21019","4":"4264","5":"1920","6":"3579","7":"4902","8":"54795","9":"6641"},{"1":"E-4","2":"112710","3":"16381","4":"9491","5":"4662","6":"8661","7":"9778","8":"105556","9":"9961"},{"1":"E-5","2":"57989","3":"11021","4":"10937","5":"6576","6":"12459","7":"11117","8":"130944","9":"8592"},{"1":"E-6","2":"19125","3":"4654","4":"10369","5":"4962","6":"8474","7":"6961","8":"110322","9":"5827"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>Now I can pivot the Marital, Other, and Gender columns into rows, and put their values in a “count” column. I can also separate out pay grade and pay level.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mm_tidy_long <span class="ot">&lt;-</span>mm_tidy_sheet <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#pivot with every column except for the first column</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span><span class="dv">1</span>, </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#these are the only distinct categories remaining</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"Marital"</span>, <span class="st">"Other"</span>, <span class="st">"Gender"</span>),</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_sep =</span> <span class="st">"_"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"count"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#separate pay grades and pay levels into their own columns</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(payGrade_payLevel, </span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"payGrade"</span>, <span class="st">"payLevel"</span>),</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>           <span class="at">sep=</span><span class="st">"-"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#make these values more readable -- we could also have used "recode" </span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">payGrade =</span> <span class="fu">case_when</span>( </span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    payGrade <span class="sc">==</span> <span class="st">"E"</span> <span class="sc">~</span> <span class="st">"Enlisted"</span>,</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    payGrade <span class="sc">==</span> <span class="st">"O"</span> <span class="sc">~</span> <span class="st">"Officer"</span>,</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    payGrade <span class="sc">==</span> <span class="st">"W"</span> <span class="sc">~</span> <span class="st">"Warrant Officer"</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>mm_tidy_long<span class="sc">%&gt;%</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["payGrade"],"name":[1],"type":["chr"],"align":["left"]},{"label":["payLevel"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Marital"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Other"],"name":[4],"type":["chr"],"align":["left"]},{"label":["Gender"],"name":[5],"type":["chr"],"align":["left"]},{"label":["count"],"name":[6],"type":["chr"],"align":["left"]}],"data":[{"1":"Enlisted","2":"1","3":"single","4":"nokids","5":"male","6":"31229"},{"1":"Enlisted","2":"1","3":"single","4":"nokids","5":"female","6":"5717"},{"1":"Enlisted","2":"1","3":"single","4":"kids","5":"male","6":"563"},{"1":"Enlisted","2":"1","3":"single","4":"kids","5":"female","6":"122"},{"1":"Enlisted","2":"1","3":"married","4":"military","5":"male","6":"139"},{"1":"Enlisted","2":"1","3":"married","4":"military","5":"female","6":"141"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>The data of the first sheet are now tidy and relatively readable.</p>
+</section>
+<section id="join-sheets-or-merge-data-from-all-sheets-into-one-dataframe" class="level2">
+<h2 class="anchored" data-anchor-id="join-sheets-or-merge-data-from-all-sheets-into-one-dataframe">Join sheets (or, merge data from all sheets into one dataframe)</h2>
+<p>To join the data of the various sheets, I need to create a function that will run all the arguments that I just performed on the 1st sheet on any sheet in the workbook. The command “sheet_name” will stand in for any sheet in the workbook.</p>
+<p>As I read in the data, I can tell read_excel to call the name of each sheet “sheet_name”. This allows us to create a column with values that are the name of the given sheet.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#sheet_name becomes an argument or command that can be applied to any sheet </span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>read_mm<span class="ot">&lt;-</span><span class="cf">function</span>(sheet_name){</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  dat <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"_data/ActiveDuty_MaritalStatus.xls"</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#the name of each sheet is stored as "sheet_name" </span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">sheet =</span> sheet_name,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">skip=</span><span class="dv">9</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">col_names =</span> marital_status_cols</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>             )<span class="sc">%&gt;%</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#branch will be a new column with the sheet name (which indicates the branch of the military for each member listed)</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">branch=</span>sheet_name) <span class="sc">%&gt;%</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">!</span><span class="fu">starts_with</span>(<span class="st">"delete"</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="fu">str_detect</span>(payGrade_payLevel, <span class="st">"TOTAL"</span>, <span class="at">negate=</span><span class="cn">TRUE</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">contains</span>(<span class="fu">c</span>(<span class="st">"male"</span>, <span class="st">"female"</span>)),</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>                 <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"Marital"</span>, <span class="st">"Other"</span>, <span class="st">"Gender"</span>),</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>                 <span class="at">names_sep =</span> <span class="st">"_"</span>,</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>                 <span class="at">values_to =</span> <span class="st">"count"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">separate</span>(payGrade_payLevel, </span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>             <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"payGrade"</span>, <span class="st">"payLevel"</span>),</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>             <span class="at">sep=</span><span class="st">"-"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">payGrade =</span> <span class="fu">case_when</span>(</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>      payGrade <span class="sc">==</span> <span class="st">"E"</span> <span class="sc">~</span> <span class="st">"Enlisted"</span>,</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>      payGrade <span class="sc">==</span> <span class="st">"O"</span> <span class="sc">~</span> <span class="st">"Officer"</span>,</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>      payGrade <span class="sc">==</span> <span class="st">"W"</span> <span class="sc">~</span> <span class="st">"Warrant Officer"</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(dat)</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>I will create a vector of sheet names to run through the new function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>mm_sheet_names<span class="ot">&lt;-</span><span class="fu">excel_sheets</span>(<span class="st">"_data/ActiveDuty_MaritalStatus.xls"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>mm_sheet_names</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "TotalDoD"    "AirForce"    "MarineCorps" "Navy"        "Army"       </code></pre>
+</div>
+</div>
+<p>Now I can use map_dfr from the purrr package to join the sheets into a single dataframe. “dfr” indicates data frame rows, and implies the action: the function will add the list elements created by purrr as rows in a single dataframe.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#make sure that purrr is loaded </span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#create a new sheet, mm_all_sheets, that is the joint of all the sheets in Military Marital Status that have been transformed by the new function read_mm</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>mm_all_sheets<span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(<span class="fu">excel_sheets</span>(<span class="st">"_data/ActiveDuty_MaritalStatus.xls"</span>)[<span class="sc">-</span><span class="dv">1</span>],read_mm)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>mm_all_sheets</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["payGrade"],"name":[1],"type":["chr"],"align":["left"]},{"label":["payLevel"],"name":[2],"type":["chr"],"align":["left"]},{"label":["branch"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Marital"],"name":[4],"type":["chr"],"align":["left"]},{"label":["Other"],"name":[5],"type":["chr"],"align":["left"]},{"label":["Gender"],"name":[6],"type":["chr"],"align":["left"]},{"label":["count"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"Enlisted","2":"1","3":"AirForce","4":"single","5":"nokids","6":"male","7":"7721"},{"1":"Enlisted","2":"1","3":"AirForce","4":"single","5":"nokids","6":"female","7":"1550"},{"1":"Enlisted","2":"1","3":"AirForce","4":"single","5":"kids","6":"male","7":"27"},{"1":"Enlisted","2":"1","3":"AirForce","4":"single","5":"kids","6":"female","7":"5"},{"1":"Enlisted","2":"1","3":"AirForce","4":"married","5":"military","6":"male","7":"49"},{"1":"Enlisted","2":"1","3":"AirForce","4":"married","5":"military","6":"female","7":"27"},{"1":"Enlisted","2":"1","3":"AirForce","4":"married","5":"civilian","6":"male","7":"1064"},{"1":"Enlisted","2":"1","3":"AirForce","4":"married","5":"civilian","6":"female","7":"178"},{"1":"Enlisted","2":"2","3":"AirForce","4":"single","5":"nokids","6":"male","7":"4380"},{"1":"Enlisted","2":"2","3":"AirForce","4":"single","5":"nokids","6":"female","7":"1010"},{"1":"Enlisted","2":"2","3":"AirForce","4":"single","5":"kids","6":"male","7":"33"},{"1":"Enlisted","2":"2","3":"AirForce","4":"single","5":"kids","6":"female","7":"9"},{"1":"Enlisted","2":"2","3":"AirForce","4":"married","5":"military","6":"male","7":"97"},{"1":"Enlisted","2":"2","3":"AirForce","4":"married","5":"military","6":"female","7":"105"},{"1":"Enlisted","2":"2","3":"AirForce","4":"married","5":"civilian","6":"male","7":"802"},{"1":"Enlisted","2":"2","3":"AirForce","4":"married","5":"civilian","6":"female","7":"163"},{"1":"Enlisted","2":"3","3":"AirForce","4":"single","5":"nokids","6":"male","7":"29725"},{"1":"Enlisted","2":"3","3":"AirForce","4":"single","5":"nokids","6":"female","7":"7108"},{"1":"Enlisted","2":"3","3":"AirForce","4":"single","5":"kids","6":"male","7":"396"},{"1":"Enlisted","2":"3","3":"AirForce","4":"single","5":"kids","6":"female","7":"266"},{"1":"Enlisted","2":"3","3":"AirForce","4":"married","5":"military","6":"male","7":"1258"},{"1":"Enlisted","2":"3","3":"AirForce","4":"married","5":"military","6":"female","7":"1687"},{"1":"Enlisted","2":"3","3":"AirForce","4":"married","5":"civilian","6":"male","7":"10436"},{"1":"Enlisted","2":"3","3":"AirForce","4":"married","5":"civilian","6":"female","7":"1631"},{"1":"Enlisted","2":"4","3":"AirForce","4":"single","5":"nokids","6":"male","7":"20805"},{"1":"Enlisted","2":"4","3":"AirForce","4":"single","5":"nokids","6":"female","7":"4756"},{"1":"Enlisted","2":"4","3":"AirForce","4":"single","5":"kids","6":"male","7":"987"},{"1":"Enlisted","2":"4","3":"AirForce","4":"single","5":"kids","6":"female","7":"842"},{"1":"Enlisted","2":"4","3":"AirForce","4":"married","5":"military","6":"male","7":"3036"},{"1":"Enlisted","2":"4","3":"AirForce","4":"married","5":"military","6":"female","7":"3207"},{"1":"Enlisted","2":"4","3":"AirForce","4":"married","5":"civilian","6":"male","7":"15363"},{"1":"Enlisted","2":"4","3":"AirForce","4":"married","5":"civilian","6":"female","7":"1769"},{"1":"Enlisted","2":"5","3":"AirForce","4":"single","5":"nokids","6":"male","7":"14623"},{"1":"Enlisted","2":"5","3":"AirForce","4":"single","5":"nokids","6":"female","7":"4104"},{"1":"Enlisted","2":"5","3":"AirForce","4":"single","5":"kids","6":"male","7":"2755"},{"1":"Enlisted","2":"5","3":"AirForce","4":"single","5":"kids","6":"female","7":"2171"},{"1":"Enlisted","2":"5","3":"AirForce","4":"married","5":"military","6":"male","7":"6154"},{"1":"Enlisted","2":"5","3":"AirForce","4":"married","5":"military","6":"female","7":"5519"},{"1":"Enlisted","2":"5","3":"AirForce","4":"married","5":"civilian","6":"male","7":"31711"},{"1":"Enlisted","2":"5","3":"AirForce","4":"married","5":"civilian","6":"female","7":"2889"},{"1":"Enlisted","2":"6","3":"AirForce","4":"single","5":"nokids","6":"male","7":"3660"},{"1":"Enlisted","2":"6","3":"AirForce","4":"single","5":"nokids","6":"female","7":"1377"},{"1":"Enlisted","2":"6","3":"AirForce","4":"single","5":"kids","6":"male","7":"2446"},{"1":"Enlisted","2":"6","3":"AirForce","4":"single","5":"kids","6":"female","7":"1449"},{"1":"Enlisted","2":"6","3":"AirForce","4":"married","5":"military","6":"male","7":"3654"},{"1":"Enlisted","2":"6","3":"AirForce","4":"married","5":"military","6":"female","7":"3263"},{"1":"Enlisted","2":"6","3":"AirForce","4":"married","5":"civilian","6":"male","7":"23868"},{"1":"Enlisted","2":"6","3":"AirForce","4":"married","5":"civilian","6":"female","7":"2026"},{"1":"Enlisted","2":"7","3":"AirForce","4":"single","5":"nokids","6":"male","7":"1441"},{"1":"Enlisted","2":"7","3":"AirForce","4":"single","5":"nokids","6":"female","7":"617"},{"1":"Enlisted","2":"7","3":"AirForce","4":"single","5":"kids","6":"male","7":"1539"},{"1":"Enlisted","2":"7","3":"AirForce","4":"single","5":"kids","6":"female","7":"734"},{"1":"Enlisted","2":"7","3":"AirForce","4":"married","5":"military","6":"male","7":"2118"},{"1":"Enlisted","2":"7","3":"AirForce","4":"married","5":"military","6":"female","7":"1419"},{"1":"Enlisted","2":"7","3":"AirForce","4":"married","5":"civilian","6":"male","7":"17290"},{"1":"Enlisted","2":"7","3":"AirForce","4":"married","5":"civilian","6":"female","7":"1188"},{"1":"Enlisted","2":"8","3":"AirForce","4":"single","5":"nokids","6":"male","7":"182"},{"1":"Enlisted","2":"8","3":"AirForce","4":"single","5":"nokids","6":"female","7":"139"},{"1":"Enlisted","2":"8","3":"AirForce","4":"single","5":"kids","6":"male","7":"236"},{"1":"Enlisted","2":"8","3":"AirForce","4":"single","5":"kids","6":"female","7":"110"},{"1":"Enlisted","2":"8","3":"AirForce","4":"married","5":"military","6":"male","7":"505"},{"1":"Enlisted","2":"8","3":"AirForce","4":"married","5":"military","6":"female","7":"241"},{"1":"Enlisted","2":"8","3":"AirForce","4":"married","5":"civilian","6":"male","7":"3655"},{"1":"Enlisted","2":"8","3":"AirForce","4":"married","5":"civilian","6":"female","7":"228"},{"1":"Enlisted","2":"9","3":"AirForce","4":"single","5":"nokids","6":"male","7":"83"},{"1":"Enlisted","2":"9","3":"AirForce","4":"single","5":"nokids","6":"female","7":"48"},{"1":"Enlisted","2":"9","3":"AirForce","4":"single","5":"kids","6":"male","7":"106"},{"1":"Enlisted","2":"9","3":"AirForce","4":"single","5":"kids","6":"female","7":"39"},{"1":"Enlisted","2":"9","3":"AirForce","4":"married","5":"military","6":"male","7":"204"},{"1":"Enlisted","2":"9","3":"AirForce","4":"married","5":"military","6":"female","7":"73"},{"1":"Enlisted","2":"9","3":"AirForce","4":"married","5":"civilian","6":"male","7":"1975"},{"1":"Enlisted","2":"9","3":"AirForce","4":"married","5":"civilian","6":"female","7":"108"},{"1":"Officer","2":"1","3":"AirForce","4":"single","5":"nokids","6":"male","7":"3831"},{"1":"Officer","2":"1","3":"AirForce","4":"single","5":"nokids","6":"female","7":"1068"},{"1":"Officer","2":"1","3":"AirForce","4":"single","5":"kids","6":"male","7":"45"},{"1":"Officer","2":"1","3":"AirForce","4":"single","5":"kids","6":"female","7":"43"},{"1":"Officer","2":"1","3":"AirForce","4":"married","5":"military","6":"male","7":"182"},{"1":"Officer","2":"1","3":"AirForce","4":"married","5":"military","6":"female","7":"265"},{"1":"Officer","2":"1","3":"AirForce","4":"married","5":"civilian","6":"male","7":"1693"},{"1":"Officer","2":"1","3":"AirForce","4":"married","5":"civilian","6":"female","7":"211"},{"1":"Officer","2":"2","3":"AirForce","4":"single","5":"nokids","6":"male","7":"2710"},{"1":"Officer","2":"2","3":"AirForce","4":"single","5":"nokids","6":"female","7":"819"},{"1":"Officer","2":"2","3":"AirForce","4":"single","5":"kids","6":"male","7":"63"},{"1":"Officer","2":"2","3":"AirForce","4":"single","5":"kids","6":"female","7":"45"},{"1":"Officer","2":"2","3":"AirForce","4":"married","5":"military","6":"male","7":"381"},{"1":"Officer","2":"2","3":"AirForce","4":"married","5":"military","6":"female","7":"472"},{"1":"Officer","2":"2","3":"AirForce","4":"married","5":"civilian","6":"male","7":"2443"},{"1":"Officer","2":"2","3":"AirForce","4":"married","5":"civilian","6":"female","7":"310"},{"1":"Officer","2":"3","3":"AirForce","4":"single","5":"nokids","6":"male","7":"4035"},{"1":"Officer","2":"3","3":"AirForce","4":"single","5":"nokids","6":"female","7":"1642"},{"1":"Officer","2":"3","3":"AirForce","4":"single","5":"kids","6":"male","7":"338"},{"1":"Officer","2":"3","3":"AirForce","4":"single","5":"kids","6":"female","7":"295"},{"1":"Officer","2":"3","3":"AirForce","4":"married","5":"military","6":"male","7":"1378"},{"1":"Officer","2":"3","3":"AirForce","4":"married","5":"military","6":"female","7":"1256"},{"1":"Officer","2":"3","3":"AirForce","4":"married","5":"civilian","6":"male","7":"11841"},{"1":"Officer","2":"3","3":"AirForce","4":"married","5":"civilian","6":"female","7":"1436"},{"1":"Officer","2":"4","3":"AirForce","4":"single","5":"nokids","6":"male","7":"1077"},{"1":"Officer","2":"4","3":"AirForce","4":"single","5":"nokids","6":"female","7":"597"},{"1":"Officer","2":"4","3":"AirForce","4":"single","5":"kids","6":"male","7":"293"},{"1":"Officer","2":"4","3":"AirForce","4":"single","5":"kids","6":"female","7":"191"},{"1":"Officer","2":"4","3":"AirForce","4":"married","5":"military","6":"male","7":"969"},{"1":"Officer","2":"4","3":"AirForce","4":"married","5":"military","6":"female","7":"655"},{"1":"Officer","2":"4","3":"AirForce","4":"married","5":"civilian","6":"male","7":"9545"},{"1":"Officer","2":"4","3":"AirForce","4":"married","5":"civilian","6":"female","7":"995"},{"1":"Officer","2":"5","3":"AirForce","4":"single","5":"nokids","6":"male","7":"425"},{"1":"Officer","2":"5","3":"AirForce","4":"single","5":"nokids","6":"female","7":"300"},{"1":"Officer","2":"5","3":"AirForce","4":"single","5":"kids","6":"male","7":"212"},{"1":"Officer","2":"5","3":"AirForce","4":"single","5":"kids","6":"female","7":"94"},{"1":"Officer","2":"5","3":"AirForce","4":"married","5":"military","6":"male","7":"590"},{"1":"Officer","2":"5","3":"AirForce","4":"married","5":"military","6":"female","7":"321"},{"1":"Officer","2":"5","3":"AirForce","4":"married","5":"civilian","6":"male","7":"7608"},{"1":"Officer","2":"5","3":"AirForce","4":"married","5":"civilian","6":"female","7":"607"},{"1":"Officer","2":"6","3":"AirForce","4":"single","5":"nokids","6":"male","7":"101"},{"1":"Officer","2":"6","3":"AirForce","4":"single","5":"nokids","6":"female","7":"107"},{"1":"Officer","2":"6","3":"AirForce","4":"single","5":"kids","6":"male","7":"67"},{"1":"Officer","2":"6","3":"AirForce","4":"single","5":"kids","6":"female","7":"20"},{"1":"Officer","2":"6","3":"AirForce","4":"married","5":"military","6":"male","7":"174"},{"1":"Officer","2":"6","3":"AirForce","4":"married","5":"military","6":"female","7":"58"},{"1":"Officer","2":"6","3":"AirForce","4":"married","5":"civilian","6":"male","7":"3015"},{"1":"Officer","2":"6","3":"AirForce","4":"married","5":"civilian","6":"female","7":"230"},{"1":"Officer","2":"7","3":"AirForce","4":"single","5":"nokids","6":"male","7":"0"},{"1":"Officer","2":"7","3":"AirForce","4":"single","5":"nokids","6":"female","7":"2"},{"1":"Officer","2":"7","3":"AirForce","4":"single","5":"kids","6":"male","7":"1"},{"1":"Officer","2":"7","3":"AirForce","4":"single","5":"kids","6":"female","7":"0"},{"1":"Officer","2":"7","3":"AirForce","4":"married","5":"military","6":"male","7":"5"},{"1":"Officer","2":"7","3":"AirForce","4":"married","5":"military","6":"female","7":"5"},{"1":"Officer","2":"7","3":"AirForce","4":"married","5":"civilian","6":"male","7":"131"},{"1":"Officer","2":"7","3":"AirForce","4":"married","5":"civilian","6":"female","7":"5"},{"1":"Officer","2":"8","3":"AirForce","4":"single","5":"nokids","6":"male","7":"1"},{"1":"Officer","2":"8","3":"AirForce","4":"single","5":"nokids","6":"female","7":"3"},{"1":"Officer","2":"8","3":"AirForce","4":"single","5":"kids","6":"male","7":"0"},{"1":"Officer","2":"8","3":"AirForce","4":"single","5":"kids","6":"female","7":"0"},{"1":"Officer","2":"8","3":"AirForce","4":"married","5":"military","6":"male","7":"4"},{"1":"Officer","2":"8","3":"AirForce","4":"married","5":"military","6":"female","7":"1"},{"1":"Officer","2":"8","3":"AirForce","4":"married","5":"civilian","6":"male","7":"86"},{"1":"Officer","2":"8","3":"AirForce","4":"married","5":"civilian","6":"female","7":"7"},{"1":"Officer","2":"9","3":"AirForce","4":"single","5":"nokids","6":"male","7":"0"},{"1":"Officer","2":"9","3":"AirForce","4":"single","5":"nokids","6":"female","7":"0"},{"1":"Officer","2":"9","3":"AirForce","4":"single","5":"kids","6":"male","7":"0"},{"1":"Officer","2":"9","3":"AirForce","4":"single","5":"kids","6":"female","7":"0"},{"1":"Officer","2":"9","3":"AirForce","4":"married","5":"military","6":"male","7":"1"},{"1":"Officer","2":"9","3":"AirForce","4":"married","5":"military","6":"female","7":"0"},{"1":"Officer","2":"9","3":"AirForce","4":"married","5":"civilian","6":"male","7":"35"},{"1":"Officer","2":"9","3":"AirForce","4":"married","5":"civilian","6":"female","7":"1"},{"1":"Officer","2":"10","3":"AirForce","4":"single","5":"nokids","6":"male","7":"0"},{"1":"Officer","2":"10","3":"AirForce","4":"single","5":"nokids","6":"female","7":"0"},{"1":"Officer","2":"10","3":"AirForce","4":"single","5":"kids","6":"male","7":"0"},{"1":"Officer","2":"10","3":"AirForce","4":"single","5":"kids","6":"female","7":"0"},{"1":"Officer","2":"10","3":"AirForce","4":"married","5":"military","6":"male","7":"1"},{"1":"Officer","2":"10","3":"AirForce","4":"married","5":"military","6":"female","7":"0"},{"1":"Officer","2":"10","3":"AirForce","4":"married","5":"civilian","6":"male","7":"12"},{"1":"Officer","2":"10","3":"AirForce","4":"married","5":"civilian","6":"female","7":"0"},{"1":"Enlisted","2":"1","3":"MarineCorps","4":"single","5":"nokids","6":"male","7":"6232"},{"1":"Enlisted","2":"1","3":"MarineCorps","4":"single","5":"nokids","6":"female","7":"583"},{"1":"Enlisted","2":"1","3":"MarineCorps","4":"single","5":"kids","6":"male","7":"54"},{"1":"Enlisted","2":"1","3":"MarineCorps","4":"single","5":"kids","6":"female","7":"3"},{"1":"Enlisted","2":"1","3":"MarineCorps","4":"married","5":"military","6":"male","7":"20"},{"1":"Enlisted","2":"1","3":"MarineCorps","4":"married","5":"military","6":"female","7":"19"},{"1":"Enlisted","2":"1","3":"MarineCorps","4":"married","5":"civilian","6":"male","7":"611"},{"1":"Enlisted","2":"1","3":"MarineCorps","4":"married","5":"civilian","6":"female","7":"21"},{"1":"Enlisted","2":"2","3":"MarineCorps","4":"single","5":"nokids","6":"male","7":"15916"},{"1":"Enlisted","2":"2","3":"MarineCorps","4":"single","5":"nokids","6":"female","7":"1336"},{"1":"Enlisted","2":"2","3":"MarineCorps","4":"single","5":"kids","6":"male","7":"190"},{"1":"Enlisted","2":"2","3":"MarineCorps","4":"single","5":"kids","6":"female","7":"12"},{"1":"Enlisted","2":"2","3":"MarineCorps","4":"married","5":"military","6":"male","7":"98"},{"1":"Enlisted","2":"2","3":"MarineCorps","4":"married","5":"military","6":"female","7":"109"},{"1":"Enlisted","2":"2","3":"MarineCorps","4":"married","5":"civilian","6":"male","7":"2399"},{"1":"Enlisted","2":"2","3":"MarineCorps","4":"married","5":"civilian","6":"female","7":"96"},{"1":"Enlisted","2":"3","3":"MarineCorps","4":"single","5":"nokids","6":"male","7":"34868"},{"1":"Enlisted","2":"3","3":"MarineCorps","4":"single","5":"nokids","6":"female","7":"1864"},{"1":"Enlisted","2":"3","3":"MarineCorps","4":"single","5":"kids","6":"male","7":"574"},{"1":"Enlisted","2":"3","3":"MarineCorps","4":"single","5":"kids","6":"female","7":"167"},{"1":"Enlisted","2":"3","3":"MarineCorps","4":"married","5":"military","6":"male","7":"780"},{"1":"Enlisted","2":"3","3":"MarineCorps","4":"married","5":"military","6":"female","7":"928"},{"1":"Enlisted","2":"3","3":"MarineCorps","4":"married","5":"civilian","6":"male","7":"14643"},{"1":"Enlisted","2":"3","3":"MarineCorps","4":"married","5":"civilian","6":"female","7":"344"},{"1":"Enlisted","2":"4","3":"MarineCorps","4":"single","5":"nokids","6":"male","7":"17862"},{"1":"Enlisted","2":"4","3":"MarineCorps","4":"single","5":"nokids","6":"female","7":"1026"},{"1":"Enlisted","2":"4","3":"MarineCorps","4":"single","5":"kids","6":"male","7":"527"},{"1":"Enlisted","2":"4","3":"MarineCorps","4":"single","5":"kids","6":"female","7":"272"},{"1":"Enlisted","2":"4","3":"MarineCorps","4":"married","5":"military","6":"male","7":"1070"},{"1":"Enlisted","2":"4","3":"MarineCorps","4":"married","5":"military","6":"female","7":"944"},{"1":"Enlisted","2":"4","3":"MarineCorps","4":"married","5":"civilian","6":"male","7":"15599"},{"1":"Enlisted","2":"4","3":"MarineCorps","4":"married","5":"civilian","6":"female","7":"414"},{"1":"Enlisted","2":"5","3":"MarineCorps","4":"single","5":"nokids","6":"male","7":"7490"},{"1":"Enlisted","2":"5","3":"MarineCorps","4":"single","5":"nokids","6":"female","7":"590"},{"1":"Enlisted","2":"5","3":"MarineCorps","4":"single","5":"kids","6":"male","7":"931"},{"1":"Enlisted","2":"5","3":"MarineCorps","4":"single","5":"kids","6":"female","7":"338"},{"1":"Enlisted","2":"5","3":"MarineCorps","4":"married","5":"military","6":"male","7":"1199"},{"1":"Enlisted","2":"5","3":"MarineCorps","4":"married","5":"military","6":"female","7":"730"},{"1":"Enlisted","2":"5","3":"MarineCorps","4":"married","5":"civilian","6":"male","7":"17921"},{"1":"Enlisted","2":"5","3":"MarineCorps","4":"married","5":"civilian","6":"female","7":"344"},{"1":"Enlisted","2":"6","3":"MarineCorps","4":"single","5":"nokids","6":"male","7":"2051"},{"1":"Enlisted","2":"6","3":"MarineCorps","4":"single","5":"nokids","6":"female","7":"208"},{"1":"Enlisted","2":"6","3":"MarineCorps","4":"single","5":"kids","6":"male","7":"1060"},{"1":"Enlisted","2":"6","3":"MarineCorps","4":"single","5":"kids","6":"female","7":"226"},{"1":"Enlisted","2":"6","3":"MarineCorps","4":"married","5":"military","6":"male","7":"568"},{"1":"Enlisted","2":"6","3":"MarineCorps","4":"married","5":"military","6":"female","7":"341"},{"1":"Enlisted","2":"6","3":"MarineCorps","4":"married","5":"civilian","6":"male","7":"12005"},{"1":"Enlisted","2":"6","3":"MarineCorps","4":"married","5":"civilian","6":"female","7":"221"},{"1":"Enlisted","2":"7","3":"MarineCorps","4":"single","5":"nokids","6":"male","7":"565"},{"1":"Enlisted","2":"7","3":"MarineCorps","4":"single","5":"nokids","6":"female","7":"72"},{"1":"Enlisted","2":"7","3":"MarineCorps","4":"single","5":"kids","6":"male","7":"622"},{"1":"Enlisted","2":"7","3":"MarineCorps","4":"single","5":"kids","6":"female","7":"119"},{"1":"Enlisted","2":"7","3":"MarineCorps","4":"married","5":"military","6":"male","7":"308"},{"1":"Enlisted","2":"7","3":"MarineCorps","4":"married","5":"military","6":"female","7":"185"},{"1":"Enlisted","2":"7","3":"MarineCorps","4":"married","5":"civilian","6":"male","7":"6970"},{"1":"Enlisted","2":"7","3":"MarineCorps","4":"married","5":"civilian","6":"female","7":"120"},{"1":"Enlisted","2":"8","3":"MarineCorps","4":"single","5":"nokids","6":"male","7":"148"},{"1":"Enlisted","2":"8","3":"MarineCorps","4":"single","5":"nokids","6":"female","7":"21"},{"1":"Enlisted","2":"8","3":"MarineCorps","4":"single","5":"kids","6":"male","7":"270"},{"1":"Enlisted","2":"8","3":"MarineCorps","4":"single","5":"kids","6":"female","7":"42"},{"1":"Enlisted","2":"8","3":"MarineCorps","4":"married","5":"military","6":"male","7":"115"},{"1":"Enlisted","2":"8","3":"MarineCorps","4":"married","5":"military","6":"female","7":"66"},{"1":"Enlisted","2":"8","3":"MarineCorps","4":"married","5":"civilian","6":"male","7":"3268"},{"1":"Enlisted","2":"8","3":"MarineCorps","4":"married","5":"civilian","6":"female","7":"73"},{"1":"Enlisted","2":"9","3":"MarineCorps","4":"single","5":"nokids","6":"male","7":"68"},{"1":"Enlisted","2":"9","3":"MarineCorps","4":"single","5":"nokids","6":"female","7":"10"},{"1":"Enlisted","2":"9","3":"MarineCorps","4":"single","5":"kids","6":"male","7":"106"},{"1":"Enlisted","2":"9","3":"MarineCorps","4":"single","5":"kids","6":"female","7":"20"},{"1":"Enlisted","2":"9","3":"MarineCorps","4":"married","5":"military","6":"male","7":"42"},{"1":"Enlisted","2":"9","3":"MarineCorps","4":"married","5":"military","6":"female","7":"10"},{"1":"Enlisted","2":"9","3":"MarineCorps","4":"married","5":"civilian","6":"male","7":"1340"},{"1":"Enlisted","2":"9","3":"MarineCorps","4":"married","5":"civilian","6":"female","7":"21"},{"1":"Officer","2":"1","3":"MarineCorps","4":"single","5":"nokids","6":"male","7":"2227"},{"1":"Officer","2":"1","3":"MarineCorps","4":"single","5":"nokids","6":"female","7":"204"},{"1":"Officer","2":"1","3":"MarineCorps","4":"single","5":"kids","6":"male","7":"26"},{"1":"Officer","2":"1","3":"MarineCorps","4":"single","5":"kids","6":"female","7":"5"},{"1":"Officer","2":"1","3":"MarineCorps","4":"married","5":"military","6":"male","7":"35"},{"1":"Officer","2":"1","3":"MarineCorps","4":"married","5":"military","6":"female","7":"53"},{"1":"Officer","2":"1","3":"MarineCorps","4":"married","5":"civilian","6":"male","7":"1006"},{"1":"Officer","2":"1","3":"MarineCorps","4":"married","5":"civilian","6":"female","7":"23"},{"1":"Officer","2":"2","3":"MarineCorps","4":"single","5":"nokids","6":"male","7":"1509"},{"1":"Officer","2":"2","3":"MarineCorps","4":"single","5":"nokids","6":"female","7":"133"},{"1":"Officer","2":"2","3":"MarineCorps","4":"single","5":"kids","6":"male","7":"29"},{"1":"Officer","2":"2","3":"MarineCorps","4":"single","5":"kids","6":"female","7":"8"},{"1":"Officer","2":"2","3":"MarineCorps","4":"married","5":"military","6":"male","7":"81"},{"1":"Officer","2":"2","3":"MarineCorps","4":"married","5":"military","6":"female","7":"53"},{"1":"Officer","2":"2","3":"MarineCorps","4":"married","5":"civilian","6":"male","7":"1330"},{"1":"Officer","2":"2","3":"MarineCorps","4":"married","5":"civilian","6":"female","7":"20"},{"1":"Officer","2":"3","3":"MarineCorps","4":"single","5":"nokids","6":"male","7":"1510"},{"1":"Officer","2":"3","3":"MarineCorps","4":"single","5":"nokids","6":"female","7":"200"},{"1":"Officer","2":"3","3":"MarineCorps","4":"single","5":"kids","6":"male","7":"110"},{"1":"Officer","2":"3","3":"MarineCorps","4":"single","5":"kids","6":"female","7":"14"},{"1":"Officer","2":"3","3":"MarineCorps","4":"married","5":"military","6":"male","7":"189"},{"1":"Officer","2":"3","3":"MarineCorps","4":"married","5":"military","6":"female","7":"133"},{"1":"Officer","2":"3","3":"MarineCorps","4":"married","5":"civilian","6":"male","7":"3892"},{"1":"Officer","2":"3","3":"MarineCorps","4":"married","5":"civilian","6":"female","7":"52"},{"1":"Officer","2":"4","3":"MarineCorps","4":"single","5":"nokids","6":"male","7":"319"},{"1":"Officer","2":"4","3":"MarineCorps","4":"single","5":"nokids","6":"female","7":"62"},{"1":"Officer","2":"4","3":"MarineCorps","4":"single","5":"kids","6":"male","7":"127"},{"1":"Officer","2":"4","3":"MarineCorps","4":"single","5":"kids","6":"female","7":"12"},{"1":"Officer","2":"4","3":"MarineCorps","4":"married","5":"military","6":"male","7":"93"},{"1":"Officer","2":"4","3":"MarineCorps","4":"married","5":"military","6":"female","7":"42"},{"1":"Officer","2":"4","3":"MarineCorps","4":"married","5":"civilian","6":"male","7":"3121"},{"1":"Officer","2":"4","3":"MarineCorps","4":"married","5":"civilian","6":"female","7":"48"},{"1":"Officer","2":"5","3":"MarineCorps","4":"single","5":"nokids","6":"male","7":"76"},{"1":"Officer","2":"5","3":"MarineCorps","4":"single","5":"nokids","6":"female","7":"7"},{"1":"Officer","2":"5","3":"MarineCorps","4":"single","5":"kids","6":"male","7":"55"},{"1":"Officer","2":"5","3":"MarineCorps","4":"single","5":"kids","6":"female","7":"2"},{"1":"Officer","2":"5","3":"MarineCorps","4":"married","5":"military","6":"male","7":"37"},{"1":"Officer","2":"5","3":"MarineCorps","4":"married","5":"military","6":"female","7":"10"},{"1":"Officer","2":"5","3":"MarineCorps","4":"married","5":"civilian","6":"male","7":"1704"},{"1":"Officer","2":"5","3":"MarineCorps","4":"married","5":"civilian","6":"female","7":"20"},{"1":"Officer","2":"6","3":"MarineCorps","4":"single","5":"nokids","6":"male","7":"23"},{"1":"Officer","2":"6","3":"MarineCorps","4":"single","5":"nokids","6":"female","7":"7"},{"1":"Officer","2":"6","3":"MarineCorps","4":"single","5":"kids","6":"male","7":"17"},{"1":"Officer","2":"6","3":"MarineCorps","4":"single","5":"kids","6":"female","7":"1"},{"1":"Officer","2":"6","3":"MarineCorps","4":"married","5":"military","6":"male","7":"10"},{"1":"Officer","2":"6","3":"MarineCorps","4":"married","5":"military","6":"female","7":"2"},{"1":"Officer","2":"6","3":"MarineCorps","4":"married","5":"civilian","6":"male","7":"623"},{"1":"Officer","2":"6","3":"MarineCorps","4":"married","5":"civilian","6":"female","7":"12"},{"1":"Officer","2":"7","3":"MarineCorps","4":"single","5":"nokids","6":"male","7":"2"},{"1":"Officer","2":"7","3":"MarineCorps","4":"single","5":"nokids","6":"female","7":"1"},{"1":"Officer","2":"7","3":"MarineCorps","4":"single","5":"kids","6":"male","7":"1"},{"1":"Officer","2":"7","3":"MarineCorps","4":"single","5":"kids","6":"female","7":"0"},{"1":"Officer","2":"7","3":"MarineCorps","4":"married","5":"military","6":"male","7":"1"},{"1":"Officer","2":"7","3":"MarineCorps","4":"married","5":"military","6":"female","7":"0"},{"1":"Officer","2":"7","3":"MarineCorps","4":"married","5":"civilian","6":"male","7":"36"},{"1":"Officer","2":"7","3":"MarineCorps","4":"married","5":"civilian","6":"female","7":"0"},{"1":"Officer","2":"8","3":"MarineCorps","4":"single","5":"nokids","6":"male","7":"0"},{"1":"Officer","2":"8","3":"MarineCorps","4":"single","5":"nokids","6":"female","7":"0"},{"1":"Officer","2":"8","3":"MarineCorps","4":"single","5":"kids","6":"male","7":"0"},{"1":"Officer","2":"8","3":"MarineCorps","4":"single","5":"kids","6":"female","7":"0"},{"1":"Officer","2":"8","3":"MarineCorps","4":"married","5":"military","6":"male","7":"0"},{"1":"Officer","2":"8","3":"MarineCorps","4":"married","5":"military","6":"female","7":"0"},{"1":"Officer","2":"8","3":"MarineCorps","4":"married","5":"civilian","6":"male","7":"23"},{"1":"Officer","2":"8","3":"MarineCorps","4":"married","5":"civilian","6":"female","7":"1"},{"1":"Officer","2":"9","3":"MarineCorps","4":"single","5":"nokids","6":"male","7":"0"},{"1":"Officer","2":"9","3":"MarineCorps","4":"single","5":"nokids","6":"female","7":"0"},{"1":"Officer","2":"9","3":"MarineCorps","4":"single","5":"kids","6":"male","7":"0"},{"1":"Officer","2":"9","3":"MarineCorps","4":"single","5":"kids","6":"female","7":"0"},{"1":"Officer","2":"9","3":"MarineCorps","4":"married","5":"military","6":"male","7":"0"},{"1":"Officer","2":"9","3":"MarineCorps","4":"married","5":"military","6":"female","7":"0"},{"1":"Officer","2":"9","3":"MarineCorps","4":"married","5":"civilian","6":"male","7":"16"},{"1":"Officer","2":"9","3":"MarineCorps","4":"married","5":"civilian","6":"female","7":"0"},{"1":"Officer","2":"10","3":"MarineCorps","4":"single","5":"nokids","6":"male","7":"1"},{"1":"Officer","2":"10","3":"MarineCorps","4":"single","5":"nokids","6":"female","7":"0"},{"1":"Officer","2":"10","3":"MarineCorps","4":"single","5":"kids","6":"male","7":"0"},{"1":"Officer","2":"10","3":"MarineCorps","4":"single","5":"kids","6":"female","7":"0"},{"1":"Officer","2":"10","3":"MarineCorps","4":"married","5":"military","6":"male","7":"0"},{"1":"Officer","2":"10","3":"MarineCorps","4":"married","5":"military","6":"female","7":"0"},{"1":"Officer","2":"10","3":"MarineCorps","4":"married","5":"civilian","6":"male","7":"3"},{"1":"Officer","2":"10","3":"MarineCorps","4":"married","5":"civilian","6":"female","7":"0"},{"1":"Warrant Officer","2":"1","3":"MarineCorps","4":"single","5":"nokids","6":"male","7":"26"},{"1":"Warrant Officer","2":"1","3":"MarineCorps","4":"single","5":"nokids","6":"female","7":"3"},{"1":"Warrant Officer","2":"1","3":"MarineCorps","4":"single","5":"kids","6":"male","7":"20"},{"1":"Warrant Officer","2":"1","3":"MarineCorps","4":"single","5":"kids","6":"female","7":"7"},{"1":"Warrant Officer","2":"1","3":"MarineCorps","4":"married","5":"military","6":"male","7":"25"},{"1":"Warrant Officer","2":"1","3":"MarineCorps","4":"married","5":"military","6":"female","7":"12"},{"1":"Warrant Officer","2":"1","3":"MarineCorps","4":"married","5":"civilian","6":"male","7":"386"},{"1":"Warrant Officer","2":"1","3":"MarineCorps","4":"married","5":"civilian","6":"female","7":"5"},{"1":"Warrant Officer","2":"2","3":"MarineCorps","4":"single","5":"nokids","6":"male","7":"30"},{"1":"Warrant Officer","2":"2","3":"MarineCorps","4":"single","5":"nokids","6":"female","7":"3"},{"1":"Warrant Officer","2":"2","3":"MarineCorps","4":"single","5":"kids","6":"male","7":"38"},{"1":"Warrant Officer","2":"2","3":"MarineCorps","4":"single","5":"kids","6":"female","7":"2"},{"1":"Warrant Officer","2":"2","3":"MarineCorps","4":"married","5":"military","6":"male","7":"26"},{"1":"Warrant Officer","2":"2","3":"MarineCorps","4":"married","5":"military","6":"female","7":"17"},{"1":"Warrant Officer","2":"2","3":"MarineCorps","4":"married","5":"civilian","6":"male","7":"607"},{"1":"Warrant Officer","2":"2","3":"MarineCorps","4":"married","5":"civilian","6":"female","7":"6"},{"1":"Warrant Officer","2":"3","3":"MarineCorps","4":"single","5":"nokids","6":"male","7":"17"},{"1":"Warrant Officer","2":"3","3":"MarineCorps","4":"single","5":"nokids","6":"female","7":"5"},{"1":"Warrant Officer","2":"3","3":"MarineCorps","4":"single","5":"kids","6":"male","7":"30"},{"1":"Warrant Officer","2":"3","3":"MarineCorps","4":"single","5":"kids","6":"female","7":"10"},{"1":"Warrant Officer","2":"3","3":"MarineCorps","4":"married","5":"military","6":"male","7":"16"},{"1":"Warrant Officer","2":"3","3":"MarineCorps","4":"married","5":"military","6":"female","7":"16"},{"1":"Warrant Officer","2":"3","3":"MarineCorps","4":"married","5":"civilian","6":"male","7":"390"},{"1":"Warrant Officer","2":"3","3":"MarineCorps","4":"married","5":"civilian","6":"female","7":"12"},{"1":"Warrant Officer","2":"4","3":"MarineCorps","4":"single","5":"nokids","6":"male","7":"6"},{"1":"Warrant Officer","2":"4","3":"MarineCorps","4":"single","5":"nokids","6":"female","7":"0"},{"1":"Warrant Officer","2":"4","3":"MarineCorps","4":"single","5":"kids","6":"male","7":"17"},{"1":"Warrant Officer","2":"4","3":"MarineCorps","4":"single","5":"kids","6":"female","7":"2"},{"1":"Warrant Officer","2":"4","3":"MarineCorps","4":"married","5":"military","6":"male","7":"6"},{"1":"Warrant Officer","2":"4","3":"MarineCorps","4":"married","5":"military","6":"female","7":"5"},{"1":"Warrant Officer","2":"4","3":"MarineCorps","4":"married","5":"civilian","6":"male","7":"250"},{"1":"Warrant Officer","2":"4","3":"MarineCorps","4":"married","5":"civilian","6":"female","7":"3"},{"1":"Warrant Officer","2":"5","3":"MarineCorps","4":"single","5":"nokids","6":"male","7":"3"},{"1":"Warrant Officer","2":"5","3":"MarineCorps","4":"single","5":"nokids","6":"female","7":"3"},{"1":"Warrant Officer","2":"5","3":"MarineCorps","4":"single","5":"kids","6":"male","7":"3"},{"1":"Warrant Officer","2":"5","3":"MarineCorps","4":"single","5":"kids","6":"female","7":"1"},{"1":"Warrant Officer","2":"5","3":"MarineCorps","4":"married","5":"military","6":"male","7":"0"},{"1":"Warrant Officer","2":"5","3":"MarineCorps","4":"married","5":"military","6":"female","7":"1"},{"1":"Warrant Officer","2":"5","3":"MarineCorps","4":"married","5":"civilian","6":"male","7":"90"},{"1":"Warrant Officer","2":"5","3":"MarineCorps","4":"married","5":"civilian","6":"female","7":"2"},{"1":"Enlisted","2":"1","3":"Navy","4":"single","5":"nokids","6":"male","7":"7820"},{"1":"Enlisted","2":"1","3":"Navy","4":"single","5":"nokids","6":"female","7":"2275"},{"1":"Enlisted","2":"1","3":"Navy","4":"single","5":"kids","6":"male","7":"117"},{"1":"Enlisted","2":"1","3":"Navy","4":"single","5":"kids","6":"female","7":"34"},{"1":"Enlisted","2":"1","3":"Navy","4":"married","5":"military","6":"male","7":"30"},{"1":"Enlisted","2":"1","3":"Navy","4":"married","5":"military","6":"female","7":"57"},{"1":"Enlisted","2":"1","3":"Navy","4":"married","5":"civilian","6":"male","7":"806"},{"1":"Enlisted","2":"1","3":"Navy","4":"married","5":"civilian","6":"female","7":"162"},{"1":"Enlisted","2":"2","3":"Navy","4":"single","5":"nokids","6":"male","7":"11198"},{"1":"Enlisted","2":"2","3":"Navy","4":"single","5":"nokids","6":"female","7":"2718"},{"1":"Enlisted","2":"2","3":"Navy","4":"single","5":"kids","6":"male","7":"237"},{"1":"Enlisted","2":"2","3":"Navy","4":"single","5":"kids","6":"female","7":"87"},{"1":"Enlisted","2":"2","3":"Navy","4":"married","5":"military","6":"male","7":"113"},{"1":"Enlisted","2":"2","3":"Navy","4":"married","5":"military","6":"female","7":"164"},{"1":"Enlisted","2":"2","3":"Navy","4":"married","5":"civilian","6":"male","7":"2474"},{"1":"Enlisted","2":"2","3":"Navy","4":"married","5":"civilian","6":"female","7":"388"},{"1":"Enlisted","2":"3","3":"Navy","4":"single","5":"nokids","6":"male","7":"28163"},{"1":"Enlisted","2":"3","3":"Navy","4":"single","5":"nokids","6":"female","7":"6396"},{"1":"Enlisted","2":"3","3":"Navy","4":"single","5":"kids","6":"male","7":"681"},{"1":"Enlisted","2":"3","3":"Navy","4":"single","5":"kids","6":"female","7":"788"},{"1":"Enlisted","2":"3","3":"Navy","4":"married","5":"military","6":"male","7":"861"},{"1":"Enlisted","2":"3","3":"Navy","4":"married","5":"military","6":"female","7":"1288"},{"1":"Enlisted","2":"3","3":"Navy","4":"married","5":"civilian","6":"male","7":"11297"},{"1":"Enlisted","2":"3","3":"Navy","4":"married","5":"civilian","6":"female","7":"1791"},{"1":"Enlisted","2":"4","3":"Navy","4":"single","5":"nokids","6":"male","7":"23285"},{"1":"Enlisted","2":"4","3":"Navy","4":"single","5":"nokids","6":"female","7":"4266"},{"1":"Enlisted","2":"4","3":"Navy","4":"single","5":"kids","6":"male","7":"967"},{"1":"Enlisted","2":"4","3":"Navy","4":"single","5":"kids","6":"female","7":"949"},{"1":"Enlisted","2":"4","3":"Navy","4":"married","5":"military","6":"male","7":"1526"},{"1":"Enlisted","2":"4","3":"Navy","4":"married","5":"military","6":"female","7":"1691"},{"1":"Enlisted","2":"4","3":"Navy","4":"married","5":"civilian","6":"male","7":"16277"},{"1":"Enlisted","2":"4","3":"Navy","4":"married","5":"civilian","6":"female","7":"1768"},{"1":"Enlisted","2":"5","3":"Navy","4":"single","5":"nokids","6":"male","7":"18856"},{"1":"Enlisted","2":"5","3":"Navy","4":"single","5":"nokids","6":"female","7":"3649"},{"1":"Enlisted","2":"5","3":"Navy","4":"single","5":"kids","6":"male","7":"2837"},{"1":"Enlisted","2":"5","3":"Navy","4":"single","5":"kids","6":"female","7":"1787"},{"1":"Enlisted","2":"5","3":"Navy","4":"married","5":"military","6":"male","7":"2191"},{"1":"Enlisted","2":"5","3":"Navy","4":"married","5":"military","6":"female","7":"2099"},{"1":"Enlisted","2":"5","3":"Navy","4":"married","5":"civilian","6":"male","7":"31491"},{"1":"Enlisted","2":"5","3":"Navy","4":"married","5":"civilian","6":"female","7":"2272"},{"1":"Enlisted","2":"6","3":"Navy","4":"single","5":"nokids","6":"male","7":"5917"},{"1":"Enlisted","2":"6","3":"Navy","4":"single","5":"nokids","6":"female","7":"1429"},{"1":"Enlisted","2":"6","3":"Navy","4":"single","5":"kids","6":"male","7":"2725"},{"1":"Enlisted","2":"6","3":"Navy","4":"single","5":"kids","6":"female","7":"1284"},{"1":"Enlisted","2":"6","3":"Navy","4":"married","5":"military","6":"male","7":"1654"},{"1":"Enlisted","2":"6","3":"Navy","4":"married","5":"military","6":"female","7":"1461"},{"1":"Enlisted","2":"6","3":"Navy","4":"married","5":"civilian","6":"male","7":"30404"},{"1":"Enlisted","2":"6","3":"Navy","4":"married","5":"civilian","6":"female","7":"1561"},{"1":"Enlisted","2":"7","3":"Navy","4":"single","5":"nokids","6":"male","7":"1294"},{"1":"Enlisted","2":"7","3":"Navy","4":"single","5":"nokids","6":"female","7":"395"},{"1":"Enlisted","2":"7","3":"Navy","4":"single","5":"kids","6":"male","7":"1371"},{"1":"Enlisted","2":"7","3":"Navy","4":"single","5":"kids","6":"female","7":"382"},{"1":"Enlisted","2":"7","3":"Navy","4":"married","5":"military","6":"male","7":"759"},{"1":"Enlisted","2":"7","3":"Navy","4":"married","5":"military","6":"female","7":"506"},{"1":"Enlisted","2":"7","3":"Navy","4":"married","5":"civilian","6":"male","7":"16449"},{"1":"Enlisted","2":"7","3":"Navy","4":"married","5":"civilian","6":"female","7":"527"},{"1":"Enlisted","2":"8","3":"Navy","4":"single","5":"nokids","6":"male","7":"219"},{"1":"Enlisted","2":"8","3":"Navy","4":"single","5":"nokids","6":"female","7":"84"},{"1":"Enlisted","2":"8","3":"Navy","4":"single","5":"kids","6":"male","7":"329"},{"1":"Enlisted","2":"8","3":"Navy","4":"single","5":"kids","6":"female","7":"70"},{"1":"Enlisted","2":"8","3":"Navy","4":"married","5":"military","6":"male","7":"186"},{"1":"Enlisted","2":"8","3":"Navy","4":"married","5":"military","6":"female","7":"66"},{"1":"Enlisted","2":"8","3":"Navy","4":"married","5":"civilian","6":"male","7":"4935"},{"1":"Enlisted","2":"8","3":"Navy","4":"married","5":"civilian","6":"female","7":"146"},{"1":"Enlisted","2":"9","3":"Navy","4":"single","5":"nokids","6":"male","7":"96"},{"1":"Enlisted","2":"9","3":"Navy","4":"single","5":"nokids","6":"female","7":"56"},{"1":"Enlisted","2":"9","3":"Navy","4":"single","5":"kids","6":"male","7":"118"},{"1":"Enlisted","2":"9","3":"Navy","4":"single","5":"kids","6":"female","7":"21"},{"1":"Enlisted","2":"9","3":"Navy","4":"married","5":"military","6":"male","7":"54"},{"1":"Enlisted","2":"9","3":"Navy","4":"married","5":"military","6":"female","7":"16"},{"1":"Enlisted","2":"9","3":"Navy","4":"married","5":"civilian","6":"male","7":"2171"},{"1":"Enlisted","2":"9","3":"Navy","4":"married","5":"civilian","6":"female","7":"57"},{"1":"Officer","2":"1","3":"Navy","4":"single","5":"nokids","6":"male","7":"3529"},{"1":"Officer","2":"1","3":"Navy","4":"single","5":"nokids","6":"female","7":"911"},{"1":"Officer","2":"1","3":"Navy","4":"single","5":"kids","6":"male","7":"83"},{"1":"Officer","2":"1","3":"Navy","4":"single","5":"kids","6":"female","7":"50"},{"1":"Officer","2":"1","3":"Navy","4":"married","5":"military","6":"male","7":"108"},{"1":"Officer","2":"1","3":"Navy","4":"married","5":"military","6":"female","7":"158"},{"1":"Officer","2":"1","3":"Navy","4":"married","5":"civilian","6":"male","7":"1864"},{"1":"Officer","2":"1","3":"Navy","4":"married","5":"civilian","6":"female","7":"201"},{"1":"Officer","2":"2","3":"Navy","4":"single","5":"nokids","6":"male","7":"2358"},{"1":"Officer","2":"2","3":"Navy","4":"single","5":"nokids","6":"female","7":"664"},{"1":"Officer","2":"2","3":"Navy","4":"single","5":"kids","6":"male","7":"98"},{"1":"Officer","2":"2","3":"Navy","4":"single","5":"kids","6":"female","7":"54"},{"1":"Officer","2":"2","3":"Navy","4":"married","5":"military","6":"male","7":"163"},{"1":"Officer","2":"2","3":"Navy","4":"married","5":"military","6":"female","7":"220"},{"1":"Officer","2":"2","3":"Navy","4":"married","5":"civilian","6":"male","7":"2519"},{"1":"Officer","2":"2","3":"Navy","4":"married","5":"civilian","6":"female","7":"263"},{"1":"Officer","2":"3","3":"Navy","4":"single","5":"nokids","6":"male","7":"3263"},{"1":"Officer","2":"3","3":"Navy","4":"single","5":"nokids","6":"female","7":"1177"},{"1":"Officer","2":"3","3":"Navy","4":"single","5":"kids","6":"male","7":"338"},{"1":"Officer","2":"3","3":"Navy","4":"single","5":"kids","6":"female","7":"158"},{"1":"Officer","2":"3","3":"Navy","4":"married","5":"military","6":"male","7":"450"},{"1":"Officer","2":"3","3":"Navy","4":"married","5":"military","6":"female","7":"556"},{"1":"Officer","2":"3","3":"Navy","4":"married","5":"civilian","6":"male","7":"9436"},{"1":"Officer","2":"3","3":"Navy","4":"married","5":"civilian","6":"female","7":"806"},{"1":"Officer","2":"4","3":"Navy","4":"single","5":"nokids","6":"male","7":"862"},{"1":"Officer","2":"4","3":"Navy","4":"single","5":"nokids","6":"female","7":"380"},{"1":"Officer","2":"4","3":"Navy","4":"single","5":"kids","6":"male","7":"274"},{"1":"Officer","2":"4","3":"Navy","4":"single","5":"kids","6":"female","7":"108"},{"1":"Officer","2":"4","3":"Navy","4":"married","5":"military","6":"male","7":"282"},{"1":"Officer","2":"4","3":"Navy","4":"married","5":"military","6":"female","7":"310"},{"1":"Officer","2":"4","3":"Navy","4":"married","5":"civilian","6":"male","7":"7413"},{"1":"Officer","2":"4","3":"Navy","4":"married","5":"civilian","6":"female","7":"569"},{"1":"Officer","2":"5","3":"Navy","4":"single","5":"nokids","6":"male","7":"344"},{"1":"Officer","2":"5","3":"Navy","4":"single","5":"nokids","6":"female","7":"209"},{"1":"Officer","2":"5","3":"Navy","4":"single","5":"kids","6":"male","7":"168"},{"1":"Officer","2":"5","3":"Navy","4":"single","5":"kids","6":"female","7":"43"},{"1":"Officer","2":"5","3":"Navy","4":"married","5":"military","6":"male","7":"147"},{"1":"Officer","2":"5","3":"Navy","4":"married","5":"military","6":"female","7":"179"},{"1":"Officer","2":"5","3":"Navy","4":"married","5":"civilian","6":"male","7":"5395"},{"1":"Officer","2":"5","3":"Navy","4":"married","5":"civilian","6":"female","7":"415"},{"1":"Officer","2":"6","3":"Navy","4":"single","5":"nokids","6":"male","7":"99"},{"1":"Officer","2":"6","3":"Navy","4":"single","5":"nokids","6":"female","7":"112"},{"1":"Officer","2":"6","3":"Navy","4":"single","5":"kids","6":"male","7":"74"},{"1":"Officer","2":"6","3":"Navy","4":"single","5":"kids","6":"female","7":"31"},{"1":"Officer","2":"6","3":"Navy","4":"married","5":"military","6":"male","7":"58"},{"1":"Officer","2":"6","3":"Navy","4":"married","5":"military","6":"female","7":"48"},{"1":"Officer","2":"6","3":"Navy","4":"married","5":"civilian","6":"male","7":"2700"},{"1":"Officer","2":"6","3":"Navy","4":"married","5":"civilian","6":"female","7":"215"},{"1":"Officer","2":"7","3":"Navy","4":"single","5":"nokids","6":"male","7":"1"},{"1":"Officer","2":"7","3":"Navy","4":"single","5":"nokids","6":"female","7":"0"},{"1":"Officer","2":"7","3":"Navy","4":"single","5":"kids","6":"male","7":"2"},{"1":"Officer","2":"7","3":"Navy","4":"single","5":"kids","6":"female","7":"0"},{"1":"Officer","2":"7","3":"Navy","4":"married","5":"military","6":"male","7":"1"},{"1":"Officer","2":"7","3":"Navy","4":"married","5":"military","6":"female","7":"0"},{"1":"Officer","2":"7","3":"Navy","4":"married","5":"civilian","6":"male","7":"107"},{"1":"Officer","2":"7","3":"Navy","4":"married","5":"civilian","6":"female","7":"9"},{"1":"Officer","2":"8","3":"Navy","4":"single","5":"nokids","6":"male","7":"2"},{"1":"Officer","2":"8","3":"Navy","4":"single","5":"nokids","6":"female","7":"3"},{"1":"Officer","2":"8","3":"Navy","4":"single","5":"kids","6":"male","7":"0"},{"1":"Officer","2":"8","3":"Navy","4":"single","5":"kids","6":"female","7":"0"},{"1":"Officer","2":"8","3":"Navy","4":"married","5":"military","6":"male","7":"1"},{"1":"Officer","2":"8","3":"Navy","4":"married","5":"military","6":"female","7":"0"},{"1":"Officer","2":"8","3":"Navy","4":"married","5":"civilian","6":"male","7":"64"},{"1":"Officer","2":"8","3":"Navy","4":"married","5":"civilian","6":"female","7":"4"},{"1":"Officer","2":"9","3":"Navy","4":"single","5":"nokids","6":"male","7":"0"},{"1":"Officer","2":"9","3":"Navy","4":"single","5":"nokids","6":"female","7":"1"},{"1":"Officer","2":"9","3":"Navy","4":"single","5":"kids","6":"male","7":"1"},{"1":"Officer","2":"9","3":"Navy","4":"single","5":"kids","6":"female","7":"0"},{"1":"Officer","2":"9","3":"Navy","4":"married","5":"military","6":"male","7":"0"},{"1":"Officer","2":"9","3":"Navy","4":"married","5":"military","6":"female","7":"0"},{"1":"Officer","2":"9","3":"Navy","4":"married","5":"civilian","6":"male","7":"41"},{"1":"Officer","2":"9","3":"Navy","4":"married","5":"civilian","6":"female","7":"0"},{"1":"Officer","2":"10","3":"Navy","4":"single","5":"nokids","6":"male","7":"0"},{"1":"Officer","2":"10","3":"Navy","4":"single","5":"nokids","6":"female","7":"0"},{"1":"Officer","2":"10","3":"Navy","4":"single","5":"kids","6":"male","7":"0"},{"1":"Officer","2":"10","3":"Navy","4":"single","5":"kids","6":"female","7":"0"},{"1":"Officer","2":"10","3":"Navy","4":"married","5":"military","6":"male","7":"0"},{"1":"Officer","2":"10","3":"Navy","4":"married","5":"military","6":"female","7":"0"},{"1":"Officer","2":"10","3":"Navy","4":"married","5":"civilian","6":"male","7":"10"},{"1":"Officer","2":"10","3":"Navy","4":"married","5":"civilian","6":"female","7":"0"},{"1":"Warrant Officer","2":"2","3":"Navy","4":"single","5":"nokids","6":"male","7":"19"},{"1":"Warrant Officer","2":"2","3":"Navy","4":"single","5":"nokids","6":"female","7":"10"},{"1":"Warrant Officer","2":"2","3":"Navy","4":"single","5":"kids","6":"male","7":"27"},{"1":"Warrant Officer","2":"2","3":"Navy","4":"single","5":"kids","6":"female","7":"4"},{"1":"Warrant Officer","2":"2","3":"Navy","4":"married","5":"military","6":"male","7":"22"},{"1":"Warrant Officer","2":"2","3":"Navy","4":"married","5":"military","6":"female","7":"6"},{"1":"Warrant Officer","2":"2","3":"Navy","4":"married","5":"civilian","6":"male","7":"418"},{"1":"Warrant Officer","2":"2","3":"Navy","4":"married","5":"civilian","6":"female","7":"6"},{"1":"Warrant Officer","2":"3","3":"Navy","4":"single","5":"nokids","6":"male","7":"13"},{"1":"Warrant Officer","2":"3","3":"Navy","4":"single","5":"nokids","6":"female","7":"14"},{"1":"Warrant Officer","2":"3","3":"Navy","4":"single","5":"kids","6":"male","7":"33"},{"1":"Warrant Officer","2":"3","3":"Navy","4":"single","5":"kids","6":"female","7":"6"},{"1":"Warrant Officer","2":"3","3":"Navy","4":"married","5":"military","6":"male","7":"21"},{"1":"Warrant Officer","2":"3","3":"Navy","4":"married","5":"military","6":"female","7":"6"},{"1":"Warrant Officer","2":"3","3":"Navy","4":"married","5":"civilian","6":"male","7":"578"},{"1":"Warrant Officer","2":"3","3":"Navy","4":"married","5":"civilian","6":"female","7":"10"},{"1":"Warrant Officer","2":"4","3":"Navy","4":"single","5":"nokids","6":"male","7":"9"},{"1":"Warrant Officer","2":"4","3":"Navy","4":"single","5":"nokids","6":"female","7":"8"},{"1":"Warrant Officer","2":"4","3":"Navy","4":"single","5":"kids","6":"male","7":"25"},{"1":"Warrant Officer","2":"4","3":"Navy","4":"single","5":"kids","6":"female","7":"3"},{"1":"Warrant Officer","2":"4","3":"Navy","4":"married","5":"military","6":"male","7":"11"},{"1":"Warrant Officer","2":"4","3":"Navy","4":"married","5":"military","6":"female","7":"1"},{"1":"Warrant Officer","2":"4","3":"Navy","4":"married","5":"civilian","6":"male","7":"350"},{"1":"Warrant Officer","2":"4","3":"Navy","4":"married","5":"civilian","6":"female","7":"4"},{"1":"Warrant Officer","2":"5","3":"Navy","4":"single","5":"nokids","6":"male","7":"2"},{"1":"Warrant Officer","2":"5","3":"Navy","4":"single","5":"nokids","6":"female","7":"0"},{"1":"Warrant Officer","2":"5","3":"Navy","4":"single","5":"kids","6":"male","7":"1"},{"1":"Warrant Officer","2":"5","3":"Navy","4":"single","5":"kids","6":"female","7":"0"},{"1":"Warrant Officer","2":"5","3":"Navy","4":"married","5":"military","6":"male","7":"0"},{"1":"Warrant Officer","2":"5","3":"Navy","4":"married","5":"military","6":"female","7":"0"},{"1":"Warrant Officer","2":"5","3":"Navy","4":"married","5":"civilian","6":"male","7":"56"},{"1":"Warrant Officer","2":"5","3":"Navy","4":"married","5":"civilian","6":"female","7":"1"},{"1":"Enlisted","2":"1","3":"Army","4":"single","5":"nokids","6":"male","7":"9456"},{"1":"Enlisted","2":"1","3":"Army","4":"single","5":"nokids","6":"female","7":"1309"},{"1":"Enlisted","2":"1","3":"Army","4":"single","5":"kids","6":"male","7":"365"},{"1":"Enlisted","2":"1","3":"Army","4":"single","5":"kids","6":"female","7":"80"},{"1":"Enlisted","2":"1","3":"Army","4":"married","5":"military","6":"male","7":"40"},{"1":"Enlisted","2":"1","3":"Army","4":"married","5":"military","6":"female","7":"38"},{"1":"Enlisted","2":"1","3":"Army","4":"married","5":"civilian","6":"male","7":"2579"},{"1":"Enlisted","2":"1","3":"Army","4":"married","5":"civilian","6":"female","7":"358"},{"1":"Enlisted","2":"2","3":"Army","4":"single","5":"nokids","6":"male","7":"21600"},{"1":"Enlisted","2":"2","3":"Army","4":"single","5":"nokids","6":"female","7":"3324"},{"1":"Enlisted","2":"2","3":"Army","4":"single","5":"kids","6":"male","7":"997"},{"1":"Enlisted","2":"2","3":"Army","4":"single","5":"kids","6":"female","7":"167"},{"1":"Enlisted","2":"2","3":"Army","4":"married","5":"military","6":"male","7":"130"},{"1":"Enlisted","2":"2","3":"Army","4":"married","5":"military","6":"female","7":"201"},{"1":"Enlisted","2":"2","3":"Army","4":"married","5":"civilian","6":"male","7":"6808"},{"1":"Enlisted","2":"2","3":"Army","4":"married","5":"civilian","6":"female","7":"1035"},{"1":"Enlisted","2":"3","3":"Army","4":"single","5":"nokids","6":"male","7":"38335"},{"1":"Enlisted","2":"3","3":"Army","4":"single","5":"nokids","6":"female","7":"5651"},{"1":"Enlisted","2":"3","3":"Army","4":"single","5":"kids","6":"male","7":"2613"},{"1":"Enlisted","2":"3","3":"Army","4":"single","5":"kids","6":"female","7":"699"},{"1":"Enlisted","2":"3","3":"Army","4":"married","5":"military","6":"male","7":"680"},{"1":"Enlisted","2":"3","3":"Army","4":"married","5":"military","6":"female","7":"999"},{"1":"Enlisted","2":"3","3":"Army","4":"married","5":"civilian","6":"male","7":"18419"},{"1":"Enlisted","2":"3","3":"Army","4":"married","5":"civilian","6":"female","7":"2875"},{"1":"Enlisted","2":"4","3":"Army","4":"single","5":"nokids","6":"male","7":"50758"},{"1":"Enlisted","2":"4","3":"Army","4":"single","5":"nokids","6":"female","7":"6333"},{"1":"Enlisted","2":"4","3":"Army","4":"single","5":"kids","6":"male","7":"7010"},{"1":"Enlisted","2":"4","3":"Army","4":"single","5":"kids","6":"female","7":"2599"},{"1":"Enlisted","2":"4","3":"Army","4":"married","5":"military","6":"male","7":"3029"},{"1":"Enlisted","2":"4","3":"Army","4":"married","5":"military","6":"female","7":"3936"},{"1":"Enlisted","2":"4","3":"Army","4":"married","5":"civilian","6":"male","7":"58317"},{"1":"Enlisted","2":"4","3":"Army","4":"married","5":"civilian","6":"female","7":"6010"},{"1":"Enlisted","2":"5","3":"Army","4":"single","5":"nokids","6":"male","7":"17020"},{"1":"Enlisted","2":"5","3":"Army","4":"single","5":"nokids","6":"female","7":"2678"},{"1":"Enlisted","2":"5","3":"Army","4":"single","5":"kids","6":"male","7":"4414"},{"1":"Enlisted","2":"5","3":"Army","4":"single","5":"kids","6":"female","7":"2280"},{"1":"Enlisted","2":"5","3":"Army","4":"married","5":"military","6":"male","7":"2915"},{"1":"Enlisted","2":"5","3":"Army","4":"married","5":"military","6":"female","7":"2769"},{"1":"Enlisted","2":"5","3":"Army","4":"married","5":"civilian","6":"male","7":"49821"},{"1":"Enlisted","2":"5","3":"Army","4":"married","5":"civilian","6":"female","7":"3087"},{"1":"Enlisted","2":"6","3":"Army","4":"single","5":"nokids","6":"male","7":"7497"},{"1":"Enlisted","2":"6","3":"Army","4":"single","5":"nokids","6":"female","7":"1640"},{"1":"Enlisted","2":"6","3":"Army","4":"single","5":"kids","6":"male","7":"4138"},{"1":"Enlisted","2":"6","3":"Army","4":"single","5":"kids","6":"female","7":"2003"},{"1":"Enlisted","2":"6","3":"Army","4":"married","5":"military","6":"male","7":"2598"},{"1":"Enlisted","2":"6","3":"Army","4":"married","5":"military","6":"female","7":"1896"},{"1":"Enlisted","2":"6","3":"Army","4":"married","5":"civilian","6":"male","7":"44045"},{"1":"Enlisted","2":"6","3":"Army","4":"married","5":"civilian","6":"female","7":"2019"},{"1":"Enlisted","2":"7","3":"Army","4":"single","5":"nokids","6":"male","7":"2146"},{"1":"Enlisted","2":"7","3":"Army","4":"single","5":"nokids","6":"female","7":"829"},{"1":"Enlisted","2":"7","3":"Army","4":"single","5":"kids","6":"male","7":"2998"},{"1":"Enlisted","2":"7","3":"Army","4":"single","5":"kids","6":"female","7":"1350"},{"1":"Enlisted","2":"7","3":"Army","4":"married","5":"military","6":"male","7":"1880"},{"1":"Enlisted","2":"7","3":"Army","4":"married","5":"military","6":"female","7":"1181"},{"1":"Enlisted","2":"7","3":"Army","4":"married","5":"civilian","6":"male","7":"29292"},{"1":"Enlisted","2":"7","3":"Army","4":"married","5":"civilian","6":"female","7":"1371"},{"1":"Enlisted","2":"8","3":"Army","4":"single","5":"nokids","6":"male","7":"460"},{"1":"Enlisted","2":"8","3":"Army","4":"single","5":"nokids","6":"female","7":"194"},{"1":"Enlisted","2":"8","3":"Army","4":"single","5":"kids","6":"male","7":"951"},{"1":"Enlisted","2":"8","3":"Army","4":"single","5":"kids","6":"female","7":"291"},{"1":"Enlisted","2":"8","3":"Army","4":"married","5":"military","6":"male","7":"617"},{"1":"Enlisted","2":"8","3":"Army","4":"married","5":"military","6":"female","7":"278"},{"1":"Enlisted","2":"8","3":"Army","4":"married","5":"civilian","6":"male","7":"9221"},{"1":"Enlisted","2":"8","3":"Army","4":"married","5":"civilian","6":"female","7":"373"},{"1":"Enlisted","2":"9","3":"Army","4":"single","5":"nokids","6":"male","7":"134"},{"1":"Enlisted","2":"9","3":"Army","4":"single","5":"nokids","6":"female","7":"88"},{"1":"Enlisted","2":"9","3":"Army","4":"single","5":"kids","6":"male","7":"249"},{"1":"Enlisted","2":"9","3":"Army","4":"single","5":"kids","6":"female","7":"64"},{"1":"Enlisted","2":"9","3":"Army","4":"married","5":"military","6":"male","7":"158"},{"1":"Enlisted","2":"9","3":"Army","4":"married","5":"military","6":"female","7":"51"},{"1":"Enlisted","2":"9","3":"Army","4":"married","5":"civilian","6":"male","7":"2729"},{"1":"Enlisted","2":"9","3":"Army","4":"married","5":"civilian","6":"female","7":"105"},{"1":"Officer","2":"1","3":"Army","4":"single","5":"nokids","6":"male","7":"3908"},{"1":"Officer","2":"1","3":"Army","4":"single","5":"nokids","6":"female","7":"898"},{"1":"Officer","2":"1","3":"Army","4":"single","5":"kids","6":"male","7":"248"},{"1":"Officer","2":"1","3":"Army","4":"single","5":"kids","6":"female","7":"131"},{"1":"Officer","2":"1","3":"Army","4":"married","5":"military","6":"male","7":"101"},{"1":"Officer","2":"1","3":"Army","4":"married","5":"military","6":"female","7":"193"},{"1":"Officer","2":"1","3":"Army","4":"married","5":"civilian","6":"male","7":"2396"},{"1":"Officer","2":"1","3":"Army","4":"married","5":"civilian","6":"female","7":"393"},{"1":"Officer","2":"2","3":"Army","4":"single","5":"nokids","6":"male","7":"4452"},{"1":"Officer","2":"2","3":"Army","4":"single","5":"nokids","6":"female","7":"1099"},{"1":"Officer","2":"2","3":"Army","4":"single","5":"kids","6":"male","7":"236"},{"1":"Officer","2":"2","3":"Army","4":"single","5":"kids","6":"female","7":"192"},{"1":"Officer","2":"2","3":"Army","4":"married","5":"military","6":"male","7":"285"},{"1":"Officer","2":"2","3":"Army","4":"married","5":"military","6":"female","7":"449"},{"1":"Officer","2":"2","3":"Army","4":"married","5":"civilian","6":"male","7":"3778"},{"1":"Officer","2":"2","3":"Army","4":"married","5":"civilian","6":"female","7":"503"},{"1":"Officer","2":"3","3":"Army","4":"single","5":"nokids","6":"male","7":"5743"},{"1":"Officer","2":"3","3":"Army","4":"single","5":"nokids","6":"female","7":"2037"},{"1":"Officer","2":"3","3":"Army","4":"single","5":"kids","6":"male","7":"656"},{"1":"Officer","2":"3","3":"Army","4":"single","5":"kids","6":"female","7":"473"},{"1":"Officer","2":"3","3":"Army","4":"married","5":"military","6":"male","7":"1000"},{"1":"Officer","2":"3","3":"Army","4":"married","5":"military","6":"female","7":"1229"},{"1":"Officer","2":"3","3":"Army","4":"married","5":"civilian","6":"male","7":"13794"},{"1":"Officer","2":"3","3":"Army","4":"married","5":"civilian","6":"female","7":"1592"},{"1":"Officer","2":"4","3":"Army","4":"single","5":"nokids","6":"male","7":"1222"},{"1":"Officer","2":"4","3":"Army","4":"single","5":"nokids","6":"female","7":"681"},{"1":"Officer","2":"4","3":"Army","4":"single","5":"kids","6":"male","7":"496"},{"1":"Officer","2":"4","3":"Army","4":"single","5":"kids","6":"female","7":"223"},{"1":"Officer","2":"4","3":"Army","4":"married","5":"military","6":"male","7":"614"},{"1":"Officer","2":"4","3":"Army","4":"married","5":"military","6":"female","7":"632"},{"1":"Officer","2":"4","3":"Army","4":"married","5":"civilian","6":"male","7":"11785"},{"1":"Officer","2":"4","3":"Army","4":"married","5":"civilian","6":"female","7":"804"},{"1":"Officer","2":"5","3":"Army","4":"single","5":"nokids","6":"male","7":"399"},{"1":"Officer","2":"5","3":"Army","4":"single","5":"nokids","6":"female","7":"294"},{"1":"Officer","2":"5","3":"Army","4":"single","5":"kids","6":"male","7":"294"},{"1":"Officer","2":"5","3":"Army","4":"single","5":"kids","6":"female","7":"128"},{"1":"Officer","2":"5","3":"Army","4":"married","5":"military","6":"male","7":"298"},{"1":"Officer","2":"5","3":"Army","4":"married","5":"military","6":"female","7":"296"},{"1":"Officer","2":"5","3":"Army","4":"married","5":"civilian","6":"male","7":"7589"},{"1":"Officer","2":"5","3":"Army","4":"married","5":"civilian","6":"female","7":"536"},{"1":"Officer","2":"6","3":"Army","4":"single","5":"nokids","6":"male","7":"130"},{"1":"Officer","2":"6","3":"Army","4":"single","5":"nokids","6":"female","7":"123"},{"1":"Officer","2":"6","3":"Army","4":"single","5":"kids","6":"male","7":"103"},{"1":"Officer","2":"6","3":"Army","4":"single","5":"kids","6":"female","7":"42"},{"1":"Officer","2":"6","3":"Army","4":"married","5":"military","6":"male","7":"122"},{"1":"Officer","2":"6","3":"Army","4":"married","5":"military","6":"female","7":"74"},{"1":"Officer","2":"6","3":"Army","4":"married","5":"civilian","6":"male","7":"3666"},{"1":"Officer","2":"6","3":"Army","4":"married","5":"civilian","6":"female","7":"258"},{"1":"Officer","2":"7","3":"Army","4":"single","5":"nokids","6":"male","7":"2"},{"1":"Officer","2":"7","3":"Army","4":"single","5":"nokids","6":"female","7":"4"},{"1":"Officer","2":"7","3":"Army","4":"single","5":"kids","6":"male","7":"3"},{"1":"Officer","2":"7","3":"Army","4":"single","5":"kids","6":"female","7":"1"},{"1":"Officer","2":"7","3":"Army","4":"married","5":"military","6":"male","7":"2"},{"1":"Officer","2":"7","3":"Army","4":"married","5":"military","6":"female","7":"1"},{"1":"Officer","2":"7","3":"Army","4":"married","5":"civilian","6":"male","7":"136"},{"1":"Officer","2":"7","3":"Army","4":"married","5":"civilian","6":"female","7":"4"},{"1":"Officer","2":"8","3":"Army","4":"single","5":"nokids","6":"male","7":"1"},{"1":"Officer","2":"8","3":"Army","4":"single","5":"nokids","6":"female","7":"1"},{"1":"Officer","2":"8","3":"Army","4":"single","5":"kids","6":"male","7":"0"},{"1":"Officer","2":"8","3":"Army","4":"single","5":"kids","6":"female","7":"0"},{"1":"Officer","2":"8","3":"Army","4":"married","5":"military","6":"male","7":"2"},{"1":"Officer","2":"8","3":"Army","4":"married","5":"military","6":"female","7":"1"},{"1":"Officer","2":"8","3":"Army","4":"married","5":"civilian","6":"male","7":"99"},{"1":"Officer","2":"8","3":"Army","4":"married","5":"civilian","6":"female","7":"4"},{"1":"Officer","2":"9","3":"Army","4":"single","5":"nokids","6":"male","7":"1"},{"1":"Officer","2":"9","3":"Army","4":"single","5":"nokids","6":"female","7":"0"},{"1":"Officer","2":"9","3":"Army","4":"single","5":"kids","6":"male","7":"0"},{"1":"Officer","2":"9","3":"Army","4":"single","5":"kids","6":"female","7":"0"},{"1":"Officer","2":"9","3":"Army","4":"married","5":"military","6":"male","7":"0"},{"1":"Officer","2":"9","3":"Army","4":"married","5":"military","6":"female","7":"1"},{"1":"Officer","2":"9","3":"Army","4":"married","5":"civilian","6":"male","7":"52"},{"1":"Officer","2":"9","3":"Army","4":"married","5":"civilian","6":"female","7":"0"},{"1":"Officer","2":"10","3":"Army","4":"single","5":"nokids","6":"male","7":"0"},{"1":"Officer","2":"10","3":"Army","4":"single","5":"nokids","6":"female","7":"0"},{"1":"Officer","2":"10","3":"Army","4":"single","5":"kids","6":"male","7":"0"},{"1":"Officer","2":"10","3":"Army","4":"single","5":"kids","6":"female","7":"0"},{"1":"Officer","2":"10","3":"Army","4":"married","5":"military","6":"male","7":"0"},{"1":"Officer","2":"10","3":"Army","4":"married","5":"military","6":"female","7":"1"},{"1":"Officer","2":"10","3":"Army","4":"married","5":"civilian","6":"male","7":"10"},{"1":"Officer","2":"10","3":"Army","4":"married","5":"civilian","6":"female","7":"0"},{"1":"Warrant Officer","2":"1","3":"Army","4":"single","5":"nokids","6":"male","7":"328"},{"1":"Warrant Officer","2":"1","3":"Army","4":"single","5":"nokids","6":"female","7":"65"},{"1":"Warrant Officer","2":"1","3":"Army","4":"single","5":"kids","6":"male","7":"140"},{"1":"Warrant Officer","2":"1","3":"Army","4":"single","5":"kids","6":"female","7":"74"},{"1":"Warrant Officer","2":"1","3":"Army","4":"married","5":"military","6":"male","7":"88"},{"1":"Warrant Officer","2":"1","3":"Army","4":"married","5":"military","6":"female","7":"95"},{"1":"Warrant Officer","2":"1","3":"Army","4":"married","5":"civilian","6":"male","7":"1985"},{"1":"Warrant Officer","2":"1","3":"Army","4":"married","5":"civilian","6":"female","7":"92"},{"1":"Warrant Officer","2":"2","3":"Army","4":"single","5":"nokids","6":"male","7":"609"},{"1":"Warrant Officer","2":"2","3":"Army","4":"single","5":"nokids","6":"female","7":"138"},{"1":"Warrant Officer","2":"2","3":"Army","4":"single","5":"kids","6":"male","7":"293"},{"1":"Warrant Officer","2":"2","3":"Army","4":"single","5":"kids","6":"female","7":"137"},{"1":"Warrant Officer","2":"2","3":"Army","4":"married","5":"military","6":"male","7":"247"},{"1":"Warrant Officer","2":"2","3":"Army","4":"married","5":"military","6":"female","7":"181"},{"1":"Warrant Officer","2":"2","3":"Army","4":"married","5":"civilian","6":"male","7":"4139"},{"1":"Warrant Officer","2":"2","3":"Army","4":"married","5":"civilian","6":"female","7":"122"},{"1":"Warrant Officer","2":"3","3":"Army","4":"single","5":"nokids","6":"male","7":"191"},{"1":"Warrant Officer","2":"3","3":"Army","4":"single","5":"nokids","6":"female","7":"58"},{"1":"Warrant Officer","2":"3","3":"Army","4":"single","5":"kids","6":"male","7":"220"},{"1":"Warrant Officer","2":"3","3":"Army","4":"single","5":"kids","6":"female","7":"72"},{"1":"Warrant Officer","2":"3","3":"Army","4":"married","5":"military","6":"male","7":"141"},{"1":"Warrant Officer","2":"3","3":"Army","4":"married","5":"military","6":"female","7":"88"},{"1":"Warrant Officer","2":"3","3":"Army","4":"married","5":"civilian","6":"male","7":"2822"},{"1":"Warrant Officer","2":"3","3":"Army","4":"married","5":"civilian","6":"female","7":"72"},{"1":"Warrant Officer","2":"4","3":"Army","4":"single","5":"nokids","6":"male","7":"101"},{"1":"Warrant Officer","2":"4","3":"Army","4":"single","5":"nokids","6":"female","7":"39"},{"1":"Warrant Officer","2":"4","3":"Army","4":"single","5":"kids","6":"male","7":"127"},{"1":"Warrant Officer","2":"4","3":"Army","4":"single","5":"kids","6":"female","7":"30"},{"1":"Warrant Officer","2":"4","3":"Army","4":"married","5":"military","6":"male","7":"100"},{"1":"Warrant Officer","2":"4","3":"Army","4":"married","5":"military","6":"female","7":"39"},{"1":"Warrant Officer","2":"4","3":"Army","4":"married","5":"civilian","6":"male","7":"1967"},{"1":"Warrant Officer","2":"4","3":"Army","4":"married","5":"civilian","6":"female","7":"64"},{"1":"Warrant Officer","2":"5","3":"Army","4":"single","5":"nokids","6":"male","7":"20"},{"1":"Warrant Officer","2":"5","3":"Army","4":"single","5":"nokids","6":"female","7":"9"},{"1":"Warrant Officer","2":"5","3":"Army","4":"single","5":"kids","6":"male","7":"20"},{"1":"Warrant Officer","2":"5","3":"Army","4":"single","5":"kids","6":"female","7":"1"},{"1":"Warrant Officer","2":"5","3":"Army","4":"married","5":"military","6":"male","7":"11"},{"1":"Warrant Officer","2":"5","3":"Army","4":"married","5":"military","6":"female","7":"4"},{"1":"Warrant Officer","2":"5","3":"Army","4":"married","5":"civilian","6":"male","7":"504"},{"1":"Warrant Officer","2":"5","3":"Army","4":"married","5":"civilian","6":"female","7":"10"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<p>The resulting dataframe has 720 rows, which is the sum of the rows in each of the sheets. Success!!</p>
+</section>
+<section id="demonstrate-that-we-can-analyze-the-whole-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="demonstrate-that-we-can-analyze-the-whole-dataset">Demonstrate that we can analyze the whole dataset</h2>
+<p>We can now calculate statistics on all members of the military and visualize trends across the whole military. For example, in this plot that we can see that there are more married than single active members of the military, and for each group we can compare the porportion of members affiliated with the four different branches.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mm_all_sheets, <span class="fu">aes</span>(<span class="at">fill=</span>branch, <span class="at">x=</span>Marital, <span class="at">y=</span>count)) <span class="sc">+</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="challenge8_solution_SRP_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>(I recognize that this is not a great plot, since it is hard to compare the relative sizes of the proportions across the two bars, except for the Navy’s relative proportions… Even a position=dodge format doesn’t do this well. I will need to think about a more appropriate plot!)</p>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="DACSS/SummerCommentRepo" data-repo-id="R_kgDOJrwrQw" data-category="Announcements" data-category-id="DIC_kwDOJrwrQ84CW_wq" data-mapping="url" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb10" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Challenge 8 Solution"</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Susannah Reed Poland"</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Joining Data"</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "7/2/2023"</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">    df-print: paged</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - challenge_8</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co">  - military_marriages</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="co">  - Susannah Reed Poland</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="fu">## Read in the Military Marital Status dataset and tidy </span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>Read in one the "Military Marital Status" dataset, and tidy it in preparation for wrangling. This dataset is an excel workbook that is spread across several sheets, so I will need to join sheets together to create a single dataframe for analysis. </span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>THe Military Marital Status dataset contains information on all activie military members in April of 2010. It classifies each member by marital and family status, and groups them by their respective branch of government. It also provides data on the military as whole, as a kind of "cover sheet". The following sheets represent the same classifications for each of branches: Air Force, Marine Corps, Navy, and Army. </span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>From inspection, I can see that the spreadsheet title and other metadata span 7 rows, and the data actually begin on row 9, so will need to skip 7 or 8 rows as I read it in. (Column headers span 2 rows, so I will need to collapse them into 1.) The values represent the number of employees that fall into various categories. The categories are created by the variables: Pay Grade Type, Pay Grade Level, Marital Status, Parent, Spouse affiliation, and Gender. </span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>To tidy the data, I will want to delete the "total" columns and rename the other variables so that each designates the gender with the respective variable. I will also collapse the Spouse and Parent variables. </span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a><span class="co">#Create a vector with the desired column names, and label the ones to be deleted as "delete"</span></span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>marital_status_cols<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">"delete"</span>, <span class="st">"payGrade_payLevel"</span>,</span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>            <span class="st">"single_nokids_male"</span>, <span class="st">"single_nokids_female"</span>, <span class="st">"delete"</span>,</span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>            <span class="st">"single_kids_male"</span>, <span class="st">"single_kids_female"</span>, <span class="st">"delete"</span>,</span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>            <span class="st">"married_military_male"</span>, <span class="st">"married_military_female"</span>, <span class="st">"delete"</span>,</span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a>            <span class="st">"married_civilian_male"</span>, <span class="st">"married_civilian_female"</span>, <span class="st">"delete"</span>, <span class="st">"delete"</span>, <span class="st">"delete"</span>, <span class="st">"delete"</span>)</span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a>mm_orig<span class="ot">&lt;-</span><span class="fu">read_excel</span>(<span class="st">"_data/ActiveDuty_MaritalStatus.xls"</span>, <span class="at">skip=</span><span class="dv">8</span>, <span class="at">col_names=</span>marital_status_cols)</span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a><span class="co">#check out the new headers: </span></span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a>mm_orig<span class="sc">%&gt;%</span></span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a>I can now delete the old header row, and the columns that contain the totaled values, which I won't need in my analysis.</span>
+<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a><span class="co">#delete 1st row (old header) </span></span>
+<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a>mm_tidy_sheet<span class="ot">&lt;-</span>mm_orig[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>),]<span class="sc">%&gt;%</span></span>
+<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">starts_with</span>(<span class="st">"delete"</span>))<span class="sc">%&gt;%</span> <span class="co">#select all columns that are NOT "delete"</span></span>
+<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(payGrade_payLevel, <span class="st">"TOTAL"</span>, <span class="at">negate=</span><span class="cn">TRUE</span>)) <span class="co">#negate=true will invert this function, so that filter OUT the "total" columns</span></span>
+<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a>mm_tidy_sheet<span class="sc">%&gt;%</span></span>
+<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a>Now I can pivot the Marital, Other, and Gender columns into rows, and put their values in a "count" column. I can also separate out pay grade and pay level. </span>
+<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a>mm_tidy_long <span class="ot">&lt;-</span>mm_tidy_sheet <span class="sc">%&gt;%</span></span>
+<span id="cb10-80"><a href="#cb10-80" aria-hidden="true" tabindex="-1"></a><span class="co">#pivot with every column except for the first column</span></span>
+<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span><span class="dv">1</span>, </span>
+<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a><span class="co">#these are the only distinct categories remaining</span></span>
+<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"Marital"</span>, <span class="st">"Other"</span>, <span class="st">"Gender"</span>),</span>
+<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_sep =</span> <span class="st">"_"</span>,</span>
+<span id="cb10-85"><a href="#cb10-85" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"count"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb10-86"><a href="#cb10-86" aria-hidden="true" tabindex="-1"></a><span class="co">#separate pay grades and pay levels into their own columns</span></span>
+<span id="cb10-87"><a href="#cb10-87" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(payGrade_payLevel, </span>
+<span id="cb10-88"><a href="#cb10-88" aria-hidden="true" tabindex="-1"></a>           <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"payGrade"</span>, <span class="st">"payLevel"</span>),</span>
+<span id="cb10-89"><a href="#cb10-89" aria-hidden="true" tabindex="-1"></a>           <span class="at">sep=</span><span class="st">"-"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb10-90"><a href="#cb10-90" aria-hidden="true" tabindex="-1"></a><span class="co">#make these values more readable -- we could also have used "recode" </span></span>
+<span id="cb10-91"><a href="#cb10-91" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">payGrade =</span> <span class="fu">case_when</span>( </span>
+<span id="cb10-92"><a href="#cb10-92" aria-hidden="true" tabindex="-1"></a>    payGrade <span class="sc">==</span> <span class="st">"E"</span> <span class="sc">~</span> <span class="st">"Enlisted"</span>,</span>
+<span id="cb10-93"><a href="#cb10-93" aria-hidden="true" tabindex="-1"></a>    payGrade <span class="sc">==</span> <span class="st">"O"</span> <span class="sc">~</span> <span class="st">"Officer"</span>,</span>
+<span id="cb10-94"><a href="#cb10-94" aria-hidden="true" tabindex="-1"></a>    payGrade <span class="sc">==</span> <span class="st">"W"</span> <span class="sc">~</span> <span class="st">"Warrant Officer"</span></span>
+<span id="cb10-95"><a href="#cb10-95" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb10-96"><a href="#cb10-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-97"><a href="#cb10-97" aria-hidden="true" tabindex="-1"></a>mm_tidy_long<span class="sc">%&gt;%</span></span>
+<span id="cb10-98"><a href="#cb10-98" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span>
+<span id="cb10-99"><a href="#cb10-99" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-100"><a href="#cb10-100" aria-hidden="true" tabindex="-1"></a>The data of the first sheet are now tidy and relatively readable. </span>
+<span id="cb10-101"><a href="#cb10-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-102"><a href="#cb10-102" aria-hidden="true" tabindex="-1"></a><span class="fu">## Join sheets (or, merge data from all sheets into one dataframe)</span></span>
+<span id="cb10-103"><a href="#cb10-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-104"><a href="#cb10-104" aria-hidden="true" tabindex="-1"></a>To join the data of the various sheets, I need to create a function that will run all the arguments that I just performed on the 1st sheet on any sheet in the workbook. The command "sheet_name" will stand in for any sheet in the workbook. </span>
+<span id="cb10-105"><a href="#cb10-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-106"><a href="#cb10-106" aria-hidden="true" tabindex="-1"></a>As I read in the data, I can  tell read_excel to call the name of each sheet "sheet_name". This allows us to create a column with values that are the name of the given sheet.</span>
+<span id="cb10-107"><a href="#cb10-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-110"><a href="#cb10-110" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-111"><a href="#cb10-111" aria-hidden="true" tabindex="-1"></a><span class="co">#sheet_name becomes an argument or command that can be applied to any sheet </span></span>
+<span id="cb10-112"><a href="#cb10-112" aria-hidden="true" tabindex="-1"></a>read_mm<span class="ot">&lt;-</span><span class="cf">function</span>(sheet_name){</span>
+<span id="cb10-113"><a href="#cb10-113" aria-hidden="true" tabindex="-1"></a>  dat <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"_data/ActiveDuty_MaritalStatus.xls"</span>,</span>
+<span id="cb10-114"><a href="#cb10-114" aria-hidden="true" tabindex="-1"></a><span class="co">#the name of each sheet is stored as "sheet_name" </span></span>
+<span id="cb10-115"><a href="#cb10-115" aria-hidden="true" tabindex="-1"></a>             <span class="at">sheet =</span> sheet_name,</span>
+<span id="cb10-116"><a href="#cb10-116" aria-hidden="true" tabindex="-1"></a>             <span class="at">skip=</span><span class="dv">9</span>,</span>
+<span id="cb10-117"><a href="#cb10-117" aria-hidden="true" tabindex="-1"></a>             <span class="at">col_names =</span> marital_status_cols</span>
+<span id="cb10-118"><a href="#cb10-118" aria-hidden="true" tabindex="-1"></a>             )<span class="sc">%&gt;%</span></span>
+<span id="cb10-119"><a href="#cb10-119" aria-hidden="true" tabindex="-1"></a><span class="co">#branch will be a new column with the sheet name (which indicates the branch of the military for each member listed)</span></span>
+<span id="cb10-120"><a href="#cb10-120" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">branch=</span>sheet_name) <span class="sc">%&gt;%</span></span>
+<span id="cb10-121"><a href="#cb10-121" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">!</span><span class="fu">starts_with</span>(<span class="st">"delete"</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb10-122"><a href="#cb10-122" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="fu">str_detect</span>(payGrade_payLevel, <span class="st">"TOTAL"</span>, <span class="at">negate=</span><span class="cn">TRUE</span>))<span class="sc">%&gt;%</span></span>
+<span id="cb10-123"><a href="#cb10-123" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">contains</span>(<span class="fu">c</span>(<span class="st">"male"</span>, <span class="st">"female"</span>)),</span>
+<span id="cb10-124"><a href="#cb10-124" aria-hidden="true" tabindex="-1"></a>                 <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"Marital"</span>, <span class="st">"Other"</span>, <span class="st">"Gender"</span>),</span>
+<span id="cb10-125"><a href="#cb10-125" aria-hidden="true" tabindex="-1"></a>                 <span class="at">names_sep =</span> <span class="st">"_"</span>,</span>
+<span id="cb10-126"><a href="#cb10-126" aria-hidden="true" tabindex="-1"></a>                 <span class="at">values_to =</span> <span class="st">"count"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb10-127"><a href="#cb10-127" aria-hidden="true" tabindex="-1"></a>    <span class="fu">separate</span>(payGrade_payLevel, </span>
+<span id="cb10-128"><a href="#cb10-128" aria-hidden="true" tabindex="-1"></a>             <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"payGrade"</span>, <span class="st">"payLevel"</span>),</span>
+<span id="cb10-129"><a href="#cb10-129" aria-hidden="true" tabindex="-1"></a>             <span class="at">sep=</span><span class="st">"-"</span>)<span class="sc">%&gt;%</span></span>
+<span id="cb10-130"><a href="#cb10-130" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">payGrade =</span> <span class="fu">case_when</span>(</span>
+<span id="cb10-131"><a href="#cb10-131" aria-hidden="true" tabindex="-1"></a>      payGrade <span class="sc">==</span> <span class="st">"E"</span> <span class="sc">~</span> <span class="st">"Enlisted"</span>,</span>
+<span id="cb10-132"><a href="#cb10-132" aria-hidden="true" tabindex="-1"></a>      payGrade <span class="sc">==</span> <span class="st">"O"</span> <span class="sc">~</span> <span class="st">"Officer"</span>,</span>
+<span id="cb10-133"><a href="#cb10-133" aria-hidden="true" tabindex="-1"></a>      payGrade <span class="sc">==</span> <span class="st">"W"</span> <span class="sc">~</span> <span class="st">"Warrant Officer"</span></span>
+<span id="cb10-134"><a href="#cb10-134" aria-hidden="true" tabindex="-1"></a>    ))</span>
+<span id="cb10-135"><a href="#cb10-135" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(dat)</span>
+<span id="cb10-136"><a href="#cb10-136" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-137"><a href="#cb10-137" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-138"><a href="#cb10-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-139"><a href="#cb10-139" aria-hidden="true" tabindex="-1"></a>I will create a vector of sheet names to run through the new function: </span>
+<span id="cb10-140"><a href="#cb10-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-143"><a href="#cb10-143" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-144"><a href="#cb10-144" aria-hidden="true" tabindex="-1"></a>mm_sheet_names<span class="ot">&lt;-</span><span class="fu">excel_sheets</span>(<span class="st">"_data/ActiveDuty_MaritalStatus.xls"</span>)</span>
+<span id="cb10-145"><a href="#cb10-145" aria-hidden="true" tabindex="-1"></a>mm_sheet_names</span>
+<span id="cb10-146"><a href="#cb10-146" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-147"><a href="#cb10-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-148"><a href="#cb10-148" aria-hidden="true" tabindex="-1"></a>Now I can use map_dfr from the purrr package to join the sheets into a single dataframe. "dfr" indicates data frame rows, and implies the action: the function will add the list elements created by purrr as rows in a single dataframe. </span>
+<span id="cb10-149"><a href="#cb10-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-152"><a href="#cb10-152" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-153"><a href="#cb10-153" aria-hidden="true" tabindex="-1"></a><span class="co">#make sure that purrr is loaded </span></span>
+<span id="cb10-154"><a href="#cb10-154" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb10-155"><a href="#cb10-155" aria-hidden="true" tabindex="-1"></a><span class="co">#create a new sheet, mm_all_sheets, that is the joint of all the sheets in Military Marital Status that have been transformed by the new function read_mm</span></span>
+<span id="cb10-156"><a href="#cb10-156" aria-hidden="true" tabindex="-1"></a>mm_all_sheets<span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(<span class="fu">excel_sheets</span>(<span class="st">"_data/ActiveDuty_MaritalStatus.xls"</span>)[<span class="sc">-</span><span class="dv">1</span>],read_mm)</span>
+<span id="cb10-157"><a href="#cb10-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-158"><a href="#cb10-158" aria-hidden="true" tabindex="-1"></a>mm_all_sheets</span>
+<span id="cb10-159"><a href="#cb10-159" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-160"><a href="#cb10-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-161"><a href="#cb10-161" aria-hidden="true" tabindex="-1"></a>The resulting dataframe has 720 rows, which is the sum of the rows in each of the sheets. Success!!</span>
+<span id="cb10-162"><a href="#cb10-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-163"><a href="#cb10-163" aria-hidden="true" tabindex="-1"></a><span class="fu">## Demonstrate that we can analyze the whole dataset</span></span>
+<span id="cb10-164"><a href="#cb10-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-165"><a href="#cb10-165" aria-hidden="true" tabindex="-1"></a>We can now calculate statistics on all members of the military and visualize trends across the whole military. For example, in this plot that we can see that there are more married than single active members of the military, and for each group we can compare the porportion of members affiliated with the four different branches. </span>
+<span id="cb10-166"><a href="#cb10-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-169"><a href="#cb10-169" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-170"><a href="#cb10-170" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mm_all_sheets, <span class="fu">aes</span>(<span class="at">fill=</span>branch, <span class="at">x=</span>Marital, <span class="at">y=</span>count)) <span class="sc">+</span> </span>
+<span id="cb10-171"><a href="#cb10-171" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>)</span>
+<span id="cb10-172"><a href="#cb10-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-173"><a href="#cb10-173" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-174"><a href="#cb10-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-175"><a href="#cb10-175" aria-hidden="true" tabindex="-1"></a>(I recognize that this is not a great plot, since it is hard to compare the relative sizes of the proportions across the two bars, except for the Navy's relative proportions... Even a position=dodge format doesn't do this well. I will need to think about a more appropriate plot!)</span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+</body></html>
