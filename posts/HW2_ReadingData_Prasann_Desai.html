@@ -103,12 +103,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <meta name="twitter:title" content="Homework 2">
 <meta name="twitter:description" content="Reading in Data">
-<meta name="twitter:image" content="https://dacss.github.io/DACSS_601_Summer2023_Sec1/posts/HW2_ReadingData_Prasann_Desai_files/figure-html/unnamed-chunk-6-1.png">
 <meta name="twitter:creator" content="@UMassDACSS">
 <meta name="twitter:site" content="@UMassDACSS">
-<meta name="twitter:image-height" content="960">
-<meta name="twitter:image-width" content="1920">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="floating nav-fixed">
@@ -215,7 +212,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="introduction" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
 <p>Until a decade and a half ago, recording data points regarding key events in soccer was a manual process. This limited the range of analysis and the variety of data attributes. Today, with the usage of advanced technology, hundreds of attributes describing a game are being recorded in real-time. This has enabled a wide range of research in the field of soccer analytics and led to the emergence of various soccer data aggregators like StatsBomb, FBref, Understat, Fotmob, etc. In this project, we will be using the data from these aggregators using the <em>worldfootballR</em> package in R. This package has been created by Jason Zivkovic that enables users to conveniently access data belonging to the above-mentioned aggregators in R.</p>
-<p>The goal of the project will be to find attributes that best predict success in the game. We would want to see the following aspects:</p>
+<p>The goal of the project will be to find performance attributes that best predict success in the game. We would want to see the following aspects:</p>
 <ul>
 <li>What are the best teams/players good at? We will compare their aggregate statistics like goals, assists, xG, xA, Goal difference, etc.</li>
 <li>Is xG a good indicator of success? Any trends over years?</li>
@@ -227,16 +224,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This dataset allows us to obtain soccer game/team/player data with various attributes. The attributes are both categorical and numerical. The attributes describing a game are goals scored by the home/away team, assists, game result, corners taken, shots attempted, etc. Similar attributes are also recorded at a team and player level. The dataset also contains some advanced attributes like xG and xA that are widely accepted in the soccer analytics industry to describe the quality of actions of players/teams in quantitative terms. We will be making use of xG and related stats to determine if it is a good indicator of success (better points earned in the league, more goals scored, etc.). For simplicity, we will be using the stats of the 1st tier of English Premier League Football for our analysis.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is a sample dataset call. Further in the project, we could change a couple of parameters in the dataset call for comparative analysis, etc.</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>prem_2023_shooting <span class="ot">&lt;-</span> <span class="fu">fb_season_team_stats</span>(<span class="at">country =</span> <span class="st">"ENG"</span>, <span class="at">gender =</span> <span class="st">"M"</span>, <span class="at">season_end_year =</span> <span class="st">"2023"</span>, <span class="at">tier =</span> <span class="st">"1st"</span>, <span class="at">stat_type =</span> <span class="st">"shooting"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>prem_team_2023_shooting <span class="ot">&lt;-</span> <span class="fu">fb_season_team_stats</span>(<span class="at">country =</span> <span class="st">"ENG"</span>, <span class="at">gender =</span> <span class="st">"M"</span>, <span class="at">season_end_year =</span> <span class="st">"2023"</span>, <span class="at">tier =</span> <span class="st">"1st"</span>, <span class="at">stat_type =</span> <span class="st">"shooting"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(prem_2023_shooting)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(prem_team_2023_shooting)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 40</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(prem_2023_shooting<span class="sc">$</span>Team_or_Opponent)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(prem_team_2023_shooting<span class="sc">$</span>Team_or_Opponent)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 opponent     team 
@@ -276,57 +273,47 @@ opponent     team
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample analysis</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Pre-processing</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># selecting the required columns</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>prem_2023_shooting_1 <span class="ot">&lt;-</span> <span class="fu">select</span>(prem_2023_shooting, Squad, Team_or_Opponent, npxG_Expected)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>prem_2023_shooting_1 <span class="ot">&lt;-</span> <span class="fu">mutate</span>(prem_2023_shooting_1, <span class="at">Squad =</span> <span class="fu">case_when</span>(<span class="fu">str_detect</span>(Squad, <span class="st">"vs "</span>) <span class="sc">~</span> <span class="fu">str_split</span>(Squad, <span class="st">"vs "</span>, <span class="at">simplify =</span> <span class="cn">TRUE</span>)[,<span class="dv">2</span>],</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>                                                                     <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">as.character</span>(Squad)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>                                                                     ))</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the pivot_wider function to pivot the dataset</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>prem_2023_shooting_pivoted <span class="ot">&lt;-</span> <span class="fu">pivot_wider</span>(prem_2023_shooting_1, <span class="at">names_from =</span> <span class="st">"Team_or_Opponent"</span>, <span class="at">values_from =</span> <span class="st">"npxG_Expected"</span>)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>prem_2023_shooting_pivoted <span class="ot">&lt;-</span> <span class="fu">rename</span>(prem_2023_shooting_pivoted, <span class="at">xG_For =</span> team, <span class="at">xG_Against =</span> opponent)</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>prem_2023_shooting_pivoted</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 20 × 3
-   Squad           xG_For xG_Against
-   &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt;
- 1 Arsenal           69.1       38  
- 2 Aston Villa       47.2       47.9
- 3 Bournemouth       38.6       58.4
- 4 Brentford         50.6       48.7
- 5 Brighton          68.9       43.7
- 6 Chelsea           47.2       51.7
- 7 Crystal Palace    36.8       44.9
- 8 Everton           42.8       61.1
- 9 Fulham            39.1       57.9
-10 Leeds United      45         62.5
-11 Leicester City    45.8       59.9
-12 Liverpool         69.5       48.1
-13 Manchester City   71.1       29.8
-14 Manchester Utd    65.3       48  
-15 Newcastle Utd     67.4       35.7
-16 Nott'ham Forest   34.6       57.5
-17 Southampton       34.5       58.7
-18 Tottenham         52.4       46.6
-19 West Ham          43.7       48.4
-20 Wolves            34.5       56.7</code></pre>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>prem_2023_shooting_1 <span class="ot">&lt;-</span> <span class="fu">select</span>(prem_2023_shooting, Squad, Team_or_Opponent, npxG_Expected)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in select(prem_2023_shooting, Squad, Team_or_Opponent, npxG_Expected): object 'prem_2023_shooting' not found</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>prem_2023_shooting_1 <span class="ot">&lt;-</span> <span class="fu">mutate</span>(prem_2023_shooting_1, <span class="at">Squad =</span> <span class="fu">case_when</span>(<span class="fu">str_detect</span>(Squad, <span class="st">"vs "</span>) <span class="sc">~</span> <span class="fu">str_split</span>(Squad, <span class="st">"vs "</span>, <span class="at">simplify =</span> <span class="cn">TRUE</span>)[,<span class="dv">2</span>],</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                                                                     <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">as.character</span>(Squad)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                                                                     ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in mutate(prem_2023_shooting_1, Squad = case_when(str_detect(Squad, : object 'prem_2023_shooting_1' not found</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the pivot_wider function to pivot the dataset</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>prem_2023_shooting_pivoted <span class="ot">&lt;-</span> <span class="fu">pivot_wider</span>(prem_2023_shooting_1, <span class="at">names_from =</span> <span class="st">"Team_or_Opponent"</span>, <span class="at">values_from =</span> <span class="st">"npxG_Expected"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in pivot_wider(prem_2023_shooting_1, names_from = "Team_or_Opponent", : object 'prem_2023_shooting_1' not found</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>prem_2023_shooting_pivoted <span class="ot">&lt;-</span> <span class="fu">rename</span>(prem_2023_shooting_pivoted, <span class="at">xG_For =</span> team, <span class="at">xG_Against =</span> opponent)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in rename(prem_2023_shooting_pivoted, xG_For = team, xG_Against = opponent): object 'prem_2023_shooting_pivoted' not found</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>prem_2023_shooting_pivoted</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in eval(expr, envir, enclos): object 'prem_2023_shooting_pivoted' not found</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Building a scatter plot of xG_For and xG_Against</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(prem_2023_shooting_pivoted,</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> xG_For,</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> xG_Against,</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">col =</span> Squad</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>           )) <span class="sc">+</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">y =</span> xG_Against <span class="sc">-</span> <span class="dv">1</span>, <span class="at">label =</span> Squad), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.5</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span> </span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Expected Goals Scored"</span>,</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Expected Goals Conceded"</span>,</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"xG_For vs. xG_Against"</span>,</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"xG For vs. Against comparison of all Premier league teams for season of 2022-2023"</span>) <span class="sc">+</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="HW2_ReadingData_Prasann_Desai_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="960"></p>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Building a scatter plot of xG_For and xG_Against</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(prem_2023_shooting_pivoted,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> xG_For,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> xG_Against,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">col =</span> Squad</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>           )) <span class="sc">+</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">y =</span> xG_Against <span class="sc">-</span> <span class="dv">1</span>, <span class="at">label =</span> Squad), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.5</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span> </span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Expected Goals Scored"</span>,</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Expected Goals Conceded"</span>,</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"xG_For vs. xG_Against"</span>,</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"xG For vs. Against comparison of all Premier league teams for season of 2022-2023"</span>) <span class="sc">+</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in ggplot(prem_2023_shooting_pivoted, aes(x = xG_For, y = xG_Against, : object 'prem_2023_shooting_pivoted' not found</code></pre>
 </div>
 </div>
 
@@ -738,133 +725,133 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <script src="https://giscus.app/client.js" data-repo="DACSS/SummerCommentRepo" data-repo-id="R_kgDOJrwrQw" data-category="Announcements" data-category-id="DIC_kwDOJrwrQ84CW_wq" data-mapping="url" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb9" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Homework 2"</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Prasann Desai"</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Reading in Data"</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "7/3/2023"</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 2</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-title: Contents</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-location: left</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="co">    number-depth: 2</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co">  - hw2</span></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co">  - Prasann Desai</span></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="co">  - worldfootballR</span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a><span class="co"># to allow us to install packages from github and eventually install/load up the dataset.</span></span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("devtools")</span></span>
-<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a><span class="co"># devtools::install_github("JaseZiv/worldfootballR", ref = "main")</span></span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(worldfootballR)</span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introduction</span></span>
-<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>Until a decade and a half ago, recording data points regarding key events in soccer was a manual process. This limited the range of analysis and the variety of data attributes. Today, with the usage of advanced technology, hundreds of attributes describing a game are being recorded in real-time. This has enabled a wide range of research in the field of soccer analytics and led to the emergence of various soccer data aggregators like StatsBomb, FBref, Understat, Fotmob, etc. In this project, we will be using the data from these aggregators using the *worldfootballR* package in R. This package has been created by Jason Zivkovic that enables users to conveniently access data belonging to the above-mentioned aggregators in R. </span>
-<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>The goal of the project will be to find attributes that best predict success in the game. We would want to see the following aspects: </span>
-<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What are the best teams/players good at? We will compare their aggregate statistics like goals, assists, xG, xA, Goal difference, etc.</span>
-<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Is xG a good indicator of success? Any trends over years?</span>
-<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Which team has been the most unlucky? Here, we will analyse the difference between XG and Actual goals to see which teams couldn't secure points despite performing well.</span>
-<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data</span></span>
-<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>This dataset allows us to obtain soccer game/team/player data with various attributes. The attributes are both categorical and numerical. The attributes describing a game are goals scored by the home/away team, assists, game result, corners taken, shots attempted, etc. Similar attributes are also recorded at a team and player level. The dataset also contains some advanced attributes like xG and xA that are widely accepted in the soccer analytics industry to describe the quality of actions of players/teams in quantitative terms. We will be making use of xG and related stats to determine if it is a good indicator of success (better points earned in the league, more goals scored, etc.). For simplicity, we will be using the stats of the 1st tier of English Premier League Football for our analysis.</span>
-<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a><span class="co"># This is a sample dataset call. Further in the project, we could change a couple of parameters in the dataset call for comparative analysis, etc.</span></span>
-<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a>prem_2023_shooting <span class="ot">&lt;-</span> <span class="fu">fb_season_team_stats</span>(<span class="at">country =</span> <span class="st">"ENG"</span>, <span class="at">gender =</span> <span class="st">"M"</span>, <span class="at">season_end_year =</span> <span class="st">"2023"</span>, <span class="at">tier =</span> <span class="st">"1st"</span>, <span class="at">stat_type =</span> <span class="st">"shooting"</span>)</span>
-<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(prem_2023_shooting)</span>
-<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(prem_2023_shooting<span class="sc">$</span>Team_or_Opponent)</span>
-<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a><span class="fu">### Attribute Information</span></span>
-<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-79"><a href="#cb9-79" aria-hidden="true" tabindex="-1"></a>1)  Competition_Name (str, categorical): Name of the Competition</span>
-<span id="cb9-80"><a href="#cb9-80" aria-hidden="true" tabindex="-1"></a>2)  Gender (str, categorical): Gender category of the competition</span>
-<span id="cb9-81"><a href="#cb9-81" aria-hidden="true" tabindex="-1"></a>3)  Country (str, categorical): Country of the competition</span>
-<span id="cb9-82"><a href="#cb9-82" aria-hidden="true" tabindex="-1"></a>4)  Season_End_Year (int, numerical): Year of end of the competition season</span>
-<span id="cb9-83"><a href="#cb9-83" aria-hidden="true" tabindex="-1"></a>5)  Squad (str, categorical): Name of the team</span>
-<span id="cb9-84"><a href="#cb9-84" aria-hidden="true" tabindex="-1"></a>6)  Team_or_Opponent (str, categorical): Takes only two values - 'team' and 'opponent'. If the record is a 'team' record, then the stats are scored by the Squad, else, the stats are scored against the Squad.</span>
-<span id="cb9-85"><a href="#cb9-85" aria-hidden="true" tabindex="-1"></a>7)  Num_Players (int, numerical): Number of players registered in that season</span>
-<span id="cb9-86"><a href="#cb9-86" aria-hidden="true" tabindex="-1"></a>8)  Mins_Per_90 (int, numerical): Games played per season</span>
-<span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a>9)  Gls_Standard (int, numerical): Goals scored in a season</span>
-<span id="cb9-88"><a href="#cb9-88" aria-hidden="true" tabindex="-1"></a>10) Sh_Standard (int, numerical): Shots taken in a season</span>
-<span id="cb9-89"><a href="#cb9-89" aria-hidden="true" tabindex="-1"></a>11) SoT_Standard (int, numerical): Shots on target in a season</span>
-<span id="cb9-90"><a href="#cb9-90" aria-hidden="true" tabindex="-1"></a>12) SoT_percent_Standard (int, numerical): Ratio of SoT_Standard/Sh_Standard</span>
-<span id="cb9-91"><a href="#cb9-91" aria-hidden="true" tabindex="-1"></a>13) Sh_per_90_Standard (int, numerical): Sh_Standard per 90 mins</span>
-<span id="cb9-92"><a href="#cb9-92" aria-hidden="true" tabindex="-1"></a>14) SoT_per_90_Standard (int, numerical): SoT_Standard per 90 mins</span>
-<span id="cb9-93"><a href="#cb9-93" aria-hidden="true" tabindex="-1"></a>15) G_per_Sh_Standard (int, numerical): Gls_Standard/Sh_Standard</span>
-<span id="cb9-94"><a href="#cb9-94" aria-hidden="true" tabindex="-1"></a>16) G_per_SoT_Standard (int, numerical): Gls_Standard/SoT_Standard</span>
-<span id="cb9-95"><a href="#cb9-95" aria-hidden="true" tabindex="-1"></a>17) Dist_Standard (int, numerical): Distance travelled by the team in the season. (Running distance)</span>
-<span id="cb9-96"><a href="#cb9-96" aria-hidden="true" tabindex="-1"></a>18) FK_Standard (int, numerical): Free kicks taken in a season</span>
-<span id="cb9-97"><a href="#cb9-97" aria-hidden="true" tabindex="-1"></a>19) PK_Standard (int, numerical): Penalty kicks scored in a season</span>
-<span id="cb9-98"><a href="#cb9-98" aria-hidden="true" tabindex="-1"></a>20) PKatt_Standard (int, numerical): Penalty kicks awarded in a season</span>
-<span id="cb9-99"><a href="#cb9-99" aria-hidden="true" tabindex="-1"></a>21) xG_Expected (int, numerical): Expected Goals scored in a season</span>
-<span id="cb9-100"><a href="#cb9-100" aria-hidden="true" tabindex="-1"></a>22) npxG_Expected (int, numerical): non-penalty Expected Goals scored in a season</span>
-<span id="cb9-101"><a href="#cb9-101" aria-hidden="true" tabindex="-1"></a>23) npxG_per_Sh_Expected (int, numerical): non-penalty Expected Goals per shot in a season</span>
-<span id="cb9-102"><a href="#cb9-102" aria-hidden="true" tabindex="-1"></a>24) G_minus_xG_Expected (int, numerical): Difference between actual goals scored and Expected goals scored</span>
-<span id="cb9-103"><a href="#cb9-103" aria-hidden="true" tabindex="-1"></a>25) np:G_minus_xG_Expected (int, numerical): Difference between actual non-penalty goals scored and non-penalty Expected goals scored</span>
-<span id="cb9-104"><a href="#cb9-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-105"><a href="#cb9-105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-108"><a href="#cb9-108" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb9-109"><a href="#cb9-109" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample analysis</span></span>
-<span id="cb9-110"><a href="#cb9-110" aria-hidden="true" tabindex="-1"></a><span class="co"># Pre-processing</span></span>
-<span id="cb9-111"><a href="#cb9-111" aria-hidden="true" tabindex="-1"></a><span class="co"># selecting the required columns</span></span>
-<span id="cb9-112"><a href="#cb9-112" aria-hidden="true" tabindex="-1"></a>prem_2023_shooting_1 <span class="ot">&lt;-</span> <span class="fu">select</span>(prem_2023_shooting, Squad, Team_or_Opponent, npxG_Expected)</span>
-<span id="cb9-113"><a href="#cb9-113" aria-hidden="true" tabindex="-1"></a>prem_2023_shooting_1 <span class="ot">&lt;-</span> <span class="fu">mutate</span>(prem_2023_shooting_1, <span class="at">Squad =</span> <span class="fu">case_when</span>(<span class="fu">str_detect</span>(Squad, <span class="st">"vs "</span>) <span class="sc">~</span> <span class="fu">str_split</span>(Squad, <span class="st">"vs "</span>, <span class="at">simplify =</span> <span class="cn">TRUE</span>)[,<span class="dv">2</span>],</span>
-<span id="cb9-114"><a href="#cb9-114" aria-hidden="true" tabindex="-1"></a>                                                                     <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">as.character</span>(Squad)</span>
-<span id="cb9-115"><a href="#cb9-115" aria-hidden="true" tabindex="-1"></a>                                                                     ))</span>
-<span id="cb9-116"><a href="#cb9-116" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the pivot_wider function to pivot the dataset</span></span>
-<span id="cb9-117"><a href="#cb9-117" aria-hidden="true" tabindex="-1"></a>prem_2023_shooting_pivoted <span class="ot">&lt;-</span> <span class="fu">pivot_wider</span>(prem_2023_shooting_1, <span class="at">names_from =</span> <span class="st">"Team_or_Opponent"</span>, <span class="at">values_from =</span> <span class="st">"npxG_Expected"</span>)</span>
-<span id="cb9-118"><a href="#cb9-118" aria-hidden="true" tabindex="-1"></a>prem_2023_shooting_pivoted <span class="ot">&lt;-</span> <span class="fu">rename</span>(prem_2023_shooting_pivoted, <span class="at">xG_For =</span> team, <span class="at">xG_Against =</span> opponent)</span>
-<span id="cb9-119"><a href="#cb9-119" aria-hidden="true" tabindex="-1"></a>prem_2023_shooting_pivoted</span>
-<span id="cb9-120"><a href="#cb9-120" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb9-121"><a href="#cb9-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-122"><a href="#cb9-122" aria-hidden="true" tabindex="-1"></a><span class="in">```{r fig.width = 10}</span></span>
-<span id="cb9-123"><a href="#cb9-123" aria-hidden="true" tabindex="-1"></a><span class="co"># Building a scatter plot of xG_For and xG_Against</span></span>
-<span id="cb9-124"><a href="#cb9-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-125"><a href="#cb9-125" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(prem_2023_shooting_pivoted,</span>
-<span id="cb9-126"><a href="#cb9-126" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> xG_For,</span>
-<span id="cb9-127"><a href="#cb9-127" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> xG_Against,</span>
-<span id="cb9-128"><a href="#cb9-128" aria-hidden="true" tabindex="-1"></a>           <span class="at">col =</span> Squad</span>
-<span id="cb9-129"><a href="#cb9-129" aria-hidden="true" tabindex="-1"></a>           )) <span class="sc">+</span></span>
-<span id="cb9-130"><a href="#cb9-130" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">y =</span> xG_Against <span class="sc">-</span> <span class="dv">1</span>, <span class="at">label =</span> Squad), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
-<span id="cb9-131"><a href="#cb9-131" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.5</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span> </span>
-<span id="cb9-132"><a href="#cb9-132" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Expected Goals Scored"</span>,</span>
-<span id="cb9-133"><a href="#cb9-133" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Expected Goals Conceded"</span>,</span>
-<span id="cb9-134"><a href="#cb9-134" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"xG_For vs. xG_Against"</span>,</span>
-<span id="cb9-135"><a href="#cb9-135" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"xG For vs. Against comparison of all Premier league teams for season of 2022-2023"</span>) <span class="sc">+</span></span>
-<span id="cb9-136"><a href="#cb9-136" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span>
-<span id="cb9-137"><a href="#cb9-137" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<div class="sourceCode" id="cb18" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Homework 2"</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Prasann Desai"</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Reading in Data"</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "7/3/2023"</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 2</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-title: Contents</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-location: left</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co">    number-depth: 2</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="co">  - hw2</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="co">  - Prasann Desai</span></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="co">  - worldfootballR</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message=</span><span class="cn">FALSE</span>)</span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a><span class="co"># to allow us to install packages from github and eventually install/load up the dataset.</span></span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("devtools")</span></span>
+<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a><span class="co"># devtools::install_github("JaseZiv/worldfootballR", ref = "main")</span></span>
+<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(worldfootballR)</span>
+<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introduction</span></span>
+<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a>Until a decade and a half ago, recording data points regarding key events in soccer was a manual process. This limited the range of analysis and the variety of data attributes. Today, with the usage of advanced technology, hundreds of attributes describing a game are being recorded in real-time. This has enabled a wide range of research in the field of soccer analytics and led to the emergence of various soccer data aggregators like StatsBomb, FBref, Understat, Fotmob, etc. In this project, we will be using the data from these aggregators using the *worldfootballR* package in R. This package has been created by Jason Zivkovic that enables users to conveniently access data belonging to the above-mentioned aggregators in R. </span>
+<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a>The goal of the project will be to find performance attributes that best predict success in the game. We would want to see the following aspects: </span>
+<span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What are the best teams/players good at? We will compare their aggregate statistics like goals, assists, xG, xA, Goal difference, etc.</span>
+<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Is xG a good indicator of success? Any trends over years?</span>
+<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Which team has been the most unlucky? Here, we will analyse the difference between XG and Actual goals to see which teams couldn't secure points despite performing well.</span>
+<span id="cb18-52"><a href="#cb18-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-53"><a href="#cb18-53" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data</span></span>
+<span id="cb18-54"><a href="#cb18-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-55"><a href="#cb18-55" aria-hidden="true" tabindex="-1"></a>This dataset allows us to obtain soccer game/team/player data with various attributes. The attributes are both categorical and numerical. The attributes describing a game are goals scored by the home/away team, assists, game result, corners taken, shots attempted, etc. Similar attributes are also recorded at a team and player level. The dataset also contains some advanced attributes like xG and xA that are widely accepted in the soccer analytics industry to describe the quality of actions of players/teams in quantitative terms. We will be making use of xG and related stats to determine if it is a good indicator of success (better points earned in the league, more goals scored, etc.). For simplicity, we will be using the stats of the 1st tier of English Premier League Football for our analysis.</span>
+<span id="cb18-56"><a href="#cb18-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-57"><a href="#cb18-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-60"><a href="#cb18-60" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-61"><a href="#cb18-61" aria-hidden="true" tabindex="-1"></a><span class="co"># This is a sample dataset call. Further in the project, we could change a couple of parameters in the dataset call for comparative analysis, etc.</span></span>
+<span id="cb18-62"><a href="#cb18-62" aria-hidden="true" tabindex="-1"></a>prem_team_2023_shooting <span class="ot">&lt;-</span> <span class="fu">fb_season_team_stats</span>(<span class="at">country =</span> <span class="st">"ENG"</span>, <span class="at">gender =</span> <span class="st">"M"</span>, <span class="at">season_end_year =</span> <span class="st">"2023"</span>, <span class="at">tier =</span> <span class="st">"1st"</span>, <span class="at">stat_type =</span> <span class="st">"shooting"</span>)</span>
+<span id="cb18-63"><a href="#cb18-63" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-64"><a href="#cb18-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-67"><a href="#cb18-67" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-68"><a href="#cb18-68" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(prem_team_2023_shooting)</span>
+<span id="cb18-69"><a href="#cb18-69" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-72"><a href="#cb18-72" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-73"><a href="#cb18-73" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(prem_team_2023_shooting<span class="sc">$</span>Team_or_Opponent)</span>
+<span id="cb18-74"><a href="#cb18-74" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-75"><a href="#cb18-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-76"><a href="#cb18-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-77"><a href="#cb18-77" aria-hidden="true" tabindex="-1"></a><span class="fu">### Attribute Information</span></span>
+<span id="cb18-78"><a href="#cb18-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-79"><a href="#cb18-79" aria-hidden="true" tabindex="-1"></a>1)  Competition_Name (str, categorical): Name of the Competition</span>
+<span id="cb18-80"><a href="#cb18-80" aria-hidden="true" tabindex="-1"></a>2)  Gender (str, categorical): Gender category of the competition</span>
+<span id="cb18-81"><a href="#cb18-81" aria-hidden="true" tabindex="-1"></a>3)  Country (str, categorical): Country of the competition</span>
+<span id="cb18-82"><a href="#cb18-82" aria-hidden="true" tabindex="-1"></a>4)  Season_End_Year (int, numerical): Year of end of the competition season</span>
+<span id="cb18-83"><a href="#cb18-83" aria-hidden="true" tabindex="-1"></a>5)  Squad (str, categorical): Name of the team</span>
+<span id="cb18-84"><a href="#cb18-84" aria-hidden="true" tabindex="-1"></a>6)  Team_or_Opponent (str, categorical): Takes only two values - 'team' and 'opponent'. If the record is a 'team' record, then the stats are scored by the Squad, else, the stats are scored against the Squad.</span>
+<span id="cb18-85"><a href="#cb18-85" aria-hidden="true" tabindex="-1"></a>7)  Num_Players (int, numerical): Number of players registered in that season</span>
+<span id="cb18-86"><a href="#cb18-86" aria-hidden="true" tabindex="-1"></a>8)  Mins_Per_90 (int, numerical): Games played per season</span>
+<span id="cb18-87"><a href="#cb18-87" aria-hidden="true" tabindex="-1"></a>9)  Gls_Standard (int, numerical): Goals scored in a season</span>
+<span id="cb18-88"><a href="#cb18-88" aria-hidden="true" tabindex="-1"></a>10) Sh_Standard (int, numerical): Shots taken in a season</span>
+<span id="cb18-89"><a href="#cb18-89" aria-hidden="true" tabindex="-1"></a>11) SoT_Standard (int, numerical): Shots on target in a season</span>
+<span id="cb18-90"><a href="#cb18-90" aria-hidden="true" tabindex="-1"></a>12) SoT_percent_Standard (int, numerical): Ratio of SoT_Standard/Sh_Standard</span>
+<span id="cb18-91"><a href="#cb18-91" aria-hidden="true" tabindex="-1"></a>13) Sh_per_90_Standard (int, numerical): Sh_Standard per 90 mins</span>
+<span id="cb18-92"><a href="#cb18-92" aria-hidden="true" tabindex="-1"></a>14) SoT_per_90_Standard (int, numerical): SoT_Standard per 90 mins</span>
+<span id="cb18-93"><a href="#cb18-93" aria-hidden="true" tabindex="-1"></a>15) G_per_Sh_Standard (int, numerical): Gls_Standard/Sh_Standard</span>
+<span id="cb18-94"><a href="#cb18-94" aria-hidden="true" tabindex="-1"></a>16) G_per_SoT_Standard (int, numerical): Gls_Standard/SoT_Standard</span>
+<span id="cb18-95"><a href="#cb18-95" aria-hidden="true" tabindex="-1"></a>17) Dist_Standard (int, numerical): Distance travelled by the team in the season. (Running distance)</span>
+<span id="cb18-96"><a href="#cb18-96" aria-hidden="true" tabindex="-1"></a>18) FK_Standard (int, numerical): Free kicks taken in a season</span>
+<span id="cb18-97"><a href="#cb18-97" aria-hidden="true" tabindex="-1"></a>19) PK_Standard (int, numerical): Penalty kicks scored in a season</span>
+<span id="cb18-98"><a href="#cb18-98" aria-hidden="true" tabindex="-1"></a>20) PKatt_Standard (int, numerical): Penalty kicks awarded in a season</span>
+<span id="cb18-99"><a href="#cb18-99" aria-hidden="true" tabindex="-1"></a>21) xG_Expected (int, numerical): Expected Goals scored in a season</span>
+<span id="cb18-100"><a href="#cb18-100" aria-hidden="true" tabindex="-1"></a>22) npxG_Expected (int, numerical): non-penalty Expected Goals scored in a season</span>
+<span id="cb18-101"><a href="#cb18-101" aria-hidden="true" tabindex="-1"></a>23) npxG_per_Sh_Expected (int, numerical): non-penalty Expected Goals per shot in a season</span>
+<span id="cb18-102"><a href="#cb18-102" aria-hidden="true" tabindex="-1"></a>24) G_minus_xG_Expected (int, numerical): Difference between actual goals scored and Expected goals scored</span>
+<span id="cb18-103"><a href="#cb18-103" aria-hidden="true" tabindex="-1"></a>25) np:G_minus_xG_Expected (int, numerical): Difference between actual non-penalty goals scored and non-penalty Expected goals scored</span>
+<span id="cb18-104"><a href="#cb18-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-105"><a href="#cb18-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-108"><a href="#cb18-108" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb18-109"><a href="#cb18-109" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample analysis</span></span>
+<span id="cb18-110"><a href="#cb18-110" aria-hidden="true" tabindex="-1"></a><span class="co"># Pre-processing</span></span>
+<span id="cb18-111"><a href="#cb18-111" aria-hidden="true" tabindex="-1"></a><span class="co"># selecting the required columns</span></span>
+<span id="cb18-112"><a href="#cb18-112" aria-hidden="true" tabindex="-1"></a>prem_2023_shooting_1 <span class="ot">&lt;-</span> <span class="fu">select</span>(prem_2023_shooting, Squad, Team_or_Opponent, npxG_Expected)</span>
+<span id="cb18-113"><a href="#cb18-113" aria-hidden="true" tabindex="-1"></a>prem_2023_shooting_1 <span class="ot">&lt;-</span> <span class="fu">mutate</span>(prem_2023_shooting_1, <span class="at">Squad =</span> <span class="fu">case_when</span>(<span class="fu">str_detect</span>(Squad, <span class="st">"vs "</span>) <span class="sc">~</span> <span class="fu">str_split</span>(Squad, <span class="st">"vs "</span>, <span class="at">simplify =</span> <span class="cn">TRUE</span>)[,<span class="dv">2</span>],</span>
+<span id="cb18-114"><a href="#cb18-114" aria-hidden="true" tabindex="-1"></a>                                                                     <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">as.character</span>(Squad)</span>
+<span id="cb18-115"><a href="#cb18-115" aria-hidden="true" tabindex="-1"></a>                                                                     ))</span>
+<span id="cb18-116"><a href="#cb18-116" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the pivot_wider function to pivot the dataset</span></span>
+<span id="cb18-117"><a href="#cb18-117" aria-hidden="true" tabindex="-1"></a>prem_2023_shooting_pivoted <span class="ot">&lt;-</span> <span class="fu">pivot_wider</span>(prem_2023_shooting_1, <span class="at">names_from =</span> <span class="st">"Team_or_Opponent"</span>, <span class="at">values_from =</span> <span class="st">"npxG_Expected"</span>)</span>
+<span id="cb18-118"><a href="#cb18-118" aria-hidden="true" tabindex="-1"></a>prem_2023_shooting_pivoted <span class="ot">&lt;-</span> <span class="fu">rename</span>(prem_2023_shooting_pivoted, <span class="at">xG_For =</span> team, <span class="at">xG_Against =</span> opponent)</span>
+<span id="cb18-119"><a href="#cb18-119" aria-hidden="true" tabindex="-1"></a>prem_2023_shooting_pivoted</span>
+<span id="cb18-120"><a href="#cb18-120" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-121"><a href="#cb18-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-122"><a href="#cb18-122" aria-hidden="true" tabindex="-1"></a><span class="in">```{r fig.width = 10}</span></span>
+<span id="cb18-123"><a href="#cb18-123" aria-hidden="true" tabindex="-1"></a><span class="co"># Building a scatter plot of xG_For and xG_Against</span></span>
+<span id="cb18-124"><a href="#cb18-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-125"><a href="#cb18-125" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(prem_2023_shooting_pivoted,</span>
+<span id="cb18-126"><a href="#cb18-126" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> xG_For,</span>
+<span id="cb18-127"><a href="#cb18-127" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> xG_Against,</span>
+<span id="cb18-128"><a href="#cb18-128" aria-hidden="true" tabindex="-1"></a>           <span class="at">col =</span> Squad</span>
+<span id="cb18-129"><a href="#cb18-129" aria-hidden="true" tabindex="-1"></a>           )) <span class="sc">+</span></span>
+<span id="cb18-130"><a href="#cb18-130" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">y =</span> xG_Against <span class="sc">-</span> <span class="dv">1</span>, <span class="at">label =</span> Squad), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb18-131"><a href="#cb18-131" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.5</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span> </span>
+<span id="cb18-132"><a href="#cb18-132" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Expected Goals Scored"</span>,</span>
+<span id="cb18-133"><a href="#cb18-133" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Expected Goals Conceded"</span>,</span>
+<span id="cb18-134"><a href="#cb18-134" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"xG_For vs. xG_Against"</span>,</span>
+<span id="cb18-135"><a href="#cb18-135" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"xG For vs. Against comparison of all Premier league teams for season of 2022-2023"</span>) <span class="sc">+</span></span>
+<span id="cb18-136"><a href="#cb18-136" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span>
+<span id="cb18-137"><a href="#cb18-137" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
