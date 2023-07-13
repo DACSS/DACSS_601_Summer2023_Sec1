@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Moira Chiong">
+<meta name="dcterms.date" content="2023-07-13">
+<meta name="description" content="Final Project: Census PSEO Analysis">
+
+<title>Final Project</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/DACSS_Round_Network.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<meta name="twitter:title" content="Final Project">
+<meta name="twitter:description" content="Final Project: Census PSEO Analysis">
+<meta name="twitter:image" content="https://dacss.github.io/DACSS_601_Summer2023_Sec1/posts/Final_Project_Solutions_Moira_Chiong_files/figure-html/unnamed-chunk-9-1.png">
+<meta name="twitter:creator" content="@UMassDACSS">
+<meta name="twitter:site" content="@UMassDACSS">
+<meta name="twitter:image-height" content="960">
+<meta name="twitter:image-width" content="1344">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://dacss.github.io/DACSS_601_Summer2023_Sec1/" rel="" target="">
+ <span class="menu-text">Summer 2023 Posts</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html" rel="" target="">
+ <span class="menu-text">Contributors</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://umass.edu/sbs/dacss" rel="" target="">
+ <span class="menu-text">DACSS</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://dacss.github.io/DACSS_601_Summer2023_Sec1/" rel="" target=""><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#potential-research-questions" id="toc-potential-research-questions" class="nav-link" data-scroll-target="#potential-research-questions">Potential Research Questions</a></li>
+  <li><a href="#notes-on-code--data-analysis-and-answers-to-questions-1-3" id="toc-notes-on-code--data-analysis-and-answers-to-questions-1-3" class="nav-link" data-scroll-target="#notes-on-code--data-analysis-and-answers-to-questions-1-3">Notes on Code- Data Analysis and Answers to Questions 1-3</a></li>
+  <li><a href="#close-up-earnings-of-ba-economics-graduates" id="toc-close-up-earnings-of-ba-economics-graduates" class="nav-link" data-scroll-target="#close-up-earnings-of-ba-economics-graduates">Close Up: Earnings of BA Economics Graduates</a></li>
+  <li><a href="#close-up-earnings-of-umass-amherst-ba-graduates" id="toc-close-up-earnings-of-umass-amherst-ba-graduates" class="nav-link" data-scroll-target="#close-up-earnings-of-umass-amherst-ba-graduates">Close Up: Earnings of UMass Amherst BA Graduates</a>
+  <ul class="collapse">
+  <li><a href="#data-wrangling" id="toc-data-wrangling" class="nav-link" data-scroll-target="#data-wrangling">Data Wrangling</a></li>
+  <li><a href="#data-visualization-code" id="toc-data-visualization-code" class="nav-link" data-scroll-target="#data-visualization-code">Data Visualization Code</a></li>
+  <li><a href="#introduction-1" id="toc-introduction-1" class="nav-link" data-scroll-target="#introduction-1">Introduction</a></li>
+  <li><a href="#potential-research-questions-1" id="toc-potential-research-questions-1" class="nav-link" data-scroll-target="#potential-research-questions-1">Potential Research Questions</a></li>
+  <li><a href="#notes-on-code--data-analysis-and-answers-to-questions-1-3-1" id="toc-notes-on-code--data-analysis-and-answers-to-questions-1-3-1" class="nav-link" data-scroll-target="#notes-on-code--data-analysis-and-answers-to-questions-1-3-1">Notes on Code- Data Analysis and Answers to Questions 1-3</a></li>
+  </ul></li>
+  <li><a href="#close-up-earnings-of-ba-economics-graduates-1" id="toc-close-up-earnings-of-ba-economics-graduates-1" class="nav-link" data-scroll-target="#close-up-earnings-of-ba-economics-graduates-1">Close Up: Earnings of BA Economics Graduates</a></li>
+  <li><a href="#close-up-earnings-of-umass-amherst-ba-graduates-1" id="toc-close-up-earnings-of-umass-amherst-ba-graduates-1" class="nav-link" data-scroll-target="#close-up-earnings-of-umass-amherst-ba-graduates-1">Close Up: Earnings of UMass Amherst BA Graduates</a>
+  <ul class="collapse">
+  <li><a href="#data-wrangling-1" id="toc-data-wrangling-1" class="nav-link" data-scroll-target="#data-wrangling-1">Data Wrangling</a></li>
+  <li><a href="#data-visualization-code-1" id="toc-data-visualization-code-1" class="nav-link" data-scroll-target="#data-visualization-code-1">Data Visualization Code</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Final Project</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
+
+<div>
+  <div class="description">
+    Final Project: Census PSEO Analysis
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Moira Chiong </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 13, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"C:/Users/chion/OneDrive/Desktop/DACSS 601/DACSS_601_Summer2023_Sec1/posts"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>pseo_ma_SANDBOX <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"datafolderMoiraChiong/pseo_ma_SANDBOX.xlsx"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>pseo_ma_SANDBOX</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12,639 x 48
+   agg_level_pseo label_agg_level_pseo   inst_level label_inst_level institution
+            &lt;dbl&gt; &lt;chr&gt;                  &lt;chr&gt;      &lt;chr&gt;            &lt;chr&gt;      
+ 1             38 "Degree Level *\r\nIn~ I          Institution      00216100   
+ 2             38 "Degree Level *\r\nIn~ I          Institution      00216100   
+ 3             38 "Degree Level *\r\nIn~ I          Institution      00216100   
+ 4             38 "Degree Level *\r\nIn~ I          Institution      00216100   
+ 5             38 "Degree Level *\r\nIn~ I          Institution      00216100   
+ 6             38 "Degree Level *\r\nIn~ I          Institution      00216100   
+ 7             38 "Degree Level *\r\nIn~ I          Institution      00216700   
+ 8             38 "Degree Level *\r\nIn~ I          Institution      00216700   
+ 9             38 "Degree Level *\r\nIn~ I          Institution      00216700   
+10             38 "Degree Level *\r\nIn~ I          Institution      00216800   
+# i 12,629 more rows
+# i 43 more variables: label_institution &lt;chr&gt;,
+#   `Degree\r\nAward\r\nLevel` &lt;chr&gt;, label_degree_level &lt;chr&gt;,
+#   cip_level &lt;chr&gt;, label_cip_level &lt;chr&gt;, cipcode &lt;chr&gt;, label_cipcode &lt;chr&gt;,
+#   grad_cohort &lt;chr&gt;, label_grad_cohort &lt;chr&gt;, grad_cohort_years &lt;chr&gt;,
+#   label_grad_cohort_years &lt;chr&gt;, geo_level &lt;chr&gt;, label_geo_level &lt;chr&gt;,
+#   geography &lt;chr&gt;, label_geography &lt;chr&gt;, ind_level &lt;chr&gt;, ...</code></pre>
+</div>
+</div>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>For my final project, I used the Census Bureau Post-Secondary Employment Outcomes (PSEO) database filtered for Massachusetts. This database cites the employment outcomes (earnings 1, 5 and 10 years after graduation) for all public Massachusetts higher education institutions. The data set provides postsecondary employment outcomes for graduates at all credential levels, from certificate to doctorate. The data is divided into three to five year cohorts, ranging from 2001-2018. In addition, there are tabulations of number of graduates and number of employed graduates in the data set.</p>
+<p>Some limitations of this data set are that it is not disaggregated by demographic variables such as race/ethnicity, gender, age or Pell status. This makes a truly nuanced study of the variables and research questions less possible with the present data set. It is my hope that new iterations of this data set will include such demographic variables.</p>
+</section>
+<section id="potential-research-questions" class="level2">
+<h2 class="anchored" data-anchor-id="potential-research-questions">Potential Research Questions</h2>
+<p>The following questions are intended to uncover patterns in the PSEO data. While robust analysis of patterns in the data may require advanced statistical analysis, the data analysis completed in the project do reveal underlying general patterns.My research questions are as follows:</p>
+<ol type="1">
+<li>What is the relationship between credential level and earnings?</li>
+<li>What is the relationship between time elapsed since graduation and earnings? Do earnings grow as more years after graduation elapse?</li>
+<li>What is the relationship between academic field of study and earnings? Questions for further research: What is the relationship between race/ethnicity, age, Pell status and earnings?</li>
+</ol>
+</section>
+<section id="notes-on-code--data-analysis-and-answers-to-questions-1-3" class="level2">
+<h2 class="anchored" data-anchor-id="notes-on-code--data-analysis-and-answers-to-questions-1-3">Notes on Code- Data Analysis and Answers to Questions 1-3</h2>
+<p>Question 1: It is clear in the data that there exists an increasing relationship between credentials and earnings. Further, as credentials increase toward the doctoral level, earnings increase. This is corroborated in Table 1 below. For example, Doctoral graduates earn more than twice (on average, around $80k, 1 year after graduation) than Baccalaureate graduates (on average, around $40k, 1 year after graduation). With the exception of Certificates 1-2 years, and both types of doctoral degrees, the data is skewed right. This implies that the earnings data has a peak on the left side of the graph with gradual decrease on the right.</p>
+<p>Question 2: It is also evident in the data that earnings increase with time elapsed since graduation. As seen in the data below:</p>
+<p>Summary Statistics, Year 1, p50 Earnings Min. 1st Qu. Median Mean 3rd Qu. Max. NA’s 22214 34095 38097 46229 55442 120621 10</p>
+<p>Summary Statistics, Year 5, p50 Earnings Min. 1st Qu. Median Mean 3rd Qu. Max. NA’s 31422 47280 53655 60603 70968 138314 10</p>
+<p>Note the increase in mean earnings from $38,097 in Year 1 to $53,655 by Year 5.</p>
+<p>Question 3: My conjecture is that STEM fields are most lucrative, at any credential level. With strong labor markets in STEM professions, the postsecondary employment outcomes are strongest for those in STEM fields. I will later perform a check using UMass Amherst BA earnings data by academic field.</p>
+</section>
+<section id="close-up-earnings-of-ba-economics-graduates" class="level1">
+<h1>Close Up: Earnings of BA Economics Graduates</h1>
+<p>Out of curiousity, I proceeded to analyze the earnings patterns of BA Economics graduates in the MA public system. I found that of all the MA public Economics BA granting institutions, University of Massachusetts Amherst recorded the highest earnings at 47610 after 1 year of graduation. What is interesting to note is that earnings of Year 1 graduates of the UMass segment were consistently higher than state university This pattern did not extend to the 5 year mark, earnings of BA graduates were higher at the UMass campuses (with the exception of UMass Dartmouth) and highest at UMass Amherst , with Bridgewater State, Framingham State and Worcester State all showing earnings of over 60000.</p>
+</section>
+<section id="close-up-earnings-of-umass-amherst-ba-graduates" class="level1">
+<h1>Close Up: Earnings of UMass Amherst BA Graduates</h1>
+<p>In general, graduates of UMass Amherst have the highest earnings of graduates of any public higher education institution in Massachusetts. Fields that are particularly lucrative are, in descending order, Computer Science, Engineering, Business and Health Professions. Conversely, fields such as Human Sciences, Visual and Performing Arts and History are the least lucrative fields. This is not a shock and corroborates common conventional thought and practices about what fields are most lucrative.</p>
+<section id="data-wrangling" class="level2">
+<h2 class="anchored" data-anchor-id="data-wrangling">Data Wrangling</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the number of rows and columns in the dataset</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(pseo_ma_SANDBOX)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 12639</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(pseo_ma_SANDBOX)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 48</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to numeric, 1 year after graduation</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>pseo_ma_SANDBOX<span class="sc">$</span>y1_grads_earn <span class="ot">=</span> <span class="fu">as.numeric</span>((pseo_ma_SANDBOX<span class="sc">$</span>y1_grads_earn))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>pseo_ma_SANDBOX<span class="sc">$</span>y1_ipeds_count <span class="ot">=</span> <span class="fu">as.numeric</span>((pseo_ma_SANDBOX<span class="sc">$</span>y1_ipeds_count))</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>pseo_ma_SANDBOX<span class="sc">$</span>y1_p50_earnings <span class="ot">=</span> <span class="fu">as.numeric</span>((pseo_ma_SANDBOX<span class="sc">$</span>y1_p50_earnings))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to numeric, five years after graduation</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>pseo_ma_SANDBOX<span class="sc">$</span>y5_grads_earn <span class="ot">=</span> <span class="fu">as.numeric</span>((pseo_ma_SANDBOX<span class="sc">$</span>y5_grads_earn))</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>pseo_ma_SANDBOX<span class="sc">$</span>y5_ipeds_count <span class="ot">=</span> <span class="fu">as.numeric</span>((pseo_ma_SANDBOX<span class="sc">$</span>y5_ipeds_count))</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>pseo_ma_SANDBOX<span class="sc">$</span>y5_p50_earnings <span class="ot">=</span> <span class="fu">as.numeric</span>((pseo_ma_SANDBOX<span class="sc">$</span>y5_p50_earnings))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<pre><code>## Descriptive Statistics
+
+::: {.cell}
+
+```{.r .cell-code}
+# Filter data
+
+pseo_filtered_two &lt;-filter(pseo_ma_SANDBOX, pseo_ma_SANDBOX$label_cipcode=="All Instructional Programs" &amp; pseo_ma_SANDBOX$label_grad_cohort== "All Cohorts")
+View(pseo_filtered_two)</code></pre>
+<p>:::</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary Statistics, 1 year after Graduation</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>y1gradsearnSummary <span class="ot">&lt;-</span><span class="fu">summary</span>(pseo_filtered_two<span class="sc">$</span>y1_grads_earn, <span class="at">na.rm=</span>T)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(y1gradsearnSummary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+   34.0   186.5   708.0  2403.7  2315.0 35472.0      10 </code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>y1ipedscountSummary <span class="ot">&lt;-</span><span class="fu">summary</span>(pseo_filtered_two<span class="sc">$</span>y1_ipeds_count, <span class="at">na.rm=</span>T)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(y1ipedscountSummary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+    1.0   224.5   976.0  3370.2  3410.0 53560.0      10 </code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>y1p50earningsSummary <span class="ot">&lt;-</span><span class="fu">summary</span>(pseo_filtered_two<span class="sc">$</span>y1_p50_earnings, <span class="at">na.rm=</span>T)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(y1p50earningsSummary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+  22214   34095   38097   46229   55442  120621      10 </code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find summary statistics, 5 years after graduation</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>y5gradsearnSummary <span class="ot">&lt;-</span><span class="fu">summary</span>(pseo_filtered_two<span class="sc">$</span>y5_grads_earn, <span class="at">na.rm=</span>T)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(y5gradsearnSummary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+   31.0   208.8   783.0  2039.6  2888.0 25220.0      10 </code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>y5ipedscountSummary <span class="ot">&lt;-</span><span class="fu">summary</span>(pseo_filtered_two<span class="sc">$</span>y5_ipeds_count, <span class="at">na.rm=</span>T)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(y5ipedscountSummary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+    1.0   224.5   976.0  2561.2  2916.5 33916.0      10 </code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>y5p50earningsSummary <span class="ot">&lt;-</span><span class="fu">summary</span>(pseo_filtered_two<span class="sc">$</span>y5_p50_earnings, <span class="at">na.rm=</span>T)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(y5p50earningsSummary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+  31422   47280   53655   60603   70968  138314      10 </code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="st">``</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 year Earnings by Credential- Mean and Median</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>pseo_filtered_two <span class="sc">%&gt;%</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(pseo_filtered_two<span class="sc">$</span>label_degree_level) <span class="sc">%&gt;%</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="at">Mean_Earnings=</span><span class="fu">mean</span>(y1_p50_earnings, <span class="at">na.rm=</span>T), <span class="at">Median_Earnings=</span><span class="fu">median</span>(y1_p50_earnings, <span class="at">na.rm=</span>T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-error">
+<pre><code>Error: attempt to use zero-length variable name</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data-- just BA degrees</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>pseo_filtered <span class="ot">&lt;-</span><span class="fu">filter</span>(pseo_ma_SANDBOX, pseo_ma_SANDBOX<span class="sc">$</span>label_degree_level<span class="sc">==</span><span class="st">"Baccalaureate"</span>, pseo_ma_SANDBOX<span class="sc">$</span>label_cipcode<span class="sc">!=</span><span class="st">"All Instructional Programs"</span> <span class="sc">&amp;</span> pseo_ma_SANDBOX<span class="sc">$</span>label_grad_cohort<span class="sc">==</span> <span class="st">"All Cohorts"</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="st">`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-error">
+<pre><code>Error: &lt;text&gt;:3:1: unexpected INCOMPLETE_STRING
+2: pseo_filtered &lt;-filter(pseo_ma_SANDBOX, pseo_ma_SANDBOX$label_degree_level=="Baccalaureate", pseo_ma_SANDBOX$label_cipcode!="All Instructional Programs" &amp; pseo_ma_SANDBOX$label_grad_cohort== "
+3: `
+   ^</code></pre>
+</div>
+</div>
+</section>
+<section id="data-visualization-code" class="level2">
+<h2 class="anchored" data-anchor-id="data-visualization-code">Data Visualization Code</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar Chart, Mean Earnings One Year After Graduation all and by Credential Level </span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>vis_y1_p50_earnings <span class="ot">&lt;-</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(pseo_filtered_two, <span class="fu">aes</span>(<span class="at">x=</span>label_institution, <span class="at">y=</span>y1_p50_earnings)) <span class="sc">+</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"col"</span>) <span class="sc">+</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Average Earnings, 1 Year After Graduation"</span>) <span class="sc">+</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a> <span class="fu">xlab</span>(<span class="st">"Institution"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Average Earnings"</span>)  <span class="sc">+</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a> <span class="fu">theme</span>(<span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">4</span>, <span class="at">angle =</span> <span class="sc">-</span><span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a> <span class="fu">scale_y_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100000</span>))</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a> <span class="fu">print</span>(vis_y1_p50_earnings) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Final_Project_Solutions_Moira_Chiong_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>  vis_y1_p50_earnings <span class="sc">+</span> <span class="fu">facet_wrap</span>( <span class="sc">~</span> label_degree_level, <span class="at">ncol=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Final_Project_Solutions_Moira_Chiong_files/figure-html/unnamed-chunk-9-2.png" class="img-fluid" width="672"></p>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar Chart, Mean Earnings 5 Years After Graduation (all) and by Credential Level</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>vis_y5_p50_earnings <span class="ot">&lt;-</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(pseo_filtered_two, <span class="fu">aes</span>(<span class="at">x=</span>label_institution, <span class="at">y=</span>y5_p50_earnings)) <span class="sc">+</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"col"</span>) <span class="sc">+</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Average Earnings, 5 years After Graduation"</span>) <span class="sc">+</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a> <span class="fu">xlab</span>(<span class="st">"Institution"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Average Earnings"</span>)  <span class="sc">+</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a> <span class="fu">theme</span>(<span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">4</span>, <span class="at">angle =</span> <span class="sc">-</span><span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a> <span class="fu">scale_y_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100000</span>))</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a> <span class="fu">print</span>(vis_y5_p50_earnings) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Final_Project_Solutions_Moira_Chiong_files/figure-html/unnamed-chunk-9-3.png" class="img-fluid" width="672"></p>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>  vis_y5_p50_earnings <span class="sc">+</span> <span class="fu">facet_wrap</span>( <span class="sc">~</span> label_degree_level, <span class="at">ncol=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Final_Project_Solutions_Moira_Chiong_files/figure-html/unnamed-chunk-9-4.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar Graph of Number of Graduates</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>pseo_filtered_two<span class="sc">$</span>y1_ipeds_count <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(pseo_filtered_two<span class="sc">$</span>y1_ipeds_count)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>vis_y1_graduates <span class="ot">&lt;-</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(pseo_filtered_two, <span class="fu">aes</span>(<span class="at">x=</span>label_institution, <span class="at">y=</span>y1_ipeds_count)) <span class="sc">+</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"col"</span>) <span class="sc">+</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Number of Graduates, 1 year After Graduation, all cohorts"</span>) <span class="sc">+</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a> <span class="fu">xlab</span>(<span class="st">"Institution"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Number of Graduates"</span>)  <span class="sc">+</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a> <span class="fu">theme</span>(<span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">4</span>, <span class="at">angle =</span> <span class="sc">-</span><span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">80000</span>))</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(vis_y1_graduates) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Final_Project_Solutions_Moira_Chiong_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>  vis_y1_graduates <span class="sc">+</span> <span class="fu">facet_wrap</span>( <span class="sc">~</span> label_degree_level, <span class="at">ncol=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Final_Project_Solutions_Moira_Chiong_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid" width="672"></p>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter for Baccalaureate Economics degrees</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>pseo_filtered_econ<span class="ot">&lt;-</span><span class="fu">filter</span>(pseo_ma_SANDBOX, pseo_ma_SANDBOX<span class="sc">$</span>label_degree_level<span class="sc">==</span><span class="st">"Baccalaureate"</span> <span class="sc">&amp;</span> pseo_ma_SANDBOX<span class="sc">$</span>label_cipcode<span class="sc">==</span><span class="st">"Economics"</span> <span class="sc">&amp;</span> pseo_ma_SANDBOX<span class="sc">$</span>label_grad_cohort<span class="sc">==</span> <span class="st">"All Cohorts"</span>)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplot of Bachelors in Economics, all institutions</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>vis_600 <span class="ot">&lt;-</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pseo_filtered_econ, <span class="fu">aes</span>(<span class="at">x=</span>y1_grads_earn, <span class="at">y=</span>y1_p50_earnings, <span class="at">color=</span>label_institution)) <span class="sc">+</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">y=</span> <span class="st">"Earnings"</span>, <span class="at">x=</span> <span class="st">"Number of Graduates"</span>, <span class="at">color=</span> <span class="st">"Credential Level"</span>, <span class="at">title =</span> <span class="st">"Earnings by Number of Graduates by Institution"</span>)</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vis_600)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Final_Project_Solutions_Moira_Chiong_files/figure-html/unnamed-chunk-10-3.png" class="img-fluid" width="672"></p>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>pseo_filtered_econ <span class="sc">%&gt;%</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(pseo_filtered_econ<span class="sc">$</span>label_degree_level, pseo_filtered_econ<span class="sc">$</span>label_institution) <span class="sc">%&gt;%</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="at">Mean=</span><span class="fu">mean</span>(y1_p50_earnings, <span class="at">na.rm=</span>T), <span class="at">Median=</span><span class="fu">median</span>(y1_p50_earnings, <span class="at">na.rm=</span>T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 x 4
+# Groups:   pseo_filtered_econ$label_degree_level [1]
+   `pseo_filtered_econ$label_degree_level` pseo_filtered_econ$lab~1  Mean Median
+   &lt;chr&gt;                                   &lt;chr&gt;                    &lt;dbl&gt;  &lt;dbl&gt;
+ 1 Baccalaureate                           "Bridgewater\r\nState U~ 38473  38473
+ 2 Baccalaureate                           "Fitchburg State\r\nUni~   NaN     NA
+ 3 Baccalaureate                           "Framingham\r\nState Un~ 40713  40713
+ 4 Baccalaureate                           "Salem State\r\nUnivers~ 35121  35121
+ 5 Baccalaureate                           "University of\r\nMassa~ 47610  47610
+ 6 Baccalaureate                           "University of\r\nMassa~ 41376  41376
+ 7 Baccalaureate                           "University of\r\nMassa~ 42996  42996
+ 8 Baccalaureate                           "University of\r\nMassa~ 38528  38528
+ 9 Baccalaureate                           "Westfield State\r\nUni~ 40008  40008
+10 Baccalaureate                           "Worcester State\r\nUni~ 36980  36980
+# i abbreviated name: 1: `pseo_filtered_econ$label_institution`</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>pseo_filtered_econ <span class="sc">%&gt;%</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(pseo_filtered_econ<span class="sc">$</span>label_institution) <span class="sc">%&gt;%</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="at">Mean=</span><span class="fu">mean</span>(y5_p50_earnings, <span class="at">na.rm=</span>T), <span class="at">Median=</span><span class="fu">median</span>(y5_p50_earnings, <span class="at">na.rm=</span>T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 x 3
+   `pseo_filtered_econ$label_institution`            Mean Median
+   &lt;chr&gt;                                            &lt;dbl&gt;  &lt;dbl&gt;
+ 1 "Bridgewater\r\nState University"                68271  68271
+ 2 "Fitchburg State\r\nUniversity"                    NaN     NA
+ 3 "Framingham\r\nState University"                 64565  64565
+ 4 "Salem State\r\nUniversity"                      55778  55778
+ 5 "University of\r\nMassachusetts -\r\nAmherst"    70569  70569
+ 6 "University of\r\nMassachusetts -\r\nLowell"     62776  62776
+ 7 "University of\r\nMassachusetts at\r\nBoston"    65056  65056
+ 8 "University of\r\nMassachusetts at\r\nDartmouth" 51413  51413
+ 9 "Westfield State\r\nUniversity"                  59899  59899
+10 "Worcester State\r\nUniversity"                  63618  63618</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar of Bachelors in Economics</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>pseo_filtered_econ <span class="sc">%&gt;%</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(pseo_filtered_econ<span class="sc">$</span>label_degree_level, pseo_filtered_econ<span class="sc">$</span>label_institution) <span class="sc">%&gt;%</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="at">Mean=</span><span class="fu">mean</span>(y1_p50_earnings, <span class="at">na.rm=</span>T), <span class="at">Median=</span><span class="fu">median</span>(y1_p50_earnings, <span class="at">na.rm=</span>T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 x 4
+# Groups:   pseo_filtered_econ$label_degree_level [1]
+   `pseo_filtered_econ$label_degree_level` pseo_filtered_econ$lab~1  Mean Median
+   &lt;chr&gt;                                   &lt;chr&gt;                    &lt;dbl&gt;  &lt;dbl&gt;
+ 1 Baccalaureate                           "Bridgewater\r\nState U~ 38473  38473
+ 2 Baccalaureate                           "Fitchburg State\r\nUni~   NaN     NA
+ 3 Baccalaureate                           "Framingham\r\nState Un~ 40713  40713
+ 4 Baccalaureate                           "Salem State\r\nUnivers~ 35121  35121
+ 5 Baccalaureate                           "University of\r\nMassa~ 47610  47610
+ 6 Baccalaureate                           "University of\r\nMassa~ 41376  41376
+ 7 Baccalaureate                           "University of\r\nMassa~ 42996  42996
+ 8 Baccalaureate                           "University of\r\nMassa~ 38528  38528
+ 9 Baccalaureate                           "Westfield State\r\nUni~ 40008  40008
+10 Baccalaureate                           "Worcester State\r\nUni~ 36980  36980
+# i abbreviated name: 1: `pseo_filtered_econ$label_institution`</code></pre>
+</div>
+</div>
+<pre><code>::: {.cell}
+
+```{.r .cell-code}
+options(scipen = 999)
+
+vis_y1_econ &lt;-
+ggplot(pseo_filtered_econ, aes(x=label_institution, y=y1_p50_earnings)) +
+geom_bar(stat="identity") +
+ggtitle("Average Earnings, Economics, 1 year After Graduation") +
+xlab("Institution") + 
+ylab("Average Earnings") +
+theme(axis.text.x=element_text(size=4, angle = -90, hjust = 0)) 
+ print(vis_y1_econ)</code></pre>
+<div class="cell-output-display">
+<p><img src="Final_Project_Solutions_Moira_Chiong_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+<p>:::</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 year earnings for BAs by 2-digit CIP Code at UMass Amherst- Scatterplot</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>pseo_filtered_three <span class="ot">&lt;-</span><span class="fu">filter</span>(pseo_ma_SANDBOX, pseo_ma_SANDBOX<span class="sc">$</span>institution<span class="sc">==</span><span class="st">"00222100"</span> <span class="sc">&amp;</span> pseo_ma_SANDBOX<span class="sc">$</span>label_degree_level<span class="sc">==</span><span class="st">"Baccalaureate"</span> <span class="sc">&amp;</span> pseo_ma_SANDBOX<span class="sc">$</span>cip_level<span class="sc">==</span><span class="st">"2"</span> <span class="sc">&amp;</span> pseo_ma_SANDBOX<span class="sc">$</span>label_grad_cohort<span class="sc">==</span> <span class="st">"All Cohorts"</span>)</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>vis_650 <span class="ot">&lt;-</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pseo_filtered_three, <span class="fu">aes</span>(<span class="at">x=</span>y1_grads_earn, <span class="at">y=</span>y1_p50_earnings, <span class="at">color=</span>label_cipcode)) <span class="sc">+</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">y=</span> <span class="st">"Earnings"</span>, <span class="at">x=</span> <span class="st">"Number of BA Graduates"</span>, <span class="at">color=</span> <span class="st">"Academic Field (2-digit CIP)"</span>, <span class="at">title =</span> <span class="st">"Earnings 1 Year After Graduation by Number of BA Graduates at UMass Amherst by Academic Field"</span>)</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vis_650)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="Final_Project_Solutions_Moira_Chiong_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>pseo_filtered_three <span class="ot">&lt;-</span><span class="fu">filter</span>(pseo_ma_SANDBOX, pseo_ma_SANDBOX<span class="sc">$</span>institution<span class="sc">==</span><span class="st">"00222100"</span> <span class="sc">&amp;</span> pseo_ma_SANDBOX<span class="sc">$</span>label_degree_level<span class="sc">==</span><span class="st">"Baccalaureate"</span> <span class="sc">&amp;</span> pseo_ma_SANDBOX<span class="sc">$</span>cip_level<span class="sc">==</span><span class="st">"2"</span> <span class="sc">&amp;</span> pseo_ma_SANDBOX<span class="sc">$</span>label_grad_cohort<span class="sc">==</span> <span class="st">"All Cohorts"</span>)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Bachelor's Earnings by CIP Code, UMass Amherst</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>pseo_filtered_three <span class="sc">%&gt;%</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(pseo_filtered_three<span class="sc">$</span>label_cipcode)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 26 x 49
+# Groups:   pseo_filtered_three$label_cipcode [26]
+   agg_level_pseo label_agg_level_pseo   inst_level label_inst_level institution
+            &lt;dbl&gt; &lt;chr&gt;                  &lt;chr&gt;      &lt;chr&gt;            &lt;chr&gt;      
+ 1             40 "Degree Level * CIP\r~ I          Institution      00222100   
+ 2             40 "Degree Level * CIP\r~ I          Institution      00222100   
+ 3             40 "Degree Level * CIP\r~ I          Institution      00222100   
+ 4             40 "Degree Level * CIP\r~ I          Institution      00222100   
+ 5             40 "Degree Level * CIP\r~ I          Institution      00222100   
+ 6             40 "Degree Level * CIP\r~ I          Institution      00222100   
+ 7             40 "Degree Level * CIP\r~ I          Institution      00222100   
+ 8             40 "Degree Level * CIP\r~ I          Institution      00222100   
+ 9             40 "Degree Level * CIP\r~ I          Institution      00222100   
+10             40 "Degree Level * CIP\r~ I          Institution      00222100   
+# i 16 more rows
+# i 44 more variables: label_institution &lt;chr&gt;,
+#   `Degree\r\nAward\r\nLevel` &lt;chr&gt;, label_degree_level &lt;chr&gt;,
+#   cip_level &lt;chr&gt;, label_cip_level &lt;chr&gt;, cipcode &lt;chr&gt;, label_cipcode &lt;chr&gt;,
+#   grad_cohort &lt;chr&gt;, label_grad_cohort &lt;chr&gt;, grad_cohort_years &lt;chr&gt;,
+#   label_grad_cohort_years &lt;chr&gt;, geo_level &lt;chr&gt;, label_geo_level &lt;chr&gt;,
+#   geography &lt;chr&gt;, label_geography &lt;chr&gt;, ind_level &lt;chr&gt;, ...</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="at">Mean=</span><span class="fu">mean</span>(y1_p50_earnings, <span class="at">na.rm=</span>T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-error">
+<pre><code>Error in mean(y1_p50_earnings, na.rm = T): object 'y1_p50_earnings' not found</code></pre>
+</div>
+</div>
+<pre><code>## Critical Reflection
+
+What I learned from this project confirmed conventional knowledge and axioms. For example, my analyses confirmed that earnings generally increase with credential level, earnings generally increase with time since graduation elapsed, and earnings in STEM fields are generally higher than other fields. The limitations of my analysis is that I did not break down my analysis demographically. I expect that the Census Bureau will provide this disaggregated data in time. Given the recent Supreme Court decision on affirmative action, I would conjecture that such employment outcomes data disaggregated by race/ethnicity would be a useful and timely addition to the dataset and further analysis. Further statistical analysis could test the relationship between credential level and earnings, and test if they are correlated as well. Further, we could check for a statistical relationship between earnings and race/ethnicity. In addition, unit record data would be very interesting for analysis using panel data methods. 
+
+## References
+
+Census Bureau (2023). Post-secondary Employment Outcomes: Massachusetts. [Dataset]. https://lehd.ces.census.gov/data/pseo_experimental.html
+
+Wickham, H., &amp; Grolemund, G. (2016). R for data science: Visualize, model, transform, tidy, and import data. OReilly Media.
+
+
+
+
+
+:::{#quarto-navigation-envelope .hidden}
+[Final Project]{.hidden render-id="quarto-int-sidebar-title"}
+[Final Project]{.hidden render-id="quarto-int-navbar-title"}
+[Summer 2023 Posts]{.hidden render-id="quarto-int-navbar:Summer 2023 Posts"}
+[https://dacss.github.io/DACSS_601_Summer2023_Sec1/]{.hidden render-id="quarto-int-navbar:https://dacss.github.io/DACSS_601_Summer2023_Sec1/"}
+[Contributors]{.hidden render-id="quarto-int-navbar:Contributors"}
+[/about.html]{.hidden render-id="quarto-int-navbar:/about.html"}
+[DACSS]{.hidden render-id="quarto-int-navbar:DACSS"}
+[https://umass.edu/sbs/dacss]{.hidden render-id="quarto-int-navbar:https://umass.edu/sbs/dacss"}
+:::
+
+
+
+:::{#quarto-meta-markdown .hidden}
+[Final Project]{.hidden render-id="quarto-metatitle"}
+[Final Project]{.hidden render-id="quarto-twittercardtitle"}
+[Final Project]{.hidden render-id="quarto-ogcardtitle"}
+[Final Project: Census PSEO Analysis]{.hidden render-id="quarto-twittercarddesc"}
+[Final Project: Census PSEO Analysis]{.hidden render-id="quarto-ogcardddesc"}
+:::
+
+
+
+
+&lt;!-- --&gt;
+
+::: {.quarto-embedded-source-code}
+```````````````````{.markdown shortcodes="false"}
+---
+title: "Final Project"
+author: "Moira Chiong"
+description: "Final Project: Census PSEO Analysis"
+date: "7/13/2023"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-copy: true
+    code-tools: true
+---
+```{r setup, include=FALSE} 
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+
+
+## Read in Data
+quarto-executable-code-5450563D
+
+```r
+setwd("C:/Users/chion/OneDrive/Desktop/DACSS 601/DACSS_601_Summer2023_Sec1/posts")
+library(readxl)
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+pseo_ma_SANDBOX &lt;- read_excel("datafolderMoiraChiong/pseo_ma_SANDBOX.xlsx")
+pseo_ma_SANDBOX</code></pre>
+</section>
+<section id="introduction-1" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-1">Introduction</h2>
+<p>For my final project, I used the Census Bureau Post-Secondary Employment Outcomes (PSEO) database filtered for Massachusetts. This database cites the employment outcomes (earnings 1, 5 and 10 years after graduation) for all public Massachusetts higher education institutions. The data set provides postsecondary employment outcomes for graduates at all credential levels, from certificate to doctorate. The data is divided into three to five year cohorts, ranging from 2001-2018. In addition, there are tabulations of number of graduates and number of employed graduates in the data set.</p>
+<p>Some limitations of this data set are that it is not disaggregated by demographic variables such as race/ethnicity, gender, age or Pell status. This makes a truly nuanced study of the variables and research questions less possible with the present data set. It is my hope that new iterations of this data set will include such demographic variables.</p>
+</section>
+<section id="potential-research-questions-1" class="level2">
+<h2 class="anchored" data-anchor-id="potential-research-questions-1">Potential Research Questions</h2>
+<p>The following questions are intended to uncover patterns in the PSEO data. While robust analysis of patterns in the data may require advanced statistical analysis, the data analysis completed in the project do reveal underlying general patterns.My research questions are as follows:</p>
+<ol type="1">
+<li>What is the relationship between credential level and earnings?</li>
+<li>What is the relationship between time elapsed since graduation and earnings? Do earnings grow as more years after graduation elapse?</li>
+<li>What is the relationship between academic field of study and earnings? Questions for further research: What is the relationship between race/ethnicity, age, Pell status and earnings?</li>
+</ol>
+</section>
+<section id="notes-on-code--data-analysis-and-answers-to-questions-1-3-1" class="level2">
+<h2 class="anchored" data-anchor-id="notes-on-code--data-analysis-and-answers-to-questions-1-3-1">Notes on Code- Data Analysis and Answers to Questions 1-3</h2>
+<p>Question 1: It is clear in the data that there exists an increasing relationship between credentials and earnings. Further, as credentials increase toward the doctoral level, earnings increase. This is corroborated in Table 1 below. For example, Doctoral graduates earn more than twice (on average, around $80k, 1 year after graduation) than Baccalaureate graduates (on average, around $40k, 1 year after graduation). With the exception of Certificates 1-2 years, and both types of doctoral degrees, the data is skewed right. This implies that the earnings data has a peak on the left side of the graph with gradual decrease on the right.</p>
+<p>Question 2: It is also evident in the data that earnings increase with time elapsed since graduation. As seen in the data below:</p>
+<p>Summary Statistics, Year 1, p50 Earnings Min. 1st Qu. Median Mean 3rd Qu. Max. NA’s 22214 34095 38097 46229 55442 120621 10</p>
+<p>Summary Statistics, Year 5, p50 Earnings Min. 1st Qu. Median Mean 3rd Qu. Max. NA’s 31422 47280 53655 60603 70968 138314 10</p>
+<p>Note the increase in mean earnings from $38,097 in Year 1 to $53,655 by Year 5.</p>
+<p>Question 3: My conjecture is that STEM fields are most lucrative, at any credential level. With strong labor markets in STEM professions, the postsecondary employment outcomes are strongest for those in STEM fields. I will later perform a check using UMass Amherst BA earnings data by academic field.</p>
+</section>
+</section>
+<section id="close-up-earnings-of-ba-economics-graduates-1" class="level1">
+<h1>Close Up: Earnings of BA Economics Graduates</h1>
+<p>Out of curiousity, I proceeded to analyze the earnings patterns of BA Economics graduates in the MA public system. I found that of all the MA public Economics BA granting institutions, University of Massachusetts Amherst recorded the highest earnings at 47610 after 1 year of graduation. What is interesting to note is that earnings of Year 1 graduates of the UMass segment were consistently higher than state university This pattern did not extend to the 5 year mark, earnings of BA graduates were higher at the UMass campuses (with the exception of UMass Dartmouth) and highest at UMass Amherst , with Bridgewater State, Framingham State and Worcester State all showing earnings of over 60000.</p>
+</section>
+<section id="close-up-earnings-of-umass-amherst-ba-graduates-1" class="level1">
+<h1>Close Up: Earnings of UMass Amherst BA Graduates</h1>
+<p>In general, graduates of UMass Amherst have the highest earnings of graduates of any public higher education institution in Massachusetts. Fields that are particularly lucrative are, in descending order, Computer Science, Engineering, Business and Health Professions. Conversely, fields such as Human Sciences, Visual and Performing Arts and History are the least lucrative fields. This is not a shock and corroborates common conventional thought and practices about what fields are most lucrative.</p>
+<section id="data-wrangling-1" class="level2">
+<h2 class="anchored" data-anchor-id="data-wrangling-1">Data Wrangling</h2>
+<p>quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the number of rows and columns in the dataset</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(pseo_ma_SANDBOX)</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(pseo_ma_SANDBOX)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to numeric, 1 year after graduation</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>pseo_ma_SANDBOX<span class="sc">$</span>y1_grads_earn <span class="ot">=</span> <span class="fu">as.numeric</span>((pseo_ma_SANDBOX<span class="sc">$</span>y1_grads_earn))</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>pseo_ma_SANDBOX<span class="sc">$</span>y1_ipeds_count <span class="ot">=</span> <span class="fu">as.numeric</span>((pseo_ma_SANDBOX<span class="sc">$</span>y1_ipeds_count))</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>pseo_ma_SANDBOX<span class="sc">$</span>y1_p50_earnings <span class="ot">=</span> <span class="fu">as.numeric</span>((pseo_ma_SANDBOX<span class="sc">$</span>y1_p50_earnings))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to numeric, five years after graduation</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>pseo_ma_SANDBOX<span class="sc">$</span>y5_grads_earn <span class="ot">=</span> <span class="fu">as.numeric</span>((pseo_ma_SANDBOX<span class="sc">$</span>y5_grads_earn))</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>pseo_ma_SANDBOX<span class="sc">$</span>y5_ipeds_count <span class="ot">=</span> <span class="fu">as.numeric</span>((pseo_ma_SANDBOX<span class="sc">$</span>y5_ipeds_count))</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>pseo_ma_SANDBOX<span class="sc">$</span>y5_p50_earnings <span class="ot">=</span> <span class="fu">as.numeric</span>((pseo_ma_SANDBOX<span class="sc">$</span>y5_p50_earnings))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>## Descriptive Statistics
+
+quarto-executable-code-5450563D
+
+```r
+# Filter data
+
+pseo_filtered_two &lt;-filter(pseo_ma_SANDBOX, pseo_ma_SANDBOX$label_cipcode=="All Instructional Programs" &amp; pseo_ma_SANDBOX$label_grad_cohort== "All Cohorts")
+View(pseo_filtered_two)</code></pre>
+<p>quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary Statistics, 1 year after Graduation</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>y1gradsearnSummary <span class="ot">&lt;-</span><span class="fu">summary</span>(pseo_filtered_two<span class="sc">$</span>y1_grads_earn, <span class="at">na.rm=</span>T)</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(y1gradsearnSummary)</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>y1ipedscountSummary <span class="ot">&lt;-</span><span class="fu">summary</span>(pseo_filtered_two<span class="sc">$</span>y1_ipeds_count, <span class="at">na.rm=</span>T)</span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(y1ipedscountSummary)</span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>y1p50earningsSummary <span class="ot">&lt;-</span><span class="fu">summary</span>(pseo_filtered_two<span class="sc">$</span>y1_p50_earnings, <span class="at">na.rm=</span>T)</span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(y1p50earningsSummary)</span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Find summary statistics, 5 years after graduation</span></span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a>y5gradsearnSummary <span class="ot">&lt;-</span><span class="fu">summary</span>(pseo_filtered_two<span class="sc">$</span>y5_grads_earn, <span class="at">na.rm=</span>T)</span>
+<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(y5gradsearnSummary)</span>
+<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a>y5ipedscountSummary <span class="ot">&lt;-</span><span class="fu">summary</span>(pseo_filtered_two<span class="sc">$</span>y5_ipeds_count, <span class="at">na.rm=</span>T)</span>
+<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(y5ipedscountSummary)</span>
+<span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a>y5p50earningsSummary <span class="ot">&lt;-</span><span class="fu">summary</span>(pseo_filtered_two<span class="sc">$</span>y5_p50_earnings, <span class="at">na.rm=</span>T)</span>
+<span id="cb50-17"><a href="#cb50-17" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(y5p50earningsSummary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="st">``</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 year Earnings by Credential- Mean and Median</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>pseo_filtered_two <span class="sc">%&gt;%</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(pseo_filtered_two<span class="sc">$</span>label_degree_level) <span class="sc">%&gt;%</span></span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="at">Mean_Earnings=</span><span class="fu">mean</span>(y1_p50_earnings, <span class="at">na.rm=</span>T), <span class="at">Median_Earnings=</span><span class="fu">median</span>(y1_p50_earnings, <span class="at">na.rm=</span>T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data-- just BA degrees</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>pseo_filtered <span class="ot">&lt;-</span><span class="fu">filter</span>(pseo_ma_SANDBOX, pseo_ma_SANDBOX<span class="sc">$</span>label_degree_level<span class="sc">==</span><span class="st">"Baccalaureate"</span>, pseo_ma_SANDBOX<span class="sc">$</span>label_cipcode<span class="sc">!=</span><span class="st">"All Instructional Programs"</span> <span class="sc">&amp;</span> pseo_ma_SANDBOX<span class="sc">$</span>label_grad_cohort<span class="sc">==</span> <span class="st">"All Cohorts"</span>)</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="st">`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="data-visualization-code-1" class="level2">
+<h2 class="anchored" data-anchor-id="data-visualization-code-1">Data Visualization Code</h2>
+<p>quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar Chart, Mean Earnings One Year After Graduation all and by Credential Level </span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>vis_y1_p50_earnings <span class="ot">&lt;-</span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(pseo_filtered_two, <span class="fu">aes</span>(<span class="at">x=</span>label_institution, <span class="at">y=</span>y1_p50_earnings)) <span class="sc">+</span></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"col"</span>) <span class="sc">+</span></span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Average Earnings, 1 Year After Graduation"</span>) <span class="sc">+</span></span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a> <span class="fu">xlab</span>(<span class="st">"Institution"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Average Earnings"</span>)  <span class="sc">+</span></span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a> <span class="fu">theme</span>(<span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">4</span>, <span class="at">angle =</span> <span class="sc">-</span><span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a> <span class="fu">scale_y_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100000</span>))</span>
+<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a> <span class="fu">print</span>(vis_y1_p50_earnings) </span>
+<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a>  vis_y1_p50_earnings <span class="sc">+</span> <span class="fu">facet_wrap</span>( <span class="sc">~</span> label_degree_level, <span class="at">ncol=</span><span class="dv">1</span>)</span>
+<span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-16"><a href="#cb53-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-17"><a href="#cb53-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar Chart, Mean Earnings 5 Years After Graduation (all) and by Credential Level</span></span>
+<span id="cb53-18"><a href="#cb53-18" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)</span>
+<span id="cb53-19"><a href="#cb53-19" aria-hidden="true" tabindex="-1"></a>vis_y5_p50_earnings <span class="ot">&lt;-</span></span>
+<span id="cb53-20"><a href="#cb53-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(pseo_filtered_two, <span class="fu">aes</span>(<span class="at">x=</span>label_institution, <span class="at">y=</span>y5_p50_earnings)) <span class="sc">+</span></span>
+<span id="cb53-21"><a href="#cb53-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb53-22"><a href="#cb53-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"col"</span>) <span class="sc">+</span></span>
+<span id="cb53-23"><a href="#cb53-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Average Earnings, 5 years After Graduation"</span>) <span class="sc">+</span></span>
+<span id="cb53-24"><a href="#cb53-24" aria-hidden="true" tabindex="-1"></a> <span class="fu">xlab</span>(<span class="st">"Institution"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Average Earnings"</span>)  <span class="sc">+</span></span>
+<span id="cb53-25"><a href="#cb53-25" aria-hidden="true" tabindex="-1"></a> <span class="fu">theme</span>(<span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">4</span>, <span class="at">angle =</span> <span class="sc">-</span><span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb53-26"><a href="#cb53-26" aria-hidden="true" tabindex="-1"></a> <span class="fu">scale_y_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100000</span>))</span>
+<span id="cb53-27"><a href="#cb53-27" aria-hidden="true" tabindex="-1"></a> <span class="fu">print</span>(vis_y5_p50_earnings) </span>
+<span id="cb53-28"><a href="#cb53-28" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb53-29"><a href="#cb53-29" aria-hidden="true" tabindex="-1"></a>  vis_y5_p50_earnings <span class="sc">+</span> <span class="fu">facet_wrap</span>( <span class="sc">~</span> label_degree_level, <span class="at">ncol=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar Graph of Number of Graduates</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>pseo_filtered_two<span class="sc">$</span>y1_ipeds_count <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(pseo_filtered_two<span class="sc">$</span>y1_ipeds_count)</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>vis_y1_graduates <span class="ot">&lt;-</span></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(pseo_filtered_two, <span class="fu">aes</span>(<span class="at">x=</span>label_institution, <span class="at">y=</span>y1_ipeds_count)) <span class="sc">+</span></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"col"</span>) <span class="sc">+</span></span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Number of Graduates, 1 year After Graduation, all cohorts"</span>) <span class="sc">+</span></span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a> <span class="fu">xlab</span>(<span class="st">"Institution"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Number of Graduates"</span>)  <span class="sc">+</span></span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a> <span class="fu">theme</span>(<span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">4</span>, <span class="at">angle =</span> <span class="sc">-</span><span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">80000</span>))</span>
+<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(vis_y1_graduates) </span>
+<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a>  vis_y1_graduates <span class="sc">+</span> <span class="fu">facet_wrap</span>( <span class="sc">~</span> label_degree_level, <span class="at">ncol=</span><span class="dv">1</span>)</span>
+<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-16"><a href="#cb54-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter for Baccalaureate Economics degrees</span></span>
+<span id="cb54-17"><a href="#cb54-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb54-18"><a href="#cb54-18" aria-hidden="true" tabindex="-1"></a>pseo_filtered_econ<span class="ot">&lt;-</span><span class="fu">filter</span>(pseo_ma_SANDBOX, pseo_ma_SANDBOX<span class="sc">$</span>label_degree_level<span class="sc">==</span><span class="st">"Baccalaureate"</span> <span class="sc">&amp;</span> pseo_ma_SANDBOX<span class="sc">$</span>label_cipcode<span class="sc">==</span><span class="st">"Economics"</span> <span class="sc">&amp;</span> pseo_ma_SANDBOX<span class="sc">$</span>label_grad_cohort<span class="sc">==</span> <span class="st">"All Cohorts"</span>)</span>
+<span id="cb54-19"><a href="#cb54-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-20"><a href="#cb54-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplot of Bachelors in Economics, all institutions</span></span>
+<span id="cb54-21"><a href="#cb54-21" aria-hidden="true" tabindex="-1"></a>vis_600 <span class="ot">&lt;-</span></span>
+<span id="cb54-22"><a href="#cb54-22" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pseo_filtered_econ, <span class="fu">aes</span>(<span class="at">x=</span>y1_grads_earn, <span class="at">y=</span>y1_p50_earnings, <span class="at">color=</span>label_institution)) <span class="sc">+</span></span>
+<span id="cb54-23"><a href="#cb54-23" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb54-24"><a href="#cb54-24" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">y=</span> <span class="st">"Earnings"</span>, <span class="at">x=</span> <span class="st">"Number of Graduates"</span>, <span class="at">color=</span> <span class="st">"Credential Level"</span>, <span class="at">title =</span> <span class="st">"Earnings by Number of Graduates by Institution"</span>)</span>
+<span id="cb54-25"><a href="#cb54-25" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vis_600)</span>
+<span id="cb54-26"><a href="#cb54-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-27"><a href="#cb54-27" aria-hidden="true" tabindex="-1"></a>pseo_filtered_econ <span class="sc">%&gt;%</span></span>
+<span id="cb54-28"><a href="#cb54-28" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(pseo_filtered_econ<span class="sc">$</span>label_degree_level, pseo_filtered_econ<span class="sc">$</span>label_institution) <span class="sc">%&gt;%</span></span>
+<span id="cb54-29"><a href="#cb54-29" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="at">Mean=</span><span class="fu">mean</span>(y1_p50_earnings, <span class="at">na.rm=</span>T), <span class="at">Median=</span><span class="fu">median</span>(y1_p50_earnings, <span class="at">na.rm=</span>T))</span>
+<span id="cb54-30"><a href="#cb54-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-31"><a href="#cb54-31" aria-hidden="true" tabindex="-1"></a>pseo_filtered_econ <span class="sc">%&gt;%</span></span>
+<span id="cb54-32"><a href="#cb54-32" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(pseo_filtered_econ<span class="sc">$</span>label_institution) <span class="sc">%&gt;%</span></span>
+<span id="cb54-33"><a href="#cb54-33" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="at">Mean=</span><span class="fu">mean</span>(y5_p50_earnings, <span class="at">na.rm=</span>T), <span class="at">Median=</span><span class="fu">median</span>(y5_p50_earnings, <span class="at">na.rm=</span>T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar of Bachelors in Economics</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>pseo_filtered_econ <span class="sc">%&gt;%</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(pseo_filtered_econ<span class="sc">$</span>label_degree_level, pseo_filtered_econ<span class="sc">$</span>label_institution) <span class="sc">%&gt;%</span></span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="at">Mean=</span><span class="fu">mean</span>(y1_p50_earnings, <span class="at">na.rm=</span>T), <span class="at">Median=</span><span class="fu">median</span>(y1_p50_earnings, <span class="at">na.rm=</span>T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>quarto-executable-code-5450563D
+
+```r
+options(scipen = 999)
+
+vis_y1_econ &lt;-
+ggplot(pseo_filtered_econ, aes(x=label_institution, y=y1_p50_earnings)) +
+geom_bar(stat="identity") +
+ggtitle("Average Earnings, Economics, 1 year After Graduation") +
+xlab("Institution") + 
+ylab("Average Earnings") +
+theme(axis.text.x=element_text(size=4, angle = -90, hjust = 0)) 
+ print(vis_y1_econ)</code></pre>
+<p>quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 year earnings for BAs by 2-digit CIP Code at UMass Amherst- Scatterplot</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>pseo_filtered_three <span class="ot">&lt;-</span><span class="fu">filter</span>(pseo_ma_SANDBOX, pseo_ma_SANDBOX<span class="sc">$</span>institution<span class="sc">==</span><span class="st">"00222100"</span> <span class="sc">&amp;</span> pseo_ma_SANDBOX<span class="sc">$</span>label_degree_level<span class="sc">==</span><span class="st">"Baccalaureate"</span> <span class="sc">&amp;</span> pseo_ma_SANDBOX<span class="sc">$</span>cip_level<span class="sc">==</span><span class="st">"2"</span> <span class="sc">&amp;</span> pseo_ma_SANDBOX<span class="sc">$</span>label_grad_cohort<span class="sc">==</span> <span class="st">"All Cohorts"</span>)</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>vis_650 <span class="ot">&lt;-</span></span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pseo_filtered_three, <span class="fu">aes</span>(<span class="at">x=</span>y1_grads_earn, <span class="at">y=</span>y1_p50_earnings, <span class="at">color=</span>label_cipcode)) <span class="sc">+</span></span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">y=</span> <span class="st">"Earnings"</span>, <span class="at">x=</span> <span class="st">"Number of BA Graduates"</span>, <span class="at">color=</span> <span class="st">"Academic Field (2-digit CIP)"</span>, <span class="at">title =</span> <span class="st">"Earnings 1 Year After Graduation by Number of BA Graduates at UMass Amherst by Academic Field"</span>)</span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vis_650)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>quarto-executable-code-5450563D</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>pseo_filtered_three <span class="ot">&lt;-</span><span class="fu">filter</span>(pseo_ma_SANDBOX, pseo_ma_SANDBOX<span class="sc">$</span>institution<span class="sc">==</span><span class="st">"00222100"</span> <span class="sc">&amp;</span> pseo_ma_SANDBOX<span class="sc">$</span>label_degree_level<span class="sc">==</span><span class="st">"Baccalaureate"</span> <span class="sc">&amp;</span> pseo_ma_SANDBOX<span class="sc">$</span>cip_level<span class="sc">==</span><span class="st">"2"</span> <span class="sc">&amp;</span> pseo_ma_SANDBOX<span class="sc">$</span>label_grad_cohort<span class="sc">==</span> <span class="st">"All Cohorts"</span>)</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Bachelor's Earnings by CIP Code, UMass Amherst</span></span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>pseo_filtered_three <span class="sc">%&gt;%</span></span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(pseo_filtered_three<span class="sc">$</span>label_cipcode)</span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="at">Mean=</span><span class="fu">mean</span>(y1_p50_earnings, <span class="at">na.rm=</span>T))</span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>                </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>## Critical Reflection
+
+What I learned from this project confirmed conventional knowledge and axioms. For example, my analyses confirmed that earnings generally increase with credential level, earnings generally increase with time since graduation elapsed, and earnings in STEM fields are generally higher than other fields. The limitations of my analysis is that I did not break down my analysis demographically. I expect that the Census Bureau will provide this disaggregated data in time. Given the recent Supreme Court decision on affirmative action, I would conjecture that such employment outcomes data disaggregated by race/ethnicity would be a useful and timely addition to the dataset and further analysis. Further statistical analysis could test the relationship between credential level and earnings, and test if they are correlated as well. Further, we could check for a statistical relationship between earnings and race/ethnicity. In addition, unit record data would be very interesting for analysis using panel data methods. 
+
+## References
+
+Census Bureau (2023). Post-secondary Employment Outcomes: Massachusetts. [Dataset]. https://lehd.ces.census.gov/data/pseo_experimental.html
+
+Wickham, H., &amp; Grolemund, G. (2016). R for data science: Visualize, model, transform, tidy, and import data. OReilly Media.
+</code></pre>
+<p>:::</p>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="DACSS/SummerCommentRepo" data-repo-id="R_kgDOJrwrQw" data-category="Announcements" data-category-id="DIC_kwDOJrwrQ84CW_wq" data-mapping="url" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
