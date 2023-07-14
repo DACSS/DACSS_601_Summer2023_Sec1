@@ -274,7 +274,7 @@ dbl (3): Age, Years of Experience, Salary
 </section>
 <section id="narrative-about-the-data-set" class="level2">
 <h2 class="anchored" data-anchor-id="narrative-about-the-data-set">Narrative About the Data Set</h2>
-<p>If we want to look deeper into this data set to see what it contains, we can examining each variable represented and their domains.</p>
+<p>If we want to look deeper into this data set to see what it contains, we can examine each variable represented and their domains.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -303,8 +303,7 @@ Age  21  62    41 33.62086</code></pre>
 <p><img src="Matt_Zambetti_FinalProject_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>The first variable is <code>Age</code>, which is simply the age of the employee, this variable is quite self explanatory so I will leave it at that. From above we can see the minimum age is 21, and the maximum age is 62.</p>
-<p>Below that table we have a plot of the age, so we can see that many of the jobs are sampled from people early in their career.</p>
+<p>The first variable is <code>Age</code>, which is simply the age of the employee, this variable is quite self explanatory so I will leave it at that. From above we can see the minimum age is 21, and the maximum age is 62. Below the table of calculated data, we have a plot that allows the viewing of the complete distribution. It can be noted that either this sample contains more jobs for younger professionals, or there are more jobs available for younger professionals.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -421,7 +420,7 @@ Female   Male  Other
 </section>
 <section id="research-questions" class="level2">
 <h2 class="anchored" data-anchor-id="research-questions">Research Questions</h2>
-<p>This data has plenty to offer in terms of analysis. I want to focus on how Age and Experience affect the salary of an individual. First, I will look into the entire data set of all professions. Then I will look into how this compares to jobs in my field (Computer Science, Data Science, etc.). In addition to focusing on jobs, I will also focus on those with advanced degrees (Master’s and PhDs) as I will come out of school with one of those.</p>
+<p>This data has plenty to offer in terms of analysis. I want to focus on how Age and Experience affect the salary of an individual. First, I will look into the entire data set of all professions. Then I will look into how this compares to jobs in my field (Computer Science, Data Science, etc.).</p>
 <p>After analyzing the question listed above, I wanted to look deeper into the industry I am interested in and how roles/fields affect salaries with respect to age. I was curious on how the roles/fields were distributed and if there were certain niches for each or if some were outliers compared to other counterparts.</p>
 <section id="general-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="general-analysis">General Analysis</h3>
@@ -496,7 +495,7 @@ Female   Male  Other
 </section>
 <section id="industry-specific-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="industry-specific-analysis">Industry Specific Analysis</h3>
-<p>Now, I want to focus on jobs that pertain to my career. I looked through all the jobs and picked out key words that were related to my career path. Below I have listed all of these. In the following code block, we mark all of these jobs with a 0 or 1. 1 denoting they are in the field and zero if not.</p>
+<p>Now, I want to focus on jobs that pertain to my career. I looked through all the jobs and picked out key words that were related to my career path. Below I have listed all of these. In the following code block, we mark all of these jobs with “Industry” or “Not”, denoting whether they fall in the given industry.</p>
 <p>Key words are: - Software - Engineer - Developer - Data</p>
 <div class="cell">
 <details>
@@ -540,7 +539,7 @@ Female   Male  Other
 <p><img src="Matt_Zambetti_FinalProject_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Above, in Red we have only the jobs that are in the disciplines I am interested in. In Blue, we have all jobs (including the ones in blue). The two colored lines correspond with corresponding colored plots.</p>
+<p>Above, in Red we have only the jobs that are in the disciplines I am interested in. In Blue, we have all jobs (including the ones in blue).</p>
 <p>This plot further confirms that the salary in my field is slightly higher than average, but this seems to be only up until about 15 years of experience. Then it starts to get very close as the salaries plateau. I would like to see more non-industry data for 20 years of experience and up as there is not much provided in this plot.</p>
 <p>Next, we will look at comparing the age of people in the field I’m interested in and their salaries compared to the complete distribution.</p>
 <p>First, we will look at the specific field first, so we can get a good understanding of what we’re looking at before we compare.</p>
@@ -563,22 +562,9 @@ Female   Male  Other
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>general_mean <span class="ot">&lt;-</span> workers_tidy <span class="sc">%&gt;%</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="st">`</span><span class="at">Age</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Salary=</span><span class="fu">mean</span>(Salary))</span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>field_mean <span class="ot">&lt;-</span> field_jobs <span class="sc">%&gt;%</span></span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="st">`</span><span class="at">Age</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Salary=</span><span class="fu">mean</span>(Salary))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'field_jobs' not found</code></pre>
-</div>
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>workers_tidy <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Age</span><span class="st">`</span>, <span class="at">y=</span><span class="st">`</span><span class="at">Salary</span><span class="st">`</span>, <span class="at">color=</span>marked)) <span class="sc">+</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>, <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Age vs Salary"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>workers_tidy <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Age</span><span class="st">`</span>, <span class="at">y=</span><span class="st">`</span><span class="at">Salary</span><span class="st">`</span>, <span class="at">color=</span>marked)) <span class="sc">+</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>, <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Age vs Salary"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 5 rows containing missing values (`geom_point()`).</code></pre>
@@ -592,46 +578,46 @@ Female   Male  Other
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>mark_role <span class="ot">&lt;-</span> <span class="cf">function</span>(entry) {</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  job <span class="ot">&lt;-</span> <span class="fu">tolower</span>(entry)</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"manager"</span>,<span class="fu">tolower</span>(job))) {</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Manager'</span>)</span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"engineer"</span>,<span class="fu">tolower</span>(job))){</span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Engineer'</span>)</span>
-<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"developer"</span>,<span class="fu">tolower</span>(job))){</span>
-<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Developer'</span>)</span>
-<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"analyst"</span>,<span class="fu">tolower</span>(job))){</span>
-<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Analyst'</span>)</span>
-<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"clerk"</span>,<span class="fu">tolower</span>(job))){</span>
-<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Clerk'</span>)</span>
-<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"scientist"</span>,<span class="fu">tolower</span>(job))){</span>
-<span id="cb40-19"><a href="#cb40-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Sciencist'</span>)</span>
-<span id="cb40-20"><a href="#cb40-20" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb40-21"><a href="#cb40-21" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"officer"</span>,<span class="fu">tolower</span>(job))){</span>
-<span id="cb40-22"><a href="#cb40-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'officer'</span>)</span>
-<span id="cb40-23"><a href="#cb40-23" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb40-24"><a href="#cb40-24" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"architect"</span>,<span class="fu">tolower</span>(job))){</span>
-<span id="cb40-25"><a href="#cb40-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Architect'</span>)</span>
-<span id="cb40-26"><a href="#cb40-26" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb40-27"><a href="#cb40-27" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"director"</span>,<span class="fu">tolower</span>(job))){</span>
-<span id="cb40-28"><a href="#cb40-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Director'</span>)</span>
-<span id="cb40-29"><a href="#cb40-29" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb40-30"><a href="#cb40-30" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb40-31"><a href="#cb40-31" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="st">'Not Found'</span>)</span>
-<span id="cb40-32"><a href="#cb40-32" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb40-33"><a href="#cb40-33" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb40-34"><a href="#cb40-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-35"><a href="#cb40-35" aria-hidden="true" tabindex="-1"></a>industry_jobs <span class="ot">&lt;-</span> <span class="fu">subset</span>(workers_tidy, workers_tidy<span class="sc">$</span>marked <span class="sc">==</span> <span class="st">"Industry"</span>)</span>
-<span id="cb40-36"><a href="#cb40-36" aria-hidden="true" tabindex="-1"></a>industry_jobs<span class="sc">$</span>Role <span class="ot">&lt;-</span> <span class="fu">map_chr</span>(industry_jobs<span class="sc">$</span><span class="st">`</span><span class="at">Job Title</span><span class="st">`</span>, mark_role)</span>
-<span id="cb40-37"><a href="#cb40-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-38"><a href="#cb40-38" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(industry_jobs,<span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Age</span><span class="st">`</span>, <span class="at">y=</span><span class="st">`</span><span class="at">Salary</span><span class="st">`</span>, <span class="at">color=</span>Role)) <span class="sc">+</span></span>
-<span id="cb40-39"><a href="#cb40-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>, <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb40-40"><a href="#cb40-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Age vs Salary"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>mark_role <span class="ot">&lt;-</span> <span class="cf">function</span>(entry) {</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  job <span class="ot">&lt;-</span> <span class="fu">tolower</span>(entry)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"manager"</span>,<span class="fu">tolower</span>(job))) {</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Manager'</span>)</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"engineer"</span>,<span class="fu">tolower</span>(job))){</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Engineer'</span>)</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"developer"</span>,<span class="fu">tolower</span>(job))){</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Developer'</span>)</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"analyst"</span>,<span class="fu">tolower</span>(job))){</span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Analyst'</span>)</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"clerk"</span>,<span class="fu">tolower</span>(job))){</span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Clerk'</span>)</span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"scientist"</span>,<span class="fu">tolower</span>(job))){</span>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Sciencist'</span>)</span>
+<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"officer"</span>,<span class="fu">tolower</span>(job))){</span>
+<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'officer'</span>)</span>
+<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"architect"</span>,<span class="fu">tolower</span>(job))){</span>
+<span id="cb38-25"><a href="#cb38-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Architect'</span>)</span>
+<span id="cb38-26"><a href="#cb38-26" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb38-27"><a href="#cb38-27" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"director"</span>,<span class="fu">tolower</span>(job))){</span>
+<span id="cb38-28"><a href="#cb38-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Director'</span>)</span>
+<span id="cb38-29"><a href="#cb38-29" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb38-30"><a href="#cb38-30" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb38-31"><a href="#cb38-31" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="st">'Not Found'</span>)</span>
+<span id="cb38-32"><a href="#cb38-32" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb38-33"><a href="#cb38-33" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb38-34"><a href="#cb38-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-35"><a href="#cb38-35" aria-hidden="true" tabindex="-1"></a>industry_jobs <span class="ot">&lt;-</span> <span class="fu">subset</span>(workers_tidy, workers_tidy<span class="sc">$</span>marked <span class="sc">==</span> <span class="st">"Industry"</span>)</span>
+<span id="cb38-36"><a href="#cb38-36" aria-hidden="true" tabindex="-1"></a>industry_jobs<span class="sc">$</span>Role <span class="ot">&lt;-</span> <span class="fu">map_chr</span>(industry_jobs<span class="sc">$</span><span class="st">`</span><span class="at">Job Title</span><span class="st">`</span>, mark_role)</span>
+<span id="cb38-37"><a href="#cb38-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-38"><a href="#cb38-38" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(industry_jobs,<span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Age</span><span class="st">`</span>, <span class="at">y=</span><span class="st">`</span><span class="at">Salary</span><span class="st">`</span>, <span class="at">color=</span>Role)) <span class="sc">+</span></span>
+<span id="cb38-39"><a href="#cb38-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>, <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb38-40"><a href="#cb38-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Age vs Salary based on Role"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 1 rows containing missing values (`geom_point()`).</code></pre>
@@ -645,37 +631,37 @@ Female   Male  Other
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>mark_field <span class="ot">&lt;-</span> <span class="cf">function</span>(entry) {</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  job <span class="ot">&lt;-</span> <span class="fu">tolower</span>(entry)</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"data"</span>,<span class="fu">tolower</span>(job))) {</span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Data'</span>)</span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"software"</span>,<span class="fu">tolower</span>(job))){</span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Software'</span>)</span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"network"</span>,<span class="fu">tolower</span>(job))){</span>
-<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Networking'</span>)</span>
-<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"full stack"</span>,<span class="fu">tolower</span>(job))){</span>
-<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Front and Back End'</span>)</span>
-<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"developer"</span>,<span class="fu">tolower</span>(job))){</span>
-<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Developing'</span>)</span>
-<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"engineer"</span>,<span class="fu">tolower</span>(job))){</span>
-<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Unspecified Engineer'</span>)</span>
-<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb42-22"><a href="#cb42-22" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="st">'Not Found'</span>)</span>
-<span id="cb42-23"><a href="#cb42-23" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb42-24"><a href="#cb42-24" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb42-25"><a href="#cb42-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-26"><a href="#cb42-26" aria-hidden="true" tabindex="-1"></a>industry_jobs <span class="ot">&lt;-</span> <span class="fu">subset</span>(workers_tidy, workers_tidy<span class="sc">$</span>marked <span class="sc">==</span> <span class="st">"Industry"</span>)</span>
-<span id="cb42-27"><a href="#cb42-27" aria-hidden="true" tabindex="-1"></a>industry_jobs<span class="sc">$</span>Field <span class="ot">&lt;-</span> <span class="fu">map_chr</span>(industry_jobs<span class="sc">$</span><span class="st">`</span><span class="at">Job Title</span><span class="st">`</span>, mark_field)</span>
-<span id="cb42-28"><a href="#cb42-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-29"><a href="#cb42-29" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(industry_jobs,<span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Age</span><span class="st">`</span>, <span class="at">y=</span><span class="st">`</span><span class="at">Salary</span><span class="st">`</span>, <span class="at">color=</span>Field)) <span class="sc">+</span></span>
-<span id="cb42-30"><a href="#cb42-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>, <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb42-31"><a href="#cb42-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Age vs Salary"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>mark_field <span class="ot">&lt;-</span> <span class="cf">function</span>(entry) {</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  job <span class="ot">&lt;-</span> <span class="fu">tolower</span>(entry)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"data"</span>,<span class="fu">tolower</span>(job))) {</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Data'</span>)</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"software"</span>,<span class="fu">tolower</span>(job))){</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Software'</span>)</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"network"</span>,<span class="fu">tolower</span>(job))){</span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Networking'</span>)</span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"full stack"</span>,<span class="fu">tolower</span>(job))){</span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Front and Back End'</span>)</span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"developer"</span>,<span class="fu">tolower</span>(job))){</span>
+<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Developing'</span>)</span>
+<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"engineer"</span>,<span class="fu">tolower</span>(job))){</span>
+<span id="cb40-19"><a href="#cb40-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Unspecified Engineer'</span>)</span>
+<span id="cb40-20"><a href="#cb40-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb40-21"><a href="#cb40-21" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb40-22"><a href="#cb40-22" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="st">'Not Found'</span>)</span>
+<span id="cb40-23"><a href="#cb40-23" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb40-24"><a href="#cb40-24" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb40-25"><a href="#cb40-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-26"><a href="#cb40-26" aria-hidden="true" tabindex="-1"></a>industry_jobs <span class="ot">&lt;-</span> <span class="fu">subset</span>(workers_tidy, workers_tidy<span class="sc">$</span>marked <span class="sc">==</span> <span class="st">"Industry"</span>)</span>
+<span id="cb40-27"><a href="#cb40-27" aria-hidden="true" tabindex="-1"></a>industry_jobs<span class="sc">$</span>Field <span class="ot">&lt;-</span> <span class="fu">map_chr</span>(industry_jobs<span class="sc">$</span><span class="st">`</span><span class="at">Job Title</span><span class="st">`</span>, mark_field)</span>
+<span id="cb40-28"><a href="#cb40-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-29"><a href="#cb40-29" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(industry_jobs,<span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Age</span><span class="st">`</span>, <span class="at">y=</span><span class="st">`</span><span class="at">Salary</span><span class="st">`</span>, <span class="at">color=</span>Field)) <span class="sc">+</span></span>
+<span id="cb40-30"><a href="#cb40-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>, <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb40-31"><a href="#cb40-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Age vs Salary based on Field"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 1 rows containing missing values (`geom_point()`).</code></pre>
@@ -699,7 +685,8 @@ Female   Male  Other
 <p>My previous thoughts were that age and experience positively correlate with salary, which is true. My second was that people in the industry I am hoping to enter (engineering, data, computer science) would make slightly more than jobs not in this field. This was also confirmed in the plots where we compared industry salaries (in red) to non-industry salaries (in blue) versus both age and experience.</p>
 <p>Going even deeper into each of these plots you notice small trends. For example, in both age and experience for the total distribution you see the trend of salaries plateauing after a certain age/number of years. I listed many possible reasons for this, but it would be interesting to see if the companies that provided these numbers would elaborate on why these trends are present.</p>
 <p>The other trend that I found very interesting, was that of the Age vs Salary plot for only industry jobs. If one looks closely to the darker regions of the graph, there is a staircase like behavior to it. I noted that this could be due to the progression of ones career with promotions. This would explain why jobs from various companies have similar paths, as careers across various companies as they have various levels of jobs and one progresses through these ranks throughout their career.</p>
-<p>Finally, I’ve learned how the role/field within my industry can influence job choices and even what path I go to as I gain more experience. For example, I see that the demand for certain roles diminishes as a career progresses. For example, it seems that jobs in data have a high entry point, but as one’s career progresses it seems that it plateaus. Where as it seems that software has a slightly lower entering salary, but there is constant growth.</p>
+<p>Finally, I’ve learned how the role/field within my industry can influence job choices and even what path I go to as I gain more experience. For example, I see that the demand for certain roles diminishes as a career progresses. It seems that jobs in data have a high entry point, but as one’s career progresses it seems that it plateaus. Where as it seems that software has a slightly lower entering salary, but there is constant growth.</p>
+<p>Assuming one is obtaining a degree in a related field and finds the work entertaining they can use this data to look for specific roles and fields to maximize their salary capabilities. They can also use this data as guidance for how they can shape their career if they want to have many opportunities or be paid better than their competition.</p>
 </section>
 <section id="lingering-discussion" class="level3">
 <h3 class="anchored" data-anchor-id="lingering-discussion">Lingering Discussion</h3>
@@ -713,12 +700,13 @@ Female   Male  Other
 <p>WICKHAM, HADLEY. R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O’REILLY MEDIA, 2023.</p>
 <p>Wickham H, Henry L (2023). <em>purrr: Functional Programming Tools</em>. R package version 1.0.1, <a href="https://CRAN.R-project.org/package=purrr" class="uri">https://CRAN.R-project.org/package=purrr</a>.</p>
 <p>Wickham H, Averick M, Bryan J, Chang W, McGowan LD, François R, Grolemund G, Hayes A, Henry L, Hester J, Kuhn M, Pedersen TL, Miller E, Bache SM, Müller K, Ooms J, Robinson D, Seidel DP, Spinu V, Takahashi K, Vaughan D, Wilke C, Woo K, Yutani H (2019). “Welcome to the tidyverse.” <em>Journal of Open Source Software</em>, <em>4</em>(43), 1686. doi:10.21105/joss.01686 <a href="https://doi.org/10.21105/joss.01686" class="uri">https://doi.org/10.21105/joss.01686</a>.</p>
+<p>RStudio Team (2020). RStudio: Integrated Development for R. RStudio, PBC, Boston, MA URL http://www.rstudio.com/.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>tidy_citation <span class="ot">&lt;-</span> <span class="fu">citation</span>(<span class="st">"tidyverse"</span>)</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>purrr_citation <span class="ot">&lt;-</span><span class="fu">citation</span>(<span class="st">"purrr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>tidy_citation <span class="ot">&lt;-</span> <span class="fu">citation</span>(<span class="st">"tidyverse"</span>)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>purrr_citation <span class="ot">&lt;-</span><span class="fu">citation</span>(<span class="st">"purrr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 
@@ -1130,414 +1118,408 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <script src="https://giscus.app/client.js" data-repo="DACSS/SummerCommentRepo" data-repo-id="R_kgDOJrwrQw" data-category="Announcements" data-category-id="DIC_kwDOJrwrQ84CW_wq" data-mapping="url" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb45" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Matt Zambetti: Final Project Submission"</span></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Matt Zambetti"</span></span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "2023-07-05"</span></span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="co">    df-print: paged</span></span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
-<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
-<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
-<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - Final_Project</span></span>
-<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a><span class="fu"># Final Project</span></span>
-<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup, include=FALSE}</span></span>
-<span id="cb45-18"><a href="#cb45-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb45-19"><a href="#cb45-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
-<span id="cb45-20"><a href="#cb45-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-21"><a href="#cb45-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-22"><a href="#cb45-22" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb45-23"><a href="#cb45-23" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb45-24"><a href="#cb45-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-25"><a href="#cb45-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## Choosing the Data Set</span></span>
-<span id="cb45-26"><a href="#cb45-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-27"><a href="#cb45-27" aria-hidden="true" tabindex="-1"></a>The data set that I chose pertains to salary data for various careers, education levels, gender, and experience. I am interested in investigating this data, as it would allow people to see how their salary compares to people with similar age, job titles, education and experience level.</span>
-<span id="cb45-28"><a href="#cb45-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-29"><a href="#cb45-29" aria-hidden="true" tabindex="-1"></a>Looking into the authors' process to gathering this data, they do not provide much. They state that this data is gathered from surveys, job posting sites, and "other publicly available sources". These sources can come with uncertainty as people could lie on surveys as they could be uncomfortable with sharing their real salary. We also do not know what is included in "publicly available sources". But assuming that these sources are trust worthy, pairing this with job posting sites can be very useful in creating numerous data points. </span>
-<span id="cb45-30"><a href="#cb45-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-31"><a href="#cb45-31" aria-hidden="true" tabindex="-1"></a>Another area this source is lacking is the type of companies they are sampling from, again another assumption is that they are surveying people from various companies and the data from job posting websites contains multiple employers/types of employers so we have a breadth of data. Even though we don't know which companies this data comes from we can note that this is primarily professionals working in industry, with an emphasis on software, data science, and similar fields.</span>
-<span id="cb45-32"><a href="#cb45-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-33"><a href="#cb45-33" aria-hidden="true" tabindex="-1"></a>When looking into what region this data came from, I could not find anything. So, I looked and compared this to the salaries of similar jobs with similar experience in the United States, and they were similar. With that, I believe that although this may not be perfect, it is certainly sufficient for someone to use this data in the US to compare their salary to.</span>
-<span id="cb45-34"><a href="#cb45-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-37"><a href="#cb45-37" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb45-38"><a href="#cb45-38" aria-hidden="true" tabindex="-1"></a>workers_tidy <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"_data/Salary_Data.csv"</span>)</span>
-<span id="cb45-39"><a href="#cb45-39" aria-hidden="true" tabindex="-1"></a>workers_tidy</span>
-<span id="cb45-40"><a href="#cb45-40" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb45-41"><a href="#cb45-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-42"><a href="#cb45-42" aria-hidden="true" tabindex="-1"></a><span class="fu">## Cleaning the Data Set</span></span>
-<span id="cb45-43"><a href="#cb45-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-44"><a href="#cb45-44" aria-hidden="true" tabindex="-1"></a>Originally, I did not find anything wrong with the data in terms of tidying it up or formatting it. But when doing further analysis I found that some entries in <span class="in">`Education Level`</span> were recorded as 'phD' instead of 'PhD', so I went ahead and fixed that. In addition to this, Bachelor's Degree was listed as both "Bachelor's" and "Bachelor's Degree", so I combined them to "Bachelor's". Master's Degree was also split like this as well and the same changes were made</span>
-<span id="cb45-45"><a href="#cb45-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-48"><a href="#cb45-48" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb45-49"><a href="#cb45-49" aria-hidden="true" tabindex="-1"></a>workers_tidy<span class="sc">$</span><span class="st">`</span><span class="at">Education Level</span><span class="st">`</span>[workers_tidy<span class="sc">$</span><span class="st">`</span><span class="at">Education Level</span><span class="st">`</span><span class="sc">==</span><span class="st">'phD'</span>] <span class="ot">&lt;-</span> <span class="st">'PhD'</span></span>
-<span id="cb45-50"><a href="#cb45-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-51"><a href="#cb45-51" aria-hidden="true" tabindex="-1"></a>workers_tidy<span class="sc">$</span><span class="st">`</span><span class="at">Education Level</span><span class="st">`</span>[workers_tidy<span class="sc">$</span><span class="st">`</span><span class="at">Education Level</span><span class="st">`</span><span class="sc">==</span><span class="st">'Master</span><span class="sc">\'</span><span class="st">s Degree'</span>] <span class="ot">&lt;-</span> <span class="st">'Master</span><span class="sc">\'</span><span class="st">s'</span></span>
-<span id="cb45-52"><a href="#cb45-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-53"><a href="#cb45-53" aria-hidden="true" tabindex="-1"></a>workers_tidy<span class="sc">$</span><span class="st">`</span><span class="at">Education Level</span><span class="st">`</span>[workers_tidy<span class="sc">$</span><span class="st">`</span><span class="at">Education Level</span><span class="st">`</span><span class="sc">==</span><span class="st">'Bachelor</span><span class="sc">\'</span><span class="st">s Degree'</span>] <span class="ot">&lt;-</span> <span class="st">'Bachelor</span><span class="sc">\'</span><span class="st">s'</span></span>
-<span id="cb45-54"><a href="#cb45-54" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb45-55"><a href="#cb45-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-56"><a href="#cb45-56" aria-hidden="true" tabindex="-1"></a><span class="fu">## Narrative About the Data Set</span></span>
-<span id="cb45-57"><a href="#cb45-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-58"><a href="#cb45-58" aria-hidden="true" tabindex="-1"></a>If we want to look deeper into this data set to see what it contains, we can examining each variable represented and their domains.</span>
-<span id="cb45-59"><a href="#cb45-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-62"><a href="#cb45-62" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb45-63"><a href="#cb45-63" aria-hidden="true" tabindex="-1"></a>max_age <span class="ot">&lt;-</span> <span class="fu">max</span>(workers_tidy<span class="sc">$</span>Age, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb45-64"><a href="#cb45-64" aria-hidden="true" tabindex="-1"></a>min_age <span class="ot">&lt;-</span> <span class="fu">min</span>(workers_tidy<span class="sc">$</span>Age, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb45-65"><a href="#cb45-65" aria-hidden="true" tabindex="-1"></a>mean_age <span class="ot">&lt;-</span> <span class="fu">mean</span>(workers_tidy<span class="sc">$</span><span class="st">`</span><span class="at">Age</span><span class="st">`</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb45-66"><a href="#cb45-66" aria-hidden="true" tabindex="-1"></a>age_table <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(min_age, max_age, max_age<span class="sc">-</span>min_age, mean_age), <span class="at">ncol=</span><span class="dv">4</span>, <span class="at">byrow=</span><span class="cn">TRUE</span>)</span>
-<span id="cb45-67"><a href="#cb45-67" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(age_table) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Min'</span>, <span class="st">'Max'</span>, <span class="st">'Range'</span>, <span class="st">'Mean'</span>)</span>
-<span id="cb45-68"><a href="#cb45-68" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(age_table) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Age'</span>)</span>
-<span id="cb45-69"><a href="#cb45-69" aria-hidden="true" tabindex="-1"></a>age_table</span>
-<span id="cb45-70"><a href="#cb45-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-71"><a href="#cb45-71" aria-hidden="true" tabindex="-1"></a><span class="co"># Adding age distribution table</span></span>
-<span id="cb45-72"><a href="#cb45-72" aria-hidden="true" tabindex="-1"></a><span class="co"># Putting it into bar chart form as well</span></span>
-<span id="cb45-73"><a href="#cb45-73" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="fu">subset</span>(workers_tidy, <span class="sc">!</span><span class="fu">is.na</span>(Age)), <span class="fu">aes</span>(<span class="at">x=</span>Age)) <span class="sc">+</span></span>
-<span id="cb45-74"><a href="#cb45-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
-<span id="cb45-75"><a href="#cb45-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span> <span class="st">"Number of Jobs"</span>, <span class="at">x =</span> <span class="st">"Age"</span>) <span class="sc">+</span></span>
-<span id="cb45-76"><a href="#cb45-76" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Number of Jobs by Age"</span>)</span>
-<span id="cb45-77"><a href="#cb45-77" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb45-78"><a href="#cb45-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-79"><a href="#cb45-79" aria-hidden="true" tabindex="-1"></a>The first variable is <span class="in">`Age`</span>, which is simply the age of the employee, this variable is quite self explanatory so I will leave it at that. From above we can see the minimum age is 21, and the maximum age is 62.</span>
-<span id="cb45-80"><a href="#cb45-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-81"><a href="#cb45-81" aria-hidden="true" tabindex="-1"></a>Below that table we have a plot of the age, so we can see that many of the jobs are sampled from people early in their career.</span>
-<span id="cb45-82"><a href="#cb45-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-85"><a href="#cb45-85" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb45-86"><a href="#cb45-86" aria-hidden="true" tabindex="-1"></a>max_exp <span class="ot">&lt;-</span> <span class="fu">max</span>(workers_tidy<span class="sc">$</span><span class="st">`</span><span class="at">Years of Experience</span><span class="st">`</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb45-87"><a href="#cb45-87" aria-hidden="true" tabindex="-1"></a>min_exp <span class="ot">&lt;-</span> <span class="fu">min</span>(workers_tidy<span class="sc">$</span><span class="st">`</span><span class="at">Years of Experience</span><span class="st">`</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb45-88"><a href="#cb45-88" aria-hidden="true" tabindex="-1"></a>mean_exp <span class="ot">&lt;-</span> <span class="fu">mean</span>(workers_tidy<span class="sc">$</span><span class="st">`</span><span class="at">Years of Experience</span><span class="st">`</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb45-89"><a href="#cb45-89" aria-hidden="true" tabindex="-1"></a>age_table <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(min_exp, max_exp, max_exp<span class="sc">-</span>min_exp, mean_exp), <span class="at">ncol=</span><span class="dv">4</span>, <span class="at">byrow=</span><span class="cn">TRUE</span>)</span>
-<span id="cb45-90"><a href="#cb45-90" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(age_table) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Min'</span>, <span class="st">'Max'</span>, <span class="st">'Range'</span>, <span class="st">'Mean'</span>)</span>
-<span id="cb45-91"><a href="#cb45-91" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(age_table) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Years of Experience'</span>)</span>
-<span id="cb45-92"><a href="#cb45-92" aria-hidden="true" tabindex="-1"></a>age_table</span>
-<span id="cb45-93"><a href="#cb45-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-94"><a href="#cb45-94" aria-hidden="true" tabindex="-1"></a><span class="co"># Putting it into bar chart form as well</span></span>
-<span id="cb45-95"><a href="#cb45-95" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="fu">subset</span>(workers_tidy, <span class="sc">!</span><span class="fu">is.na</span>(<span class="st">`</span><span class="at">Years of Experience</span><span class="st">`</span>)), <span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Years of Experience</span><span class="st">`</span>)) <span class="sc">+</span></span>
-<span id="cb45-96"><a href="#cb45-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
-<span id="cb45-97"><a href="#cb45-97" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span> <span class="st">"Number of Jobs"</span>, <span class="at">x =</span> <span class="st">"Years of Experience"</span>) <span class="sc">+</span></span>
-<span id="cb45-98"><a href="#cb45-98" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Number of Jobs by Years of Experience"</span>)</span>
-<span id="cb45-99"><a href="#cb45-99" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb45-100"><a href="#cb45-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-101"><a href="#cb45-101" aria-hidden="true" tabindex="-1"></a>Second, we have <span class="in">`Experience Level`</span>, which is pretty similar to age, just that this is the number of years someone has been working. By simple analysis we can see that the average is around 8 years. In addition we can see similar statistics that we represented with age. The graph also shows us that we are very heavily sampled from jobs that are in the beginning of one's career.</span>
-<span id="cb45-102"><a href="#cb45-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-105"><a href="#cb45-105" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb45-106"><a href="#cb45-106" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(workers_tidy<span class="sc">$</span><span class="st">`</span><span class="at">Gender</span><span class="st">`</span>)</span>
-<span id="cb45-107"><a href="#cb45-107" aria-hidden="true" tabindex="-1"></a><span class="co"># Putting it into bar chart form as well</span></span>
-<span id="cb45-108"><a href="#cb45-108" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="fu">subset</span>(workers_tidy, <span class="sc">!</span><span class="fu">is.na</span>(Gender)), <span class="fu">aes</span>(<span class="at">x=</span>Gender,<span class="at">fill=</span>Gender)) <span class="sc">+</span></span>
-<span id="cb45-109"><a href="#cb45-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
-<span id="cb45-110"><a href="#cb45-110" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span> <span class="st">"Number of Jobs"</span>, <span class="at">x =</span> <span class="st">"Gender"</span>) <span class="sc">+</span></span>
-<span id="cb45-111"><a href="#cb45-111" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Number of Jobs by Gender"</span>)</span>
-<span id="cb45-112"><a href="#cb45-112" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb45-113"><a href="#cb45-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-114"><a href="#cb45-114" aria-hidden="true" tabindex="-1"></a>Next, <span class="in">`Gender`</span> is split into three categories: Male, Female, or Other. Above we can see the exact count for both, with it coming out to be around 54% for males, and 45% for females and 0.2% for Other. To see the distribution a bar chart has been provided.</span>
-<span id="cb45-115"><a href="#cb45-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-118"><a href="#cb45-118" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb45-119"><a href="#cb45-119" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(workers_tidy<span class="sc">$</span><span class="st">`</span><span class="at">Education Level</span><span class="st">`</span>)</span>
-<span id="cb45-120"><a href="#cb45-120" aria-hidden="true" tabindex="-1"></a><span class="co"># Put this into bar plot instead</span></span>
-<span id="cb45-121"><a href="#cb45-121" aria-hidden="true" tabindex="-1"></a><span class="co"># Putting it into bar chart form as well</span></span>
-<span id="cb45-122"><a href="#cb45-122" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="fu">subset</span>(workers_tidy, <span class="sc">!</span><span class="fu">is.na</span>(<span class="st">`</span><span class="at">Education Level</span><span class="st">`</span>)), <span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Education Level</span><span class="st">`</span>,<span class="at">fill=</span><span class="st">`</span><span class="at">Education Level</span><span class="st">`</span>)) <span class="sc">+</span></span>
-<span id="cb45-123"><a href="#cb45-123" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
-<span id="cb45-124"><a href="#cb45-124" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span> <span class="st">"Number of Jobs"</span>, <span class="at">x =</span> <span class="st">"Education Level"</span>) <span class="sc">+</span></span>
-<span id="cb45-125"><a href="#cb45-125" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Number of Jobs by Education Level"</span>)</span>
-<span id="cb45-126"><a href="#cb45-126" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb45-127"><a href="#cb45-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-128"><a href="#cb45-128" aria-hidden="true" tabindex="-1"></a><span class="in">`Education Level`</span> is spread out between High School Diploma, Bachelor's, Master's and PhD. Similarly we can see that distribution above. This data has been provided in both tabular and graph form. As we'd expect with industry jobs, there is low demand for people with only a HS Diploma and a larger market for those with a Bachelor's.</span>
-<span id="cb45-129"><a href="#cb45-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-132"><a href="#cb45-132" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb45-133"><a href="#cb45-133" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(workers_tidy<span class="sc">$</span><span class="st">`</span><span class="at">Job Title</span><span class="st">`</span>))</span>
-<span id="cb45-134"><a href="#cb45-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-135"><a href="#cb45-135" aria-hidden="true" tabindex="-1"></a>title_count <span class="ot">=</span> <span class="fu">table</span>(workers_tidy<span class="sc">$</span><span class="st">`</span><span class="at">Job Title</span><span class="st">`</span>)</span>
-<span id="cb45-136"><a href="#cb45-136" aria-hidden="true" tabindex="-1"></a>title_count <span class="ot">&lt;-</span> title_count[<span class="fu">order</span>(title_count, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)]</span>
-<span id="cb45-137"><a href="#cb45-137" aria-hidden="true" tabindex="-1"></a>title_count <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>((title_count))</span>
-<span id="cb45-138"><a href="#cb45-138" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(title_count)</span>
-<span id="cb45-139"><a href="#cb45-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-140"><a href="#cb45-140" aria-hidden="true" tabindex="-1"></a><span class="co"># Putting it into bar chart form as well</span></span>
-<span id="cb45-141"><a href="#cb45-141" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="fu">subset</span>(title_count, Freq <span class="sc">&gt;</span> <span class="dv">75</span>), <span class="fu">aes</span>(<span class="at">x=</span>Var1,<span class="at">y=</span>Freq,<span class="at">fill=</span>Var1)) <span class="sc">+</span></span>
-<span id="cb45-142"><a href="#cb45-142" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">'identity'</span>) <span class="sc">+</span></span>
-<span id="cb45-143"><a href="#cb45-143" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span> <span class="st">"Number of Jobs"</span>, <span class="at">x =</span> <span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb45-144"><a href="#cb45-144" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Number of Jobs by Title (More than 50)"</span>) <span class="sc">+</span></span>
-<span id="cb45-145"><a href="#cb45-145" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">vjust=</span><span class="dv">1</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
-<span id="cb45-146"><a href="#cb45-146" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb45-147"><a href="#cb45-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-148"><a href="#cb45-148" aria-hidden="true" tabindex="-1"></a>The final variable <span class="in">`Job Title`</span> is where we can start to see more variance. From the above command, we see that there are around 194 different jobs represented out of the 6700 total samples. From the analysis above, we can see that Software Engineer, Data Scientist, Software Engineer Manager, Data Analyst, Senior Project Engineer, and Product Engineer are the six most popular jobs in the data set.</span>
-<span id="cb45-149"><a href="#cb45-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-150"><a href="#cb45-150" aria-hidden="true" tabindex="-1"></a>In addition to listing the 6 most popular jobs, we graph all jobs where they occur more than 75 times. We cut it off at 75 just so the graph was readable. It is very interesting to see many of these titles have to do with engineering, computer science, or data analytics.</span>
-<span id="cb45-151"><a href="#cb45-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-152"><a href="#cb45-152" aria-hidden="true" tabindex="-1"></a><span class="fu">## Research Questions</span></span>
-<span id="cb45-153"><a href="#cb45-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-154"><a href="#cb45-154" aria-hidden="true" tabindex="-1"></a>This data has plenty to offer in terms of analysis. I want to focus on how Age and Experience affect the salary of an individual. First, I will look into the entire data set of all professions. Then I will look into how this compares to jobs in my field (Computer Science, Data Science, etc.). In addition to focusing on jobs, I will also focus on those with advanced degrees (Master's and PhDs) as I will come out of school with one of those.</span>
-<span id="cb45-155"><a href="#cb45-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-156"><a href="#cb45-156" aria-hidden="true" tabindex="-1"></a>After analyzing the question listed above, I wanted to look deeper into the industry I am interested in and how roles/fields affect salaries with respect to age. I was curious on how the roles/fields were distributed and if there were certain niches for each or if some were outliers compared to other counterparts.</span>
-<span id="cb45-157"><a href="#cb45-157" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-158"><a href="#cb45-158" aria-hidden="true" tabindex="-1"></a><span class="fu">### General Analysis</span></span>
-<span id="cb45-159"><a href="#cb45-159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-160"><a href="#cb45-160" aria-hidden="true" tabindex="-1"></a>As aforementioned, the first two plots will showcase any correlation between Age and Salary, and Years of Experience and Salary. From my general understanding of salaries, I predict that there will be a positive correlation between both of these variables and salaries, but I will be curious to see if there are any points in one's career that this plateaus.</span>
-<span id="cb45-161"><a href="#cb45-161" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-164"><a href="#cb45-164" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb45-165"><a href="#cb45-165" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">subset</span>(workers_tidy, <span class="sc">!</span><span class="fu">is.na</span>(<span class="st">`</span><span class="at">Years of Experience</span><span class="st">`</span>)), <span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Years of Experience</span><span class="st">`</span>, <span class="at">y=</span><span class="st">`</span><span class="at">Salary</span><span class="st">`</span>)) <span class="sc">+</span></span>
-<span id="cb45-166"><a href="#cb45-166" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>, <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb45-167"><a href="#cb45-167" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Years of Experience vs Salary"</span>)</span>
-<span id="cb45-168"><a href="#cb45-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-169"><a href="#cb45-169" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb45-170"><a href="#cb45-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-171"><a href="#cb45-171" aria-hidden="true" tabindex="-1"></a>From the plot above, we can see some very interesting points. If we focus on zero to twenty years of experience we see a fairly steady growth of salary. Another interesting point about this section is that there are a large range of salaries for people with the same years of experience, the difference is that the majority of salaries are increasing in this area.</span>
-<span id="cb45-172"><a href="#cb45-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-173"><a href="#cb45-173" aria-hidden="true" tabindex="-1"></a>Also, we are able to see that around these trends there is a heavier density of points. This shows that the trend line is not only an average, but also very common among the data points.</span>
-<span id="cb45-174"><a href="#cb45-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-177"><a href="#cb45-177" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb45-178"><a href="#cb45-178" aria-hidden="true" tabindex="-1"></a>count_years <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">table</span>(workers_tidy<span class="sc">$</span><span class="st">`</span><span class="at">Years of Experience</span><span class="st">`</span>))</span>
-<span id="cb45-179"><a href="#cb45-179" aria-hidden="true" tabindex="-1"></a>count_years<span class="sc">$</span>Var1 <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(count_years<span class="sc">$</span>Var1))</span>
-<span id="cb45-180"><a href="#cb45-180" aria-hidden="true" tabindex="-1"></a>total <span class="ot">&lt;-</span> <span class="fu">sum</span>(count_years[<span class="fu">which</span>(count_years<span class="sc">$</span>Var1 <span class="sc">&gt;</span> <span class="dv">20</span>),<span class="dv">2</span>])</span>
-<span id="cb45-181"><a href="#cb45-181" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb45-182"><a href="#cb45-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-183"><a href="#cb45-183" aria-hidden="true" tabindex="-1"></a>Looking on from twenty years of experience and onward, we notice the curve flattening out. I believe that this is due to multiple factors. The first is that people are not job switching as much, so there is less competition between companies to pay employees better. People are not job hopping as frequently in this age range because they more than likely have a family or are committed to living in a specific area. Another factor may be that companies are only willing to offer so much to one individual, such as a salary cap for people in certain positions.</span>
-<span id="cb45-184"><a href="#cb45-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-185"><a href="#cb45-185" aria-hidden="true" tabindex="-1"></a>Also, there may not have been enough data gathered on this particular group. From the small snippet above, we can see only 244 entries are for this particular age group. If these jobs were sampled from a similar company/demographic that may be the reason we see such similarities in the data.</span>
-<span id="cb45-186"><a href="#cb45-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-189"><a href="#cb45-189" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb45-190"><a href="#cb45-190" aria-hidden="true" tabindex="-1"></a>workers_tidy <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Age</span><span class="st">`</span>, <span class="at">y=</span><span class="st">`</span><span class="at">Salary</span><span class="st">`</span>)) <span class="sc">+</span></span>
-<span id="cb45-191"><a href="#cb45-191" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>, <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span> </span>
-<span id="cb45-192"><a href="#cb45-192" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Age vs Salary"</span>)</span>
-<span id="cb45-193"><a href="#cb45-193" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-194"><a href="#cb45-194" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb45-195"><a href="#cb45-195" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-196"><a href="#cb45-196" aria-hidden="true" tabindex="-1"></a>In this data we can see a very similar plot as the Years of Experience versus Salary plot. One key difference is that this one seems to plateau around 52 years of age which seems to be a bit later in the distribution than the plateau of the experience plot.</span>
-<span id="cb45-197"><a href="#cb45-197" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-198"><a href="#cb45-198" aria-hidden="true" tabindex="-1"></a>An interesting note about this plot is that the points seem to be evenly distributed for the range of salaries. Unlike the experience graph where we saw a dark band through the center, this one seems a bit more spread out.</span>
-<span id="cb45-199"><a href="#cb45-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-200"><a href="#cb45-200" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-203"><a href="#cb45-203" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb45-204"><a href="#cb45-204" aria-hidden="true" tabindex="-1"></a>count_years2 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">table</span>(workers_tidy<span class="sc">$</span><span class="st">`</span><span class="at">Age</span><span class="st">`</span>))</span>
-<span id="cb45-205"><a href="#cb45-205" aria-hidden="true" tabindex="-1"></a>count_years2<span class="sc">$</span>Var1 <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(count_years2<span class="sc">$</span>Var1))</span>
-<span id="cb45-206"><a href="#cb45-206" aria-hidden="true" tabindex="-1"></a>total <span class="ot">&lt;-</span> <span class="fu">sum</span>(count_years2[<span class="fu">which</span>(count_years2<span class="sc">$</span>Var1 <span class="sc">&gt;</span> <span class="dv">50</span>),<span class="dv">2</span>])</span>
-<span id="cb45-207"><a href="#cb45-207" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb45-208"><a href="#cb45-208" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-209"><a href="#cb45-209" aria-hidden="true" tabindex="-1"></a>Similarly to the previous plot there are a lot less samples around where this plateau takes place. But there is even a smaller portion of samples for workers over 50. I think this is due to the fact that people are close to retiring and that people are getting promoted less and less as they approach this age. In my experience young professionals are able to make higher increases in pay more quickly the earlier they are in their career, then as they get older, these promotions are harder to come by.</span>
-<span id="cb45-210"><a href="#cb45-210" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-211"><a href="#cb45-211" aria-hidden="true" tabindex="-1"></a>The final thing to note about age and experience for these two plots is that they are heavily correlated. The one factor that may shift these distributions is degree level. Which we will look at in the next plot.</span>
-<span id="cb45-212"><a href="#cb45-212" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-215"><a href="#cb45-215" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb45-216"><a href="#cb45-216" aria-hidden="true" tabindex="-1"></a>workers_tidy <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Age</span><span class="st">`</span>, <span class="at">y=</span><span class="st">`</span><span class="at">Years of Experience</span><span class="st">`</span>, <span class="at">color=</span><span class="st">`</span><span class="at">Education Level</span><span class="st">`</span>)) <span class="sc">+</span></span>
-<span id="cb45-217"><a href="#cb45-217" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>, <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span> </span>
-<span id="cb45-218"><a href="#cb45-218" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Age vs Years of Experience Grouped by Education Level"</span>)</span>
-<span id="cb45-219"><a href="#cb45-219" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb45-220"><a href="#cb45-220" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-221"><a href="#cb45-221" aria-hidden="true" tabindex="-1"></a>This plot is extremely interesting as it shows just how much the two are coordinated. We can see that all degree levels follow the trend very closely, except PhD which has a weird branch with around 17 years of experience.</span>
-<span id="cb45-222"><a href="#cb45-222" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-223"><a href="#cb45-223" aria-hidden="true" tabindex="-1"></a><span class="fu">### Industry Specific Analysis</span></span>
-<span id="cb45-224"><a href="#cb45-224" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-225"><a href="#cb45-225" aria-hidden="true" tabindex="-1"></a>Now, I want to focus on jobs that pertain to my career. I looked through all the jobs and picked out key words that were related to my career path. Below I have listed all of these. In the following code block, we mark all of these jobs with a 0 or 1. 1 denoting they are in the field and zero if not.</span>
-<span id="cb45-226"><a href="#cb45-226" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-227"><a href="#cb45-227" aria-hidden="true" tabindex="-1"></a>Key words are:</span>
-<span id="cb45-228"><a href="#cb45-228" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Software</span>
-<span id="cb45-229"><a href="#cb45-229" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Engineer</span>
-<span id="cb45-230"><a href="#cb45-230" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Developer</span>
-<span id="cb45-231"><a href="#cb45-231" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Data</span>
-<span id="cb45-232"><a href="#cb45-232" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-235"><a href="#cb45-235" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb45-236"><a href="#cb45-236" aria-hidden="true" tabindex="-1"></a>mark_industry <span class="ot">&lt;-</span> <span class="cf">function</span>(entry) {</span>
-<span id="cb45-237"><a href="#cb45-237" aria-hidden="true" tabindex="-1"></a>  job <span class="ot">&lt;-</span> entry</span>
-<span id="cb45-238"><a href="#cb45-238" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>(<span class="fu">grepl</span>(<span class="st">"software|engineer|developer|data"</span>,<span class="fu">tolower</span>(job)), <span class="st">'Industry'</span>, <span class="st">'Non'</span>)</span>
-<span id="cb45-239"><a href="#cb45-239" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb45-240"><a href="#cb45-240" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-241"><a href="#cb45-241" aria-hidden="true" tabindex="-1"></a>workers_tidy<span class="sc">$</span>marked <span class="ot">&lt;-</span> <span class="fu">map_chr</span>(workers_tidy<span class="sc">$</span><span class="st">`</span><span class="at">Job Title</span><span class="st">`</span>, mark_industry) </span>
-<span id="cb45-242"><a href="#cb45-242" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-243"><a href="#cb45-243" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb45-244"><a href="#cb45-244" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-245"><a href="#cb45-245" aria-hidden="true" tabindex="-1"></a>In the code above, we simply put a marker on whether a job was in the given industry or not.</span>
-<span id="cb45-246"><a href="#cb45-246" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-247"><a href="#cb45-247" aria-hidden="true" tabindex="-1"></a>Below we will recreate both graphs above. Starting with years of experience.</span>
-<span id="cb45-248"><a href="#cb45-248" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-251"><a href="#cb45-251" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb45-252"><a href="#cb45-252" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">subset</span>(workers_tidy, marked<span class="sc">==</span><span class="st">'Industry'</span>),<span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Years of Experience</span><span class="st">`</span>, <span class="at">y=</span><span class="st">`</span><span class="at">Salary</span><span class="st">`</span>)) <span class="sc">+</span></span>
-<span id="cb45-253"><a href="#cb45-253" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>, <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb45-254"><a href="#cb45-254" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Years of Experience vs Salary"</span>)</span>
-<span id="cb45-255"><a href="#cb45-255" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-256"><a href="#cb45-256" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb45-257"><a href="#cb45-257" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-258"><a href="#cb45-258" aria-hidden="true" tabindex="-1"></a>Comparing this graph to the complete data set graph on comparing salary to years of experience, we can see that there salary from 0-20 years of experience is slightly higher for my field, but about the same from onward. Below is a graph overlaying both of these plots.</span>
-<span id="cb45-259"><a href="#cb45-259" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-262"><a href="#cb45-262" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb45-263"><a href="#cb45-263" aria-hidden="true" tabindex="-1"></a>workers_tidy <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Years of Experience</span><span class="st">`</span>, <span class="at">y=</span><span class="st">`</span><span class="at">Salary</span><span class="st">`</span>, <span class="at">color=</span>marked)) <span class="sc">+</span></span>
-<span id="cb45-264"><a href="#cb45-264" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>, <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb45-265"><a href="#cb45-265" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Years of Experience vs Salary"</span>)</span>
-<span id="cb45-266"><a href="#cb45-266" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb45-267"><a href="#cb45-267" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb45-268"><a href="#cb45-268" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-269"><a href="#cb45-269" aria-hidden="true" tabindex="-1"></a>Above, in Red we have only the jobs that are in the disciplines I am interested in. In Blue, we have all jobs (including the ones in blue). The two colored lines correspond with corresponding colored plots.</span>
-<span id="cb45-270"><a href="#cb45-270" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-271"><a href="#cb45-271" aria-hidden="true" tabindex="-1"></a>This plot further confirms that the salary in my field is slightly higher than average, but this seems to be only up until about 15 years of experience. Then it starts to get very close as the salaries plateau. I would like to see more non-industry data for 20 years of experience and up as there is not much provided in this plot.</span>
-<span id="cb45-272"><a href="#cb45-272" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-273"><a href="#cb45-273" aria-hidden="true" tabindex="-1"></a>Next, we will look at comparing the age of people in the field I'm interested in and their salaries compared to the complete distribution.</span>
-<span id="cb45-274"><a href="#cb45-274" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-275"><a href="#cb45-275" aria-hidden="true" tabindex="-1"></a>First, we will look at the specific field first, so we can get a good understanding of what we're looking at before we compare.</span>
-<span id="cb45-276"><a href="#cb45-276" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-279"><a href="#cb45-279" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb45-280"><a href="#cb45-280" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">subset</span>(workers_tidy, marked<span class="sc">==</span><span class="st">'Industry'</span>),<span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Age</span><span class="st">`</span>, <span class="at">y=</span><span class="st">`</span><span class="at">Salary</span><span class="st">`</span>)) <span class="sc">+</span></span>
-<span id="cb45-281"><a href="#cb45-281" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>, <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb45-282"><a href="#cb45-282" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Age vs Salary"</span>) </span>
-<span id="cb45-283"><a href="#cb45-283" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-284"><a href="#cb45-284" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb45-285"><a href="#cb45-285" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-286"><a href="#cb45-286" aria-hidden="true" tabindex="-1"></a>In this plot, we have a very interesting curve. It seems that throughout one's career in the given fields, the salaries increase, then plateau, and repeat this behavior a few times. My hypothesis for this behavior is that many of the careers in these fields follow the same behavior. This behavior is a promotion every few years, then another promotion after a similar period. If these jobs were sampled from the same company or ones that operate in a similar manner, this would explain the deterministic behavior in the plot.</span>
-<span id="cb45-287"><a href="#cb45-287" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-288"><a href="#cb45-288" aria-hidden="true" tabindex="-1"></a>Now, we will compare these jobs to all the sampled jobs, this plot can be seen below.</span>
-<span id="cb45-289"><a href="#cb45-289" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-292"><a href="#cb45-292" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb45-293"><a href="#cb45-293" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean</span></span>
-<span id="cb45-294"><a href="#cb45-294" aria-hidden="true" tabindex="-1"></a>general_mean <span class="ot">&lt;-</span> workers_tidy <span class="sc">%&gt;%</span></span>
-<span id="cb45-295"><a href="#cb45-295" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="st">`</span><span class="at">Age</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb45-296"><a href="#cb45-296" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Salary=</span><span class="fu">mean</span>(Salary))</span>
-<span id="cb45-297"><a href="#cb45-297" aria-hidden="true" tabindex="-1"></a>field_mean <span class="ot">&lt;-</span> field_jobs <span class="sc">%&gt;%</span></span>
-<span id="cb45-298"><a href="#cb45-298" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="st">`</span><span class="at">Age</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb45-299"><a href="#cb45-299" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Salary=</span><span class="fu">mean</span>(Salary))</span>
-<span id="cb45-300"><a href="#cb45-300" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-301"><a href="#cb45-301" aria-hidden="true" tabindex="-1"></a>workers_tidy <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Age</span><span class="st">`</span>, <span class="at">y=</span><span class="st">`</span><span class="at">Salary</span><span class="st">`</span>, <span class="at">color=</span>marked)) <span class="sc">+</span></span>
-<span id="cb45-302"><a href="#cb45-302" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>, <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb45-303"><a href="#cb45-303" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Age vs Salary"</span>)</span>
-<span id="cb45-304"><a href="#cb45-304" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb45-305"><a href="#cb45-305" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb45-306"><a href="#cb45-306" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-307"><a href="#cb45-307" aria-hidden="true" tabindex="-1"></a>In this plot, the colors represent the same distributions from the previous combined plot. This one is a bit more telling than the experience plot. Here we can see up to around 50 years of age that jobs in the industry dominate non-industry jobs. I say that this is more telling because we have a lot more data for non-industry jobs for a larger period so we have a larger sample to compare to making these conclusions more significant.</span>
-<span id="cb45-308"><a href="#cb45-308" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-309"><a href="#cb45-309" aria-hidden="true" tabindex="-1"></a>The final piece of analysis we're going to look at is how the title within the industries I'm interested affects salary. We are going to do this in two separate ways. The first is dividing them based on role, i.e. Developer, Officer, Analyst, Director, etc. and the other is going to be based off of field, i.e. data, software, engineering, etc.</span>
-<span id="cb45-310"><a href="#cb45-310" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-313"><a href="#cb45-313" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb45-314"><a href="#cb45-314" aria-hidden="true" tabindex="-1"></a>mark_role <span class="ot">&lt;-</span> <span class="cf">function</span>(entry) {</span>
-<span id="cb45-315"><a href="#cb45-315" aria-hidden="true" tabindex="-1"></a>  job <span class="ot">&lt;-</span> <span class="fu">tolower</span>(entry)</span>
-<span id="cb45-316"><a href="#cb45-316" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"manager"</span>,<span class="fu">tolower</span>(job))) {</span>
-<span id="cb45-317"><a href="#cb45-317" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Manager'</span>)</span>
-<span id="cb45-318"><a href="#cb45-318" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb45-319"><a href="#cb45-319" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"engineer"</span>,<span class="fu">tolower</span>(job))){</span>
-<span id="cb45-320"><a href="#cb45-320" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Engineer'</span>)</span>
-<span id="cb45-321"><a href="#cb45-321" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb45-322"><a href="#cb45-322" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"developer"</span>,<span class="fu">tolower</span>(job))){</span>
-<span id="cb45-323"><a href="#cb45-323" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Developer'</span>)</span>
-<span id="cb45-324"><a href="#cb45-324" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb45-325"><a href="#cb45-325" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"analyst"</span>,<span class="fu">tolower</span>(job))){</span>
-<span id="cb45-326"><a href="#cb45-326" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Analyst'</span>)</span>
-<span id="cb45-327"><a href="#cb45-327" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb45-328"><a href="#cb45-328" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"clerk"</span>,<span class="fu">tolower</span>(job))){</span>
-<span id="cb45-329"><a href="#cb45-329" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Clerk'</span>)</span>
-<span id="cb45-330"><a href="#cb45-330" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb45-331"><a href="#cb45-331" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"scientist"</span>,<span class="fu">tolower</span>(job))){</span>
-<span id="cb45-332"><a href="#cb45-332" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Sciencist'</span>)</span>
-<span id="cb45-333"><a href="#cb45-333" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb45-334"><a href="#cb45-334" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"officer"</span>,<span class="fu">tolower</span>(job))){</span>
-<span id="cb45-335"><a href="#cb45-335" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'officer'</span>)</span>
-<span id="cb45-336"><a href="#cb45-336" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb45-337"><a href="#cb45-337" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"architect"</span>,<span class="fu">tolower</span>(job))){</span>
-<span id="cb45-338"><a href="#cb45-338" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Architect'</span>)</span>
-<span id="cb45-339"><a href="#cb45-339" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb45-340"><a href="#cb45-340" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"director"</span>,<span class="fu">tolower</span>(job))){</span>
-<span id="cb45-341"><a href="#cb45-341" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Director'</span>)</span>
-<span id="cb45-342"><a href="#cb45-342" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb45-343"><a href="#cb45-343" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb45-344"><a href="#cb45-344" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="st">'Not Found'</span>)</span>
-<span id="cb45-345"><a href="#cb45-345" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb45-346"><a href="#cb45-346" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb45-347"><a href="#cb45-347" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-348"><a href="#cb45-348" aria-hidden="true" tabindex="-1"></a>industry_jobs <span class="ot">&lt;-</span> <span class="fu">subset</span>(workers_tidy, workers_tidy<span class="sc">$</span>marked <span class="sc">==</span> <span class="st">"Industry"</span>)</span>
-<span id="cb45-349"><a href="#cb45-349" aria-hidden="true" tabindex="-1"></a>industry_jobs<span class="sc">$</span>Role <span class="ot">&lt;-</span> <span class="fu">map_chr</span>(industry_jobs<span class="sc">$</span><span class="st">`</span><span class="at">Job Title</span><span class="st">`</span>, mark_role)</span>
-<span id="cb45-350"><a href="#cb45-350" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-351"><a href="#cb45-351" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(industry_jobs,<span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Age</span><span class="st">`</span>, <span class="at">y=</span><span class="st">`</span><span class="at">Salary</span><span class="st">`</span>, <span class="at">color=</span>Role)) <span class="sc">+</span></span>
-<span id="cb45-352"><a href="#cb45-352" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>, <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb45-353"><a href="#cb45-353" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Age vs Salary"</span>) </span>
-<span id="cb45-354"><a href="#cb45-354" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-355"><a href="#cb45-355" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb45-356"><a href="#cb45-356" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-357"><a href="#cb45-357" aria-hidden="true" tabindex="-1"></a>In this plot we can see that Developer, Engineer, Director and Manager all dominate the plot in terms of quantity. But, what is also interesting and self explanatory is that most of the higher paying roles are Managerial Roles, where the lower paying jobs are developers. One job that follows the positive trend and seems to be evenly distributed is an engineer. It seems that this position is valued through ones career.</span>
-<span id="cb45-358"><a href="#cb45-358" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-359"><a href="#cb45-359" aria-hidden="true" tabindex="-1"></a>Another trend we can see is that Developers are paid less than their counterparts in other rolls. As aforementioned there are many developer jobs, but they seem to be more common for younger individuals, with the salaries being lower than other jobs such as Engineers, Analysts and Scientists.</span>
-<span id="cb45-360"><a href="#cb45-360" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-363"><a href="#cb45-363" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb45-364"><a href="#cb45-364" aria-hidden="true" tabindex="-1"></a>mark_field <span class="ot">&lt;-</span> <span class="cf">function</span>(entry) {</span>
-<span id="cb45-365"><a href="#cb45-365" aria-hidden="true" tabindex="-1"></a>  job <span class="ot">&lt;-</span> <span class="fu">tolower</span>(entry)</span>
-<span id="cb45-366"><a href="#cb45-366" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"data"</span>,<span class="fu">tolower</span>(job))) {</span>
-<span id="cb45-367"><a href="#cb45-367" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Data'</span>)</span>
-<span id="cb45-368"><a href="#cb45-368" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb45-369"><a href="#cb45-369" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"software"</span>,<span class="fu">tolower</span>(job))){</span>
-<span id="cb45-370"><a href="#cb45-370" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Software'</span>)</span>
-<span id="cb45-371"><a href="#cb45-371" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb45-372"><a href="#cb45-372" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"network"</span>,<span class="fu">tolower</span>(job))){</span>
-<span id="cb45-373"><a href="#cb45-373" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Networking'</span>)</span>
-<span id="cb45-374"><a href="#cb45-374" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb45-375"><a href="#cb45-375" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"full stack"</span>,<span class="fu">tolower</span>(job))){</span>
-<span id="cb45-376"><a href="#cb45-376" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Front and Back End'</span>)</span>
-<span id="cb45-377"><a href="#cb45-377" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb45-378"><a href="#cb45-378" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"developer"</span>,<span class="fu">tolower</span>(job))){</span>
-<span id="cb45-379"><a href="#cb45-379" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Developing'</span>)</span>
-<span id="cb45-380"><a href="#cb45-380" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb45-381"><a href="#cb45-381" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"engineer"</span>,<span class="fu">tolower</span>(job))){</span>
-<span id="cb45-382"><a href="#cb45-382" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Unspecified Engineer'</span>)</span>
-<span id="cb45-383"><a href="#cb45-383" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb45-384"><a href="#cb45-384" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb45-385"><a href="#cb45-385" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="st">'Not Found'</span>)</span>
-<span id="cb45-386"><a href="#cb45-386" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb45-387"><a href="#cb45-387" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb45-388"><a href="#cb45-388" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-389"><a href="#cb45-389" aria-hidden="true" tabindex="-1"></a>industry_jobs <span class="ot">&lt;-</span> <span class="fu">subset</span>(workers_tidy, workers_tidy<span class="sc">$</span>marked <span class="sc">==</span> <span class="st">"Industry"</span>)</span>
-<span id="cb45-390"><a href="#cb45-390" aria-hidden="true" tabindex="-1"></a>industry_jobs<span class="sc">$</span>Field <span class="ot">&lt;-</span> <span class="fu">map_chr</span>(industry_jobs<span class="sc">$</span><span class="st">`</span><span class="at">Job Title</span><span class="st">`</span>, mark_field)</span>
-<span id="cb45-391"><a href="#cb45-391" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-392"><a href="#cb45-392" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(industry_jobs,<span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Age</span><span class="st">`</span>, <span class="at">y=</span><span class="st">`</span><span class="at">Salary</span><span class="st">`</span>, <span class="at">color=</span>Field)) <span class="sc">+</span></span>
-<span id="cb45-393"><a href="#cb45-393" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>, <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb45-394"><a href="#cb45-394" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Age vs Salary"</span>)</span>
-<span id="cb45-395"><a href="#cb45-395" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-396"><a href="#cb45-396" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb45-397"><a href="#cb45-397" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-398"><a href="#cb45-398" aria-hidden="true" tabindex="-1"></a>This plot has a very similar look in color distributions as the previous graph. This is self-explanatory as roles and fields somewhat over lap. In the division of this data, I tried to label the most specific fields first, such as Data and Software, and then if a job title did not fit into there I used more general fields such as Developing, Engineering, and others.</span>
-<span id="cb45-399"><a href="#cb45-399" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-400"><a href="#cb45-400" aria-hidden="true" tabindex="-1"></a>Looking closely, we can see that there is a noticeable difference between general developing and Front and Back End developing. This may be due to the fact the latter requires a more specific skill set which is more desirable and competitive with pay. </span>
-<span id="cb45-401"><a href="#cb45-401" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-402"><a href="#cb45-402" aria-hidden="true" tabindex="-1"></a>We can also see that jobs with data dominate in salary for years 20-35, but then the salaries fall back into normal range. This could possibly be due to the fact that data is a competitive/popular field coming out of college so industry professionals want to hire the best possible candidates.</span>
-<span id="cb45-403"><a href="#cb45-403" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-404"><a href="#cb45-404" aria-hidden="true" tabindex="-1"></a>Similar to the previous plot, we see that the software field follows the positive trend very closely and has a wide range of salaries but most fall into a similar range. This can be because software is a very common field to go around so the market may have settled and found a stable price point for age and salary.</span>
-<span id="cb45-405"><a href="#cb45-405" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-406"><a href="#cb45-406" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusions</span></span>
-<span id="cb45-407"><a href="#cb45-407" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-408"><a href="#cb45-408" aria-hidden="true" tabindex="-1"></a>In this data I have looked at not only how age and experience affect most jobs but also how it affects jobs in the industries I'm interested in and how the salaries compare between the two. From this analysis on the two variables (age and experience) and their affect on salary for given jobs, I have found interesting trends, and confirmed previous thoughts. In addition to these confirmations, I have also found out how the field and role within the industries I'm interested affect affects the salary and what the projections look like across those different careers.</span>
-<span id="cb45-409"><a href="#cb45-409" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-410"><a href="#cb45-410" aria-hidden="true" tabindex="-1"></a>Even though I was able to discover new things and confirm old ideas, there is still plenty left on the table that I was not able to discover because of limitations from the data set.</span>
-<span id="cb45-411"><a href="#cb45-411" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-412"><a href="#cb45-412" aria-hidden="true" tabindex="-1"></a><span class="fu">### What I've Learned</span></span>
-<span id="cb45-413"><a href="#cb45-413" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-414"><a href="#cb45-414" aria-hidden="true" tabindex="-1"></a>My previous thoughts were that age and experience positively correlate with salary, which is true. My second was that people in the industry I am hoping to enter (engineering, data, computer science) would make slightly more than jobs not in this field. This was also confirmed in the plots where we compared industry salaries (in red) to non-industry salaries (in blue) versus both age and experience.</span>
-<span id="cb45-415"><a href="#cb45-415" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-416"><a href="#cb45-416" aria-hidden="true" tabindex="-1"></a>Going even deeper into each of these plots you notice small trends. For example, in both age and experience for the total distribution you see the trend of salaries plateauing after a certain age/number of years. I listed many possible reasons for this, but it would be interesting to see if the companies that provided these numbers would elaborate on why these trends are present.</span>
-<span id="cb45-417"><a href="#cb45-417" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-418"><a href="#cb45-418" aria-hidden="true" tabindex="-1"></a>The other trend that I found very interesting, was that of the Age vs Salary plot for only industry jobs. If one looks closely to the darker regions of the graph, there is a staircase like behavior to it. I noted that this could be due to the progression of ones career with promotions. This would explain why jobs from various companies have similar paths, as careers across various companies as they have various levels of jobs and one progresses through these ranks throughout their career.</span>
-<span id="cb45-419"><a href="#cb45-419" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-420"><a href="#cb45-420" aria-hidden="true" tabindex="-1"></a>Finally, I've learned how the role/field within my industry can influence job choices and even what path I go to as I gain more experience. For example, I see that the demand for certain roles diminishes as a career progresses. For example, it seems that jobs in data have a high entry point, but as one's career progresses it seems that it plateaus. Where as it seems that software has a slightly lower entering salary, but there is constant growth.</span>
-<span id="cb45-421"><a href="#cb45-421" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-422"><a href="#cb45-422" aria-hidden="true" tabindex="-1"></a><span class="fu">### Lingering Discussion</span></span>
-<span id="cb45-423"><a href="#cb45-423" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-424"><a href="#cb45-424" aria-hidden="true" tabindex="-1"></a>What this data could not provide insight into was the types of companies are these jobs at and what trends can we see there. For example, there could be a software/data science job in a tech company, a finance company, or even an aerospace company and I believe that these would also have a heavy influence on the salary trends. Provided this data, I would use the many similar plots but color coordinate the points to be what category of company was hiring.</span>
-<span id="cb45-425"><a href="#cb45-425" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-426"><a href="#cb45-426" aria-hidden="true" tabindex="-1"></a>This data also cannot provide geographic data. Cost of living for various cities heavily influences salaries in my experience. Having all of these jobs combined into one plot can provide false insights about what job pays better if the higher paying job is mostly found in a city versus the lower paying one in a suburb.</span>
-<span id="cb45-427"><a href="#cb45-427" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-428"><a href="#cb45-428" aria-hidden="true" tabindex="-1"></a><span class="fu">## Bibliography</span></span>
-<span id="cb45-429"><a href="#cb45-429" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-430"><a href="#cb45-430" aria-hidden="true" tabindex="-1"></a>Reddy, Mohith Sai Ram. “Salary_data.” Kaggle, 18 May 2023,   www.kaggle.com/datasets/mohithsairamreddy/salary-data?resource=download. </span>
-<span id="cb45-431"><a href="#cb45-431" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-432"><a href="#cb45-432" aria-hidden="true" tabindex="-1"></a>WICKHAM, HADLEY. R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O’REILLY MEDIA, 2023. </span>
-<span id="cb45-433"><a href="#cb45-433" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-434"><a href="#cb45-434" aria-hidden="true" tabindex="-1"></a>Wickham H, Henry L (2023). _purrr: Functional Programming Tools_. R package version 1.0.1,</span>
-<span id="cb45-435"><a href="#cb45-435" aria-hidden="true" tabindex="-1"></a>  <span class="ot">&lt;https://CRAN.R-project.org/package=purrr&gt;</span>.</span>
-<span id="cb45-436"><a href="#cb45-436" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb45-437"><a href="#cb45-437" aria-hidden="true" tabindex="-1"></a>Wickham H, Averick M, Bryan J, Chang W, McGowan LD, François R, Grolemund G, Hayes A, Henry L,</span>
-<span id="cb45-438"><a href="#cb45-438" aria-hidden="true" tabindex="-1"></a>  Hester J, Kuhn M, Pedersen TL, Miller E, Bache SM, Müller K, Ooms J, Robinson D, Seidel DP, Spinu V,</span>
-<span id="cb45-439"><a href="#cb45-439" aria-hidden="true" tabindex="-1"></a>  Takahashi K, Vaughan D, Wilke C, Woo K, Yutani H (2019). “Welcome to the tidyverse.” _Journal of</span>
-<span id="cb45-440"><a href="#cb45-440" aria-hidden="true" tabindex="-1"></a>  Open Source Software_, *4*(43), 1686. doi:10.21105/joss.01686 <span class="ot">&lt;https://doi.org/10.21105/joss.01686&gt;</span>.</span>
-<span id="cb45-441"><a href="#cb45-441" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-444"><a href="#cb45-444" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb45-445"><a href="#cb45-445" aria-hidden="true" tabindex="-1"></a>tidy_citation <span class="ot">&lt;-</span> <span class="fu">citation</span>(<span class="st">"tidyverse"</span>)</span>
-<span id="cb45-446"><a href="#cb45-446" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-447"><a href="#cb45-447" aria-hidden="true" tabindex="-1"></a>purrr_citation <span class="ot">&lt;-</span><span class="fu">citation</span>(<span class="st">"purrr"</span>)</span>
-<span id="cb45-448"><a href="#cb45-448" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<div class="sourceCode" id="cb43" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Matt Zambetti: Final Project Submission"</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Matt Zambetti"</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "2023-07-05"</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="co">    df-print: paged</span></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span></span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a><span class="co">  - Final_Project</span></span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a><span class="fu"># Final Project</span></span>
+<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup, include=FALSE}</span></span>
+<span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb43-19"><a href="#cb43-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb43-20"><a href="#cb43-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-21"><a href="#cb43-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-22"><a href="#cb43-22" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb43-23"><a href="#cb43-23" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb43-24"><a href="#cb43-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-25"><a href="#cb43-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## Choosing the Data Set</span></span>
+<span id="cb43-26"><a href="#cb43-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-27"><a href="#cb43-27" aria-hidden="true" tabindex="-1"></a>The data set that I chose pertains to salary data for various careers, education levels, gender, and experience. I am interested in investigating this data, as it would allow people to see how their salary compares to people with similar age, job titles, education and experience level.</span>
+<span id="cb43-28"><a href="#cb43-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-29"><a href="#cb43-29" aria-hidden="true" tabindex="-1"></a>Looking into the authors' process to gathering this data, they do not provide much. They state that this data is gathered from surveys, job posting sites, and "other publicly available sources". These sources can come with uncertainty as people could lie on surveys as they could be uncomfortable with sharing their real salary. We also do not know what is included in "publicly available sources". But assuming that these sources are trust worthy, pairing this with job posting sites can be very useful in creating numerous data points. </span>
+<span id="cb43-30"><a href="#cb43-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-31"><a href="#cb43-31" aria-hidden="true" tabindex="-1"></a>Another area this source is lacking is the type of companies they are sampling from, again another assumption is that they are surveying people from various companies and the data from job posting websites contains multiple employers/types of employers so we have a breadth of data. Even though we don't know which companies this data comes from we can note that this is primarily professionals working in industry, with an emphasis on software, data science, and similar fields.</span>
+<span id="cb43-32"><a href="#cb43-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-33"><a href="#cb43-33" aria-hidden="true" tabindex="-1"></a>When looking into what region this data came from, I could not find anything. So, I looked and compared this to the salaries of similar jobs with similar experience in the United States, and they were similar. With that, I believe that although this may not be perfect, it is certainly sufficient for someone to use this data in the US to compare their salary to.</span>
+<span id="cb43-34"><a href="#cb43-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-37"><a href="#cb43-37" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb43-38"><a href="#cb43-38" aria-hidden="true" tabindex="-1"></a>workers_tidy <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"_data/Salary_Data.csv"</span>)</span>
+<span id="cb43-39"><a href="#cb43-39" aria-hidden="true" tabindex="-1"></a>workers_tidy</span>
+<span id="cb43-40"><a href="#cb43-40" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb43-41"><a href="#cb43-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-42"><a href="#cb43-42" aria-hidden="true" tabindex="-1"></a><span class="fu">## Cleaning the Data Set</span></span>
+<span id="cb43-43"><a href="#cb43-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-44"><a href="#cb43-44" aria-hidden="true" tabindex="-1"></a>Originally, I did not find anything wrong with the data in terms of tidying it up or formatting it. But when doing further analysis I found that some entries in <span class="in">`Education Level`</span> were recorded as 'phD' instead of 'PhD', so I went ahead and fixed that. In addition to this, Bachelor's Degree was listed as both "Bachelor's" and "Bachelor's Degree", so I combined them to "Bachelor's". Master's Degree was also split like this as well and the same changes were made</span>
+<span id="cb43-45"><a href="#cb43-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-48"><a href="#cb43-48" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb43-49"><a href="#cb43-49" aria-hidden="true" tabindex="-1"></a>workers_tidy<span class="sc">$</span><span class="st">`</span><span class="at">Education Level</span><span class="st">`</span>[workers_tidy<span class="sc">$</span><span class="st">`</span><span class="at">Education Level</span><span class="st">`</span><span class="sc">==</span><span class="st">'phD'</span>] <span class="ot">&lt;-</span> <span class="st">'PhD'</span></span>
+<span id="cb43-50"><a href="#cb43-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-51"><a href="#cb43-51" aria-hidden="true" tabindex="-1"></a>workers_tidy<span class="sc">$</span><span class="st">`</span><span class="at">Education Level</span><span class="st">`</span>[workers_tidy<span class="sc">$</span><span class="st">`</span><span class="at">Education Level</span><span class="st">`</span><span class="sc">==</span><span class="st">'Master</span><span class="sc">\'</span><span class="st">s Degree'</span>] <span class="ot">&lt;-</span> <span class="st">'Master</span><span class="sc">\'</span><span class="st">s'</span></span>
+<span id="cb43-52"><a href="#cb43-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-53"><a href="#cb43-53" aria-hidden="true" tabindex="-1"></a>workers_tidy<span class="sc">$</span><span class="st">`</span><span class="at">Education Level</span><span class="st">`</span>[workers_tidy<span class="sc">$</span><span class="st">`</span><span class="at">Education Level</span><span class="st">`</span><span class="sc">==</span><span class="st">'Bachelor</span><span class="sc">\'</span><span class="st">s Degree'</span>] <span class="ot">&lt;-</span> <span class="st">'Bachelor</span><span class="sc">\'</span><span class="st">s'</span></span>
+<span id="cb43-54"><a href="#cb43-54" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb43-55"><a href="#cb43-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-56"><a href="#cb43-56" aria-hidden="true" tabindex="-1"></a><span class="fu">## Narrative About the Data Set</span></span>
+<span id="cb43-57"><a href="#cb43-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-58"><a href="#cb43-58" aria-hidden="true" tabindex="-1"></a>If we want to look deeper into this data set to see what it contains, we can examine each variable represented and their domains.</span>
+<span id="cb43-59"><a href="#cb43-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-62"><a href="#cb43-62" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb43-63"><a href="#cb43-63" aria-hidden="true" tabindex="-1"></a>max_age <span class="ot">&lt;-</span> <span class="fu">max</span>(workers_tidy<span class="sc">$</span>Age, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb43-64"><a href="#cb43-64" aria-hidden="true" tabindex="-1"></a>min_age <span class="ot">&lt;-</span> <span class="fu">min</span>(workers_tidy<span class="sc">$</span>Age, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb43-65"><a href="#cb43-65" aria-hidden="true" tabindex="-1"></a>mean_age <span class="ot">&lt;-</span> <span class="fu">mean</span>(workers_tidy<span class="sc">$</span><span class="st">`</span><span class="at">Age</span><span class="st">`</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb43-66"><a href="#cb43-66" aria-hidden="true" tabindex="-1"></a>age_table <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(min_age, max_age, max_age<span class="sc">-</span>min_age, mean_age), <span class="at">ncol=</span><span class="dv">4</span>, <span class="at">byrow=</span><span class="cn">TRUE</span>)</span>
+<span id="cb43-67"><a href="#cb43-67" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(age_table) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Min'</span>, <span class="st">'Max'</span>, <span class="st">'Range'</span>, <span class="st">'Mean'</span>)</span>
+<span id="cb43-68"><a href="#cb43-68" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(age_table) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Age'</span>)</span>
+<span id="cb43-69"><a href="#cb43-69" aria-hidden="true" tabindex="-1"></a>age_table</span>
+<span id="cb43-70"><a href="#cb43-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-71"><a href="#cb43-71" aria-hidden="true" tabindex="-1"></a><span class="co"># Adding age distribution table</span></span>
+<span id="cb43-72"><a href="#cb43-72" aria-hidden="true" tabindex="-1"></a><span class="co"># Putting it into bar chart form as well</span></span>
+<span id="cb43-73"><a href="#cb43-73" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="fu">subset</span>(workers_tidy, <span class="sc">!</span><span class="fu">is.na</span>(Age)), <span class="fu">aes</span>(<span class="at">x=</span>Age)) <span class="sc">+</span></span>
+<span id="cb43-74"><a href="#cb43-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb43-75"><a href="#cb43-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span> <span class="st">"Number of Jobs"</span>, <span class="at">x =</span> <span class="st">"Age"</span>) <span class="sc">+</span></span>
+<span id="cb43-76"><a href="#cb43-76" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Number of Jobs by Age"</span>)</span>
+<span id="cb43-77"><a href="#cb43-77" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb43-78"><a href="#cb43-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-79"><a href="#cb43-79" aria-hidden="true" tabindex="-1"></a>The first variable is <span class="in">`Age`</span>, which is simply the age of the employee, this variable is quite self explanatory so I will leave it at that. From above we can see the minimum age is 21, and the maximum age is 62. Below the table of calculated data, we have a plot that allows the viewing of the complete distribution. It can be noted that either this sample contains more jobs for younger professionals, or there are more jobs available for younger professionals.</span>
+<span id="cb43-80"><a href="#cb43-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-83"><a href="#cb43-83" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb43-84"><a href="#cb43-84" aria-hidden="true" tabindex="-1"></a>max_exp <span class="ot">&lt;-</span> <span class="fu">max</span>(workers_tidy<span class="sc">$</span><span class="st">`</span><span class="at">Years of Experience</span><span class="st">`</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb43-85"><a href="#cb43-85" aria-hidden="true" tabindex="-1"></a>min_exp <span class="ot">&lt;-</span> <span class="fu">min</span>(workers_tidy<span class="sc">$</span><span class="st">`</span><span class="at">Years of Experience</span><span class="st">`</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb43-86"><a href="#cb43-86" aria-hidden="true" tabindex="-1"></a>mean_exp <span class="ot">&lt;-</span> <span class="fu">mean</span>(workers_tidy<span class="sc">$</span><span class="st">`</span><span class="at">Years of Experience</span><span class="st">`</span>, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb43-87"><a href="#cb43-87" aria-hidden="true" tabindex="-1"></a>age_table <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(min_exp, max_exp, max_exp<span class="sc">-</span>min_exp, mean_exp), <span class="at">ncol=</span><span class="dv">4</span>, <span class="at">byrow=</span><span class="cn">TRUE</span>)</span>
+<span id="cb43-88"><a href="#cb43-88" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(age_table) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Min'</span>, <span class="st">'Max'</span>, <span class="st">'Range'</span>, <span class="st">'Mean'</span>)</span>
+<span id="cb43-89"><a href="#cb43-89" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(age_table) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'Years of Experience'</span>)</span>
+<span id="cb43-90"><a href="#cb43-90" aria-hidden="true" tabindex="-1"></a>age_table</span>
+<span id="cb43-91"><a href="#cb43-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-92"><a href="#cb43-92" aria-hidden="true" tabindex="-1"></a><span class="co"># Putting it into bar chart form as well</span></span>
+<span id="cb43-93"><a href="#cb43-93" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="fu">subset</span>(workers_tidy, <span class="sc">!</span><span class="fu">is.na</span>(<span class="st">`</span><span class="at">Years of Experience</span><span class="st">`</span>)), <span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Years of Experience</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb43-94"><a href="#cb43-94" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb43-95"><a href="#cb43-95" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span> <span class="st">"Number of Jobs"</span>, <span class="at">x =</span> <span class="st">"Years of Experience"</span>) <span class="sc">+</span></span>
+<span id="cb43-96"><a href="#cb43-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Number of Jobs by Years of Experience"</span>)</span>
+<span id="cb43-97"><a href="#cb43-97" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb43-98"><a href="#cb43-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-99"><a href="#cb43-99" aria-hidden="true" tabindex="-1"></a>Second, we have <span class="in">`Experience Level`</span>, which is pretty similar to age, just that this is the number of years someone has been working. By simple analysis we can see that the average is around 8 years. In addition we can see similar statistics that we represented with age. The graph also shows us that we are very heavily sampled from jobs that are in the beginning of one's career.</span>
+<span id="cb43-100"><a href="#cb43-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-103"><a href="#cb43-103" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb43-104"><a href="#cb43-104" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(workers_tidy<span class="sc">$</span><span class="st">`</span><span class="at">Gender</span><span class="st">`</span>)</span>
+<span id="cb43-105"><a href="#cb43-105" aria-hidden="true" tabindex="-1"></a><span class="co"># Putting it into bar chart form as well</span></span>
+<span id="cb43-106"><a href="#cb43-106" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="fu">subset</span>(workers_tidy, <span class="sc">!</span><span class="fu">is.na</span>(Gender)), <span class="fu">aes</span>(<span class="at">x=</span>Gender,<span class="at">fill=</span>Gender)) <span class="sc">+</span></span>
+<span id="cb43-107"><a href="#cb43-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb43-108"><a href="#cb43-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span> <span class="st">"Number of Jobs"</span>, <span class="at">x =</span> <span class="st">"Gender"</span>) <span class="sc">+</span></span>
+<span id="cb43-109"><a href="#cb43-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Number of Jobs by Gender"</span>)</span>
+<span id="cb43-110"><a href="#cb43-110" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb43-111"><a href="#cb43-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-112"><a href="#cb43-112" aria-hidden="true" tabindex="-1"></a>Next, <span class="in">`Gender`</span> is split into three categories: Male, Female, or Other. Above we can see the exact count for both, with it coming out to be around 54% for males, and 45% for females and 0.2% for Other. To see the distribution a bar chart has been provided.</span>
+<span id="cb43-113"><a href="#cb43-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-116"><a href="#cb43-116" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb43-117"><a href="#cb43-117" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(workers_tidy<span class="sc">$</span><span class="st">`</span><span class="at">Education Level</span><span class="st">`</span>)</span>
+<span id="cb43-118"><a href="#cb43-118" aria-hidden="true" tabindex="-1"></a><span class="co"># Put this into bar plot instead</span></span>
+<span id="cb43-119"><a href="#cb43-119" aria-hidden="true" tabindex="-1"></a><span class="co"># Putting it into bar chart form as well</span></span>
+<span id="cb43-120"><a href="#cb43-120" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="fu">subset</span>(workers_tidy, <span class="sc">!</span><span class="fu">is.na</span>(<span class="st">`</span><span class="at">Education Level</span><span class="st">`</span>)), <span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Education Level</span><span class="st">`</span>,<span class="at">fill=</span><span class="st">`</span><span class="at">Education Level</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb43-121"><a href="#cb43-121" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb43-122"><a href="#cb43-122" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span> <span class="st">"Number of Jobs"</span>, <span class="at">x =</span> <span class="st">"Education Level"</span>) <span class="sc">+</span></span>
+<span id="cb43-123"><a href="#cb43-123" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Number of Jobs by Education Level"</span>)</span>
+<span id="cb43-124"><a href="#cb43-124" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb43-125"><a href="#cb43-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-126"><a href="#cb43-126" aria-hidden="true" tabindex="-1"></a><span class="in">`Education Level`</span> is spread out between High School Diploma, Bachelor's, Master's and PhD. Similarly we can see that distribution above. This data has been provided in both tabular and graph form. As we'd expect with industry jobs, there is low demand for people with only a HS Diploma and a larger market for those with a Bachelor's.</span>
+<span id="cb43-127"><a href="#cb43-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-130"><a href="#cb43-130" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb43-131"><a href="#cb43-131" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(workers_tidy<span class="sc">$</span><span class="st">`</span><span class="at">Job Title</span><span class="st">`</span>))</span>
+<span id="cb43-132"><a href="#cb43-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-133"><a href="#cb43-133" aria-hidden="true" tabindex="-1"></a>title_count <span class="ot">=</span> <span class="fu">table</span>(workers_tidy<span class="sc">$</span><span class="st">`</span><span class="at">Job Title</span><span class="st">`</span>)</span>
+<span id="cb43-134"><a href="#cb43-134" aria-hidden="true" tabindex="-1"></a>title_count <span class="ot">&lt;-</span> title_count[<span class="fu">order</span>(title_count, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)]</span>
+<span id="cb43-135"><a href="#cb43-135" aria-hidden="true" tabindex="-1"></a>title_count <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>((title_count))</span>
+<span id="cb43-136"><a href="#cb43-136" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(title_count)</span>
+<span id="cb43-137"><a href="#cb43-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-138"><a href="#cb43-138" aria-hidden="true" tabindex="-1"></a><span class="co"># Putting it into bar chart form as well</span></span>
+<span id="cb43-139"><a href="#cb43-139" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span><span class="fu">subset</span>(title_count, Freq <span class="sc">&gt;</span> <span class="dv">75</span>), <span class="fu">aes</span>(<span class="at">x=</span>Var1,<span class="at">y=</span>Freq,<span class="at">fill=</span>Var1)) <span class="sc">+</span></span>
+<span id="cb43-140"><a href="#cb43-140" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">'identity'</span>) <span class="sc">+</span></span>
+<span id="cb43-141"><a href="#cb43-141" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y=</span> <span class="st">"Number of Jobs"</span>, <span class="at">x =</span> <span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb43-142"><a href="#cb43-142" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Number of Jobs by Title (More than 50)"</span>) <span class="sc">+</span></span>
+<span id="cb43-143"><a href="#cb43-143" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">vjust=</span><span class="dv">1</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span>
+<span id="cb43-144"><a href="#cb43-144" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb43-145"><a href="#cb43-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-146"><a href="#cb43-146" aria-hidden="true" tabindex="-1"></a>The final variable <span class="in">`Job Title`</span> is where we can start to see more variance. From the above command, we see that there are around 194 different jobs represented out of the 6700 total samples. From the analysis above, we can see that Software Engineer, Data Scientist, Software Engineer Manager, Data Analyst, Senior Project Engineer, and Product Engineer are the six most popular jobs in the data set.</span>
+<span id="cb43-147"><a href="#cb43-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-148"><a href="#cb43-148" aria-hidden="true" tabindex="-1"></a>In addition to listing the 6 most popular jobs, we graph all jobs where they occur more than 75 times. We cut it off at 75 just so the graph was readable. It is very interesting to see many of these titles have to do with engineering, computer science, or data analytics.</span>
+<span id="cb43-149"><a href="#cb43-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-150"><a href="#cb43-150" aria-hidden="true" tabindex="-1"></a><span class="fu">## Research Questions</span></span>
+<span id="cb43-151"><a href="#cb43-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-152"><a href="#cb43-152" aria-hidden="true" tabindex="-1"></a>This data has plenty to offer in terms of analysis. I want to focus on how Age and Experience affect the salary of an individual. First, I will look into the entire data set of all professions. Then I will look into how this compares to jobs in my field (Computer Science, Data Science, etc.).</span>
+<span id="cb43-153"><a href="#cb43-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-154"><a href="#cb43-154" aria-hidden="true" tabindex="-1"></a>After analyzing the question listed above, I wanted to look deeper into the industry I am interested in and how roles/fields affect salaries with respect to age. I was curious on how the roles/fields were distributed and if there were certain niches for each or if some were outliers compared to other counterparts.</span>
+<span id="cb43-155"><a href="#cb43-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-156"><a href="#cb43-156" aria-hidden="true" tabindex="-1"></a><span class="fu">### General Analysis</span></span>
+<span id="cb43-157"><a href="#cb43-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-158"><a href="#cb43-158" aria-hidden="true" tabindex="-1"></a>As aforementioned, the first two plots will showcase any correlation between Age and Salary, and Years of Experience and Salary. From my general understanding of salaries, I predict that there will be a positive correlation between both of these variables and salaries, but I will be curious to see if there are any points in one's career that this plateaus.</span>
+<span id="cb43-159"><a href="#cb43-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-162"><a href="#cb43-162" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb43-163"><a href="#cb43-163" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">subset</span>(workers_tidy, <span class="sc">!</span><span class="fu">is.na</span>(<span class="st">`</span><span class="at">Years of Experience</span><span class="st">`</span>)), <span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Years of Experience</span><span class="st">`</span>, <span class="at">y=</span><span class="st">`</span><span class="at">Salary</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb43-164"><a href="#cb43-164" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>, <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb43-165"><a href="#cb43-165" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Years of Experience vs Salary"</span>)</span>
+<span id="cb43-166"><a href="#cb43-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-167"><a href="#cb43-167" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb43-168"><a href="#cb43-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-169"><a href="#cb43-169" aria-hidden="true" tabindex="-1"></a>From the plot above, we can see some very interesting points. If we focus on zero to twenty years of experience we see a fairly steady growth of salary. Another interesting point about this section is that there are a large range of salaries for people with the same years of experience, the difference is that the majority of salaries are increasing in this area.</span>
+<span id="cb43-170"><a href="#cb43-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-171"><a href="#cb43-171" aria-hidden="true" tabindex="-1"></a>Also, we are able to see that around these trends there is a heavier density of points. This shows that the trend line is not only an average, but also very common among the data points.</span>
+<span id="cb43-172"><a href="#cb43-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-175"><a href="#cb43-175" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb43-176"><a href="#cb43-176" aria-hidden="true" tabindex="-1"></a>count_years <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">table</span>(workers_tidy<span class="sc">$</span><span class="st">`</span><span class="at">Years of Experience</span><span class="st">`</span>))</span>
+<span id="cb43-177"><a href="#cb43-177" aria-hidden="true" tabindex="-1"></a>count_years<span class="sc">$</span>Var1 <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(count_years<span class="sc">$</span>Var1))</span>
+<span id="cb43-178"><a href="#cb43-178" aria-hidden="true" tabindex="-1"></a>total <span class="ot">&lt;-</span> <span class="fu">sum</span>(count_years[<span class="fu">which</span>(count_years<span class="sc">$</span>Var1 <span class="sc">&gt;</span> <span class="dv">20</span>),<span class="dv">2</span>])</span>
+<span id="cb43-179"><a href="#cb43-179" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb43-180"><a href="#cb43-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-181"><a href="#cb43-181" aria-hidden="true" tabindex="-1"></a>Looking on from twenty years of experience and onward, we notice the curve flattening out. I believe that this is due to multiple factors. The first is that people are not job switching as much, so there is less competition between companies to pay employees better. People are not job hopping as frequently in this age range because they more than likely have a family or are committed to living in a specific area. Another factor may be that companies are only willing to offer so much to one individual, such as a salary cap for people in certain positions.</span>
+<span id="cb43-182"><a href="#cb43-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-183"><a href="#cb43-183" aria-hidden="true" tabindex="-1"></a>Also, there may not have been enough data gathered on this particular group. From the small snippet above, we can see only 244 entries are for this particular age group. If these jobs were sampled from a similar company/demographic that may be the reason we see such similarities in the data.</span>
+<span id="cb43-184"><a href="#cb43-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-187"><a href="#cb43-187" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb43-188"><a href="#cb43-188" aria-hidden="true" tabindex="-1"></a>workers_tidy <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Age</span><span class="st">`</span>, <span class="at">y=</span><span class="st">`</span><span class="at">Salary</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb43-189"><a href="#cb43-189" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>, <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span> </span>
+<span id="cb43-190"><a href="#cb43-190" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Age vs Salary"</span>)</span>
+<span id="cb43-191"><a href="#cb43-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-192"><a href="#cb43-192" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb43-193"><a href="#cb43-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-194"><a href="#cb43-194" aria-hidden="true" tabindex="-1"></a>In this data we can see a very similar plot as the Years of Experience versus Salary plot. One key difference is that this one seems to plateau around 52 years of age which seems to be a bit later in the distribution than the plateau of the experience plot.</span>
+<span id="cb43-195"><a href="#cb43-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-196"><a href="#cb43-196" aria-hidden="true" tabindex="-1"></a>An interesting note about this plot is that the points seem to be evenly distributed for the range of salaries. Unlike the experience graph where we saw a dark band through the center, this one seems a bit more spread out.</span>
+<span id="cb43-197"><a href="#cb43-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-198"><a href="#cb43-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-201"><a href="#cb43-201" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb43-202"><a href="#cb43-202" aria-hidden="true" tabindex="-1"></a>count_years2 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">table</span>(workers_tidy<span class="sc">$</span><span class="st">`</span><span class="at">Age</span><span class="st">`</span>))</span>
+<span id="cb43-203"><a href="#cb43-203" aria-hidden="true" tabindex="-1"></a>count_years2<span class="sc">$</span>Var1 <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">as.character</span>(count_years2<span class="sc">$</span>Var1))</span>
+<span id="cb43-204"><a href="#cb43-204" aria-hidden="true" tabindex="-1"></a>total <span class="ot">&lt;-</span> <span class="fu">sum</span>(count_years2[<span class="fu">which</span>(count_years2<span class="sc">$</span>Var1 <span class="sc">&gt;</span> <span class="dv">50</span>),<span class="dv">2</span>])</span>
+<span id="cb43-205"><a href="#cb43-205" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb43-206"><a href="#cb43-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-207"><a href="#cb43-207" aria-hidden="true" tabindex="-1"></a>Similarly to the previous plot there are a lot less samples around where this plateau takes place. But there is even a smaller portion of samples for workers over 50. I think this is due to the fact that people are close to retiring and that people are getting promoted less and less as they approach this age. In my experience young professionals are able to make higher increases in pay more quickly the earlier they are in their career, then as they get older, these promotions are harder to come by.</span>
+<span id="cb43-208"><a href="#cb43-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-209"><a href="#cb43-209" aria-hidden="true" tabindex="-1"></a>The final thing to note about age and experience for these two plots is that they are heavily correlated. The one factor that may shift these distributions is degree level. Which we will look at in the next plot.</span>
+<span id="cb43-210"><a href="#cb43-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-213"><a href="#cb43-213" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb43-214"><a href="#cb43-214" aria-hidden="true" tabindex="-1"></a>workers_tidy <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Age</span><span class="st">`</span>, <span class="at">y=</span><span class="st">`</span><span class="at">Years of Experience</span><span class="st">`</span>, <span class="at">color=</span><span class="st">`</span><span class="at">Education Level</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb43-215"><a href="#cb43-215" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>, <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span> </span>
+<span id="cb43-216"><a href="#cb43-216" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Age vs Years of Experience Grouped by Education Level"</span>)</span>
+<span id="cb43-217"><a href="#cb43-217" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb43-218"><a href="#cb43-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-219"><a href="#cb43-219" aria-hidden="true" tabindex="-1"></a>This plot is extremely interesting as it shows just how much the two are coordinated. We can see that all degree levels follow the trend very closely, except PhD which has a weird branch with around 17 years of experience.</span>
+<span id="cb43-220"><a href="#cb43-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-221"><a href="#cb43-221" aria-hidden="true" tabindex="-1"></a><span class="fu">### Industry Specific Analysis</span></span>
+<span id="cb43-222"><a href="#cb43-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-223"><a href="#cb43-223" aria-hidden="true" tabindex="-1"></a>Now, I want to focus on jobs that pertain to my career. I looked through all the jobs and picked out key words that were related to my career path. Below I have listed all of these. In the following code block, we mark all of these jobs with "Industry" or "Not", denoting whether they fall in the given industry.</span>
+<span id="cb43-224"><a href="#cb43-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-225"><a href="#cb43-225" aria-hidden="true" tabindex="-1"></a>Key words are:</span>
+<span id="cb43-226"><a href="#cb43-226" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Software</span>
+<span id="cb43-227"><a href="#cb43-227" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Engineer</span>
+<span id="cb43-228"><a href="#cb43-228" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Developer</span>
+<span id="cb43-229"><a href="#cb43-229" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Data</span>
+<span id="cb43-230"><a href="#cb43-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-233"><a href="#cb43-233" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb43-234"><a href="#cb43-234" aria-hidden="true" tabindex="-1"></a>mark_industry <span class="ot">&lt;-</span> <span class="cf">function</span>(entry) {</span>
+<span id="cb43-235"><a href="#cb43-235" aria-hidden="true" tabindex="-1"></a>  job <span class="ot">&lt;-</span> entry</span>
+<span id="cb43-236"><a href="#cb43-236" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ifelse</span>(<span class="fu">grepl</span>(<span class="st">"software|engineer|developer|data"</span>,<span class="fu">tolower</span>(job)), <span class="st">'Industry'</span>, <span class="st">'Non'</span>)</span>
+<span id="cb43-237"><a href="#cb43-237" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb43-238"><a href="#cb43-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-239"><a href="#cb43-239" aria-hidden="true" tabindex="-1"></a>workers_tidy<span class="sc">$</span>marked <span class="ot">&lt;-</span> <span class="fu">map_chr</span>(workers_tidy<span class="sc">$</span><span class="st">`</span><span class="at">Job Title</span><span class="st">`</span>, mark_industry) </span>
+<span id="cb43-240"><a href="#cb43-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-241"><a href="#cb43-241" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb43-242"><a href="#cb43-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-243"><a href="#cb43-243" aria-hidden="true" tabindex="-1"></a>In the code above, we simply put a marker on whether a job was in the given industry or not.</span>
+<span id="cb43-244"><a href="#cb43-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-245"><a href="#cb43-245" aria-hidden="true" tabindex="-1"></a>Below we will recreate both graphs above. Starting with years of experience.</span>
+<span id="cb43-246"><a href="#cb43-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-249"><a href="#cb43-249" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb43-250"><a href="#cb43-250" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">subset</span>(workers_tidy, marked<span class="sc">==</span><span class="st">'Industry'</span>),<span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Years of Experience</span><span class="st">`</span>, <span class="at">y=</span><span class="st">`</span><span class="at">Salary</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb43-251"><a href="#cb43-251" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>, <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb43-252"><a href="#cb43-252" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Years of Experience vs Salary"</span>)</span>
+<span id="cb43-253"><a href="#cb43-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-254"><a href="#cb43-254" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb43-255"><a href="#cb43-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-256"><a href="#cb43-256" aria-hidden="true" tabindex="-1"></a>Comparing this graph to the complete data set graph on comparing salary to years of experience, we can see that there salary from 0-20 years of experience is slightly higher for my field, but about the same from onward. Below is a graph overlaying both of these plots.</span>
+<span id="cb43-257"><a href="#cb43-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-260"><a href="#cb43-260" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb43-261"><a href="#cb43-261" aria-hidden="true" tabindex="-1"></a>workers_tidy <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Years of Experience</span><span class="st">`</span>, <span class="at">y=</span><span class="st">`</span><span class="at">Salary</span><span class="st">`</span>, <span class="at">color=</span>marked)) <span class="sc">+</span></span>
+<span id="cb43-262"><a href="#cb43-262" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>, <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb43-263"><a href="#cb43-263" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Years of Experience vs Salary"</span>)</span>
+<span id="cb43-264"><a href="#cb43-264" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb43-265"><a href="#cb43-265" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb43-266"><a href="#cb43-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-267"><a href="#cb43-267" aria-hidden="true" tabindex="-1"></a>Above, in Red we have only the jobs that are in the disciplines I am interested in. In Blue, we have all jobs (including the ones in blue). </span>
+<span id="cb43-268"><a href="#cb43-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-269"><a href="#cb43-269" aria-hidden="true" tabindex="-1"></a>This plot further confirms that the salary in my field is slightly higher than average, but this seems to be only up until about 15 years of experience. Then it starts to get very close as the salaries plateau. I would like to see more non-industry data for 20 years of experience and up as there is not much provided in this plot.</span>
+<span id="cb43-270"><a href="#cb43-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-271"><a href="#cb43-271" aria-hidden="true" tabindex="-1"></a>Next, we will look at comparing the age of people in the field I'm interested in and their salaries compared to the complete distribution.</span>
+<span id="cb43-272"><a href="#cb43-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-273"><a href="#cb43-273" aria-hidden="true" tabindex="-1"></a>First, we will look at the specific field first, so we can get a good understanding of what we're looking at before we compare.</span>
+<span id="cb43-274"><a href="#cb43-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-277"><a href="#cb43-277" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb43-278"><a href="#cb43-278" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">subset</span>(workers_tidy, marked<span class="sc">==</span><span class="st">'Industry'</span>),<span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Age</span><span class="st">`</span>, <span class="at">y=</span><span class="st">`</span><span class="at">Salary</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb43-279"><a href="#cb43-279" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>, <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb43-280"><a href="#cb43-280" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Age vs Salary"</span>) </span>
+<span id="cb43-281"><a href="#cb43-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-282"><a href="#cb43-282" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb43-283"><a href="#cb43-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-284"><a href="#cb43-284" aria-hidden="true" tabindex="-1"></a>In this plot, we have a very interesting curve. It seems that throughout one's career in the given fields, the salaries increase, then plateau, and repeat this behavior a few times. My hypothesis for this behavior is that many of the careers in these fields follow the same behavior. This behavior is a promotion every few years, then another promotion after a similar period. If these jobs were sampled from the same company or ones that operate in a similar manner, this would explain the deterministic behavior in the plot.</span>
+<span id="cb43-285"><a href="#cb43-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-286"><a href="#cb43-286" aria-hidden="true" tabindex="-1"></a>Now, we will compare these jobs to all the sampled jobs, this plot can be seen below.</span>
+<span id="cb43-287"><a href="#cb43-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-290"><a href="#cb43-290" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb43-291"><a href="#cb43-291" aria-hidden="true" tabindex="-1"></a>workers_tidy <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Age</span><span class="st">`</span>, <span class="at">y=</span><span class="st">`</span><span class="at">Salary</span><span class="st">`</span>, <span class="at">color=</span>marked)) <span class="sc">+</span></span>
+<span id="cb43-292"><a href="#cb43-292" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>, <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb43-293"><a href="#cb43-293" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Age vs Salary"</span>)</span>
+<span id="cb43-294"><a href="#cb43-294" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb43-295"><a href="#cb43-295" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb43-296"><a href="#cb43-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-297"><a href="#cb43-297" aria-hidden="true" tabindex="-1"></a>In this plot, the colors represent the same distributions from the previous combined plot. This one is a bit more telling than the experience plot. Here we can see up to around 50 years of age that jobs in the industry dominate non-industry jobs. I say that this is more telling because we have a lot more data for non-industry jobs for a larger period so we have a larger sample to compare to making these conclusions more significant.</span>
+<span id="cb43-298"><a href="#cb43-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-299"><a href="#cb43-299" aria-hidden="true" tabindex="-1"></a>The final piece of analysis we're going to look at is how the title within the industries I'm interested affects salary. We are going to do this in two separate ways. The first is dividing them based on role, i.e. Developer, Officer, Analyst, Director, etc. and the other is going to be based off of field, i.e. data, software, engineering, etc.</span>
+<span id="cb43-300"><a href="#cb43-300" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-303"><a href="#cb43-303" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb43-304"><a href="#cb43-304" aria-hidden="true" tabindex="-1"></a>mark_role <span class="ot">&lt;-</span> <span class="cf">function</span>(entry) {</span>
+<span id="cb43-305"><a href="#cb43-305" aria-hidden="true" tabindex="-1"></a>  job <span class="ot">&lt;-</span> <span class="fu">tolower</span>(entry)</span>
+<span id="cb43-306"><a href="#cb43-306" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"manager"</span>,<span class="fu">tolower</span>(job))) {</span>
+<span id="cb43-307"><a href="#cb43-307" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Manager'</span>)</span>
+<span id="cb43-308"><a href="#cb43-308" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb43-309"><a href="#cb43-309" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"engineer"</span>,<span class="fu">tolower</span>(job))){</span>
+<span id="cb43-310"><a href="#cb43-310" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Engineer'</span>)</span>
+<span id="cb43-311"><a href="#cb43-311" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb43-312"><a href="#cb43-312" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"developer"</span>,<span class="fu">tolower</span>(job))){</span>
+<span id="cb43-313"><a href="#cb43-313" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Developer'</span>)</span>
+<span id="cb43-314"><a href="#cb43-314" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb43-315"><a href="#cb43-315" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"analyst"</span>,<span class="fu">tolower</span>(job))){</span>
+<span id="cb43-316"><a href="#cb43-316" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Analyst'</span>)</span>
+<span id="cb43-317"><a href="#cb43-317" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb43-318"><a href="#cb43-318" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"clerk"</span>,<span class="fu">tolower</span>(job))){</span>
+<span id="cb43-319"><a href="#cb43-319" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Clerk'</span>)</span>
+<span id="cb43-320"><a href="#cb43-320" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb43-321"><a href="#cb43-321" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"scientist"</span>,<span class="fu">tolower</span>(job))){</span>
+<span id="cb43-322"><a href="#cb43-322" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Sciencist'</span>)</span>
+<span id="cb43-323"><a href="#cb43-323" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb43-324"><a href="#cb43-324" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"officer"</span>,<span class="fu">tolower</span>(job))){</span>
+<span id="cb43-325"><a href="#cb43-325" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'officer'</span>)</span>
+<span id="cb43-326"><a href="#cb43-326" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb43-327"><a href="#cb43-327" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"architect"</span>,<span class="fu">tolower</span>(job))){</span>
+<span id="cb43-328"><a href="#cb43-328" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Architect'</span>)</span>
+<span id="cb43-329"><a href="#cb43-329" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb43-330"><a href="#cb43-330" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"director"</span>,<span class="fu">tolower</span>(job))){</span>
+<span id="cb43-331"><a href="#cb43-331" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Director'</span>)</span>
+<span id="cb43-332"><a href="#cb43-332" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb43-333"><a href="#cb43-333" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb43-334"><a href="#cb43-334" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="st">'Not Found'</span>)</span>
+<span id="cb43-335"><a href="#cb43-335" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb43-336"><a href="#cb43-336" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb43-337"><a href="#cb43-337" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-338"><a href="#cb43-338" aria-hidden="true" tabindex="-1"></a>industry_jobs <span class="ot">&lt;-</span> <span class="fu">subset</span>(workers_tidy, workers_tidy<span class="sc">$</span>marked <span class="sc">==</span> <span class="st">"Industry"</span>)</span>
+<span id="cb43-339"><a href="#cb43-339" aria-hidden="true" tabindex="-1"></a>industry_jobs<span class="sc">$</span>Role <span class="ot">&lt;-</span> <span class="fu">map_chr</span>(industry_jobs<span class="sc">$</span><span class="st">`</span><span class="at">Job Title</span><span class="st">`</span>, mark_role)</span>
+<span id="cb43-340"><a href="#cb43-340" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-341"><a href="#cb43-341" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(industry_jobs,<span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Age</span><span class="st">`</span>, <span class="at">y=</span><span class="st">`</span><span class="at">Salary</span><span class="st">`</span>, <span class="at">color=</span>Role)) <span class="sc">+</span></span>
+<span id="cb43-342"><a href="#cb43-342" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>, <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb43-343"><a href="#cb43-343" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Age vs Salary based on Role"</span>) </span>
+<span id="cb43-344"><a href="#cb43-344" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-345"><a href="#cb43-345" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb43-346"><a href="#cb43-346" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-347"><a href="#cb43-347" aria-hidden="true" tabindex="-1"></a>In this plot we can see that Developer, Engineer, Director and Manager all dominate the plot in terms of quantity. But, what is also interesting and self explanatory is that most of the higher paying roles are Managerial Roles, where the lower paying jobs are developers. One job that follows the positive trend and seems to be evenly distributed is an engineer. It seems that this position is valued through ones career.</span>
+<span id="cb43-348"><a href="#cb43-348" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-349"><a href="#cb43-349" aria-hidden="true" tabindex="-1"></a>Another trend we can see is that Developers are paid less than their counterparts in other rolls. As aforementioned there are many developer jobs, but they seem to be more common for younger individuals, with the salaries being lower than other jobs such as Engineers, Analysts and Scientists.</span>
+<span id="cb43-350"><a href="#cb43-350" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-353"><a href="#cb43-353" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb43-354"><a href="#cb43-354" aria-hidden="true" tabindex="-1"></a>mark_field <span class="ot">&lt;-</span> <span class="cf">function</span>(entry) {</span>
+<span id="cb43-355"><a href="#cb43-355" aria-hidden="true" tabindex="-1"></a>  job <span class="ot">&lt;-</span> <span class="fu">tolower</span>(entry)</span>
+<span id="cb43-356"><a href="#cb43-356" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"data"</span>,<span class="fu">tolower</span>(job))) {</span>
+<span id="cb43-357"><a href="#cb43-357" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Data'</span>)</span>
+<span id="cb43-358"><a href="#cb43-358" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb43-359"><a href="#cb43-359" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"software"</span>,<span class="fu">tolower</span>(job))){</span>
+<span id="cb43-360"><a href="#cb43-360" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Software'</span>)</span>
+<span id="cb43-361"><a href="#cb43-361" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb43-362"><a href="#cb43-362" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"network"</span>,<span class="fu">tolower</span>(job))){</span>
+<span id="cb43-363"><a href="#cb43-363" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Networking'</span>)</span>
+<span id="cb43-364"><a href="#cb43-364" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb43-365"><a href="#cb43-365" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"full stack"</span>,<span class="fu">tolower</span>(job))){</span>
+<span id="cb43-366"><a href="#cb43-366" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Front and Back End'</span>)</span>
+<span id="cb43-367"><a href="#cb43-367" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb43-368"><a href="#cb43-368" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"developer"</span>,<span class="fu">tolower</span>(job))){</span>
+<span id="cb43-369"><a href="#cb43-369" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Developing'</span>)</span>
+<span id="cb43-370"><a href="#cb43-370" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb43-371"><a href="#cb43-371" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="fu">grepl</span>(<span class="st">"engineer"</span>,<span class="fu">tolower</span>(job))){</span>
+<span id="cb43-372"><a href="#cb43-372" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">'Unspecified Engineer'</span>)</span>
+<span id="cb43-373"><a href="#cb43-373" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb43-374"><a href="#cb43-374" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb43-375"><a href="#cb43-375" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="st">'Not Found'</span>)</span>
+<span id="cb43-376"><a href="#cb43-376" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb43-377"><a href="#cb43-377" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb43-378"><a href="#cb43-378" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-379"><a href="#cb43-379" aria-hidden="true" tabindex="-1"></a>industry_jobs <span class="ot">&lt;-</span> <span class="fu">subset</span>(workers_tidy, workers_tidy<span class="sc">$</span>marked <span class="sc">==</span> <span class="st">"Industry"</span>)</span>
+<span id="cb43-380"><a href="#cb43-380" aria-hidden="true" tabindex="-1"></a>industry_jobs<span class="sc">$</span>Field <span class="ot">&lt;-</span> <span class="fu">map_chr</span>(industry_jobs<span class="sc">$</span><span class="st">`</span><span class="at">Job Title</span><span class="st">`</span>, mark_field)</span>
+<span id="cb43-381"><a href="#cb43-381" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-382"><a href="#cb43-382" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(industry_jobs,<span class="fu">aes</span>(<span class="at">x=</span><span class="st">`</span><span class="at">Age</span><span class="st">`</span>, <span class="at">y=</span><span class="st">`</span><span class="at">Salary</span><span class="st">`</span>, <span class="at">color=</span>Field)) <span class="sc">+</span></span>
+<span id="cb43-383"><a href="#cb43-383" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">2</span>, <span class="at">alpha=</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb43-384"><a href="#cb43-384" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Age vs Salary based on Field"</span>)</span>
+<span id="cb43-385"><a href="#cb43-385" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-386"><a href="#cb43-386" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb43-387"><a href="#cb43-387" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-388"><a href="#cb43-388" aria-hidden="true" tabindex="-1"></a>This plot has a very similar look in color distributions as the previous graph. This is self-explanatory as roles and fields somewhat over lap. In the division of this data, I tried to label the most specific fields first, such as Data and Software, and then if a job title did not fit into there I used more general fields such as Developing, Engineering, and others.</span>
+<span id="cb43-389"><a href="#cb43-389" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-390"><a href="#cb43-390" aria-hidden="true" tabindex="-1"></a>Looking closely, we can see that there is a noticeable difference between general developing and Front and Back End developing. This may be due to the fact the latter requires a more specific skill set which is more desirable and competitive with pay. </span>
+<span id="cb43-391"><a href="#cb43-391" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-392"><a href="#cb43-392" aria-hidden="true" tabindex="-1"></a>We can also see that jobs with data dominate in salary for years 20-35, but then the salaries fall back into normal range. This could possibly be due to the fact that data is a competitive/popular field coming out of college so industry professionals want to hire the best possible candidates.</span>
+<span id="cb43-393"><a href="#cb43-393" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-394"><a href="#cb43-394" aria-hidden="true" tabindex="-1"></a>Similar to the previous plot, we see that the software field follows the positive trend very closely and has a wide range of salaries but most fall into a similar range. This can be because software is a very common field to go around so the market may have settled and found a stable price point for age and salary.</span>
+<span id="cb43-395"><a href="#cb43-395" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-396"><a href="#cb43-396" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusions</span></span>
+<span id="cb43-397"><a href="#cb43-397" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-398"><a href="#cb43-398" aria-hidden="true" tabindex="-1"></a>In this data I have looked at not only how age and experience affect most jobs but also how it affects jobs in the industries I'm interested in and how the salaries compare between the two. From this analysis on the two variables (age and experience) and their affect on salary for given jobs, I have found interesting trends, and confirmed previous thoughts. In addition to these confirmations, I have also found out how the field and role within the industries I'm interested affect affects the salary and what the projections look like across those different careers.</span>
+<span id="cb43-399"><a href="#cb43-399" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-400"><a href="#cb43-400" aria-hidden="true" tabindex="-1"></a>Even though I was able to discover new things and confirm old ideas, there is still plenty left on the table that I was not able to discover because of limitations from the data set.</span>
+<span id="cb43-401"><a href="#cb43-401" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-402"><a href="#cb43-402" aria-hidden="true" tabindex="-1"></a><span class="fu">### What I've Learned</span></span>
+<span id="cb43-403"><a href="#cb43-403" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-404"><a href="#cb43-404" aria-hidden="true" tabindex="-1"></a>My previous thoughts were that age and experience positively correlate with salary, which is true. My second was that people in the industry I am hoping to enter (engineering, data, computer science) would make slightly more than jobs not in this field. This was also confirmed in the plots where we compared industry salaries (in red) to non-industry salaries (in blue) versus both age and experience.</span>
+<span id="cb43-405"><a href="#cb43-405" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-406"><a href="#cb43-406" aria-hidden="true" tabindex="-1"></a>Going even deeper into each of these plots you notice small trends. For example, in both age and experience for the total distribution you see the trend of salaries plateauing after a certain age/number of years. I listed many possible reasons for this, but it would be interesting to see if the companies that provided these numbers would elaborate on why these trends are present.</span>
+<span id="cb43-407"><a href="#cb43-407" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-408"><a href="#cb43-408" aria-hidden="true" tabindex="-1"></a>The other trend that I found very interesting, was that of the Age vs Salary plot for only industry jobs. If one looks closely to the darker regions of the graph, there is a staircase like behavior to it. I noted that this could be due to the progression of ones career with promotions. This would explain why jobs from various companies have similar paths, as careers across various companies as they have various levels of jobs and one progresses through these ranks throughout their career.</span>
+<span id="cb43-409"><a href="#cb43-409" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-410"><a href="#cb43-410" aria-hidden="true" tabindex="-1"></a>Finally, I've learned how the role/field within my industry can influence job choices and even what path I go to as I gain more experience. For example, I see that the demand for certain roles diminishes as a career progresses. It seems that jobs in data have a high entry point, but as one's career progresses it seems that it plateaus. Where as it seems that software has a slightly lower entering salary, but there is constant growth.</span>
+<span id="cb43-411"><a href="#cb43-411" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-412"><a href="#cb43-412" aria-hidden="true" tabindex="-1"></a>Assuming one is obtaining a degree in a related field and finds the work entertaining they can use this data to look for specific roles and fields to maximize their salary capabilities. They can also use this data as guidance for how they can shape their career if they want to have many opportunities or be paid better than their competition.</span>
+<span id="cb43-413"><a href="#cb43-413" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-414"><a href="#cb43-414" aria-hidden="true" tabindex="-1"></a><span class="fu">### Lingering Discussion</span></span>
+<span id="cb43-415"><a href="#cb43-415" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-416"><a href="#cb43-416" aria-hidden="true" tabindex="-1"></a>What this data could not provide insight into was the types of companies are these jobs at and what trends can we see there. For example, there could be a software/data science job in a tech company, a finance company, or even an aerospace company and I believe that these would also have a heavy influence on the salary trends. Provided this data, I would use the many similar plots but color coordinate the points to be what category of company was hiring.</span>
+<span id="cb43-417"><a href="#cb43-417" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-418"><a href="#cb43-418" aria-hidden="true" tabindex="-1"></a>This data also cannot provide geographic data. Cost of living for various cities heavily influences salaries in my experience. Having all of these jobs combined into one plot can provide false insights about what job pays better if the higher paying job is mostly found in a city versus the lower paying one in a suburb.</span>
+<span id="cb43-419"><a href="#cb43-419" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-420"><a href="#cb43-420" aria-hidden="true" tabindex="-1"></a><span class="fu">## Bibliography</span></span>
+<span id="cb43-421"><a href="#cb43-421" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-422"><a href="#cb43-422" aria-hidden="true" tabindex="-1"></a>Reddy, Mohith Sai Ram. “Salary_data.” Kaggle, 18 May 2023,   www.kaggle.com/datasets/mohithsairamreddy/salary-data?resource=download. </span>
+<span id="cb43-423"><a href="#cb43-423" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-424"><a href="#cb43-424" aria-hidden="true" tabindex="-1"></a>WICKHAM, HADLEY. R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O’REILLY MEDIA, 2023. </span>
+<span id="cb43-425"><a href="#cb43-425" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-426"><a href="#cb43-426" aria-hidden="true" tabindex="-1"></a>Wickham H, Henry L (2023). _purrr: Functional Programming Tools_. R package version 1.0.1,</span>
+<span id="cb43-427"><a href="#cb43-427" aria-hidden="true" tabindex="-1"></a>  <span class="ot">&lt;https://CRAN.R-project.org/package=purrr&gt;</span>.</span>
+<span id="cb43-428"><a href="#cb43-428" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb43-429"><a href="#cb43-429" aria-hidden="true" tabindex="-1"></a>Wickham H, Averick M, Bryan J, Chang W, McGowan LD, François R, Grolemund G, Hayes A, Henry L,</span>
+<span id="cb43-430"><a href="#cb43-430" aria-hidden="true" tabindex="-1"></a>  Hester J, Kuhn M, Pedersen TL, Miller E, Bache SM, Müller K, Ooms J, Robinson D, Seidel DP, Spinu V,</span>
+<span id="cb43-431"><a href="#cb43-431" aria-hidden="true" tabindex="-1"></a>  Takahashi K, Vaughan D, Wilke C, Woo K, Yutani H (2019). “Welcome to the tidyverse.” _Journal of</span>
+<span id="cb43-432"><a href="#cb43-432" aria-hidden="true" tabindex="-1"></a>  Open Source Software_, *4*(43), 1686. doi:10.21105/joss.01686 <span class="ot">&lt;https://doi.org/10.21105/joss.01686&gt;</span>.</span>
+<span id="cb43-433"><a href="#cb43-433" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb43-434"><a href="#cb43-434" aria-hidden="true" tabindex="-1"></a>RStudio Team (2020). RStudio: Integrated Development for R. RStudio, PBC, Boston, MA URL http://www.rstudio.com/.</span>
+<span id="cb43-435"><a href="#cb43-435" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-438"><a href="#cb43-438" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb43-439"><a href="#cb43-439" aria-hidden="true" tabindex="-1"></a>tidy_citation <span class="ot">&lt;-</span> <span class="fu">citation</span>(<span class="st">"tidyverse"</span>)</span>
+<span id="cb43-440"><a href="#cb43-440" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-441"><a href="#cb43-441" aria-hidden="true" tabindex="-1"></a>purrr_citation <span class="ot">&lt;-</span><span class="fu">citation</span>(<span class="st">"purrr"</span>)</span>
+<span id="cb43-442"><a href="#cb43-442" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
