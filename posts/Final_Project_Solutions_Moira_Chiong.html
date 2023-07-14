@@ -169,15 +169,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#data-wrangling" id="toc-data-wrangling" class="nav-link" data-scroll-target="#data-wrangling">Data Wrangling</a></li>
   <li><a href="#data-visualization-code" id="toc-data-visualization-code" class="nav-link" data-scroll-target="#data-visualization-code">Data Visualization Code</a></li>
-  <li><a href="#introduction-1" id="toc-introduction-1" class="nav-link" data-scroll-target="#introduction-1">Introduction</a></li>
-  <li><a href="#potential-research-questions-1" id="toc-potential-research-questions-1" class="nav-link" data-scroll-target="#potential-research-questions-1">Potential Research Questions</a></li>
-  <li><a href="#notes-on-code--data-analysis-and-answers-to-questions-1-3-1" id="toc-notes-on-code--data-analysis-and-answers-to-questions-1-3-1" class="nav-link" data-scroll-target="#notes-on-code--data-analysis-and-answers-to-questions-1-3-1">Notes on Code- Data Analysis and Answers to Questions 1-3</a></li>
-  </ul></li>
-  <li><a href="#close-up-earnings-of-ba-economics-graduates-1" id="toc-close-up-earnings-of-ba-economics-graduates-1" class="nav-link" data-scroll-target="#close-up-earnings-of-ba-economics-graduates-1">Close Up: Earnings of BA Economics Graduates</a></li>
-  <li><a href="#close-up-earnings-of-umass-amherst-ba-graduates-1" id="toc-close-up-earnings-of-umass-amherst-ba-graduates-1" class="nav-link" data-scroll-target="#close-up-earnings-of-umass-amherst-ba-graduates-1">Close Up: Earnings of UMass Amherst BA Graduates</a>
-  <ul class="collapse">
-  <li><a href="#data-wrangling-1" id="toc-data-wrangling-1" class="nav-link" data-scroll-target="#data-wrangling-1">Data Wrangling</a></li>
-  <li><a href="#data-visualization-code-1" id="toc-data-visualization-code-1" class="nav-link" data-scroll-target="#data-visualization-code-1">Data Visualization Code</a></li>
+  <li><a href="#critical-reflection" id="toc-critical-reflection" class="nav-link" data-scroll-target="#critical-reflection">Critical Reflection</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -664,276 +657,19 @@ theme(axis.text.x=element_text(size=4, angle = -90, hjust = 0))
 <pre><code>Error in mean(y1_p50_earnings, na.rm = T): object 'y1_p50_earnings' not found</code></pre>
 </div>
 </div>
-<pre><code>## Critical Reflection
-
-What I learned from this project confirmed conventional knowledge and axioms. For example, my analyses confirmed that earnings generally increase with credential level, earnings generally increase with time since graduation elapsed, and earnings in STEM fields are generally higher than other fields. The limitations of my analysis is that I did not break down my analysis demographically. I expect that the Census Bureau will provide this disaggregated data in time. Given the recent Supreme Court decision on affirmative action, I would conjecture that such employment outcomes data disaggregated by race/ethnicity would be a useful and timely addition to the dataset and further analysis. Further statistical analysis could test the relationship between credential level and earnings, and test if they are correlated as well. Further, we could check for a statistical relationship between earnings and race/ethnicity. In addition, unit record data would be very interesting for analysis using panel data methods. 
-
-## References
-
-Census Bureau (2023). Post-secondary Employment Outcomes: Massachusetts. [Dataset]. https://lehd.ces.census.gov/data/pseo_experimental.html
-
-Wickham, H., &amp; Grolemund, G. (2016). R for data science: Visualize, model, transform, tidy, and import data. OReilly Media.
-
-
-
-
-
-:::{#quarto-navigation-envelope .hidden}
-[Final Project]{.hidden render-id="quarto-int-sidebar-title"}
-[Final Project]{.hidden render-id="quarto-int-navbar-title"}
-[Summer 2023 Posts]{.hidden render-id="quarto-int-navbar:Summer 2023 Posts"}
-[https://dacss.github.io/DACSS_601_Summer2023_Sec1/]{.hidden render-id="quarto-int-navbar:https://dacss.github.io/DACSS_601_Summer2023_Sec1/"}
-[Contributors]{.hidden render-id="quarto-int-navbar:Contributors"}
-[/about.html]{.hidden render-id="quarto-int-navbar:/about.html"}
-[DACSS]{.hidden render-id="quarto-int-navbar:DACSS"}
-[https://umass.edu/sbs/dacss]{.hidden render-id="quarto-int-navbar:https://umass.edu/sbs/dacss"}
-:::
-
-
-
-:::{#quarto-meta-markdown .hidden}
-[Final Project]{.hidden render-id="quarto-metatitle"}
-[Final Project]{.hidden render-id="quarto-twittercardtitle"}
-[Final Project]{.hidden render-id="quarto-ogcardtitle"}
-[Final Project: Census PSEO Analysis]{.hidden render-id="quarto-twittercarddesc"}
-[Final Project: Census PSEO Analysis]{.hidden render-id="quarto-ogcardddesc"}
-:::
-
-
-
-
-&lt;!-- --&gt;
-
-::: {.quarto-embedded-source-code}
-```````````````````{.markdown shortcodes="false"}
----
-title: "Final Project"
-author: "Moira Chiong"
-description: "Final Project: Census PSEO Analysis"
-date: "7/13/2023"
-format:
-  html:
-    toc: true
-    code-fold: true
-    code-copy: true
-    code-tools: true
----
-```{r setup, include=FALSE} 
-knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
-
-
-## Read in Data
-quarto-executable-code-5450563D
-
-```r
-setwd("C:/Users/chion/OneDrive/Desktop/DACSS 601/DACSS_601_Summer2023_Sec1/posts")
-library(readxl)
-library(tidyverse)
-library(dplyr)
-library(ggplot2)
-pseo_ma_SANDBOX &lt;- read_excel("datafolderMoiraChiong/pseo_ma_SANDBOX.xlsx")
-pseo_ma_SANDBOX</code></pre>
 </section>
-<section id="introduction-1" class="level2">
-<h2 class="anchored" data-anchor-id="introduction-1">Introduction</h2>
-<p>For my final project, I used the Census Bureau Post-Secondary Employment Outcomes (PSEO) database filtered for Massachusetts. This database cites the employment outcomes (earnings 1, 5 and 10 years after graduation) for all public Massachusetts higher education institutions. The data set provides postsecondary employment outcomes for graduates at all credential levels, from certificate to doctorate. The data is divided into three to five year cohorts, ranging from 2001-2018. In addition, there are tabulations of number of graduates and number of employed graduates in the data set.</p>
-<p>Some limitations of this data set are that it is not disaggregated by demographic variables such as race/ethnicity, gender, age or Pell status. This makes a truly nuanced study of the variables and research questions less possible with the present data set. It is my hope that new iterations of this data set will include such demographic variables.</p>
+<section id="critical-reflection" class="level2">
+<h2 class="anchored" data-anchor-id="critical-reflection">Critical Reflection</h2>
+<p>What I learned from this project confirmed conventional knowledge and axioms. For example, my analyses confirmed that earnings generally increase with credential level, earnings generally increase with time since graduation elapsed, and earnings in STEM fields are generally higher than other fields. The limitations of my analysis is that I did not break down my analysis demographically. I expect that the Census Bureau will provide this disaggregated data in time. Given the recent Supreme Court decision on affirmative action, I would conjecture that such employment outcomes data disaggregated by race/ethnicity would be a useful and timely addition to the dataset and further analysis. Further statistical analysis could test the relationship between credential level and earnings, and test if they are correlated as well. Further, we could check for a statistical relationship between earnings and race/ethnicity. In addition, unit record data would be very interesting for analysis using panel data methods.</p>
 </section>
-<section id="potential-research-questions-1" class="level2">
-<h2 class="anchored" data-anchor-id="potential-research-questions-1">Potential Research Questions</h2>
-<p>The following questions are intended to uncover patterns in the PSEO data. While robust analysis of patterns in the data may require advanced statistical analysis, the data analysis completed in the project do reveal underlying general patterns.My research questions are as follows:</p>
-<ol type="1">
-<li>What is the relationship between credential level and earnings?</li>
-<li>What is the relationship between time elapsed since graduation and earnings? Do earnings grow as more years after graduation elapse?</li>
-<li>What is the relationship between academic field of study and earnings? Questions for further research: What is the relationship between race/ethnicity, age, Pell status and earnings?</li>
-</ol>
-</section>
-<section id="notes-on-code--data-analysis-and-answers-to-questions-1-3-1" class="level2">
-<h2 class="anchored" data-anchor-id="notes-on-code--data-analysis-and-answers-to-questions-1-3-1">Notes on Code- Data Analysis and Answers to Questions 1-3</h2>
-<p>Question 1: It is clear in the data that there exists an increasing relationship between credentials and earnings. Further, as credentials increase toward the doctoral level, earnings increase. This is corroborated in Table 1 below. For example, Doctoral graduates earn more than twice (on average, around $80k, 1 year after graduation) than Baccalaureate graduates (on average, around $40k, 1 year after graduation). With the exception of Certificates 1-2 years, and both types of doctoral degrees, the data is skewed right. This implies that the earnings data has a peak on the left side of the graph with gradual decrease on the right.</p>
-<p>Question 2: It is also evident in the data that earnings increase with time elapsed since graduation. As seen in the data below:</p>
-<p>Summary Statistics, Year 1, p50 Earnings Min. 1st Qu. Median Mean 3rd Qu. Max. NA’s 22214 34095 38097 46229 55442 120621 10</p>
-<p>Summary Statistics, Year 5, p50 Earnings Min. 1st Qu. Median Mean 3rd Qu. Max. NA’s 31422 47280 53655 60603 70968 138314 10</p>
-<p>Note the increase in mean earnings from $38,097 in Year 1 to $53,655 by Year 5.</p>
-<p>Question 3: My conjecture is that STEM fields are most lucrative, at any credential level. With strong labor markets in STEM professions, the postsecondary employment outcomes are strongest for those in STEM fields. I will later perform a check using UMass Amherst BA earnings data by academic field.</p>
-</section>
-</section>
-<section id="close-up-earnings-of-ba-economics-graduates-1" class="level1">
-<h1>Close Up: Earnings of BA Economics Graduates</h1>
-<p>Out of curiousity, I proceeded to analyze the earnings patterns of BA Economics graduates in the MA public system. I found that of all the MA public Economics BA granting institutions, University of Massachusetts Amherst recorded the highest earnings at 47610 after 1 year of graduation. What is interesting to note is that earnings of Year 1 graduates of the UMass segment were consistently higher than state university This pattern did not extend to the 5 year mark, earnings of BA graduates were higher at the UMass campuses (with the exception of UMass Dartmouth) and highest at UMass Amherst , with Bridgewater State, Framingham State and Worcester State all showing earnings of over 60000.</p>
-</section>
-<section id="close-up-earnings-of-umass-amherst-ba-graduates-1" class="level1">
-<h1>Close Up: Earnings of UMass Amherst BA Graduates</h1>
-<p>In general, graduates of UMass Amherst have the highest earnings of graduates of any public higher education institution in Massachusetts. Fields that are particularly lucrative are, in descending order, Computer Science, Engineering, Business and Health Professions. Conversely, fields such as Human Sciences, Visual and Performing Arts and History are the least lucrative fields. This is not a shock and corroborates common conventional thought and practices about what fields are most lucrative.</p>
-<section id="data-wrangling-1" class="level2">
-<h2 class="anchored" data-anchor-id="data-wrangling-1">Data Wrangling</h2>
-<p>quarto-executable-code-5450563D</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the number of rows and columns in the dataset</span></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(pseo_ma_SANDBOX)</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(pseo_ma_SANDBOX)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>quarto-executable-code-5450563D</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to numeric, 1 year after graduation</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>pseo_ma_SANDBOX<span class="sc">$</span>y1_grads_earn <span class="ot">=</span> <span class="fu">as.numeric</span>((pseo_ma_SANDBOX<span class="sc">$</span>y1_grads_earn))</span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>pseo_ma_SANDBOX<span class="sc">$</span>y1_ipeds_count <span class="ot">=</span> <span class="fu">as.numeric</span>((pseo_ma_SANDBOX<span class="sc">$</span>y1_ipeds_count))</span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>pseo_ma_SANDBOX<span class="sc">$</span>y1_p50_earnings <span class="ot">=</span> <span class="fu">as.numeric</span>((pseo_ma_SANDBOX<span class="sc">$</span>y1_p50_earnings))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>quarto-executable-code-5450563D</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to numeric, five years after graduation</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>pseo_ma_SANDBOX<span class="sc">$</span>y5_grads_earn <span class="ot">=</span> <span class="fu">as.numeric</span>((pseo_ma_SANDBOX<span class="sc">$</span>y5_grads_earn))</span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>pseo_ma_SANDBOX<span class="sc">$</span>y5_ipeds_count <span class="ot">=</span> <span class="fu">as.numeric</span>((pseo_ma_SANDBOX<span class="sc">$</span>y5_ipeds_count))</span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>pseo_ma_SANDBOX<span class="sc">$</span>y5_p50_earnings <span class="ot">=</span> <span class="fu">as.numeric</span>((pseo_ma_SANDBOX<span class="sc">$</span>y5_p50_earnings))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre><code>## Descriptive Statistics
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<p>Census Bureau (2023). Post-secondary Employment Outcomes: Massachusetts. [Dataset]. https://lehd.ces.census.gov/data/pseo_experimental.html</p>
+<p>Wickham, H., &amp; Grolemund, G. (2016). R for data science: Visualize, model, transform, tidy, and import data. OReilly Media.</p>
 
-quarto-executable-code-5450563D
 
-```r
-# Filter data
+<!-- -->
 
-pseo_filtered_two &lt;-filter(pseo_ma_SANDBOX, pseo_ma_SANDBOX$label_cipcode=="All Instructional Programs" &amp; pseo_ma_SANDBOX$label_grad_cohort== "All Cohorts")
-View(pseo_filtered_two)</code></pre>
-<p>quarto-executable-code-5450563D</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary Statistics, 1 year after Graduation</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>y1gradsearnSummary <span class="ot">&lt;-</span><span class="fu">summary</span>(pseo_filtered_two<span class="sc">$</span>y1_grads_earn, <span class="at">na.rm=</span>T)</span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(y1gradsearnSummary)</span>
-<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>y1ipedscountSummary <span class="ot">&lt;-</span><span class="fu">summary</span>(pseo_filtered_two<span class="sc">$</span>y1_ipeds_count, <span class="at">na.rm=</span>T)</span>
-<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(y1ipedscountSummary)</span>
-<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>y1p50earningsSummary <span class="ot">&lt;-</span><span class="fu">summary</span>(pseo_filtered_two<span class="sc">$</span>y1_p50_earnings, <span class="at">na.rm=</span>T)</span>
-<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(y1p50earningsSummary)</span>
-<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Find summary statistics, 5 years after graduation</span></span>
-<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a>y5gradsearnSummary <span class="ot">&lt;-</span><span class="fu">summary</span>(pseo_filtered_two<span class="sc">$</span>y5_grads_earn, <span class="at">na.rm=</span>T)</span>
-<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(y5gradsearnSummary)</span>
-<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a>y5ipedscountSummary <span class="ot">&lt;-</span><span class="fu">summary</span>(pseo_filtered_two<span class="sc">$</span>y5_ipeds_count, <span class="at">na.rm=</span>T)</span>
-<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(y5ipedscountSummary)</span>
-<span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a>y5p50earningsSummary <span class="ot">&lt;-</span><span class="fu">summary</span>(pseo_filtered_two<span class="sc">$</span>y5_p50_earnings, <span class="at">na.rm=</span>T)</span>
-<span id="cb50-17"><a href="#cb50-17" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(y5p50earningsSummary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>quarto-executable-code-5450563D</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="st">``</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 year Earnings by Credential- Mean and Median</span></span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>pseo_filtered_two <span class="sc">%&gt;%</span></span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(pseo_filtered_two<span class="sc">$</span>label_degree_level) <span class="sc">%&gt;%</span></span>
-<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="at">Mean_Earnings=</span><span class="fu">mean</span>(y1_p50_earnings, <span class="at">na.rm=</span>T), <span class="at">Median_Earnings=</span><span class="fu">median</span>(y1_p50_earnings, <span class="at">na.rm=</span>T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>quarto-executable-code-5450563D</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data-- just BA degrees</span></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>pseo_filtered <span class="ot">&lt;-</span><span class="fu">filter</span>(pseo_ma_SANDBOX, pseo_ma_SANDBOX<span class="sc">$</span>label_degree_level<span class="sc">==</span><span class="st">"Baccalaureate"</span>, pseo_ma_SANDBOX<span class="sc">$</span>label_cipcode<span class="sc">!=</span><span class="st">"All Instructional Programs"</span> <span class="sc">&amp;</span> pseo_ma_SANDBOX<span class="sc">$</span>label_grad_cohort<span class="sc">==</span> <span class="st">"All Cohorts"</span>)</span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="st">`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="data-visualization-code-1" class="level2">
-<h2 class="anchored" data-anchor-id="data-visualization-code-1">Data Visualization Code</h2>
-<p>quarto-executable-code-5450563D</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar Chart, Mean Earnings One Year After Graduation all and by Credential Level </span></span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)</span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>vis_y1_p50_earnings <span class="ot">&lt;-</span></span>
-<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(pseo_filtered_two, <span class="fu">aes</span>(<span class="at">x=</span>label_institution, <span class="at">y=</span>y1_p50_earnings)) <span class="sc">+</span></span>
-<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"col"</span>) <span class="sc">+</span></span>
-<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Average Earnings, 1 Year After Graduation"</span>) <span class="sc">+</span></span>
-<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a> <span class="fu">xlab</span>(<span class="st">"Institution"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Average Earnings"</span>)  <span class="sc">+</span></span>
-<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a> <span class="fu">theme</span>(<span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">4</span>, <span class="at">angle =</span> <span class="sc">-</span><span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a> <span class="fu">scale_y_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100000</span>))</span>
-<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a> <span class="fu">print</span>(vis_y1_p50_earnings) </span>
-<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a>  vis_y1_p50_earnings <span class="sc">+</span> <span class="fu">facet_wrap</span>( <span class="sc">~</span> label_degree_level, <span class="at">ncol=</span><span class="dv">1</span>)</span>
-<span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-16"><a href="#cb53-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-17"><a href="#cb53-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar Chart, Mean Earnings 5 Years After Graduation (all) and by Credential Level</span></span>
-<span id="cb53-18"><a href="#cb53-18" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)</span>
-<span id="cb53-19"><a href="#cb53-19" aria-hidden="true" tabindex="-1"></a>vis_y5_p50_earnings <span class="ot">&lt;-</span></span>
-<span id="cb53-20"><a href="#cb53-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(pseo_filtered_two, <span class="fu">aes</span>(<span class="at">x=</span>label_institution, <span class="at">y=</span>y5_p50_earnings)) <span class="sc">+</span></span>
-<span id="cb53-21"><a href="#cb53-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb53-22"><a href="#cb53-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"col"</span>) <span class="sc">+</span></span>
-<span id="cb53-23"><a href="#cb53-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Average Earnings, 5 years After Graduation"</span>) <span class="sc">+</span></span>
-<span id="cb53-24"><a href="#cb53-24" aria-hidden="true" tabindex="-1"></a> <span class="fu">xlab</span>(<span class="st">"Institution"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Average Earnings"</span>)  <span class="sc">+</span></span>
-<span id="cb53-25"><a href="#cb53-25" aria-hidden="true" tabindex="-1"></a> <span class="fu">theme</span>(<span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">4</span>, <span class="at">angle =</span> <span class="sc">-</span><span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb53-26"><a href="#cb53-26" aria-hidden="true" tabindex="-1"></a> <span class="fu">scale_y_continuous</span>(<span class="at">limits=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100000</span>))</span>
-<span id="cb53-27"><a href="#cb53-27" aria-hidden="true" tabindex="-1"></a> <span class="fu">print</span>(vis_y5_p50_earnings) </span>
-<span id="cb53-28"><a href="#cb53-28" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb53-29"><a href="#cb53-29" aria-hidden="true" tabindex="-1"></a>  vis_y5_p50_earnings <span class="sc">+</span> <span class="fu">facet_wrap</span>( <span class="sc">~</span> label_degree_level, <span class="at">ncol=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>quarto-executable-code-5450563D</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar Graph of Number of Graduates</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)</span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>pseo_filtered_two<span class="sc">$</span>y1_ipeds_count <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(pseo_filtered_two<span class="sc">$</span>y1_ipeds_count)</span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>vis_y1_graduates <span class="ot">&lt;-</span></span>
-<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(pseo_filtered_two, <span class="fu">aes</span>(<span class="at">x=</span>label_institution, <span class="at">y=</span>y1_ipeds_count)) <span class="sc">+</span></span>
-<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"col"</span>) <span class="sc">+</span></span>
-<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Number of Graduates, 1 year After Graduation, all cohorts"</span>) <span class="sc">+</span></span>
-<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a> <span class="fu">xlab</span>(<span class="st">"Institution"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Number of Graduates"</span>)  <span class="sc">+</span></span>
-<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a> <span class="fu">theme</span>(<span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">4</span>, <span class="at">angle =</span> <span class="sc">-</span><span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">80000</span>))</span>
-<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(vis_y1_graduates) </span>
-<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a>  vis_y1_graduates <span class="sc">+</span> <span class="fu">facet_wrap</span>( <span class="sc">~</span> label_degree_level, <span class="at">ncol=</span><span class="dv">1</span>)</span>
-<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-16"><a href="#cb54-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter for Baccalaureate Economics degrees</span></span>
-<span id="cb54-17"><a href="#cb54-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb54-18"><a href="#cb54-18" aria-hidden="true" tabindex="-1"></a>pseo_filtered_econ<span class="ot">&lt;-</span><span class="fu">filter</span>(pseo_ma_SANDBOX, pseo_ma_SANDBOX<span class="sc">$</span>label_degree_level<span class="sc">==</span><span class="st">"Baccalaureate"</span> <span class="sc">&amp;</span> pseo_ma_SANDBOX<span class="sc">$</span>label_cipcode<span class="sc">==</span><span class="st">"Economics"</span> <span class="sc">&amp;</span> pseo_ma_SANDBOX<span class="sc">$</span>label_grad_cohort<span class="sc">==</span> <span class="st">"All Cohorts"</span>)</span>
-<span id="cb54-19"><a href="#cb54-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-20"><a href="#cb54-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplot of Bachelors in Economics, all institutions</span></span>
-<span id="cb54-21"><a href="#cb54-21" aria-hidden="true" tabindex="-1"></a>vis_600 <span class="ot">&lt;-</span></span>
-<span id="cb54-22"><a href="#cb54-22" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pseo_filtered_econ, <span class="fu">aes</span>(<span class="at">x=</span>y1_grads_earn, <span class="at">y=</span>y1_p50_earnings, <span class="at">color=</span>label_institution)) <span class="sc">+</span></span>
-<span id="cb54-23"><a href="#cb54-23" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb54-24"><a href="#cb54-24" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">y=</span> <span class="st">"Earnings"</span>, <span class="at">x=</span> <span class="st">"Number of Graduates"</span>, <span class="at">color=</span> <span class="st">"Credential Level"</span>, <span class="at">title =</span> <span class="st">"Earnings by Number of Graduates by Institution"</span>)</span>
-<span id="cb54-25"><a href="#cb54-25" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vis_600)</span>
-<span id="cb54-26"><a href="#cb54-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-27"><a href="#cb54-27" aria-hidden="true" tabindex="-1"></a>pseo_filtered_econ <span class="sc">%&gt;%</span></span>
-<span id="cb54-28"><a href="#cb54-28" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(pseo_filtered_econ<span class="sc">$</span>label_degree_level, pseo_filtered_econ<span class="sc">$</span>label_institution) <span class="sc">%&gt;%</span></span>
-<span id="cb54-29"><a href="#cb54-29" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="at">Mean=</span><span class="fu">mean</span>(y1_p50_earnings, <span class="at">na.rm=</span>T), <span class="at">Median=</span><span class="fu">median</span>(y1_p50_earnings, <span class="at">na.rm=</span>T))</span>
-<span id="cb54-30"><a href="#cb54-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-31"><a href="#cb54-31" aria-hidden="true" tabindex="-1"></a>pseo_filtered_econ <span class="sc">%&gt;%</span></span>
-<span id="cb54-32"><a href="#cb54-32" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(pseo_filtered_econ<span class="sc">$</span>label_institution) <span class="sc">%&gt;%</span></span>
-<span id="cb54-33"><a href="#cb54-33" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="at">Mean=</span><span class="fu">mean</span>(y5_p50_earnings, <span class="at">na.rm=</span>T), <span class="at">Median=</span><span class="fu">median</span>(y5_p50_earnings, <span class="at">na.rm=</span>T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>quarto-executable-code-5450563D</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bar of Bachelors in Economics</span></span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>pseo_filtered_econ <span class="sc">%&gt;%</span></span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(pseo_filtered_econ<span class="sc">$</span>label_degree_level, pseo_filtered_econ<span class="sc">$</span>label_institution) <span class="sc">%&gt;%</span></span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="at">Mean=</span><span class="fu">mean</span>(y1_p50_earnings, <span class="at">na.rm=</span>T), <span class="at">Median=</span><span class="fu">median</span>(y1_p50_earnings, <span class="at">na.rm=</span>T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre><code>quarto-executable-code-5450563D
-
-```r
-options(scipen = 999)
-
-vis_y1_econ &lt;-
-ggplot(pseo_filtered_econ, aes(x=label_institution, y=y1_p50_earnings)) +
-geom_bar(stat="identity") +
-ggtitle("Average Earnings, Economics, 1 year After Graduation") +
-xlab("Institution") + 
-ylab("Average Earnings") +
-theme(axis.text.x=element_text(size=4, angle = -90, hjust = 0)) 
- print(vis_y1_econ)</code></pre>
-<p>quarto-executable-code-5450563D</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 year earnings for BAs by 2-digit CIP Code at UMass Amherst- Scatterplot</span></span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>pseo_filtered_three <span class="ot">&lt;-</span><span class="fu">filter</span>(pseo_ma_SANDBOX, pseo_ma_SANDBOX<span class="sc">$</span>institution<span class="sc">==</span><span class="st">"00222100"</span> <span class="sc">&amp;</span> pseo_ma_SANDBOX<span class="sc">$</span>label_degree_level<span class="sc">==</span><span class="st">"Baccalaureate"</span> <span class="sc">&amp;</span> pseo_ma_SANDBOX<span class="sc">$</span>cip_level<span class="sc">==</span><span class="st">"2"</span> <span class="sc">&amp;</span> pseo_ma_SANDBOX<span class="sc">$</span>label_grad_cohort<span class="sc">==</span> <span class="st">"All Cohorts"</span>)</span>
-<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>vis_650 <span class="ot">&lt;-</span></span>
-<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pseo_filtered_three, <span class="fu">aes</span>(<span class="at">x=</span>y1_grads_earn, <span class="at">y=</span>y1_p50_earnings, <span class="at">color=</span>label_cipcode)) <span class="sc">+</span></span>
-<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">y=</span> <span class="st">"Earnings"</span>, <span class="at">x=</span> <span class="st">"Number of BA Graduates"</span>, <span class="at">color=</span> <span class="st">"Academic Field (2-digit CIP)"</span>, <span class="at">title =</span> <span class="st">"Earnings 1 Year After Graduation by Number of BA Graduates at UMass Amherst by Academic Field"</span>)</span>
-<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vis_650)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>quarto-executable-code-5450563D</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>pseo_filtered_three <span class="ot">&lt;-</span><span class="fu">filter</span>(pseo_ma_SANDBOX, pseo_ma_SANDBOX<span class="sc">$</span>institution<span class="sc">==</span><span class="st">"00222100"</span> <span class="sc">&amp;</span> pseo_ma_SANDBOX<span class="sc">$</span>label_degree_level<span class="sc">==</span><span class="st">"Baccalaureate"</span> <span class="sc">&amp;</span> pseo_ma_SANDBOX<span class="sc">$</span>cip_level<span class="sc">==</span><span class="st">"2"</span> <span class="sc">&amp;</span> pseo_ma_SANDBOX<span class="sc">$</span>label_grad_cohort<span class="sc">==</span> <span class="st">"All Cohorts"</span>)</span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Bachelor's Earnings by CIP Code, UMass Amherst</span></span>
-<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>pseo_filtered_three <span class="sc">%&gt;%</span></span>
-<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(pseo_filtered_three<span class="sc">$</span>label_cipcode)</span>
-<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="at">Mean=</span><span class="fu">mean</span>(y1_p50_earnings, <span class="at">na.rm=</span>T))</span>
-<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>                </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre><code>## Critical Reflection
-
-What I learned from this project confirmed conventional knowledge and axioms. For example, my analyses confirmed that earnings generally increase with credential level, earnings generally increase with time since graduation elapsed, and earnings in STEM fields are generally higher than other fields. The limitations of my analysis is that I did not break down my analysis demographically. I expect that the Census Bureau will provide this disaggregated data in time. Given the recent Supreme Court decision on affirmative action, I would conjecture that such employment outcomes data disaggregated by race/ethnicity would be a useful and timely addition to the dataset and further analysis. Further statistical analysis could test the relationship between credential level and earnings, and test if they are correlated as well. Further, we could check for a statistical relationship between earnings and race/ethnicity. In addition, unit record data would be very interesting for analysis using panel data methods. 
-
-## References
-
-Census Bureau (2023). Post-secondary Employment Outcomes: Massachusetts. [Dataset]. https://lehd.ces.census.gov/data/pseo_experimental.html
-
-Wickham, H., &amp; Grolemund, G. (2016). R for data science: Visualize, model, transform, tidy, and import data. OReilly Media.
-</code></pre>
-<p>:::</p>
 </section>
 </section>
 
@@ -1338,7 +1074,263 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 <script src="https://giscus.app/client.js" data-repo="DACSS/SummerCommentRepo" data-repo-id="R_kgDOJrwrQw" data-category="Announcements" data-category-id="DIC_kwDOJrwrQ84CW_wq" data-mapping="url" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
-</script>
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb45" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Final Project"</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Moira Chiong"</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Final Project: Census PSEO Analysis"</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "7/13/2023"</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-copy: true</span></span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup, include=FALSE} </span></span>
+<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">warning =</span> <span class="cn">FALSE</span>, <span class="at">message =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a><span class="do">## Read in Data</span></span>
+<span id="cb45-20"><a href="#cb45-20" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-21"><a href="#cb45-21" aria-hidden="true" tabindex="-1"></a><span class="at">setwd("C:/Users/chion/OneDrive/Desktop/DACSS 601/DACSS_601_Summer2023_Sec1/posts")</span></span>
+<span id="cb45-22"><a href="#cb45-22" aria-hidden="true" tabindex="-1"></a><span class="at">library(readxl)</span></span>
+<span id="cb45-23"><a href="#cb45-23" aria-hidden="true" tabindex="-1"></a><span class="at">library(tidyverse)</span></span>
+<span id="cb45-24"><a href="#cb45-24" aria-hidden="true" tabindex="-1"></a><span class="at">library(dplyr)</span></span>
+<span id="cb45-25"><a href="#cb45-25" aria-hidden="true" tabindex="-1"></a><span class="at">library(ggplot2)</span></span>
+<span id="cb45-26"><a href="#cb45-26" aria-hidden="true" tabindex="-1"></a><span class="at">pseo_ma_SANDBOX &lt;- read_excel("datafolderMoiraChiong/pseo_ma_SANDBOX.xlsx")</span></span>
+<span id="cb45-27"><a href="#cb45-27" aria-hidden="true" tabindex="-1"></a><span class="at">pseo_ma_SANDBOX</span></span>
+<span id="cb45-28"><a href="#cb45-28" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span>
+<span id="cb45-29"><a href="#cb45-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-30"><a href="#cb45-30" aria-hidden="true" tabindex="-1"></a><span class="do">## Introduction</span></span>
+<span id="cb45-31"><a href="#cb45-31" aria-hidden="true" tabindex="-1"></a>For my final project, I used the Census Bureau Post<span class="sc">-</span>Secondary Employment <span class="fu">Outcomes</span> (PSEO) database filtered <span class="cf">for</span> Massachusetts. This database cites the employment <span class="fu">outcomes</span> (earnings <span class="dv">1</span>, <span class="dv">5</span> and <span class="dv">10</span> years after graduation) <span class="cf">for</span> all public Massachusetts higher education institutions. The data set provides postsecondary employment outcomes <span class="cf">for</span> graduates at all credential levels, from certificate to doctorate. The data is divided into three to five year cohorts, ranging from <span class="dv">2001</span><span class="fl">-2018.</span> In addition, there are tabulations of number of graduates and number of employed graduates <span class="cf">in</span> the data set.</span>
+<span id="cb45-32"><a href="#cb45-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-33"><a href="#cb45-33" aria-hidden="true" tabindex="-1"></a>Some limitations of this data set are that it is not disaggregated by demographic variables such as race<span class="sc">/</span>ethnicity, gender, age or Pell status. This makes a truly nuanced study of the variables and research questions less possible with the present data set. It is my hope that new iterations of this data set will include such demographic variables. </span>
+<span id="cb45-34"><a href="#cb45-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-35"><a href="#cb45-35" aria-hidden="true" tabindex="-1"></a><span class="do">## Potential Research Questions</span></span>
+<span id="cb45-36"><a href="#cb45-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-37"><a href="#cb45-37" aria-hidden="true" tabindex="-1"></a>The following questions are intended to uncover patterns <span class="cf">in</span> the PSEO data. While robust analysis of patterns <span class="cf">in</span> the data may require advanced statistical analysis, the data analysis completed <span class="cf">in</span> the project do reveal underlying general patterns.My research questions are as follows<span class="sc">:</span></span>
+<span id="cb45-38"><a href="#cb45-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-39"><a href="#cb45-39" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> What is the relationship between credential level and earnings? </span>
+<span id="cb45-40"><a href="#cb45-40" aria-hidden="true" tabindex="-1"></a><span class="fl">2.</span> What is the relationship between time elapsed since graduation and earnings? Do earnings grow as more years after graduation elapse?</span>
+<span id="cb45-41"><a href="#cb45-41" aria-hidden="true" tabindex="-1"></a><span class="fl">3.</span> What is the relationship between academic field of study and earnings?</span>
+<span id="cb45-42"><a href="#cb45-42" aria-hidden="true" tabindex="-1"></a>Questions <span class="cf">for</span> further research<span class="sc">:</span> What is the relationship between race<span class="sc">/</span>ethnicity, age, Pell status and earnings?</span>
+<span id="cb45-43"><a href="#cb45-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-44"><a href="#cb45-44" aria-hidden="true" tabindex="-1"></a><span class="do">## Notes on Code- Data Analysis and Answers to Questions 1-3</span></span>
+<span id="cb45-45"><a href="#cb45-45" aria-hidden="true" tabindex="-1"></a>Question <span class="dv">1</span><span class="sc">:</span> It is clear <span class="cf">in</span> the data that there exists an increasing relationship between credentials and earnings. Further, as credentials increase toward the doctoral level, earnings increase. This is corroborated <span class="cf">in</span> Table <span class="dv">1</span> below. For example, Doctoral graduates earn more than <span class="fu">twice</span> (on average, around <span class="sc">$</span>80k, <span class="dv">1</span> year after graduation) than Baccalaureate <span class="fu">graduates</span> (on average, around <span class="sc">$</span>40k, <span class="dv">1</span> year after graduation). With the exception of Certificates <span class="dv">1-2</span> years, and both types of doctoral degrees, the data is skewed right. This implies that the earnings data has a peak on the left side of the graph with gradual decrease on the right.</span>
+<span id="cb45-46"><a href="#cb45-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-47"><a href="#cb45-47" aria-hidden="true" tabindex="-1"></a>Question <span class="dv">2</span><span class="sc">:</span> It is also evident <span class="cf">in</span> the data that earnings increase with time elapsed since graduation. As seen <span class="cf">in</span> the data below<span class="sc">:</span></span>
+<span id="cb45-48"><a href="#cb45-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-49"><a href="#cb45-49" aria-hidden="true" tabindex="-1"></a>Summary Statistics, Year <span class="dv">1</span>, p50 Earnings</span>
+<span id="cb45-50"><a href="#cb45-50" aria-hidden="true" tabindex="-1"></a>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA<span class="st">'s </span></span>
+<span id="cb45-51"><a href="#cb45-51" aria-hidden="true" tabindex="-1"></a><span class="st">  22214   34095   38097   46229   55442  120621      10 </span></span>
+<span id="cb45-52"><a href="#cb45-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-53"><a href="#cb45-53" aria-hidden="true" tabindex="-1"></a><span class="st">Summary Statistics, Year 5, p50 Earnings</span></span>
+<span id="cb45-54"><a href="#cb45-54" aria-hidden="true" tabindex="-1"></a><span class="st">Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA'</span>s </span>
+<span id="cb45-55"><a href="#cb45-55" aria-hidden="true" tabindex="-1"></a>  <span class="dv">31422</span>   <span class="dv">47280</span>   <span class="dv">53655</span>   <span class="dv">60603</span>   <span class="dv">70968</span>  <span class="dv">138314</span>      <span class="dv">10</span></span>
+<span id="cb45-56"><a href="#cb45-56" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb45-57"><a href="#cb45-57" aria-hidden="true" tabindex="-1"></a>Note the increase <span class="cf">in</span> mean earnings from <span class="sc">$</span><span class="dv">38</span>,<span class="dv">097</span> <span class="cf">in</span> Year <span class="dv">1</span> to <span class="sc">$</span><span class="dv">53</span>,<span class="dv">655</span> by Year <span class="fl">5.</span></span>
+<span id="cb45-58"><a href="#cb45-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-59"><a href="#cb45-59" aria-hidden="true" tabindex="-1"></a>Question <span class="dv">3</span><span class="sc">:</span> My conjecture is that STEM fields are most lucrative, at any credential level. With strong labor markets <span class="cf">in</span> STEM professions, the postsecondary employment outcomes are strongest <span class="cf">for</span> those <span class="cf">in</span> STEM fields. I will later perform a check using UMass Amherst BA earnings data by academic field. </span>
+<span id="cb45-60"><a href="#cb45-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-61"><a href="#cb45-61" aria-hidden="true" tabindex="-1"></a><span class="co"># Close Up: Earnings of BA Economics Graduates</span></span>
+<span id="cb45-62"><a href="#cb45-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-63"><a href="#cb45-63" aria-hidden="true" tabindex="-1"></a>Out of curiousity, I proceeded to analyze the earnings patterns of BA Economics graduates <span class="cf">in</span> the MA public system. I found that of all the MA public Economics BA granting institutions, University of Massachusetts Amherst recorded the highest earnings at <span class="dv">47610</span> after <span class="dv">1</span> year of graduation. What is interesting to note is that earnings of Year <span class="dv">1</span> graduates of the UMass segment were consistently higher than state university  This pattern did not extend to the <span class="dv">5</span> year mark, earnings of BA graduates were higher at the UMass <span class="fu">campuses</span> (with the exception of UMass Dartmouth) and highest at UMass Amherst , with Bridgewater State, Framingham State and Worcester State all showing earnings of over <span class="fl">60000.</span></span>
+<span id="cb45-64"><a href="#cb45-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-65"><a href="#cb45-65" aria-hidden="true" tabindex="-1"></a><span class="co"># Close Up: Earnings of UMass Amherst BA Graduates</span></span>
+<span id="cb45-66"><a href="#cb45-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-67"><a href="#cb45-67" aria-hidden="true" tabindex="-1"></a>In general, graduates of UMass Amherst have the highest earnings of graduates of any public higher education institution <span class="cf">in</span> Massachusetts. Fields that are particularly lucrative are, <span class="cf">in</span> descending order, Computer Science, Engineering, Business and Health Professions. Conversely, fields such as Human Sciences, Visual and Performing Arts and History are the least lucrative fields. This is not a shock and corroborates common conventional thought and practices about what fields are most lucrative.  </span>
+<span id="cb45-68"><a href="#cb45-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-69"><a href="#cb45-69" aria-hidden="true" tabindex="-1"></a><span class="do">## Data Wrangling</span></span>
+<span id="cb45-70"><a href="#cb45-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-73"><a href="#cb45-73" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-74"><a href="#cb45-74" aria-hidden="true" tabindex="-1"></a><span class="at"># Find the number of rows and columns in the dataset</span></span>
+<span id="cb45-75"><a href="#cb45-75" aria-hidden="true" tabindex="-1"></a><span class="at">nrow(pseo_ma_SANDBOX)</span></span>
+<span id="cb45-76"><a href="#cb45-76" aria-hidden="true" tabindex="-1"></a><span class="at">ncol(pseo_ma_SANDBOX)</span></span>
+<span id="cb45-77"><a href="#cb45-77" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span>
+<span id="cb45-80"><a href="#cb45-80" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-81"><a href="#cb45-81" aria-hidden="true" tabindex="-1"></a><span class="at"># Convert to numeric, 1 year after graduation</span></span>
+<span id="cb45-82"><a href="#cb45-82" aria-hidden="true" tabindex="-1"></a><span class="at">pseo_ma_SANDBOX$y1_grads_earn = as.numeric((pseo_ma_SANDBOX$y1_grads_earn))</span></span>
+<span id="cb45-83"><a href="#cb45-83" aria-hidden="true" tabindex="-1"></a><span class="at">pseo_ma_SANDBOX$y1_ipeds_count = as.numeric((pseo_ma_SANDBOX$y1_ipeds_count))</span></span>
+<span id="cb45-84"><a href="#cb45-84" aria-hidden="true" tabindex="-1"></a><span class="at">pseo_ma_SANDBOX$y1_p50_earnings = as.numeric((pseo_ma_SANDBOX$y1_p50_earnings))</span></span>
+<span id="cb45-85"><a href="#cb45-85" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span>
+<span id="cb45-86"><a href="#cb45-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-89"><a href="#cb45-89" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-90"><a href="#cb45-90" aria-hidden="true" tabindex="-1"></a><span class="at"># Convert to numeric, five years after graduation</span></span>
+<span id="cb45-91"><a href="#cb45-91" aria-hidden="true" tabindex="-1"></a><span class="at">pseo_ma_SANDBOX$y5_grads_earn = as.numeric((pseo_ma_SANDBOX$y5_grads_earn))</span></span>
+<span id="cb45-92"><a href="#cb45-92" aria-hidden="true" tabindex="-1"></a><span class="at">pseo_ma_SANDBOX$y5_ipeds_count = as.numeric((pseo_ma_SANDBOX$y5_ipeds_count))</span></span>
+<span id="cb45-93"><a href="#cb45-93" aria-hidden="true" tabindex="-1"></a><span class="at">pseo_ma_SANDBOX$y5_p50_earnings = as.numeric((pseo_ma_SANDBOX$y5_p50_earnings))</span></span>
+<span id="cb45-94"><a href="#cb45-94" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span>
+<span id="cb45-95"><a href="#cb45-95" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-96"><a href="#cb45-96" aria-hidden="true" tabindex="-1"></a><span class="fu">## Descriptive Statistics</span></span>
+<span id="cb45-97"><a href="#cb45-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-100"><a href="#cb45-100" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-101"><a href="#cb45-101" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data</span></span>
+<span id="cb45-102"><a href="#cb45-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-103"><a href="#cb45-103" aria-hidden="true" tabindex="-1"></a>pseo_filtered_two <span class="ot">&lt;-</span><span class="fu">filter</span>(pseo_ma_SANDBOX, pseo_ma_SANDBOX<span class="sc">$</span>label_cipcode<span class="sc">==</span><span class="st">"All Instructional Programs"</span> <span class="sc">&amp;</span> pseo_ma_SANDBOX<span class="sc">$</span>label_grad_cohort<span class="sc">==</span> <span class="st">"All Cohorts"</span>)</span>
+<span id="cb45-104"><a href="#cb45-104" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(pseo_filtered_two)</span>
+<span id="cb45-105"><a href="#cb45-105" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-106"><a href="#cb45-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-109"><a href="#cb45-109" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-110"><a href="#cb45-110" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary Statistics, 1 year after Graduation</span></span>
+<span id="cb45-111"><a href="#cb45-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-112"><a href="#cb45-112" aria-hidden="true" tabindex="-1"></a>y1gradsearnSummary <span class="ot">&lt;-</span><span class="fu">summary</span>(pseo_filtered_two<span class="sc">$</span>y1_grads_earn, <span class="at">na.rm=</span>T)</span>
+<span id="cb45-113"><a href="#cb45-113" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(y1gradsearnSummary)</span>
+<span id="cb45-114"><a href="#cb45-114" aria-hidden="true" tabindex="-1"></a>y1ipedscountSummary <span class="ot">&lt;-</span><span class="fu">summary</span>(pseo_filtered_two<span class="sc">$</span>y1_ipeds_count, <span class="at">na.rm=</span>T)</span>
+<span id="cb45-115"><a href="#cb45-115" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(y1ipedscountSummary)</span>
+<span id="cb45-116"><a href="#cb45-116" aria-hidden="true" tabindex="-1"></a>y1p50earningsSummary <span class="ot">&lt;-</span><span class="fu">summary</span>(pseo_filtered_two<span class="sc">$</span>y1_p50_earnings, <span class="at">na.rm=</span>T)</span>
+<span id="cb45-117"><a href="#cb45-117" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(y1p50earningsSummary)</span>
+<span id="cb45-118"><a href="#cb45-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-119"><a href="#cb45-119" aria-hidden="true" tabindex="-1"></a><span class="co"># Find summary statistics, 5 years after graduation</span></span>
+<span id="cb45-120"><a href="#cb45-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-121"><a href="#cb45-121" aria-hidden="true" tabindex="-1"></a>y5gradsearnSummary <span class="ot">&lt;-</span><span class="fu">summary</span>(pseo_filtered_two<span class="sc">$</span>y5_grads_earn, <span class="at">na.rm=</span>T)</span>
+<span id="cb45-122"><a href="#cb45-122" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(y5gradsearnSummary)</span>
+<span id="cb45-123"><a href="#cb45-123" aria-hidden="true" tabindex="-1"></a>y5ipedscountSummary <span class="ot">&lt;-</span><span class="fu">summary</span>(pseo_filtered_two<span class="sc">$</span>y5_ipeds_count, <span class="at">na.rm=</span>T)</span>
+<span id="cb45-124"><a href="#cb45-124" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(y5ipedscountSummary)</span>
+<span id="cb45-125"><a href="#cb45-125" aria-hidden="true" tabindex="-1"></a>y5p50earningsSummary <span class="ot">&lt;-</span><span class="fu">summary</span>(pseo_filtered_two<span class="sc">$</span>y5_p50_earnings, <span class="at">na.rm=</span>T)</span>
+<span id="cb45-126"><a href="#cb45-126" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(y5p50earningsSummary)</span>
+<span id="cb45-127"><a href="#cb45-127" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-128"><a href="#cb45-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-131"><a href="#cb45-131" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-132"><a href="#cb45-132" aria-hidden="true" tabindex="-1"></a><span class="st">``</span></span>
+<span id="cb45-133"><a href="#cb45-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-134"><a href="#cb45-134" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 year Earnings by Credential- Mean and Median</span></span>
+<span id="cb45-135"><a href="#cb45-135" aria-hidden="true" tabindex="-1"></a>pseo_filtered_two <span class="sc">%&gt;%</span></span>
+<span id="cb45-136"><a href="#cb45-136" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(pseo_filtered_two<span class="sc">$</span>label_degree_level) <span class="sc">%&gt;%</span></span>
+<span id="cb45-137"><a href="#cb45-137" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="at">Mean_Earnings=</span><span class="fu">mean</span>(y1_p50_earnings, <span class="at">na.rm=</span>T), <span class="at">Median_Earnings=</span><span class="fu">median</span>(y1_p50_earnings, <span class="at">na.rm=</span>T))</span>
+<span id="cb45-138"><a href="#cb45-138" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-139"><a href="#cb45-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-142"><a href="#cb45-142" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-143"><a href="#cb45-143" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter data-- just BA degrees</span></span>
+<span id="cb45-144"><a href="#cb45-144" aria-hidden="true" tabindex="-1"></a>pseo_filtered <span class="ot">&lt;-</span><span class="fu">filter</span>(pseo_ma_SANDBOX, pseo_ma_SANDBOX<span class="sc">$</span>label_degree_level<span class="sc">==</span><span class="st">"Baccalaureate"</span>, pseo_ma_SANDBOX<span class="sc">$</span>label_cipcode<span class="sc">!=</span><span class="st">"All Instructional Programs"</span> <span class="sc">&amp;</span> pseo_ma_SANDBOX<span class="sc">$</span>label_grad_cohort<span class="sc">==</span> <span class="st">"All Cohorts"</span>)</span>
+<span id="cb45-145"><a href="#cb45-145" aria-hidden="true" tabindex="-1"></a><span class="st">`</span></span>
+<span id="cb45-146"><a href="#cb45-146" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span>
+<span id="cb45-147"><a href="#cb45-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-148"><a href="#cb45-148" aria-hidden="true" tabindex="-1"></a><span class="do">## Data Visualization Code</span></span>
+<span id="cb45-151"><a href="#cb45-151" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-152"><a href="#cb45-152" aria-hidden="true" tabindex="-1"></a><span class="at"># Bar Chart, Mean Earnings One Year After Graduation all and by Credential Level </span></span>
+<span id="cb45-153"><a href="#cb45-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-154"><a href="#cb45-154" aria-hidden="true" tabindex="-1"></a><span class="at">options(scipen = 999)</span></span>
+<span id="cb45-155"><a href="#cb45-155" aria-hidden="true" tabindex="-1"></a><span class="at">vis_y1_p50_earnings &lt;-</span></span>
+<span id="cb45-156"><a href="#cb45-156" aria-hidden="true" tabindex="-1"></a><span class="at">  ggplot(pseo_filtered_two, aes(x=label_institution, y=y1_p50_earnings)) +</span></span>
+<span id="cb45-157"><a href="#cb45-157" aria-hidden="true" tabindex="-1"></a><span class="at">  geom_bar(stat="identity") +</span></span>
+<span id="cb45-158"><a href="#cb45-158" aria-hidden="true" tabindex="-1"></a><span class="at">  stat_summary(fun = mean, geom = "col") +</span></span>
+<span id="cb45-159"><a href="#cb45-159" aria-hidden="true" tabindex="-1"></a><span class="at">  ggtitle("Average Earnings, 1 Year After Graduation") +</span></span>
+<span id="cb45-160"><a href="#cb45-160" aria-hidden="true" tabindex="-1"></a><span class="at"> xlab("Institution") + ylab("Average Earnings")  +</span></span>
+<span id="cb45-161"><a href="#cb45-161" aria-hidden="true" tabindex="-1"></a><span class="at"> theme(axis.text.x=element_text(size=4, angle = -90, hjust = 0)) +</span></span>
+<span id="cb45-162"><a href="#cb45-162" aria-hidden="true" tabindex="-1"></a><span class="at"> scale_y_continuous(limits=c(0,100000))</span></span>
+<span id="cb45-163"><a href="#cb45-163" aria-hidden="true" tabindex="-1"></a><span class="at"> print(vis_y1_p50_earnings) </span></span>
+<span id="cb45-164"><a href="#cb45-164" aria-hidden="true" tabindex="-1"></a><span class="at">  </span></span>
+<span id="cb45-165"><a href="#cb45-165" aria-hidden="true" tabindex="-1"></a><span class="at">  vis_y1_p50_earnings + facet_wrap( ~ label_degree_level, ncol=1)</span></span>
+<span id="cb45-166"><a href="#cb45-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-167"><a href="#cb45-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-168"><a href="#cb45-168" aria-hidden="true" tabindex="-1"></a><span class="at"># Bar Chart, Mean Earnings 5 Years After Graduation (all) and by Credential Level</span></span>
+<span id="cb45-169"><a href="#cb45-169" aria-hidden="true" tabindex="-1"></a><span class="at">options(scipen = 999)</span></span>
+<span id="cb45-170"><a href="#cb45-170" aria-hidden="true" tabindex="-1"></a><span class="at">vis_y5_p50_earnings &lt;-</span></span>
+<span id="cb45-171"><a href="#cb45-171" aria-hidden="true" tabindex="-1"></a><span class="at">  ggplot(pseo_filtered_two, aes(x=label_institution, y=y5_p50_earnings)) +</span></span>
+<span id="cb45-172"><a href="#cb45-172" aria-hidden="true" tabindex="-1"></a><span class="at">  geom_bar(stat="identity") +</span></span>
+<span id="cb45-173"><a href="#cb45-173" aria-hidden="true" tabindex="-1"></a><span class="at">  stat_summary(fun = mean, geom = "col") +</span></span>
+<span id="cb45-174"><a href="#cb45-174" aria-hidden="true" tabindex="-1"></a><span class="at">  ggtitle("Average Earnings, 5 years After Graduation") +</span></span>
+<span id="cb45-175"><a href="#cb45-175" aria-hidden="true" tabindex="-1"></a><span class="at"> xlab("Institution") + ylab("Average Earnings")  +</span></span>
+<span id="cb45-176"><a href="#cb45-176" aria-hidden="true" tabindex="-1"></a><span class="at"> theme(axis.text.x=element_text(size=4, angle = -90, hjust = 0)) +</span></span>
+<span id="cb45-177"><a href="#cb45-177" aria-hidden="true" tabindex="-1"></a><span class="at"> scale_y_continuous(limits=c(0,100000))</span></span>
+<span id="cb45-178"><a href="#cb45-178" aria-hidden="true" tabindex="-1"></a><span class="at"> print(vis_y5_p50_earnings) </span></span>
+<span id="cb45-179"><a href="#cb45-179" aria-hidden="true" tabindex="-1"></a><span class="at">  </span></span>
+<span id="cb45-180"><a href="#cb45-180" aria-hidden="true" tabindex="-1"></a><span class="at">  vis_y5_p50_earnings + facet_wrap( ~ label_degree_level, ncol=1)</span></span>
+<span id="cb45-181"><a href="#cb45-181" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span>
+<span id="cb45-182"><a href="#cb45-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-183"><a href="#cb45-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-186"><a href="#cb45-186" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-187"><a href="#cb45-187" aria-hidden="true" tabindex="-1"></a><span class="at"># Bar Graph of Number of Graduates</span></span>
+<span id="cb45-188"><a href="#cb45-188" aria-hidden="true" tabindex="-1"></a><span class="at">options(scipen = 999)</span></span>
+<span id="cb45-189"><a href="#cb45-189" aria-hidden="true" tabindex="-1"></a><span class="at">pseo_filtered_two$y1_ipeds_count &lt;- as.numeric(pseo_filtered_two$y1_ipeds_count)</span></span>
+<span id="cb45-190"><a href="#cb45-190" aria-hidden="true" tabindex="-1"></a><span class="at">vis_y1_graduates &lt;-</span></span>
+<span id="cb45-191"><a href="#cb45-191" aria-hidden="true" tabindex="-1"></a><span class="at">  ggplot(pseo_filtered_two, aes(x=label_institution, y=y1_ipeds_count)) +</span></span>
+<span id="cb45-192"><a href="#cb45-192" aria-hidden="true" tabindex="-1"></a><span class="at">  geom_bar(stat="identity") +</span></span>
+<span id="cb45-193"><a href="#cb45-193" aria-hidden="true" tabindex="-1"></a><span class="at">  stat_summary(fun = mean, geom = "col") +</span></span>
+<span id="cb45-194"><a href="#cb45-194" aria-hidden="true" tabindex="-1"></a><span class="at">  ggtitle("Number of Graduates, 1 year After Graduation, all cohorts") +</span></span>
+<span id="cb45-195"><a href="#cb45-195" aria-hidden="true" tabindex="-1"></a><span class="at"> xlab("Institution") + ylab("Number of Graduates")  +</span></span>
+<span id="cb45-196"><a href="#cb45-196" aria-hidden="true" tabindex="-1"></a><span class="at"> theme(axis.text.x=element_text(size=4, angle = -90, hjust = 0)) +</span></span>
+<span id="cb45-197"><a href="#cb45-197" aria-hidden="true" tabindex="-1"></a><span class="at">scale_y_continuous(limits = c(0, 80000))</span></span>
+<span id="cb45-198"><a href="#cb45-198" aria-hidden="true" tabindex="-1"></a><span class="at">  print(vis_y1_graduates) </span></span>
+<span id="cb45-199"><a href="#cb45-199" aria-hidden="true" tabindex="-1"></a><span class="at">  </span></span>
+<span id="cb45-200"><a href="#cb45-200" aria-hidden="true" tabindex="-1"></a><span class="at">  vis_y1_graduates + facet_wrap( ~ label_degree_level, ncol=1)</span></span>
+<span id="cb45-201"><a href="#cb45-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-202"><a href="#cb45-202" aria-hidden="true" tabindex="-1"></a><span class="at"># Filter for Baccalaureate Economics degrees</span></span>
+<span id="cb45-203"><a href="#cb45-203" aria-hidden="true" tabindex="-1"></a><span class="at">library(dplyr)</span></span>
+<span id="cb45-204"><a href="#cb45-204" aria-hidden="true" tabindex="-1"></a><span class="at">pseo_filtered_econ&lt;-filter(pseo_ma_SANDBOX, pseo_ma_SANDBOX$label_degree_level=="Baccalaureate" &amp; pseo_ma_SANDBOX$label_cipcode=="Economics" &amp; pseo_ma_SANDBOX$label_grad_cohort== "All Cohorts")</span></span>
+<span id="cb45-205"><a href="#cb45-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-206"><a href="#cb45-206" aria-hidden="true" tabindex="-1"></a><span class="at"># Scatterplot of Bachelors in Economics, all institutions</span></span>
+<span id="cb45-207"><a href="#cb45-207" aria-hidden="true" tabindex="-1"></a><span class="at">vis_600 &lt;-</span></span>
+<span id="cb45-208"><a href="#cb45-208" aria-hidden="true" tabindex="-1"></a><span class="at">ggplot(pseo_filtered_econ, aes(x=y1_grads_earn, y=y1_p50_earnings, color=label_institution)) +</span></span>
+<span id="cb45-209"><a href="#cb45-209" aria-hidden="true" tabindex="-1"></a><span class="at">geom_point() +</span></span>
+<span id="cb45-210"><a href="#cb45-210" aria-hidden="true" tabindex="-1"></a><span class="at">labs(y= "Earnings", x= "Number of Graduates", color= "Credential Level", title = "Earnings by Number of Graduates by Institution")</span></span>
+<span id="cb45-211"><a href="#cb45-211" aria-hidden="true" tabindex="-1"></a><span class="at">print(vis_600)</span></span>
+<span id="cb45-212"><a href="#cb45-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-213"><a href="#cb45-213" aria-hidden="true" tabindex="-1"></a><span class="at">pseo_filtered_econ %&gt;%</span></span>
+<span id="cb45-214"><a href="#cb45-214" aria-hidden="true" tabindex="-1"></a><span class="at">group_by(pseo_filtered_econ$label_degree_level, pseo_filtered_econ$label_institution) %&gt;%</span></span>
+<span id="cb45-215"><a href="#cb45-215" aria-hidden="true" tabindex="-1"></a><span class="at">summarise(Mean=mean(y1_p50_earnings, na.rm=T), Median=median(y1_p50_earnings, na.rm=T))</span></span>
+<span id="cb45-216"><a href="#cb45-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-217"><a href="#cb45-217" aria-hidden="true" tabindex="-1"></a><span class="at">pseo_filtered_econ %&gt;%</span></span>
+<span id="cb45-218"><a href="#cb45-218" aria-hidden="true" tabindex="-1"></a><span class="at">group_by(pseo_filtered_econ$label_institution) %&gt;%</span></span>
+<span id="cb45-219"><a href="#cb45-219" aria-hidden="true" tabindex="-1"></a><span class="at">summarise(Mean=mean(y5_p50_earnings, na.rm=T), Median=median(y5_p50_earnings, na.rm=T))</span></span>
+<span id="cb45-220"><a href="#cb45-220" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span>
+<span id="cb45-221"><a href="#cb45-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-224"><a href="#cb45-224" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-225"><a href="#cb45-225" aria-hidden="true" tabindex="-1"></a><span class="at"># Bar of Bachelors in Economics</span></span>
+<span id="cb45-226"><a href="#cb45-226" aria-hidden="true" tabindex="-1"></a><span class="at">pseo_filtered_econ %&gt;%</span></span>
+<span id="cb45-227"><a href="#cb45-227" aria-hidden="true" tabindex="-1"></a><span class="at">group_by(pseo_filtered_econ$label_degree_level, pseo_filtered_econ$label_institution) %&gt;%</span></span>
+<span id="cb45-228"><a href="#cb45-228" aria-hidden="true" tabindex="-1"></a><span class="at">summarise(Mean=mean(y1_p50_earnings, na.rm=T), Median=median(y1_p50_earnings, na.rm=T))</span></span>
+<span id="cb45-229"><a href="#cb45-229" aria-hidden="true" tabindex="-1"></a><span class="st">```</span></span>
+<span id="cb45-230"><a href="#cb45-230" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-233"><a href="#cb45-233" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-234"><a href="#cb45-234" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>)</span>
+<span id="cb45-235"><a href="#cb45-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-236"><a href="#cb45-236" aria-hidden="true" tabindex="-1"></a>vis_y1_econ <span class="ot">&lt;-</span></span>
+<span id="cb45-237"><a href="#cb45-237" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pseo_filtered_econ, <span class="fu">aes</span>(<span class="at">x=</span>label_institution, <span class="at">y=</span>y1_p50_earnings)) <span class="sc">+</span></span>
+<span id="cb45-238"><a href="#cb45-238" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb45-239"><a href="#cb45-239" aria-hidden="true" tabindex="-1"></a><span class="fu">ggtitle</span>(<span class="st">"Average Earnings, Economics, 1 year After Graduation"</span>) <span class="sc">+</span></span>
+<span id="cb45-240"><a href="#cb45-240" aria-hidden="true" tabindex="-1"></a><span class="fu">xlab</span>(<span class="st">"Institution"</span>) <span class="sc">+</span> </span>
+<span id="cb45-241"><a href="#cb45-241" aria-hidden="true" tabindex="-1"></a><span class="fu">ylab</span>(<span class="st">"Average Earnings"</span>) <span class="sc">+</span></span>
+<span id="cb45-242"><a href="#cb45-242" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span>(<span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">4</span>, <span class="at">angle =</span> <span class="sc">-</span><span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">0</span>)) </span>
+<span id="cb45-243"><a href="#cb45-243" aria-hidden="true" tabindex="-1"></a> <span class="fu">print</span>(vis_y1_econ)</span>
+<span id="cb45-244"><a href="#cb45-244" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-245"><a href="#cb45-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-246"><a href="#cb45-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-249"><a href="#cb45-249" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-250"><a href="#cb45-250" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 year earnings for BAs by 2-digit CIP Code at UMass Amherst- Scatterplot</span></span>
+<span id="cb45-251"><a href="#cb45-251" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb45-252"><a href="#cb45-252" aria-hidden="true" tabindex="-1"></a>pseo_filtered_three <span class="ot">&lt;-</span><span class="fu">filter</span>(pseo_ma_SANDBOX, pseo_ma_SANDBOX<span class="sc">$</span>institution<span class="sc">==</span><span class="st">"00222100"</span> <span class="sc">&amp;</span> pseo_ma_SANDBOX<span class="sc">$</span>label_degree_level<span class="sc">==</span><span class="st">"Baccalaureate"</span> <span class="sc">&amp;</span> pseo_ma_SANDBOX<span class="sc">$</span>cip_level<span class="sc">==</span><span class="st">"2"</span> <span class="sc">&amp;</span> pseo_ma_SANDBOX<span class="sc">$</span>label_grad_cohort<span class="sc">==</span> <span class="st">"All Cohorts"</span>)</span>
+<span id="cb45-253"><a href="#cb45-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-254"><a href="#cb45-254" aria-hidden="true" tabindex="-1"></a>vis_650 <span class="ot">&lt;-</span></span>
+<span id="cb45-255"><a href="#cb45-255" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pseo_filtered_three, <span class="fu">aes</span>(<span class="at">x=</span>y1_grads_earn, <span class="at">y=</span>y1_p50_earnings, <span class="at">color=</span>label_cipcode)) <span class="sc">+</span></span>
+<span id="cb45-256"><a href="#cb45-256" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb45-257"><a href="#cb45-257" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">y=</span> <span class="st">"Earnings"</span>, <span class="at">x=</span> <span class="st">"Number of BA Graduates"</span>, <span class="at">color=</span> <span class="st">"Academic Field (2-digit CIP)"</span>, <span class="at">title =</span> <span class="st">"Earnings 1 Year After Graduation by Number of BA Graduates at UMass Amherst by Academic Field"</span>)</span>
+<span id="cb45-258"><a href="#cb45-258" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(vis_650)</span>
+<span id="cb45-259"><a href="#cb45-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-260"><a href="#cb45-260" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-261"><a href="#cb45-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-264"><a href="#cb45-264" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-265"><a href="#cb45-265" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb45-266"><a href="#cb45-266" aria-hidden="true" tabindex="-1"></a>pseo_filtered_three <span class="ot">&lt;-</span><span class="fu">filter</span>(pseo_ma_SANDBOX, pseo_ma_SANDBOX<span class="sc">$</span>institution<span class="sc">==</span><span class="st">"00222100"</span> <span class="sc">&amp;</span> pseo_ma_SANDBOX<span class="sc">$</span>label_degree_level<span class="sc">==</span><span class="st">"Baccalaureate"</span> <span class="sc">&amp;</span> pseo_ma_SANDBOX<span class="sc">$</span>cip_level<span class="sc">==</span><span class="st">"2"</span> <span class="sc">&amp;</span> pseo_ma_SANDBOX<span class="sc">$</span>label_grad_cohort<span class="sc">==</span> <span class="st">"All Cohorts"</span>)</span>
+<span id="cb45-267"><a href="#cb45-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-268"><a href="#cb45-268" aria-hidden="true" tabindex="-1"></a><span class="co"># Bachelor's Earnings by CIP Code, UMass Amherst</span></span>
+<span id="cb45-269"><a href="#cb45-269" aria-hidden="true" tabindex="-1"></a>pseo_filtered_three <span class="sc">%&gt;%</span></span>
+<span id="cb45-270"><a href="#cb45-270" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(pseo_filtered_three<span class="sc">$</span>label_cipcode)</span>
+<span id="cb45-271"><a href="#cb45-271" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(<span class="at">Mean=</span><span class="fu">mean</span>(y1_p50_earnings, <span class="at">na.rm=</span>T))</span>
+<span id="cb45-272"><a href="#cb45-272" aria-hidden="true" tabindex="-1"></a>                </span>
+<span id="cb45-273"><a href="#cb45-273" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-274"><a href="#cb45-274" aria-hidden="true" tabindex="-1"></a><span class="fu">## Critical Reflection</span></span>
+<span id="cb45-275"><a href="#cb45-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-276"><a href="#cb45-276" aria-hidden="true" tabindex="-1"></a>What I learned from this project confirmed conventional knowledge and axioms. For example, my analyses confirmed that earnings generally increase with credential level, earnings generally increase with time since graduation elapsed, and earnings in STEM fields are generally higher than other fields. The limitations of my analysis is that I did not break down my analysis demographically. I expect that the Census Bureau will provide this disaggregated data in time. Given the recent Supreme Court decision on affirmative action, I would conjecture that such employment outcomes data disaggregated by race/ethnicity would be a useful and timely addition to the dataset and further analysis. Further statistical analysis could test the relationship between credential level and earnings, and test if they are correlated as well. Further, we could check for a statistical relationship between earnings and race/ethnicity. In addition, unit record data would be very interesting for analysis using panel data methods. </span>
+<span id="cb45-277"><a href="#cb45-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-278"><a href="#cb45-278" aria-hidden="true" tabindex="-1"></a><span class="fu">## References</span></span>
+<span id="cb45-279"><a href="#cb45-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-280"><a href="#cb45-280" aria-hidden="true" tabindex="-1"></a>Census Bureau (2023). Post-secondary Employment Outcomes: Massachusetts. <span class="co">[</span><span class="ot">Dataset</span><span class="co">]</span>. https://lehd.ces.census.gov/data/pseo_experimental.html</span>
+<span id="cb45-281"><a href="#cb45-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-282"><a href="#cb45-282" aria-hidden="true" tabindex="-1"></a>Wickham, H., &amp; Grolemund, G. (2016). R for data science: Visualize, model, transform, tidy, and import data. OReilly Media.</span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 
 
