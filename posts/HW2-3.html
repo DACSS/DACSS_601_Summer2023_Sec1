@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>hw2-3</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/DACSS_Round_Network.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../images/UMass White Wordmark Horiz.png" alt="" class="navbar-logo">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://dacss.github.io/DACSS_601_Summer2023_Sec1/" rel="" target="">
+ <span class="menu-text">Summer 2023 Posts</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html" rel="" target="">
+ <span class="menu-text">Contributors</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://umass.edu/sbs/dacss" rel="" target="">
+ <span class="menu-text">DACSS</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://dacss.github.io/DACSS_601_Summer2023_Sec1/" rel="" target=""><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tidyverse' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'ggplot2' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tibble' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tidyr' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'readr' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'purrr' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'dplyr' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'stringr' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'forcats' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'lubridate' was built under R version 4.2.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.2     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.1     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>#Reading in and naming the Chicago lobbyist data below:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>gifts_lobbying<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">"_data/Lobbyist_Data_-_Gifts.csv"</span>) </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>compensation_lobbying<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">"_data/Lobbyist_Data_-_Compensation.csv"</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>expenditure_lobbying<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">"_data/Lobbyist_Data_-_Expenditures_-_Large.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>#Data set one, “expenditure_lobbying”, is about the expenditures of lobbyists; two is compensation_lobbying, which documents the compensation of lobbyists, and three is gifts_lobbying, which documents gifts made from lobbyists to public officials. Since I have three separate data sets, I will be combining them into one as a first step in the tidying process, then reordering columns and changing column names.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>expenditure_lobbying<span class="ot">&lt;-</span>expenditure_lobbying<span class="sc">%&gt;%</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="st">"EXPENDITURE_AMOUNT"</span> <span class="ot">=</span> <span class="dv">9</span>,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>         <span class="st">"EXPENDITURE_PURPOSE"</span> <span class="ot">=</span> <span class="dv">11</span>,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>         <span class="st">"EXPENDITURE_RECIPIENT"</span> <span class="ot">=</span> <span class="dv">12</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>gifts_lobbying_rename<span class="ot">&lt;-</span>gifts_lobbying<span class="sc">%&gt;%</span> </span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="st">"LOBBYIST_FIRST_NAME"</span> <span class="ot">=</span> LOBBYIST_FIRSTNAME,</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>         <span class="st">"LOBBYIST_LAST_NAME"</span> <span class="ot">=</span> LOBBYIST_LASTNAME,</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>         <span class="st">"GIFT_VALUE"</span> <span class="ot">=</span> VALUE,</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>         <span class="st">"DEPARTMENT_OF_GIFT_RECIPIENT"</span> <span class="ot">=</span> DEPARTMENT)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>df4<span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(expenditure_lobbying, compensation_lobbying) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="dv">6</span>)</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="co">#Now, I'll bind all the sets together, rename some columns for ease of interpretation, and then reorder the columns.</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>lobbying_data_bound<span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(df4, gifts_lobbying_rename) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="st">"GIFT_RECIPIENT_DEPARTMENT"</span> <span class="ot">=</span> DEPARTMENT_OF_GIFT_RECIPIENT)</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>lobbying_data_bound<span class="sc">$</span>LOBBYIST_NAME<span class="ot">&lt;-</span> <span class="fu">paste</span>(lobbying_data_bound<span class="sc">$</span>LOBBYIST_FIRST_NAME, lobbying_data_bound<span class="sc">$</span>LOBBYIST_LAST_NAME, <span class="at">sep =</span> <span class="st">" "</span>)</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>lobbying_data_bound<span class="ot">&lt;-</span>lobbying_data_bound <span class="sc">%&gt;%</span> </span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">6</span>))</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>lobbying_data_ordered<span class="ot">&lt;-</span>lobbying_data_bound[, <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">22</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">13</span>, <span class="dv">14</span>, <span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">17</span>, <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">20</span>, <span class="dv">21</span>, <span class="dv">12</span>)]</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a><span class="co">#Variables in my dataset are as follows:</span></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(lobbying_data_ordered)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "LOBBYIST_ID"               "LOBBYIST_NAME"            
+ [3] "PERIOD_START"              "PERIOD_END"               
+ [5] "EXPENDITURE_ID"            "ACTION"                   
+ [7] "EXPENDITURE_AMOUNT"        "EXPENDITURE_DATE"         
+ [9] "EXPENDITURE_PURPOSE"       "EXPENDITURE_RECIPIENT"    
+[11] "CLIENT_ID"                 "CLIENT_NAME"              
+[13] "COMPENSATION_ID"           "COMPENSATION_AMOUNT"      
+[15] "GIFT_ID"                   "GIFT"                     
+[17] "RECIPIENT_FIRST_NAME"      "RECIPIENT_LAST_NAME"      
+[19] "RECIPIENT_TITLE"           "GIFT_VALUE"               
+[21] "GIFT_RECIPIENT_DEPARTMENT" "CREATED_DATE"             </code></pre>
+</div>
+</div>
+<p>#The first set of variables (cols 1:5) are identifiers for individual lobbyists and the period in which their expenditures, compensations, and gifts are being recorded. This will make it easy for me to do evaluations over time and comparisons between periods later on.</p>
+<p>#The second set of variables (cols 6:11) are exclusively related to expenditures by the lobbyists, covering the type of expenditure (“ACTION”), amount, date of expenditure, and purpose. The expenditure data also shares values with the compensation data, with columns CLIENT_ID and CLIENT_NAME having values for both sets.</p>
+<p>#The final set of variables (cols 17:23) contains information on gifts made by lobbyists to public officials.</p>
+<p>#My main questions about this data set are as follows:</p>
+<p>#1. Which parties are the most active? What names are popping up often?</p>
+<p>#2. What do lobbying activities look like when plotted over time?</p>
+<p>#3. Can I realistically visualize a relationship between the level of compensation received by lobbyists vs.&nbsp;their expenditures and contributions? If so, what is the relationship?</p>
+<p>HW3</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Range in expenditure amounts made by lobbyists is $1,033,321, Maximum is #1,033,571, and Minimum is $250.</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">max</span>(lobbying_data_ordered<span class="sc">$</span>EXPENDITURE_AMOUNT, <span class="at">na.rm=</span><span class="cn">TRUE</span>)<span class="sc">-</span><span class="fu">min</span>(lobbying_data_ordered<span class="sc">$</span>EXPENDITURE_AMOUNT, <span class="at">na.rm=</span><span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1033321</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">max</span>(lobbying_data_ordered<span class="sc">$</span>EXPENDITURE_AMOUNT, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1033571</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">min</span>(lobbying_data_ordered<span class="sc">$</span>EXPENDITURE_AMOUNT, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 250</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The range in gift amounts is more complex, as there are inexplicably a bunch of gifts in the data frame that are valued at "None" or "0", but I don't want to delete at this stage since there is some anecdotal context suggested by the recipient value. How do I exclude the 0 values from my range analysis?</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Frequency of values in LOBBYIST_ID, starting with most mentioned lobbyist:</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>sample_size_IDs <span class="ot">&lt;-</span> <span class="fu">unique</span>(lobbying_data_ordered<span class="sc">$</span>LOBBYIST_ID)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>ID_frequency<span class="ot">&lt;-</span><span class="fu">table</span>(lobbying_data_ordered<span class="sc">$</span>LOBBYIST_ID)</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ID_frequency)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+3734 3735 3739 3740 3743 3744 
+   2   31  344  596   33  584 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>ID_frequency_sorted<span class="ot">&lt;-</span>ID_frequency[<span class="fu">order</span>(ID_frequency, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)]</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(ID_frequency_sorted)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ 5861  4010  3753  6842  3740  3744  4007  3833  4193 14921  9481  3847  4246 
+ 1694   910   779   717   596   584   549   499   471   468   460   448   440 
+ 4169 15081  4126 13202  4072  3890  3739  4157  3930  9743  3962  4162  4202 
+  433   394   392   378   353   351   344   344   340   327   316   316   316 
+ 3845  4068  9621  3836  4081  3985 18181 11493  6825 18561  3925  4397 11701 
+  284   283   282   281   278   272   237   225   212   208   202   199   199 
+ 3877  4155  3900 19002  4011 19001  4094  5964  4348 25227  4020  4304  4173 
+  194   193   190   190   174   170   168   168   165   155   152   144   141 
+ 4316 14081  4074  6164 13761  4069  3782 25748  4260  6221  5721  3752  4318 
+  141   140   138   138   138   137   136   134   129   128   124   123   119 
+20343  3824  6561  3754  4103 13282  4624 17201 18701 18702  6323  3912  8162 
+  111   110   101   100   100   100    97    97    96    95    92    89    88 
+ 4052 14103  4003  9082 14641 19861 24884 11942  3864  4077  3989  4055  4257 
+   87    87    86    85    84    84    84    80    79    79    77    77    76 
+ 4219 20282  3795 16501 18742 20201  4160  9382  3899 16202  4195 24163  5361 
+   74    73    72    72    72    72    71    71    70    67    65    64    62 
+ 6203  3893 25208  4067 21101 24485 24746 10821  6104 14301 14481 23424  3955 
+   62    61    61    60    60    59    59    58    56    54    53    53    52 
+ 4298  5967 18703  3826  4239 18401  4319 12901  3959  5825  3809  4116  6321 
+   52    52    52    51    51    51    50    50    48    48    46    46    46 
+ 9601 13781  4016  4273 14821  4236 10921 20362  3863  7461  3857  3895  8361 
+   46    44    43    43    43    42    42    42    41    41    40    40    40 
+20567  4084  3825  3837  4150  4201  5127  5201 13241 13702  3820  3851  3996 
+   40    39    38    38    38    38    38    38    38    38    37    37    37 
+ 4203  7422 24728  4065  4080  6163 12641 18822  3964  3979  4082  6202  6781 
+   37    37    37    36    36    36    36    36    35    35    35    35    35 
+ 3931  4242  4333 15501 15601 17701 20166  3743  4301  4723 11381 11721 13621 
+   34    34    34    34    34    34    34    33    33    33    33    33    33 
+ 3756  3995  4073  4245  6405 15721 16801  3735 16002 18461 21841  3991  4180 
+   32    32    32    32    32    32    32    31    31    31    31    30    30 
+ 5701  4278  5481 11241 11485 12521 12721 19381 25403  4019 14042 16601 21846 
+   30    29    29    29    29    29    29    29    29    28    28    28    28 
+24609 15661 20526  3831  4096  4228  6082 16041 25323  3862 10801 15423 17521 
+   28    27    27    26    26    26    26    26    26    25    25    25    25 
+18021  4168  4312  7402  8961 18601 18602 18604 22001 24720  3789  4030  4163 
+   25    24    24    24    24    24    24    24    24    24    23    23    23 
+ 8161  9041 10901 11661 12241 14942 15261 18481 20561 22203 25488  3779  3882 
+   23    23    23    23    23    23    23    23    23    23    23    22    22 
+ 4064  6161  8181 14001 14261 24830  3992  4005  4267  4302 15424 16161 20841 
+   22    22    22    22    22    22    21    21    21    21    21    21    21 
+24063 24221 24922 25253  4272  7423  8301 15425 18741 24381  9081 12361 16662 
+   21    21    21    21    20    20    20    20    20    20    19    19    19 
+18421 20581 22783 23928 24074 25186 25621 11421 16921 18782 21002 21844 22722 
+   19    19    19    19    19    19    19    18    18    18    18    18    18 
+23827 24310 24915  3767  3811  4276  4303  5105  6961 14282 19186 22322 22781 
+   18    18    18    17    17    17    17    17    17    17    17    17    17 
+24102 24763  3943  4269  4360  5403  9383 10341 13381 14121 20210 24145 24261 
+   17    17    16    16    16    16    16    16    16    16    16    16    16 
+24262 24484 25336  3908  3984  4078  9901 10222 12261 24223 24563  3871  3896 
+   16    16    16    15    15    15    15    15    15    15    15    14    14 
+ 4031  4070  4177  4196  4825  5283 18605 23361 23883 23941 24073 24700 24779 
+   14    14    14    14    14    14    14    14    14    14    14    14    14 
+24927 25212  4189 11524 12242 14441 16042 16643 20566 21261 23621 24707 24814 
+   14    14    13    13    13    13    13    13    13    13    13    13    13 
+24910 24911  3960  4371  5107  7441  9241  9281 10241 16081 16541 16561 17901 
+   13    13    12    12    12    12    12    12    12    12    12    12    12 
+18883 19185 20206 20547 20603 21845 23121 23522 24482 24679 24845 24904 24931 
+   12    12    12    12    12    12    12    12    12    12    12    12    12 
+25174 25404 25760  3958  4089  4238  4339  4362  4406  5281  5322  5401  5862 
+   12    12    12    11    11    11    11    11    11    11    11    11    11 
+ 6523  6703  7381  8043 10501 13961 16542 16761 18281 18282 19481 20528 22741 
+   11    11    11    11    11    11    11    11    11    11    11    11    11 
+23826 24503 25050  3876  4001  4110  6403  6522  7481  8761 12301 12321 12761 
+   11    11    11    10    10    10    10    10    10    10    10    10    10 
+15121 16021 18901 19881 24022 24106 24321 24483 24764 24765 24878 24924 25124 
+   10    10    10    10    10    10    10    10    10    10    10    10    10 
+25132 25138 25147 25192  3788  4099  4209  4249  4336  5321  5881  9482 11941 
+   10    10    10    10     9     9     9     9     9     9     9     9     9 
+14181 14741 15683 16181 16461 18801 20721 23861 23942 24967 24968 25199 25244 
+    9     9     9     9     9     9     9     9     9     9     9     9     9 
+25411  3781  3832  3919  4013  4075  4154  4313  6181  7003  8201 10561 16642 
+    9     8     8     8     8     8     8     8     8     8     8     8     8 
+18141 20042 20228 20481 20564 20801 21381 22961 23801 24171 24729 24739 24748 
+    8     8     8     8     8     8     8     8     8     8     8     8     8 
+24778 24861 24971 25028 25049 25148 25324 25732  3878  3926  3929  4125  4226 
+    8     8     8     8     8     8     8     8     7     7     7     7     7 
+ 4330  6850  8081  8821  9161  9464  9541  9661  9961 12581 12981 15701 15901 
+    7     7     7     7     7     7     7     7     7     7     7     7     7 
+17301 19981 20223 22181 22204 22261 23381 23701 23782 23981 24725 24741 24749 
+    7     7     7     7     7     7     7     7     7     7     7     7     7 
+24811 24871 24876 25325 25331 25445 25481  3746  3852  3947  3970  4029  4059 
+    7     7     7     7     7     7     7     6     6     6     6     6     6 
+ 4182  4191  4341  4412  4541  9342  9441 11781 12481 13141 14881 14941 15681 
+    6     6     6     6     6     6     6     6     6     6     6     6     6 
+17004 17604 17801 18362 18603 18781 18861 19184 20209 20226 22642 22901 23521 
+    6     6     6     6     6     6     6     6     6     6     6     6     6 
+23828 24684 24786 25052 25127 25154 25242 25342 25482 25484 25525 25601 25682 
+    6     6     6     6     6     6     6     6     6     6     6     6     6 
+25773 25821  3814  3951  3975  3997  4111  4293  4329  4683  5161  5901  7221 
+    6     6     5     5     5     5     5     5     5     5     5     5     5 
+11465 12861 12961 13301 14183 15641 16741 17005 17761 19901 19902 20822 21521 
+    5     5     5     5     5     5     5     5     5     5     5     5     5 
+21661 22141 22802 23081 23141 23501 23902 23943 24302 24323 24403 24644 24671 
+    5     5     5     5     5     5     5     5     5     5     5     5     5 
+24722 24743 24773 24795 24796 24867 25003 25013 25029 25150 25189 25203 25230 
+    5     5     5     5     5     5     5     5     5     5     5     5     5 
+25341 25389 25398 25432 25437 25464 25500 25716 25745 25750 26201  3834  3905 
+    5     5     5     5     5     5     5     5     5     5     5     4     4 
+ 3988  4027  4048  4063  4115  4317  4488  4647  6021  6342  6621  7541  8622 
+    4     4     4     4     4     4     4     4     4     4     4     4     4 
+ 8681  9343  9802 10262 10582 10741 11521 12061 13042 13322 13361 14184 14563 
+    4     4     4     4     4     4     4     4     4     4     4     4     4 
+15682 15981 16022 16502 16581 17063 17541 17862 18621 18841 19182 19183 19221 
+    4     4     4     4     4     4     4     4     4     4     4     4     4 
+19862 19904 20083 20143 20208 20641 21241 21342 21343 21701 21801 21802 22022 
+    4     4     4     4     4     4     4     4     4     4     4     4     4 
+23523 23926 23930 24083 24282 24311 24423 24692 24698 24718 24727 24747 24803 
+    4     4     4     4     4     4     4     4     4     4     4     4     4 
+24825 24901 25004 25008 25123 25131 25187 25371 25520 25733 25756 26041 26262 
+    4     4     4     4     4     4     4     4     4     4     4     4     4 
+27302  3821  3840  3854  3913  3917  3938  4000  4108  4152  4212  4262  4345 
+    4     3     3     3     3     3     3     3     3     3     3     3     3 
+ 4356  5301  5362  5704  6222  6421  8381  8682  9083  9341  9762 11081 11181 
+    3     3     3     3     3     3     3     3     3     3     3     3     3 
+11361 12202 13261 13341 13601 14062 14185 15841 16221 16941 17221 17603 18041 
+    3     3     3     3     3     3     3     3     3     3     3     3     3 
+18361 19841 20081 20101 20164 20546 20565 20961 21021 21141 21201 21761 21842 
+    3     3     3     3     3     3     3     3     3     3     3     3     3 
+22221 22601 22904 22908 23601 23741 24141 24164 24284 24286 24308 24313 24314 
+    3     3     3     3     3     3     3     3     3     3     3     3     3 
+24421 24501 24642 24643 24703 24735 24783 24863 24918 24966 25045 25081 25197 
+    3     3     3     3     3     3     3     3     3     3     3     3     3 
+25198 25204 25226 25319 25353 25469 25503 25518 25583 25643 25718 25729 25742 
+    3     3     3     3     3     3     3     3     3     3     3     3     3 
+25743 26441 26581 26862  3734  3750  3768  3791  3810  3828  4035  4062  4140 
+    3     3     3     3     2     2     2     2     2     2     2     2     2 
+ 4151  4214  4224  4247  4268  4344  4357  5282  6848  7001  7901  8801  9162 
+    2     2     2     2     2     2     2     2     2     2     2     2     2 
+ 9462  9602  9641  9821  9842  9881 10041 10081 10881 10961 11001 11161 11281 
+    2     2     2     2     2     2     2     2     2     2     2     2     2 
+11341 11463 11488 11841 11961 12101 12102 12601 12621 13121 13561 13664 13801 
+    2     2     2     2     2     2     2     2     2     2     2     2     2 
+14182 14262 14541 14662 14663 14901 15161 15221 15321 15461 15481 15521 16101 
+    2     2     2     2     2     2     2     2     2     2     2     2     2 
+16121 17062 17161 17162 17721 18221 18301 18641 18681 18823 18884 19181 19321 
+    2     2     2     2     2     2     2     2     2     2     2     2     2 
+19382 19681 19683 19741 19801 19821 19921 20141 20302 20345 20381 20403 20441 
+    2     2     2     2     2     2     2     2     2     2     2     2     2 
+20462 20501 20502 21341 21721 22021 22124 22205 22301 22321 22361 22362 22622 
+    2     2     2     2     2     2     2     2     2     2     2     2     2 
+22921 23061 23341 23421 23481 23642 23823 23925 23927 23986 24085 24172 24175 
+    2     2     2     2     2     2     2     2     2     2     2     2     2 
+24224 24264 24281 24309 24322 24562 24621 24723 24766 24776 24780 24865 24887 
+    2     2     2     2     2     2     2     2     2     2     2     2     2 
+24906 24963 24969 25027 25046 25047 25082 25106 25172 25175 25177 25211 25254 
+    2     2     2     2     2     2     2     2     2     2     2     2     2 
+25261 25302 25329 25333 25385 25409 25410 25421 25434 25444 25496 25517 25704 
+    2     2     2     2     2     2     2     2     2     2     2     2     2 
+25746 25751 25753 25759 25764 25777 25861 25883 25962 26081 26621 26641 26702 
+    2     2     2     2     2     2     2     2     2     2     2     2     2 
+26822 26981 27041 27042 27044 27081 27342 27521 27541 27841  3777  3786  3799 
+    2     2     2     2     2     2     2     2     2     2     1     1     1 
+ 3801  3802  3827  3829  3904  3918  3939  3961  3976  4083  4092  4133  4158 
+    1     1     1     1     1     1     1     1     1     1     1     1     1 
+ 4165  4166  4174  4183  4192  4277  4284  4326  4342  4425  4476  4826  5141 
+    1     1     1     1     1     1     1     1     1     1     1     1     1 
+ 5261  7143  7401  7641  8001  8341  8501  9001  9344  9422  9463  9781  9981 
+    1     1     1     1     1     1     1     1     1     1     1     1     1 
+10141 10202 10261 10421 10521 10522 10641 10701 11401 11441 11495 11496 11522 
+    1     1     1     1     1     1     1     1     1     1     1     1     1 
+11541 11681 11821 11901 12081 12281 12501 12561 12582 12801 12941 13001 13041 
+    1     1     1     1     1     1     1     1     1     1     1     1     1 
+13081 13342 13461 13701 13741 13861 13942 14186 14281 14361 14381 14501 14581 
+    1     1     1     1     1     1     1     1     1     1     1     1     1 
+14602 14682 14961 15041 15101 15201 15301 15381 15543 15561 15881 15921 16361 
+    1     1     1     1     1     1     1     1     1     1     1     1     1 
+16681 16742 16781 16881 17143 17181 17322 17421 17601 17602 17661 17741 17842 
+    1     1     1     1     1     1     1     1     1     1     1     1     1 
+17881 17941 17981 18321 18341 18606 18661 18721 18904 19101 19121 19161 19341 
+    1     1     1     1     1     1     1     1     1     1     1     1     1 
+19342 19343 19361 19401 19442 19462 19641 19863 19905 19961 20041 20061 20062 
+    1     1     1     1     1     1     1     1     1     1     1     1     1 
+20121 20123 20165 20167 20222 20303 20304 20344 20363 20404 20503 20522 20533 
+    1     1     1     1     1     1     1     1     1     1     1     1     1 
+20582 20662 20741 20781 20821 20942 21061 21121 21181 21221 21301 21461 21582 
+    1     1     1     1     1     1     1     1     1     1     1     1     1 
+21583 21601 21621 21741 21803 21804 21943 21961 22061 22123 22161 22281 22381 
+    1     1     1     1     1     1     1     1     1     1     1     1     1 
+22421 22541 22542 22561 22762 22861 22881 22902 22903 22962 23161 23181 23661 
+    1     1     1     1     1     1     1     1     1     1     1     1     1 
+23924 24061 24103 24104 24122 24123 24146 24177 24201 24285 24342 24401 24441 
+    1     1     1     1     1     1     1     1     1     1     1     1     1 
+24461 24582 24610 24611 24627 24628 24664 24674 24699 24721 24730 24731 24734 
+    1     1     1     1     1     1     1     1     1     1     1     1     1 
+24742 24784 24785 24822 24836 24840 24842 24864 24866 24881 24909 24961 25021 
+    1     1     1     1     1     1     1     1     1     1     1     1     1 
+25023 25024 25025 25048 25051 25102 25144 25164 25184 25195 25196 25201 25206 
+    1     1     1     1     1     1     1     1     1     1     1     1     1 
+25250 25252 25266 25267 25308 25313 25316 25317 25345 25364 25365 25366 25384 
+    1     1     1     1     1     1     1     1     1     1     1     1     1 
+25386 25396 25401 25412 25413 25415 25422 25429 25430 25431 25435 25436 25440 
+    1     1     1     1     1     1     1     1     1     1     1     1     1 
+25463 25465 25483 25487 25491 25493 25508 25509 25510 25530 25662 25702 25708 
+    1     1     1     1     1     1     1     1     1     1     1     1     1 
+25709 25712 25719 25725 25728 25749 25769 25770 25771 25779 25841 25842 25981 
+    1     1     1     1     1     1     1     1     1     1     1     1     1 
+26181 26222 26562 26683 26722 26781 26801 26883 26904 26964 27008 27101 27321 
+    1     1     1     1     1     1     1     1     1     1     1     1     1 
+27322 27661 27761 27822 27941 27961 28021 28041 28081 
+    1     1     1     1     1     1     1     1     1 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#It looks like Thomas Moore is the lobbyist most accounted for in the three lobbying activity data sets at 1694 mentions. Now I'll check the mode of each type of activity he's done.</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>mode<span class="ot">&lt;-</span><span class="cf">function</span>(x){<span class="fu">which.max</span>(<span class="fu">tabulate</span>(x))}</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>MOORE_LOBBYING <span class="ot">&lt;-</span> lobbying_data_ordered <span class="sc">%&gt;%</span> </span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(LOBBYIST_ID <span class="sc">==</span> <span class="dv">5861</span>)</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="fu">mode</span>(MOORE_LOBBYING<span class="sc">$</span>COMPENSATION_AMOUNT)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1000</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mode</span>(MOORE_LOBBYING<span class="sc">$</span>EXPENDITURE_AMOUNT)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1025</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mode</span>(MOORE_LOBBYING<span class="sc">$</span>GIFT_VALUE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Now I'll check the frequency of unique values in some of the categorical variables from expenditures: expenditure purpose, expenditure recipient, and client name.</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>Expenditure_Purpose<span class="ot">&lt;-</span> <span class="fu">unique</span>(lobbying_data_ordered<span class="sc">$</span>EXPENDITURE_PURPOSE)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(<span class="fu">which.max</span>(<span class="fu">table</span>(Expenditure_Purpose)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] ". TRAVEL TO CHICAGO FOR MEETING WITH CHICAGO PUBLIC HEALTH DEPT"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>Expenditure_Recipient<span class="ot">&lt;-</span><span class="fu">unique</span>(lobbying_data_ordered<span class="sc">$</span>EXPENDITURE_RECIPIENT)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(<span class="fu">which.max</span>(<span class="fu">table</span>(Expenditure_Recipient)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "2FM (JENNIFER MUSS), CPD (MARJORIE BROWNSTEIN, BONNIE AMATO)"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>Client_Name<span class="ot">&lt;-</span><span class="fu">unique</span>(lobbying_data_ordered<span class="sc">$</span>CLIENT_NAME)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(<span class="fu">which.max</span>(<span class="fu">table</span>(lobbying_data_ordered<span class="sc">$</span>CLIENT_NAME)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "INTERSTATE JCDECAUX, LLC"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Though the outputs lack some context, I can at least see what businesses and parties are the most active.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Visualizations</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">#A tibble of summary statistics on gift values for each lobbyist.</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>gift_stats_by_lobbyist<span class="ot">&lt;-</span>lobbying_data_ordered <span class="sc">%&gt;%</span> </span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(GIFT_VALUE <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(LOBBYIST_NAME) <span class="sc">%&gt;%</span> </span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="st">'Average Gift Value'</span> <span class="ot">=</span> <span class="fu">mean</span>(GIFT_VALUE),</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>            <span class="st">'Maximum Gift Value'</span> <span class="ot">=</span> <span class="fu">max</span>(GIFT_VALUE),</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>            <span class="st">'Most Common Gift Value'</span> <span class="ot">=</span> <span class="fu">mode</span>(GIFT_VALUE)) </span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Here, I attempted to visualize the summary statistics for gift value and facet wrap by lobbyist, but I'm having trouble mapping appropriately and unsure if I have the right variables at work.</span></span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>gift_stats_by_lobbyist_pivot<span class="ot">&lt;-</span>gift_stats_by_lobbyist <span class="sc">%&gt;%</span> </span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>,</span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"GIFT_STAT"</span>,</span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"AMOUNT"</span>)</span>
+<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gift_stats_by_lobbyist_pivot, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> GIFT_STAT, <span class="at">y =</span> AMOUNT))<span class="sc">+</span></span>
+<span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
+<span id="cb40-19"><a href="#cb40-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in wrap_as_facets_list(facets): argument "facets" is missing, with no default</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Next, I'd like to visually compare each summary statistic per lobbyist to the mean of that summary statistic for all lobbyists. After that code is done successfully, it should be easier to apply the same principles to the other lobbying activities for the final paper analysis.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>For the final project, I will need to explore the range of values in the set more thoroughly so I can determine the most researchable questions. Here, I mostly just investigated the data and practiced coding for inquiry. After going through this initial exploration, I am curious as to what types of expenditures are most common. In what ways are lobbyists spending money? There are too many completely different recipients/clients to try to class each one by industry, but I would do so if I had the time.</p>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="DACSS/SummerCommentRepo" data-repo-id="R_kgDOJrwrQw" data-category="Announcements" data-category-id="DIC_kwDOJrwrQ84CW_wq" data-mapping="url" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
